@@ -149,7 +149,10 @@ function getAuth() {
 
 async function jiraSearch(jql, fields = ['key','summary','status','labels','parent'], maxResults = 200) {
     const auth = getAuth();
-    const resp = await fetch(`${JIRA_URL}/rest/api/3/search/jql`, {
+    // Use CORS proxy to bypass Jira's CORS restrictions
+    const PROXY = 'https://corsproxy.io/?';
+    const targetUrl = `${JIRA_URL}/rest/api/3/search/jql`;
+    const resp = await fetch(`${PROXY}${encodeURIComponent(targetUrl)}`, {
         method: 'POST',
         headers: {'Authorization': `Basic ${auth}`, 'Content-Type': 'application/json'},
         body: JSON.stringify({jql, fields, maxResults})
