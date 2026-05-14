@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBM — Sprint Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0a0a0a;color:#e0e0e0;font-family:'Inter',sans-serif;min-height:100vh;padding:2rem 1.5rem}
+        .container{max-width:1100px;margin:0 auto}
+        .banner{position:relative;overflow:hidden;border-radius:16px;padding:2rem 2rem 1.5rem;margin-bottom:2rem;background:linear-gradient(135deg,#111 0%,#1a1a1a 40%,#1c1408 100%);border:1px solid #222}
+        .banner::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,153,0,.08) 0%,transparent 70%);pointer-events:none}
+        .banner .logos{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+        .banner .logos .divider{width:1px;height:32px;background:#333}
+        .banner h1{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-align:center;margin-bottom:.3rem}
+        .banner .sub{font-size:.85rem;color:#888;text-align:center}
+        .banner .updated{font-size:.72rem;color:#555;text-align:center;margin-top:.5rem}
+
+        .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+        .stat-card{background:#141414;border:1px solid #222;border-radius:12px;padding:1.2rem;text-align:center}
+        .stat-card .value{font-family:'Sora',sans-serif;font-size:2rem;font-weight:700;color:#FF9900}
+        .stat-card .value.green{color:#22c55e}
+        .stat-card .value.blue{color:#448AFF}
+        .stat-card .value.purple{color:#B388FF}
+        .stat-card .label{font-size:.75rem;color:#888;margin-top:.3rem}
+
+        .section-title{font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:1.5rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+        .section-title .dot{width:8px;height:8px;border-radius:50%;background:#FF9900}
+
+        .sprint-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:1.5rem}
+        .sprint-table th{font-family:'Sora',sans-serif;font-size:.7rem;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;padding:.75rem 1rem;border-bottom:1px solid #222;text-align:left}
+        .sprint-table td{padding:.75rem 1rem;border-bottom:1px solid #1a1a1a;vertical-align:middle}
+        .sprint-table tr:hover{background:#141414}
+        .sprint-name{font-weight:500;color:#fff}
+        .sprint-dates{color:#666;font-size:.75rem}
+        .progress-bar{background:#222;border-radius:10px;height:8px;overflow:hidden;width:100%;min-width:120px}
+        .progress-fill{height:100%;border-radius:10px;transition:width .3s}
+        .progress-fill.green{background:linear-gradient(90deg,#22c55e,#69F0AE)}
+        .progress-fill.orange{background:linear-gradient(90deg,#FF9900,#FFB74D)}
+        .progress-fill.blue{background:linear-gradient(90deg,#448AFF,#82B1FF)}
+        .pct{font-family:'Sora',sans-serif;font-weight:600;font-size:.8rem;min-width:40px;text-align:right}
+        .pct.green{color:#22c55e}
+        .pct.orange{color:#FF9900}
+
+        .task-list{list-style:none;padding:0}
+        .task-list li{padding:.6rem 1rem;border-bottom:1px solid #1a1a1a;font-size:.8rem;display:flex;align-items:center;gap:.6rem}
+        .task-list li:hover{background:#141414}
+        .task-key{font-family:'Sora',sans-serif;font-weight:600;color:#448AFF;font-size:.72rem;min-width:55px}
+        .task-summary{color:#ccc;flex:1}
+        .task-status{font-size:.7rem;padding:.2rem .6rem;border-radius:12px;font-weight:500}
+        .task-status.done{color:#22c55e;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
+        .task-status.progress{color:#FF9900;background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.2)}
+        .task-status.todo{color:#888;background:rgba(136,136,136,.1);border:1px solid rgba(136,136,136,.2)}
+
+        .epic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+        .epic-card{background:#141414;border:1px solid #222;border-radius:10px;padding:1rem}
+        .epic-card .epic-name{font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:.5rem}
+        .epic-card .epic-stats{font-size:.72rem;color:#888;margin-bottom:.5rem}
+
+        .loading{text-align:center;padding:3rem;color:#666;font-size:.9rem}
+        .error{text-align:center;padding:2rem;color:#ef4444;font-size:.85rem;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);border-radius:8px;margin:1rem 0}
+
+        .config-box{background:#141414;border:1px solid #333;border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:.8rem}
+        .config-box input{background:#0a0a0a;border:1px solid #333;border-radius:6px;padding:.5rem .8rem;color:#fff;font-size:.8rem;width:100%;margin-top:.3rem}
+        .config-box button{background:#FF9900;color:#000;border:none;border-radius:6px;padding:.5rem 1.2rem;font-weight:600;cursor:pointer;margin-top:.8rem;font-size:.8rem}
+        .config-box button:hover{background:#FFB74D}
+        .hide{display:none}
+
+        @media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.epic-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="banner">
+        <div class="logos">
+            <img src="gbm-logo.png" alt="GBM" style="height:40px;">
+            <span class="divider"></span>
+            <img src="aws-logo-white.png" alt="AWS" style="height:28px;">
+        </div>
+        <h1>Sprint Dashboard</h1>
+        <div class="sub">GBM — CC Fase II — Amazon Connect</div>
+        <div class="updated" id="last-updated"></div>
+    </div>
+
+    <!-- Config (hidden after first use) -->
+    <div class="config-box" id="config-box">
+        <div style="color:#FF9900;font-weight:600;margin-bottom:.5rem">Configuracion (solo la primera vez)</div>
+        <label style="color:#888">Email Jira:</label>
+        <input type="text" id="cfg-email" placeholder="jairgarcia@non-employee.gbm.com">
+        <label style="color:#888;margin-top:.5rem;display:block">API Token:</label>
+        <input type="password" id="cfg-token" placeholder="Tu API token de Jira">
+        <button onclick="saveConfig()">Conectar</button>
+    </div>
+
+    <!-- Dashboard content -->
+    <div id="dashboard" class="hide">
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card"><div class="value green" id="stat-done">-</div><div class="label">Completadas</div></div>
+            <div class="stat-card"><div class="value" id="stat-progress">-</div><div class="label">En Progreso</div></div>
+            <div class="stat-card"><div class="value blue" id="stat-todo">-</div><div class="label">Por Hacer</div></div>
+            <div class="stat-card"><div class="value purple" id="stat-total">-</div><div class="label">Total Issues</div></div>
+        </div>
+
+        <!-- Sprint Progress -->
+        <div class="section-title"><span class="dot"></span> Progreso por Sprint</div>
+        <table class="sprint-table">
+            <thead><tr><th>Sprint</th><th>Fechas</th><th>Progreso</th><th>%</th><th>Done/Total</th></tr></thead>
+            <tbody id="sprint-tbody"></tbody>
+        </table>
+
+        <!-- Epic Progress -->
+        <div class="section-title"><span class="dot" style="background:#B388FF"></span> Progreso por Epica</div>
+        <div class="epic-grid" id="epic-grid"></div>
+
+        <!-- Recent completed -->
+        <div class="section-title"><span class="dot" style="background:#22c55e"></span> Tareas Completadas (ultimas 7 dias)</div>
+        <ul class="task-list" id="done-list"></ul>
+
+        <!-- In Progress -->
+        <div class="section-title"><span class="dot" style="background:#FF9900"></span> En Progreso</div>
+        <ul class="task-list" id="progress-list"></ul>
+    </div>
+
+    <div class="loading" id="loading" style="display:none">Cargando datos de Jira...</div>
+</div>
+
+<script>
+const JIRA_URL = 'https://gbmprojects.atlassian.net';
+const PROJECT = 'AC';
+
+function saveConfig() {
+    const email = document.getElementById('cfg-email').value;
+    const token = document.getElementById('cfg-token').value;
+    if (!email || !token) return alert('Completa ambos campos');
+    localStorage.setItem('jira_email', email);
+    localStorage.setItem('jira_token', token);
+    document.getElementById('config-box').classList.add('hide');
+    loadDashboard();
+}
+
+function getAuth() {
+    const email = localStorage.getItem('jira_email');
+    const token = localStorage.getItem('jira_token');
+    if (!email || !token) return null;
+    return btoa(`${email}:${token}`);
+}
+
+async function jiraSearch(jql, fields = ['key','summary','status','labels','parent'], maxResults = 200) {
+    const auth = getAuth();
+    const resp = await fetch(`${JIRA_URL}/rest/api/3/search/jql`, {
+        method: 'POST',
+        headers: {'Authorization': `Basic ${auth}`, 'Content-Type': 'application/json'},
+        body: JSON.stringify({jql, fields, maxResults})
+    });
+    if (!resp.ok) throw new Error(`Jira error: ${resp.status}`);
+    return await resp.json();
+}
+
+async function loadDashboard() {
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('dashboard').classList.add('hide');
+
+    try {
+        // Get all our issues (AC-443+)
+        const data = await jiraSearch(`project = ${PROJECT} AND key >= AC-443 ORDER BY key ASC`);
+        const issues = data.issues || [];
+
+        // Stats
+        const done = issues.filter(i => i.fields.status.statusCategory.key === 'done');
+        const progress = issues.filter(i => i.fields.status.statusCategory.key === 'indeterminate');
+        const todo = issues.filter(i => i.fields.status.statusCategory.key === 'new');
+
+        document.getElementById('stat-done').textContent = done.length;
+        document.getElementById('stat-progress').textContent = progress.length;
+        document.getElementById('stat-todo').textContent = todo.length;
+        document.getElementById('stat-total').textContent = issues.length;
+
+        // Sprint progress
+        const sprints = [
+            {name: 'Sprint 0', label: 'sprint-0'},
+            {name: 'Sprint 1', label: 'sprint-1'},
+            {name: 'Sprint 2', label: 'sprint-2'},
+            {name: 'Sprint 3', label: 'sprint-3'},
+            {name: 'Sprint 4', label: 'sprint-4'},
+            {name: 'Sprint 5', label: 'sprint-5'},
+            {name: 'Sprint 6', label: 'sprint-6'},
+            {name: 'Sprint 7', label: 'sprint-7'},
+            {name: 'Sprint 8', label: 'sprint-8'},
+        ];
+
+        const sprintDates = ['5-16 May','19 May-6 Jun','9-20 Jun','23 Jun-4 Jul','7-18 Jul','21 Jul-1 Ago','4-15 Ago','18-29 Ago','1-12 Sep'];
+        let sprintHtml = '';
+        sprints.forEach((s, i) => {
+            const sprintIssues = issues.filter(iss => (iss.fields.labels || []).includes(s.label));
+            const sprintDone = sprintIssues.filter(iss => iss.fields.status.statusCategory.key === 'done');
+            const total = sprintIssues.length;
+            const pct = total > 0 ? Math.round((sprintDone.length / total) * 100) : 0;
+            const color = pct === 100 ? 'green' : pct > 0 ? 'orange' : 'blue';
+            sprintHtml += `<tr>
+                <td><span class="sprint-name">${s.name}</span></td>
+                <td><span class="sprint-dates">${sprintDates[i] || ''}</span></td>
+                <td><div class="progress-bar"><div class="progress-fill ${color}" style="width:${pct}%"></div></div></td>
+                <td><span class="pct ${color}">${pct}%</span></td>
+                <td style="color:#888;font-size:.75rem">${sprintDone.length}/${total}</td>
+            </tr>`;
+        });
+        document.getElementById('sprint-tbody').innerHTML = sprintHtml;
+
+        // Epic progress
+        const epics = issues.filter(i => i.fields.status && i.key >= 'AC-443' && i.key <= 'AC-662')
+            .filter(i => {
+                // Find epics by checking if other issues have this as parent
+                return issues.some(child => child.fields.parent && child.fields.parent.key === i.key);
+            });
+
+        // Simpler: group by parent
+        const epicMap = {};
+        issues.forEach(i => {
+            if (i.fields.parent) {
+                const parentKey = i.fields.parent.key;
+                if (!epicMap[parentKey]) epicMap[parentKey] = {done: 0, total: 0, name: ''};
+                epicMap[parentKey].total++;
+                if (i.fields.status.statusCategory.key === 'done') epicMap[parentKey].done++;
+            }
+        });
+        // Get epic names
+        issues.forEach(i => {
+            if (epicMap[i.key]) epicMap[i.key].name = i.fields.summary;
+        });
+
+        let epicHtml = '';
+        Object.entries(epicMap).forEach(([key, ep]) => {
+            if (!ep.name || ep.name.length < 3) return;
+            const pct = ep.total > 0 ? Math.round((ep.done / ep.total) * 100) : 0;
+            const color = pct === 100 ? 'green' : pct > 0 ? 'orange' : 'blue';
+            epicHtml += `<div class="epic-card">
+                <div class="epic-name">${ep.name}</div>
+                <div class="epic-stats">${ep.done}/${ep.total} completadas</div>
+                <div class="progress-bar"><div class="progress-fill ${color}" style="width:${pct}%"></div></div>
+            </div>`;
+        });
+        document.getElementById('epic-grid').innerHTML = epicHtml;
+
+        // Done list (last 7 days)
+        let doneHtml = '';
+        done.slice(0, 20).forEach(i => {
+            doneHtml += `<li><span class="task-key">${i.key}</span><span class="task-summary">${i.fields.summary}</span><span class="task-status done">Done</span></li>`;
+        });
+        document.getElementById('done-list').innerHTML = doneHtml || '<li style="color:#666">No hay tareas completadas recientes</li>';
+
+        // In Progress list
+        let progressHtml = '';
+        progress.forEach(i => {
+            progressHtml += `<li><span class="task-key">${i.key}</span><span class="task-summary">${i.fields.summary}</span><span class="task-status progress">In Progress</span></li>`;
+        });
+        document.getElementById('progress-list').innerHTML = progressHtml || '<li style="color:#666">No hay tareas en progreso</li>';
+
+        document.getElementById('last-updated').textContent = `Actualizado: ${new Date().toLocaleString('es-MX')}`;
+        document.getElementById('dashboard').classList.remove('hide');
+    } catch (e) {
+        document.getElementById('dashboard').innerHTML = `<div class="error">Error: ${e.message}. Verifica tu token.</div>`;
+        document.getElementById('dashboard').classList.remove('hide');
+    }
+    document.getElementById('loading').style.display = 'none';
+}
+
+// Auto-load if config exists
+window.onload = () => {
+    if (getAuth()) {
+        document.getElementById('config-box').classList.add('hide');
+        loadDashboard();
+    }
+};
+</script>
+</body>
+</html>
