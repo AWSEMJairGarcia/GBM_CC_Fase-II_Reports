@@ -149,9 +149,8 @@ function getAuth() {
 
 async function jiraSearch(jql, fields = ['key','summary','status','labels','parent'], maxResults = 200) {
     const auth = getAuth();
-    const PROXY = 'https://corsproxy.io/?';
+    const PROXY = 'https://api.allorigins.win/raw?url=';
     const targetUrl = `${JIRA_URL}/rest/api/3/search/jql`;
-    const body = JSON.stringify({jql, fields, maxResults});
     const resp = await fetch(`${PROXY}${encodeURIComponent(targetUrl)}`, {
         method: 'POST',
         headers: {
@@ -159,7 +158,7 @@ async function jiraSearch(jql, fields = ['key','summary','status','labels','pare
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: body
+        body: JSON.stringify({jql, fields, maxResults})
     });
     if (!resp.ok) throw new Error(`Jira error: ${resp.status}`);
     return await resp.json();
