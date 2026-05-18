@@ -68,6 +68,16 @@ tr:hover{background:#141414}
 .epic-card .name{font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;color:#fff;margin-bottom:.3rem}
 .epic-card .meta{font-size:.68rem;color:#888;margin-bottom:.4rem}
 
+.sprint-row{cursor:pointer}
+.sprint-row:hover{background:#1a1a1a}
+.story-block{background:#141414;border:1px solid #222;border-radius:8px;padding:.8rem;margin-bottom:.6rem}
+.story-block .story-title{font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;color:#fff;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+.story-block .story-title .type-icon{width:14px;height:14px;border-radius:3px}
+.story-block .subtask-list{list-style:none;padding-left:1.2rem;border-left:2px solid #333}
+.story-block .subtask-list li{padding:.3rem 0;font-size:.72rem;color:#bbb;display:flex;align-items:center;gap:.4rem}
+.story-block .subtask-list li .st-key{color:#666;font-size:.65rem;min-width:48px}
+.btn-detail{font-size:.68rem;color:#448AFF;cursor:pointer;text-decoration:underline}
+
 @media(max-width:900px){.stats-row{grid-template-columns:repeat(3,1fr)}.three-col{grid-template-columns:1fr}.epic-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -104,7 +114,11 @@ tr:hover{background:#141414}
     <div class="view" id="view-sprint">
         <div class="section">
             <div class="section-title"><span class="dot" style="background:#FF9900"></span> Progreso por Sprint</div>
-            <table id="sprint-table"><thead><tr><th>Sprint</th><th>Progreso</th><th>%</th><th>Done/Total</th></tr></thead><tbody></tbody></table>
+            <table id="sprint-table"><thead><tr><th>Sprint</th><th>Progreso</th><th>%</th><th>Done/Total</th><th></th></tr></thead><tbody></tbody></table>
+        </div>
+        <div class="section" id="sprint-detail" style="display:none">
+            <div class="section-title" id="sprint-detail-title"><span class="dot" style="background:#448AFF"></span> Detalle</div>
+            <div id="sprint-detail-content"></div>
         </div>
     </div>
 
@@ -181,7 +195,7 @@ async function loadDashboard() {
         </div>
     `;
 
-    // Sprint table
+    // Sprint table with clickable rows
     const sprintLabels = ['sprint-0','sprint-1','sprint-2','sprint-3','sprint-4','sprint-5','sprint-6','sprint-7','sprint-8'];
     const sprintNames = ['Sprint 0 - Discovery','Sprint 1 - Accesos','Sprint 2 - Refactor','Sprint 3 - Entity','Sprint 4 - Workspace','Sprint 5 - Routing','Sprint 6 - WhatsApp','Sprint 7 - Campaigns','Sprint 8 - CSAT+ACW'];
     let sprintHtml = '';
@@ -190,14 +204,18 @@ async function loadDashboard() {
         const sd = si.filter(x => x.fields.status.statusCategory.key === 'done');
         const pct = si.length > 0 ? Math.round((sd.length / si.length) * 100) : 0;
         const color = pct === 100 ? 'fill-green' : pct > 0 ? 'fill-orange' : 'fill-blue';
-        sprintHtml += `<tr>
+        sprintHtml += `<tr class="sprint-row" onclick="showSprintDetail('${label}', '${sprintNames[i]}')">
             <td style="font-weight:500;color:#fff">${sprintNames[i]}</td>
             <td><div class="progress-bar"><div class="progress-fill ${color}" style="width:${pct}%"></div></div></td>
             <td style="font-family:'Sora';font-weight:600;color:${pct===100?'#22c55e':pct>0?'#FF9900':'#888'}">${pct}%</td>
             <td style="color:#888">${sd.length}/${si.length}</td>
+            <td><span class="btn-detail">Ver detalle →</span></td>
         </tr>`;
     });
     document.querySelector('#sprint-table tbody').innerHTML = sprintHtml;
+
+    // Store issues globally for sprint detail
+    window._allIssues = issues;
 
     // Epics
     const epicKeys = ['AC-662','AC-443','AC-444','AC-445','AC-446','AC-447','AC-448','AC-449'];
@@ -240,6 +258,81 @@ async function loadDashboard() {
 }
 
 loadDashboard();
+
+function showSprintDetail(label, name) {
+    const issues = window._allIssues || [];
+    const sprintIssues = issues.filter(x => (x.fields.labels || []).includes(label));
+    
+    // Separate by type
+    const stories = sprintIssues.filter(i => i.fields.issuetype && i.fields.issuetype.name === 'Story');
+    const tasks = sprintIssues.filter(i => i.fields.issuetype && i.fields.issuetype.name === 'Task');
+    
+    // Find subtasks for each story/task
+    let html = '';
+    
+    // Stories with their subtasks
+    stories.forEach(story => {
+        const subtasks = issues.filter(i => i.fields.parent && i.fields.parent.key === story.key);
+        const stDone = subtasks.filter(s => s.fields.status.statusCategory.key === 'done').length;
+        const statusBadge = story.fields.status.statusCategory.key === 'done' 
+            ? '<span class="badge badge-done">Done</span>' 
+            : story.fields.status.statusCategory.key === 'indeterminate'
+            ? '<span class="badge badge-progress">In Progress</span>'
+            : '<span class="badge badge-todo">To Do</span>';
+        
+        html += `<div class="story-block">
+            <div class="story-title">
+                <span class="type-icon" style="background:#22c55e"></span>
+                <span class="key">${story.key}</span>
+                ${story.fields.summary}
+                ${statusBadge}
+                ${story.fields.duedate ? '<span style="color:#888;font-size:.65rem;margin-left:auto">📅 '+story.fields.duedate+'</span>' : ''}
+            </div>
+            ${subtasks.length > 0 ? `<ul class="subtask-list">
+                ${subtasks.map(st => {
+                    const stStatus = st.fields.status.statusCategory.key === 'done' ? '✓' : '○';
+                    const stColor = st.fields.status.statusCategory.key === 'done' ? '#22c55e' : '#666';
+                    return `<li><span style="color:${stColor}">${stStatus}</span><span class="st-key">${st.key}</span>${st.fields.summary}</li>`;
+                }).join('')}
+            </ul><div style="font-size:.65rem;color:#888;margin-top:.3rem">${stDone}/${subtasks.length} sub-tasks completadas</div>` : '<div style="font-size:.68rem;color:#666;margin-top:.3rem">Sin sub-tasks</div>'}
+        </div>`;
+    });
+    
+    // Tasks (not linked to stories)
+    if (tasks.length > 0) {
+        html += '<div style="margin-top:1rem"><div class="section-title" style="font-size:.78rem"><span class="dot" style="background:#448AFF"></span> Tasks</div>';
+        tasks.forEach(task => {
+            const subtasks = issues.filter(i => i.fields.parent && i.fields.parent.key === task.key);
+            const statusBadge = task.fields.status.statusCategory.key === 'done' 
+                ? '<span class="badge badge-done">Done</span>' 
+                : task.fields.status.statusCategory.key === 'indeterminate'
+                ? '<span class="badge badge-progress">In Progress</span>'
+                : '<span class="badge badge-todo">To Do</span>';
+            
+            html += `<div class="story-block" style="border-left:3px solid #448AFF">
+                <div class="story-title">
+                    <span class="type-icon" style="background:#448AFF"></span>
+                    <span class="key">${task.key}</span>
+                    ${task.fields.summary}
+                    ${statusBadge}
+                </div>
+                ${subtasks.length > 0 ? `<ul class="subtask-list">
+                    ${subtasks.map(st => {
+                        const stStatus = st.fields.status.statusCategory.key === 'done' ? '✓' : '○';
+                        const stColor = st.fields.status.statusCategory.key === 'done' ? '#22c55e' : '#666';
+                        return `<li><span style="color:${stColor}">${stStatus}</span><span class="st-key">${st.key}</span>${st.fields.summary}</li>`;
+                    }).join('')}
+                </ul>` : ''}
+            </div>`;
+        });
+        html += '</div>';
+    }
+    
+    document.getElementById('sprint-detail-title').innerHTML = `<span class="dot" style="background:#448AFF"></span> ${name} — Detalle`;
+    document.getElementById('sprint-detail-content').innerHTML = html || '<p style="color:#666">Sin items en este sprint</p>';
+    document.getElementById('sprint-detail').style.display = 'block';
+    document.getElementById('sprint-detail').scrollIntoView({behavior: 'smooth'});
+}
 </script>
 </body>
 </html>
