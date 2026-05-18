@@ -1,33 +1,56 @@
 #!/bin/bash
-# Genera data.json con datos de Jira para el dashboard
-# Configurar antes de ejecutar:
-#   export JIRA_TOKEN="tu-token-aqui"
-#
-# Ejecutar:
-#   ./generate-data.sh && git add data.json && git commit -m "chore: update data" && git push
+# generate-data.sh — Fetch Jira data and save to data.json
+# Usage: JIRA_TOKEN=your-token ./generate-data.sh
 
-set -euo pipefail
+set -e
 
-JIRA_URL="https://gbmprojects.atlassian.net"
-EMAIL="jairgarcia@non-employee.gbm.com"
-TOKEN="${JIRA_TOKEN:-}"
-
-if [[ -z "$TOKEN" ]]; then
-  echo "Error: export JIRA_TOKEN='tu-token'"
+# Validate token
+if [ -z "$JIRA_TOKEN" ]; then
+  echo "ERROR: JIRA_TOKEN environment variable is not set."
+  echo "Usage: JIRA_TOKEN=your-token ./generate-data.sh"
   exit 1
 fi
 
-AUTH=$(echo -n "$EMAIL:$TOKEN" | base64)
+# Configuration
+JIRA_URL="https://gbmprojects.atlassian.net"
+EMAIL="jairgarcia@non-employee.gbm.com"
+PROJECT_KEY="AC"
 
-echo "Fetching data from Jira..."
+# Build JQL query
+JQL="project = ${PROJECT_KEY} AND key >= AC-443 ORDER BY key ASC"
+FIELDS="key,summary,status,labels,parent,assignee,created,updated,resolutiondate"
+MAX_RESULTS=200
 
-# Fetch all our issues
-curl -s -X POST "$JIRA_URL/rest/api/3/search/jql" \
-  -H "Authorization: Basic $AUTH" \
+# Encode credentials
+AUTH=$(echo -n "${EMAIL}:${JIRA_TOKEN}" | base64)
+
+# API URL
+API_URL="${JIRA_URL}/rest/api/3/search"
+
+echo "Fetching issues from Jira..."
+echo "JQL: ${JQL}"
+
+# Fetch data
+curl -s -X GET \
+  "${API_URL}?jql=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${JQL}'))")&fields=${FIELDS}&maxResults=${MAX_RESULTS}" \
+  -H "Authorization: Basic ${AUTH}" \
   -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -d '{"jql":"project = AC AND key >= AC-443 ORDER BY key ASC","fields":["key","summary","status","labels","parent","assignee","created","updated"],"maxResults":200}' \
-  > data.json
+  -o data.json
 
-echo "Data saved to data.json ($(wc -l < data.json) lines)"
-echo "Now commit and push to update the dashboard."
+# Validate response
+if [ ! -f data.json ] || [ ! -s data.json ]; then
+  echo "ERROR: Failed to fetch data from Jira."
+  exit 1
+fi
+
+# Check for errors in response
+if grep -q '"errorMessages"' data.json; then
+  echo "ERROR: Jira returned an error:"
+  cat data.json
+  exit 1
+fi
+
+# Count issues
+ISSUE_COUNT=$(python3 -c "import json; data=json.load(open('data.json')); print(data.get('total', 0))")
+echo "Success! Fetched ${ISSUE_COUNT} issues."
+echo "Data saved to data.json"
