@@ -263,6 +263,10 @@ function showSprintDetail(label, name) {
     const issues = window._allIssues || [];
     const sprintIssues = issues.filter(x => (x.fields.labels || []).includes(label));
     
+    // Hide sprint table, show detail
+    document.querySelector('#sprint-table').parentElement.style.display = 'none';
+    document.getElementById('sprint-detail').style.display = 'block';
+    
     // Separate by type
     const stories = sprintIssues.filter(i => i.fields.issuetype && i.fields.issuetype.name === 'Story');
     const tasks = sprintIssues.filter(i => i.fields.issuetype && i.fields.issuetype.name === 'Task');
@@ -326,10 +330,14 @@ function showSprintDetail(label, name) {
         html += '</div>';
     }
     
-    document.getElementById('sprint-detail-title').innerHTML = `<span class="dot" style="background:#448AFF"></span> ${name} — Detalle`;
+    document.getElementById('sprint-detail-title').innerHTML = `<span class="btn-detail" onclick="hideSprintDetail()" style="margin-right:.8rem;color:#888">← Volver</span><span class="dot" style="background:#448AFF"></span> ${name}`;
     document.getElementById('sprint-detail-content').innerHTML = html || '<p style="color:#666">Sin items en este sprint</p>';
     document.getElementById('sprint-detail').style.display = 'block';
-    document.getElementById('sprint-detail').scrollIntoView({behavior: 'smooth'});
+}
+
+function hideSprintDetail() {
+    document.getElementById('sprint-detail').style.display = 'none';
+    document.querySelector('#sprint-table').parentElement.style.display = 'block';
 }
 </script>
 </body>
