@@ -1,24 +1,24 @@
 {
   "AC-483": {
-    "duedate": "",
+    "duedate": "2026-06-06",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 3] Dise\u00f1o UI Agent Workspace \u2014 Pantalla principal por rol"
   },
   "AC-482": {
-    "duedate": "",
+    "duedate": "2026-05-30",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 3] Implementar busqueda de cliente en contact flow"
   },
   "AC-481": {
-    "duedate": "",
+    "duedate": "2026-05-27",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 3] Integracion API Entidad Cliente \u2014 Autenticacion y conexion"
   },
   "AC-480": {
-    "duedate": "",
+    "duedate": "2026-05-27",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 3] Implementar Lambda de normalizacion de telefonos"
@@ -42,13 +42,13 @@
     "summary": "[Sprint 1] [T-450] Dise\u00f1o arquitectura Refactor Mixpanel \u2014 2 Lambdas + SQS"
   },
   "AC-473": {
-    "duedate": "",
+    "duedate": "2026-05-30",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 1] [ACCESOS] Obtener roles IAM en cuentas AWS (STG/DEV)"
   },
   "AC-472": {
-    "duedate": "",
+    "duedate": "2026-05-30",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 1] [ACCESOS] Obtener acceso al repositorio GitHub (gbmcode/gbm-connect)"
