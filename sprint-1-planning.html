@@ -232,29 +232,28 @@
             text-decoration: none;
         }
         .task-table a:hover { text-decoration: underline; }
-        .task-table th:nth-child(1), .task-table td:nth-child(1) { width: 80px; }
-        .task-table th:nth-child(2), .task-table td:nth-child(2) { width: auto; }
-        .task-table th:nth-child(3), .task-table td:nth-child(3) { width: 120px; }
-        .task-table th:nth-child(4), .task-table td:nth-child(4) { width: 120px; }
-        .task-table th:nth-child(5), .task-table td:nth-child(5) { width: 140px; }
-        .task-table th:nth-child(6), .task-table td:nth-child(6) { width: 80px; text-align: center; }
+        .task-table { table-layout: fixed; }
+        .task-table th:nth-child(1) { width: 70px; }
+        .task-table th:nth-child(2) { width: 35%; }
+        .task-table th:nth-child(3) { width: 15%; }
+        .task-table th:nth-child(4) { width: 15%; }
+        .task-table th:nth-child(5) { width: 15%; }
+        .task-table th:nth-child(6) { width: 80px; text-align: center; }
+        .task-table td { overflow: hidden; text-overflow: ellipsis; }
 
         /* Editable cells */
         .editable {
             cursor: pointer;
             padding: 4px 8px;
             border-radius: 4px;
-            min-width: 80px;
             min-height: 28px;
-            display: block;
             transition: background 0.2s;
-            border: 1px dashed transparent;
+            border: 1px dashed #333;
         }
-        .editable:hover { background: #222; border-color: #444; }
+        .editable:hover { background: #222; border-color: #555; }
         .editable.editing {
             background: #1a1a1a;
-            outline: 1px solid #448AFF;
-            border-color: transparent;
+            border: 1px solid #448AFF;
         }
         .editable input {
             background: transparent;
