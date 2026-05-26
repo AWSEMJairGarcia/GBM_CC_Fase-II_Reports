@@ -888,9 +888,46 @@
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
         populateSavedData();
+        fetchJiraDates();
         renderBarChart();
         renderDonutChart();
     });
+
+    // Fetch planned start dates from Jira JSON (pre-loaded)
+    async function fetchJiraDates() {
+        try {
+            const resp = await fetch('sprint1-jira.json');
+            if (!resp.ok) return;
+            const jiraData = await resp.json();
+
+            document.querySelectorAll('tr[data-key]').forEach(row => {
+                const key = row.dataset.key;
+                if (!jiraData[key]) return;
+
+                // Fill Planned Start from duedate
+                const plannedCell = row.querySelector('[data-field="planned"]');
+                if (plannedCell && jiraData[key].duedate) {
+                    const stored = getCellValue(key, 'planned');
+                    if (!stored) {
+                        plannedCell.textContent = jiraData[key].duedate;
+                        setCellValue(key, 'planned', jiraData[key].duedate);
+                    }
+                }
+
+                // Fill Asignado from assignee
+                const asignadoCell = row.querySelector('[data-field="asignado"]');
+                if (asignadoCell && jiraData[key].assignee) {
+                    const stored = getCellValue(key, 'asignado');
+                    if (!stored) {
+                        asignadoCell.textContent = jiraData[key].assignee;
+                        setCellValue(key, 'asignado', jiraData[key].assignee);
+                    }
+                }
+            });
+        } catch (e) {
+            console.log('Jira JSON not available:', e.message);
+        }
+    }
     </script>
 </body>
 </html>

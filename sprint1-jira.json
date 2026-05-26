@@ -1,0 +1,116 @@
+{
+  "AC-483": {
+    "duedate": "",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 3] Dise\u00f1o UI Agent Workspace \u2014 Pantalla principal por rol"
+  },
+  "AC-482": {
+    "duedate": "",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 3] Implementar busqueda de cliente en contact flow"
+  },
+  "AC-481": {
+    "duedate": "",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 3] Integracion API Entidad Cliente \u2014 Autenticacion y conexion"
+  },
+  "AC-480": {
+    "duedate": "",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 3] Implementar Lambda de normalizacion de telefonos"
+  },
+  "AC-476": {
+    "duedate": "2026-06-06",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] [T-450] Implementar Lambda 2 \u2014 Procesamiento y env\u00edo a Mixpanel"
+  },
+  "AC-475": {
+    "duedate": "2026-06-06",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] [T-450] Implementar Lambda 1 \u2014 Ingesti\u00f3n de eventos Mixpanel"
+  },
+  "AC-474": {
+    "duedate": "2026-06-06",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] [T-450] Dise\u00f1o arquitectura Refactor Mixpanel \u2014 2 Lambdas + SQS"
+  },
+  "AC-473": {
+    "duedate": "",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] [ACCESOS] Obtener roles IAM en cuentas AWS (STG/DEV)"
+  },
+  "AC-472": {
+    "duedate": "",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] [ACCESOS] Obtener acceso al repositorio GitHub (gbmcode/gbm-connect)"
+  },
+  "AC-471": {
+    "duedate": "2026-05-23",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] Nivelaci\u00f3n de entornos \u2014 Assessment y alineaci\u00f3n Dev/STG"
+  },
+  "AC-463": {
+    "duedate": "2026-07-04",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Normalizacion de telefonos \u2014 Lambda de busqueda multi-formato"
+  },
+  "AC-462": {
+    "duedate": "2026-08-01",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Creacion manual de casos desde Workspace"
+  },
+  "AC-461": {
+    "duedate": "2026-07-18",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Registro automatico de actividades en Salesforce"
+  },
+  "AC-460": {
+    "duedate": "2026-07-18",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Search Failure Recovery \u2014 Flujo de busqueda fallida"
+  },
+  "AC-455": {
+    "duedate": "2026-08-01",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Official Service Number Configuration"
+  },
+  "AC-454": {
+    "duedate": "2026-08-01",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Segment-Based Priority Routing \u2014 Ruteo por segmento de cliente"
+  },
+  "AC-453": {
+    "duedate": "2026-07-04",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Customer Profiles \u2014 Data Synchronization Connect vs Salesforce"
+  },
+  "AC-452": {
+    "duedate": "2026-07-04",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "Automatic Customer Identification \u2014 Identificacion por telefono"
+  },
+  "AC-451": {
+    "duedate": "2026-05-30",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] Migraci\u00f3n chatbot Lambda a API Queen"
+  }
+}
