@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint 1 Planning - GBM CC Fase II</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23003366'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='14' font-weight='bold' fill='white'%3ES1%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        .card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #e0e0e0;
+        }
+        .section-title svg { flex-shrink: 0; }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            border-bottom: 3px solid #FF9900;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            border-radius: 12px;
+        }
+        .banner-divider {
+            width: 1px;
+            height: 32px;
+            background: #333;
+        }
+        .banner-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e0e0e0;
+        }
+        .banner-subtitle {
+            font-size: 0.85rem;
+            color: #FF9900;
+        }
+        .banner-date {
+            margin-left: auto;
+            font-size: 0.9rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /* Milestone */
+        .milestone-card {
+            border-left: 4px solid #FF9900;
+        }
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        .demo-date-card {
+            background: #1a1a1a;
+            border: 1px solid #FF9900;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        .demo-date-card .date {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FF9900;
+        }
+
+        /* Quick Links */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .quick-link-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: #e0e0e0;
+            display: block;
+        }
+        .quick-link-card:hover {
+            border-color: #448AFF;
+            transform: translateY(-2px);
+        }
+        .quick-link-card svg { margin-bottom: 12px; }
+        .quick-link-card h3 { font-size: 0.95rem; margin-bottom: 4px; }
+        .quick-link-card p { font-size: 0.8rem; color: #888; }
+
+        /* Sprint Info */
+        .sprint-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        .sprint-table th, .sprint-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #222;
+        }
+        .sprint-table th {
+            color: #999;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .sprint-table td { font-size: 0.9rem; }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #1a1a1a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* Accordions */
+        .accordion {
+            border: 1px solid #222;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background: #1a1a1a;
+            padding: 14px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .accordion-header:hover { background: #1f1f1f; }
+        .accordion-header h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .accordion-header .hours {
+            font-size: 0.8rem;
+            color: #888;
+            background: #222;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .accordion-header .arrow {
+            transition: transform 0.3s;
+            color: #888;
+        }
+        .accordion.open .accordion-header .arrow {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .accordion.open .accordion-body {
+            max-height: 2000px;
+        }
+        .accordion-body-inner { padding: 16px 20px; }
+
+        /* Task Table */
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .task-table th {
+            padding: 8px 10px;
+            text-align: left;
+            color: #888;
+            font-weight: 500;
+            border-bottom: 1px solid #333;
+            font-size: 0.8rem;
+        }
+        .task-table td {
+            padding: 10px;
+            border-bottom: 1px solid #1a1a1a;
+            vertical-align: middle;
+        }
+        .task-table tr:hover td { background: #1f1f2f; }
+        .task-table a {
+            color: #448AFF;
+            text-decoration: none;
+        }
+        .task-table a:hover { text-decoration: underline; }
+        .task-table th:nth-child(1), .task-table td:nth-child(1) { width: 80px; }
+        .task-table th:nth-child(2), .task-table td:nth-child(2) { width: auto; }
+        .task-table th:nth-child(3), .task-table td:nth-child(3) { width: 120px; }
+        .task-table th:nth-child(4), .task-table td:nth-child(4) { width: 120px; }
+        .task-table th:nth-child(5), .task-table td:nth-child(5) { width: 140px; }
+        .task-table th:nth-child(6), .task-table td:nth-child(6) { width: 80px; text-align: center; }
+
+        /* Editable cells */
+        .editable {
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            min-width: 80px;
+            min-height: 28px;
+            display: block;
+            transition: background 0.2s;
+            border: 1px dashed transparent;
+        }
+        .editable:hover { background: #222; border-color: #444; }
+        .editable.editing {
+            background: #1a1a1a;
+            outline: 1px solid #448AFF;
+            border-color: transparent;
+        }
+        .editable input {
+            background: transparent;
+            border: none;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            width: 100%;
+            outline: none;
+            padding: 2px 0;
+        }
+        .editable[data-field="blockers"] { border-color: #333; }
+        .editable[data-field="blockers"]:hover { border-color: #ef4444; }
+        .blocker-has-content { color: #ef4444; font-weight: 500; border-color: #ef444466; }
+
+        /* Toggle button */
+        .toggle-btn {
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .toggle-btn.yes {
+            background: #22c55e22;
+            color: #22c55e;
+            border: 1px solid #22c55e44;
+        }
+        .toggle-btn.no {
+            background: #33333366;
+            color: #888;
+            border: 1px solid #333;
+        }
+
+        /* Dependencies */
+        .dep-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .dep-table th, .dep-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #222;
+        }
+        .dep-table th { color: #888; font-weight: 500; }
+        .status-tag {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-resolved {
+            background: #22c55e22;
+            color: #22c55e;
+            border: 1px solid #22c55e44;
+        }
+        .status-pending {
+            background: #FF990022;
+            color: #FF9900;
+            border: 1px solid #FF990044;
+        }
+
+        /* Goal card */
+        .goal-card {
+            background: #1a1a1a;
+            border-left: 4px solid #22c55e;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+        .goal-card p { color: #ccc; font-size: 0.9rem; }
+
+        /* Chart containers */
+        .chart-container { margin: 16px 0; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .banner { flex-wrap: wrap; gap: 12px; padding: 16px; }
+            .banner-date { margin-left: 0; width: 100%; text-align: center; }
+            .quick-links-grid { grid-template-columns: 1fr; }
+            .milestone-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .task-table { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER -->
+    <div class="banner">
+        <img src="gbm-logo.png" alt="GBM" height="36">
+        <div class="banner-divider"></div>
+        <img src="aws-logo-white.png" alt="AWS" height="24">
+        <div class="banner-divider"></div>
+        <div>
+            <div class="banner-title">Sprint 1 Planning</div>
+            <div class="banner-subtitle">GBM — CC Fase II — Amazon Connect</div>
+        </div>
+        <div class="banner-date">26 Mayo 2026</div>
+    </div>
+
+    <div class="container">
+
+        <!-- BUSINESS MILESTONE -->
+        <div class="card milestone-card">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                Business Milestone: Quick Win
+            </div>
+            <div class="milestone-grid">
+                <div>
+                    <h4 style="color:#FF9900;margin-bottom:8px;">Entregable</h4>
+                    <p style="font-size:0.9rem;">MVP funcional del chatbot migrado a Amazon Connect con flujo principal operativo y demo ejecutiva lista.</p>
+                </div>
+                <div>
+                    <h4 style="color:#FF9900;margin-bottom:8px;">Valor para GBM</h4>
+                    <p style="font-size:0.9rem;">Validar la viabilidad de Amazon Connect como plataforma de Contact Center, demostrar capacidad de migracion y obtener buy-in ejecutivo para Fase II completa.</p>
+                </div>
+            </div>
+            <div class="demo-date-card">
+                <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">Demo Ejecutiva</div>
+                <div class="date">9 Junio 2026</div>
+            </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="card">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#448AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Quick Links
+            </div>
+            <div class="quick-links-grid">
+                <a href="https://gbmprojects.atlassian.net/jira/software/c/projects/AC/boards/4440/timeline" target="_blank" class="quick-link-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#448AFF" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                    <h3>Timeline</h3>
+                    <p>Vista de linea de tiempo</p>
+                </a>
+                <a href="https://gbmprojects.atlassian.net/jira/software/c/projects/AC/boards/4440/backlog" target="_blank" class="quick-link-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <h3>Backlog</h3>
+                    <p>Product backlog completo</p>
+                </a>
+                <a href="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/" target="_blank" class="quick-link-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B388FF" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-5"/></svg>
+                    <h3>Dashboard</h3>
+                    <p>Reportes y metricas</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- SPRINT INFO -->
+        <div class="card">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Sprint Info
+            </div>
+            <div class="goal-card">
+                <p><strong>Sprint Goal:</strong> Establecer el ambiente de desarrollo, nivelar al equipo en Amazon Connect, y entregar el MVP del chatbot migrado con flujo principal funcional para demo ejecutiva.</p>
+            </div>
+            <table class="sprint-table">
+                <tr><th>Periodo</th><td>27 Mayo - 9 Junio 2026</td></tr>
+                <tr><th>Epics</th><td>E0 (Nivelacion + Blueprints) + E6 (API Queen)</td></tr>
+                <tr><th>Demo</th><td>9 Junio 2026</td></tr>
+                <tr><th>Retrospectiva</th><td>10 Junio 2026</td></tr>
+            </table>
+        </div>
+
+        <!-- USER STORIES -->
+        <div class="card">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B388FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                User Stories por Epic
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chart-container" id="barChart"></div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value" style="color:#448AFF;">11</div>
+                    <div class="label">Total Stories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value" style="color:#22c55e;">3</div>
+                    <div class="label">Done</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value" style="color:#FF9900;">8</div>
+                    <div class="label">To Do</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value" style="color:#B388FF;">~180h</div>
+                    <div class="label">Estimadas</div>
+                </div>
+            </div>
+
+            <!-- Accordions -->
+            <div id="accordions-container">
+                <!-- E0 Nivelacion -->
+                <div class="accordion" data-epic="nivelacion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#448AFF" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            E0 Nivelacion
+                            <span class="hours">40h</span>
+                        </h3>
+                        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <table class="task-table">
+                                <thead>
+                                    <tr><th>Ticket</th><th>Tarea</th><th>Asignado</th><th>Planned Start</th><th>Blockers</th><th>Revisado</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-key="AC-471"><td><a href="https://gbmprojects.atlassian.net/browse/AC-471" target="_blank">AC-471</a></td><td>Setup ambiente desarrollo Connect</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-472"><td><a href="https://gbmprojects.atlassian.net/browse/AC-472" target="_blank">AC-472</a></td><td>Capacitacion equipo Amazon Connect basics</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-473"><td><a href="https://gbmprojects.atlassian.net/browse/AC-473" target="_blank">AC-473</a></td><td>Configurar pipelines CI/CD base</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-474"><td><a href="https://gbmprojects.atlassian.net/browse/AC-474" target="_blank">AC-474</a></td><td>Definir estandares de codigo y branching</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-475"><td><a href="https://gbmprojects.atlassian.net/browse/AC-475" target="_blank">AC-475</a></td><td>Workshop Contact Flows y Lex bots</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-476"><td><a href="https://gbmprojects.atlassian.net/browse/AC-476" target="_blank">AC-476</a></td><td>Documentar arquitectura de referencia</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E6 API Queen -->
+                <div class="accordion" data-epic="api-queen">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            E6 API Queen
+                            <span class="hours">60h</span>
+                        </h3>
+                        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <table class="task-table">
+                                <thead>
+                                    <tr><th>Ticket</th><th>Tarea</th><th>Asignado</th><th>Planned Start</th><th>Blockers</th><th>Revisado</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-key="AC-451"><td><a href="https://gbmprojects.atlassian.net/browse/AC-451" target="_blank">AC-451</a></td><td>Analisis flujos chatbot actual (API Queen)</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-452"><td><a href="https://gbmprojects.atlassian.net/browse/AC-452" target="_blank">AC-452</a></td><td>Disenar flujo principal en Amazon Lex</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-453"><td><a href="https://gbmprojects.atlassian.net/browse/AC-453" target="_blank">AC-453</a></td><td>Implementar integracion Lex-Connect</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-454"><td><a href="https://gbmprojects.atlassian.net/browse/AC-454" target="_blank">AC-454</a></td><td>Desarrollar Lambda handlers para intents</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-455"><td><a href="https://gbmprojects.atlassian.net/browse/AC-455" target="_blank">AC-455</a></td><td>Testing E2E flujo chatbot migrado</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E0 Blueprints + MVP -->
+                <div class="accordion" data-epic="blueprints">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            E0 Blueprints + MVP
+                            <span class="hours">50h</span>
+                        </h3>
+                        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <table class="task-table">
+                                <thead>
+                                    <tr><th>Ticket</th><th>Tarea</th><th>Asignado</th><th>Planned Start</th><th>Blockers</th><th>Revisado</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-key="AC-460"><td><a href="https://gbmprojects.atlassian.net/browse/AC-460" target="_blank">AC-460</a></td><td>Discovery sesiones con stakeholders</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-461"><td><a href="https://gbmprojects.atlassian.net/browse/AC-461" target="_blank">AC-461</a></td><td>Mapeo de integraciones existentes</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-462"><td><a href="https://gbmprojects.atlassian.net/browse/AC-462" target="_blank">AC-462</a></td><td>Definir blueprint arquitectura target</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-463"><td><a href="https://gbmprojects.atlassian.net/browse/AC-463" target="_blank">AC-463</a></td><td>Crear MVP contact flow principal</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TL+EM Gestion -->
+                <div class="accordion" data-epic="gestion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B388FF" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            TL+EM Gestion
+                            <span class="hours">30h</span>
+                        </h3>
+                        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <table class="task-table">
+                                <thead>
+                                    <tr><th>Ticket</th><th>Tarea</th><th>Asignado</th><th>Planned Start</th><th>Blockers</th><th>Revisado</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-key="AC-480"><td><a href="https://gbmprojects.atlassian.net/browse/AC-480" target="_blank">AC-480</a></td><td>Sprint planning y ceremonies setup</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-481"><td><a href="https://gbmprojects.atlassian.net/browse/AC-481" target="_blank">AC-481</a></td><td>Configurar Jira board y workflows</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-482"><td><a href="https://gbmprojects.atlassian.net/browse/AC-482" target="_blank">AC-482</a></td><td>Stakeholder communication plan</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                    <tr data-key="AC-483"><td><a href="https://gbmprojects.atlassian.net/browse/AC-483" target="_blank">AC-483</a></td><td>Risk register y escalation paths</td><td class="editable" data-field="asignado" ondblclick="editCell(this)"></td><td class="editable" data-field="planned" ondblclick="editCell(this)"></td><td class="editable" data-field="blockers" ondblclick="editBlocker(this)"></td><td><button class="toggle-btn no" onclick="toggleRevisado(this)">No</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISTRIBUCION DE HORAS -->
+        <div class="card">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v9h-9"/></svg>
+                Distribucion de Horas
+            </div>
+            <div class="chart-container" id="donutChart"></div>
+        </div>
+
+        <!-- DEPENDENCIAS -->
+        <div class="card">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Dependencias
+            </div>
+            <table class="dep-table">
+                <thead>
+                    <tr><th>Dependencia</th><th>Equipo</th><th>Impacto</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Acceso a cuenta AWS de desarrollo</td>
+                        <td>Cloud Ops GBM</td>
+                        <td>Bloquea setup ambiente</td>
+                        <td><span class="status-tag status-resolved">Resuelto</span></td>
+                    </tr>
+                    <tr>
+                        <td>Credenciales API chatbot actual</td>
+                        <td>Equipo Digital</td>
+                        <td>Bloquea analisis flujos</td>
+                        <td><span class="status-tag status-pending">Pendiente</span></td>
+                    </tr>
+                    <tr>
+                        <td>Acceso a documentacion IVR actual</td>
+                        <td>Telecom GBM</td>
+                        <td>Bloquea discovery</td>
+                        <td><span class="status-tag status-resolved">Resuelto</span></td>
+                    </tr>
+                    <tr>
+                        <td>Disponibilidad stakeholders para sesiones</td>
+                        <td>Producto GBM</td>
+                        <td>Bloquea blueprints</td>
+                        <td><span class="status-tag status-pending">Pendiente</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div><!-- end container -->
+
+    <script>
+    // localStorage key
+    const STORAGE_KEY = 'sprint1-planning-data';
+
+    // Load data from localStorage
+    function loadData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+    }
+
+    // Save data to localStorage
+    function saveData(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    // Get stored value for a cell
+    function getCellValue(ticketKey, field) {
+        const data = loadData();
+        return (data[ticketKey] && data[ticketKey][field]) || '';
+    }
+
+    // Set stored value for a cell
+    function setCellValue(ticketKey, field, value) {
+        const data = loadData();
+        if (!data[ticketKey]) data[ticketKey] = {};
+        data[ticketKey][field] = value;
+        saveData(data);
+    }
+
+    // Toggle accordion
+    function toggleAccordion(header) {
+        const accordion = header.parentElement;
+        accordion.classList.toggle('open');
+    }
+
+    // Open specific accordion by epic key
+    function openAccordionByIndex(index) {
+        const epicMap = ['nivelacion', 'api-queen', 'blueprints', 'blueprints', 'nivelacion', 'nivelacion'];
+        const targetEpic = epicMap[index];
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(acc => {
+            if (acc.dataset.epic === targetEpic) {
+                acc.classList.add('open');
+                setTimeout(() => {
+                    acc.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        });
+    }
+
+    // Edit cell (Asignado / Planned Start)
+    function editCell(cell) {
+        if (cell.querySelector('input')) return;
+        const row = cell.closest('tr');
+        const ticketKey = row.dataset.key;
+        const field = cell.dataset.field;
+        const currentValue = getCellValue(ticketKey, field);
+
+        cell.classList.add('editing');
+        const input = document.createElement('input');
+        input.type = field === 'planned' ? 'date' : 'text';
+        input.value = currentValue;
+        input.placeholder = field === 'planned' ? 'yyyy-mm-dd' : 'Nombre...';
+        cell.textContent = '';
+        cell.appendChild(input);
+        input.focus();
+
+        function save() {
+            const val = input.value.trim();
+            setCellValue(ticketKey, field, val);
+            cell.classList.remove('editing');
+            cell.textContent = val;
+        }
+
+        input.addEventListener('blur', save);
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { input.blur(); }
+            if (e.key === 'Escape') { cell.classList.remove('editing'); cell.textContent = currentValue; }
+        });
+    }
+
+    // Edit blocker
+    function editBlocker(cell) {
+        const row = cell.closest('tr');
+        const ticketKey = row.dataset.key;
+        const currentValue = getCellValue(ticketKey, 'blockers');
+        const newValue = prompt('Blocker para ' + ticketKey + ':', currentValue);
+        if (newValue !== null) {
+            setCellValue(ticketKey, 'blockers', newValue.trim());
+            cell.textContent = newValue.trim();
+            if (newValue.trim()) {
+                cell.classList.add('blocker-has-content');
+            } else {
+                cell.classList.remove('blocker-has-content');
+            }
+        }
+    }
+
+    // Toggle revisado
+    function toggleRevisado(btn) {
+        const row = btn.closest('tr');
+        const ticketKey = row.dataset.key;
+        const isYes = btn.classList.contains('yes');
+        if (isYes) {
+            btn.classList.remove('yes');
+            btn.classList.add('no');
+            btn.textContent = 'No';
+            setCellValue(ticketKey, 'revisado', 'no');
+        } else {
+            btn.classList.remove('no');
+            btn.classList.add('yes');
+            btn.textContent = 'Si';
+            setCellValue(ticketKey, 'revisado', 'si');
+        }
+    }
+
+    // Populate saved data on load
+    function populateSavedData() {
+        const data = loadData();
+        document.querySelectorAll('tr[data-key]').forEach(row => {
+            const key = row.dataset.key;
+            if (!data[key]) return;
+
+            const asignadoCell = row.querySelector('[data-field="asignado"]');
+            const plannedCell = row.querySelector('[data-field="planned"]');
+            const blockerCell = row.querySelector('[data-field="blockers"]');
+            const toggleBtn = row.querySelector('.toggle-btn');
+
+            if (asignadoCell && data[key].asignado) {
+                asignadoCell.textContent = data[key].asignado;
+            }
+            if (plannedCell && data[key].planned) {
+                plannedCell.textContent = data[key].planned;
+            }
+            if (blockerCell && data[key].blockers) {
+                blockerCell.textContent = data[key].blockers;
+                blockerCell.classList.add('blocker-has-content');
+            }
+            if (toggleBtn && data[key].revisado === 'si') {
+                toggleBtn.classList.remove('no');
+                toggleBtn.classList.add('yes');
+                toggleBtn.textContent = 'Si';
+            }
+        });
+    }
+
+    // Bar Chart
+    function renderBarChart() {
+        const options = {
+            series: [{
+                name: 'Horas',
+                data: [40, 60, 30, 20, 15, 15]
+            }],
+            chart: {
+                type: 'bar',
+                height: 280,
+                background: 'transparent',
+                toolbar: { show: false },
+                events: {
+                    dataPointSelection: function(event, chartContext, config) {
+                        openAccordionByIndex(config.dataPointIndex);
+                    }
+                }
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 6,
+                    horizontal: false,
+                    columnWidth: '55%'
+                }
+            },
+            dataLabels: { enabled: true, style: { colors: ['#e0e0e0'], fontSize: '12px' } },
+            xaxis: {
+                categories: ['Nivelacion', 'API Queen', 'Blueprints', 'MVP', 'Auditoria', 'Config Dev'],
+                labels: { style: { colors: '#888', fontSize: '11px' } },
+                axisBorder: { color: '#333' },
+                axisTicks: { color: '#333' }
+            },
+            yaxis: {
+                labels: { style: { colors: '#888' } },
+                title: { text: 'Horas', style: { color: '#888' } }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'dark',
+                    type: 'vertical',
+                    shadeIntensity: 0.3,
+                    gradientToColors: ['#FF9900'],
+                    stops: [0, 100]
+                }
+            },
+            colors: ['#448AFF'],
+            grid: { borderColor: '#222', strokeDashArray: 4 },
+            tooltip: {
+                theme: 'dark',
+                y: { formatter: (val) => val + 'h' }
+            },
+            theme: { mode: 'dark' }
+        };
+
+        const chart = new ApexCharts(document.querySelector('#barChart'), options);
+        chart.render();
+    }
+
+    // Donut Chart
+    function renderDonutChart() {
+        const series = [40, 60, 50, 30];
+        const total = series.reduce((a, b) => a + b, 0);
+        const labels = series.map((val, i) => {
+            const names = ['Nivelacion', 'API Queen', 'Blueprints+MVP', 'Gestion'];
+            const pct = Math.round((val / total) * 100);
+            return names[i] + ' ' + val + 'h (' + pct + '%)';
+        });
+
+        const options = {
+            series: series,
+            chart: {
+                type: 'donut',
+                height: 340,
+                background: 'transparent'
+            },
+            labels: labels,
+            colors: ['#448AFF', '#FF9900', '#22c55e', '#B388FF'],
+            stroke: { width: 2, colors: ['#0a0a0a'] },
+            dataLabels: {
+                enabled: true,
+                style: { fontSize: '11px', colors: ['#e0e0e0'] },
+                dropShadow: { enabled: false }
+            },
+            legend: {
+                position: 'bottom',
+                labels: { colors: '#e0e0e0' },
+                fontSize: '13px'
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '55%',
+                        labels: {
+                            show: true,
+                            total: {
+                                show: true,
+                                label: 'Total',
+                                color: '#888',
+                                formatter: () => total + 'h'
+                            },
+                            value: {
+                                color: '#e0e0e0',
+                                fontSize: '20px',
+                                fontWeight: 700
+                            }
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                theme: 'dark',
+                y: { formatter: (val) => val + 'h (' + Math.round((val/total)*100) + '%)' }
+            },
+            theme: { mode: 'dark' }
+        };
+
+        const chart = new ApexCharts(document.querySelector('#donutChart'), options);
+        chart.render();
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        populateSavedData();
+        renderBarChart();
+        renderDonutChart();
+    });
+    </script>
+</body>
+</html>
