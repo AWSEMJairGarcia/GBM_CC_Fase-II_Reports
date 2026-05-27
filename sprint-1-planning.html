@@ -1089,13 +1089,16 @@
                 html += '</div></div>';
 
                 if (children.length > 0) {
-                    html += '<table class=\"task-table\" style=\"margin:0\"><thead><tr><th>Subtask</th><th>Descripcion</th><th>Due</th><th>Status</th></tr></thead><tbody>';
+                    html += '<table class=\"task-table\" style=\"margin:0\"><thead><tr><th>Subtask</th><th>Descripcion</th><th>Due</th><th>Status</th><th>Asignado</th><th>Blockers</th><th>Revisado</th></tr></thead><tbody>';
                     children.forEach(c => {
                         const cStatus = c.status === 'Done' ? '<span style=\"color:#22c55e\">Done</span>' : '<span style=\"color:#888\">' + c.status + '</span>';
                         html += '<tr data-key=\"' + c.key + '\"><td><a href=\"https://gbmprojects.atlassian.net/browse/' + c.key + '\" target=\"_blank\" style=\"color:#448AFF;text-decoration:none\">' + c.key + '</a></td>';
                         html += '<td>' + c.summary.substring(0,50) + '</td>';
                         html += '<td style=\"color:#888;font-size:0.8rem\">' + (c.duedate || '-') + '</td>';
-                        html += '<td>' + cStatus + '</td></tr>';
+                        html += '<td>' + cStatus + '</td>';
+                        html += '<td class=\"editable\" data-field=\"asignado\" ondblclick=\"editCell(this)\"></td>';
+                        html += '<td class=\"editable\" data-field=\"blockers\" ondblclick=\"editBlocker(this)\"></td>';
+                        html += '<td><button class=\"toggle-btn no\" onclick=\"toggleRevisado(this)\">No</button></td></tr>';
                     });
                     html += '</tbody></table>';
                 }
@@ -1105,6 +1108,9 @@
             html += '</div></div></div>';
             container.innerHTML += html;
         });
+
+        // After building, populate saved data
+        populateSavedData();
     }
     </script>
 </body>
