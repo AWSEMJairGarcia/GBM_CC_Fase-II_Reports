@@ -14361,7 +14361,3098 @@
         },
         "labels": []
       }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449286",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449286",
+      "key": "AC-643",
+      "fields": {
+        "summary": "Implementar tags en routing profiles",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10003",
+          "id": "10003",
+          "description": "A small piece of work that's part of a larger task.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium",
+          "name": "Sub-task",
+          "subtask": true,
+          "avatarId": 10316,
+          "hierarchyLevel": -1
+        },
+        "parent": {
+          "id": "449009",
+          "key": "AC-505",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449009",
+          "fields": {
+            "summary": "[Sprint 8] Implementar tagging en Connect para distribucion de costos",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+              "id": "10002",
+              "description": "A small, distinct piece of work.",
+              "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+              "name": "Task",
+              "subtask": false,
+              "avatarId": 10318,
+              "hierarchyLevel": 0
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449288",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449288",
+      "key": "AC-644",
+      "fields": {
+        "summary": "Validar que tags aparecen en Cost Explorer",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10003",
+          "id": "10003",
+          "description": "A small piece of work that's part of a larger task.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium",
+          "name": "Sub-task",
+          "subtask": true,
+          "avatarId": 10316,
+          "hierarchyLevel": -1
+        },
+        "parent": {
+          "id": "449009",
+          "key": "AC-505",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449009",
+          "fields": {
+            "summary": "[Sprint 8] Implementar tagging en Connect para distribucion de costos",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+              "id": "10002",
+              "description": "A small, distinct piece of work.",
+              "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+              "name": "Task",
+              "subtask": false,
+              "avatarId": 10318,
+              "hierarchyLevel": 0
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449290",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449290",
+      "key": "AC-645",
+      "fields": {
+        "summary": "Documentar estrategia de tagging para operaciones",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10003",
+          "id": "10003",
+          "description": "A small piece of work that's part of a larger task.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium",
+          "name": "Sub-task",
+          "subtask": true,
+          "avatarId": 10316,
+          "hierarchyLevel": -1
+        },
+        "parent": {
+          "id": "449009",
+          "key": "AC-505",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449009",
+          "fields": {
+            "summary": "[Sprint 8] Implementar tagging en Connect para distribucion de costos",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+              "id": "10002",
+              "description": "A small, distinct piece of work.",
+              "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+              "name": "Task",
+              "subtask": false,
+              "avatarId": 10318,
+              "hierarchyLevel": 0
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449291",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449291",
+      "key": "AC-646",
+      "fields": {
+        "summary": "[Sprint 0] PRD v1.1 aprobado por GBM",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449292",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449292",
+      "key": "AC-647",
+      "fields": {
+        "summary": "[Sprint 0] LRP aprobado \u2014 Roadmap y milestones alineados",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449293",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449293",
+      "key": "AC-648",
+      "fields": {
+        "summary": "[Sprint 0] PSQ completado y aprobado (COMPLIANT)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449294",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449294",
+      "key": "AC-649",
+      "fields": {
+        "summary": "[Sprint 0] ESA Security Review Complete",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449295",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449295",
+      "key": "AC-650",
+      "fields": {
+        "summary": "[Sprint 0] Onboarding Bruno Costa (DSR)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449296",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449296",
+      "key": "AC-651",
+      "fields": {
+        "summary": "[Sprint 0] Blueprint Session I \u2014 Validacion de flujos",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449297",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449297",
+      "key": "AC-652",
+      "fields": {
+        "summary": "[Sprint 0] Accesos Jira + O365 confirmados",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449298",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449298",
+      "key": "AC-653",
+      "fields": {
+        "summary": "[Sprint 0] Cuentas GitHub creadas (AWS)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449299",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449299",
+      "key": "AC-654",
+      "fields": {
+        "summary": "[Sprint 0] Dailys iniciadas",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449300",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449300",
+      "key": "AC-655",
+      "fields": {
+        "summary": "[Sprint 0] Office Hours con Charlie \u2014 Costos Connect",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449301",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449301",
+      "key": "AC-656",
+      "fields": {
+        "summary": "[Sprint 0] Pruebas API Queen \u2014 Validacion tecnica",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449302",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449302",
+      "key": "AC-657",
+      "fields": {
+        "summary": "[Sprint 0] CR API Queen aprobado por GBM",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "completado",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449303",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449303",
+      "key": "AC-658",
+      "fields": {
+        "summary": "[Sprint 1] [ACCESOS] Pendiente: Acceso repo GitHub (gbmcode/gbm-connect)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448927",
+          "key": "AC-443",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448927",
+          "fields": {
+            "summary": "Epic 1: Unified Customer Entity",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-05-23",
+        "assignee": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/user?accountId=626190816cb53d006a6a5886",
+          "accountId": "626190816cb53d006a6a5886",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/6bb6a3aa4f4999cfcd5a4fb2a5e9f5c4?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FFM-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/6bb6a3aa4f4999cfcd5a4fb2a5e9f5c4?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FFM-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/6bb6a3aa4f4999cfcd5a4fb2a5e9f5c4?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FFM-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/6bb6a3aa4f4999cfcd5a4fb2a5e9f5c4?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FFM-3.png"
+          },
+          "displayName": "Francisco Javier Ramirez Morales",
+          "active": true,
+          "timeZone": "America/Mexico_City",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "blocker",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449304",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449304",
+      "key": "AC-659",
+      "fields": {
+        "summary": "[Sprint 1] [ACCESOS] Pendiente: Roles IAM en cuentas AWS (STG/DEV)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448927",
+          "key": "AC-443",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448927",
+          "fields": {
+            "summary": "Epic 1: Unified Customer Entity",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-05-23",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "blocker",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449305",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449305",
+      "key": "AC-660",
+      "fields": {
+        "summary": "[Sprint 1] [ACCESOS] Pendiente: Cuentas GitHub Nubity con correo GBM",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448927",
+          "key": "AC-443",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448927",
+          "fields": {
+            "summary": "Epic 1: Unified Customer Entity",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-05-23",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "pendiente",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449306",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449306",
+      "key": "AC-661",
+      "fields": {
+        "summary": "[Sprint 0] Pendiente: DQI (Pulse) \u2014 Completar",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10002",
+          "id": "10002",
+          "description": "A small, distinct piece of work.",
+          "iconUrl": "https://gbmprojects.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+          "name": "Task",
+          "subtask": false,
+          "avatarId": 10318,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "449307",
+          "key": "AC-662",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+          "fields": {
+            "summary": "Epic 0: Discovery & Governance",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+              "name": "High",
+              "id": "2"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10870",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "Done",
+          "id": "10870",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "pendiente",
+          "sprint-0"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "449307",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/449307",
+      "key": "AC-662",
+      "fields": {
+        "summary": "Epic 0: Discovery & Governance",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+          "id": "10000",
+          "description": "A collection of related bugs, stories, and tasks.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "duedate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450012",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450012",
+      "key": "AC-663",
+      "fields": {
+        "summary": "[Sprint 1] HU-12: Visibilidad de tiempo de espera en WhatsApp (ETA en cola)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-06-06",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "nubity-hu",
+          "sprint-1",
+          "whatsapp"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450014",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450014",
+      "key": "AC-664",
+      "fields": {
+        "summary": "[Sprint 1] HU-13: Opci\u00f3n de cancelar espera en WhatsApp",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-06-06",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "nubity-hu",
+          "sprint-1",
+          "whatsapp"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450016",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450016",
+      "key": "AC-665",
+      "fields": {
+        "summary": "[Sprint 1] HU-14: Cierre autom\u00e1tico de sesiones fuera de horario",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-06-06",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "nubity-hu",
+          "sprint-1"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450018",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450018",
+      "key": "AC-666",
+      "fields": {
+        "summary": "[Sprint 1] HU-15: Registro de todos los fallbacks del chatbot en Mixpanel",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-06-21",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "mixpanel",
+          "nubity-hu",
+          "sprint-1"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450020",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450020",
+      "key": "AC-667",
+      "fields": {
+        "summary": "[Sprint 1] HU-16: Ajustes Mixpanel \u2014 Nuevos atributos (contract, intent, abandon_reason)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-06-06",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "mixpanel",
+          "nubity-hu",
+          "sprint-1"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450022",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450022",
+      "key": "AC-668",
+      "fields": {
+        "summary": "[Sprint 1] HU-17: Mejoras de experiencia chatbot \u2014 mensajes personalizados",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-08-29",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "nubity-hu",
+          "sprint-1"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450024",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450024",
+      "key": "AC-669",
+      "fields": {
+        "summary": "[Sprint 1] HU-18: Feedback con botones al cierre de conversaci\u00f3n IA",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448932",
+          "key": "AC-448",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448932",
+          "fields": {
+            "summary": "Epic 6: Refactor Lambdas + Chatbot",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-06-06",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "chatbot",
+          "nubity-hu",
+          "sprint-1"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450026",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450026",
+      "key": "AC-670",
+      "fields": {
+        "summary": "HU-19: Gestion de llamadas perdidas",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-04",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "nubity-hu",
+          "routing",
+          "sprint-3"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450028",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450028",
+      "key": "AC-671",
+      "fields": {
+        "summary": "HU-22: Flujo AFA \u2014 Agentes externos",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-04",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "afa",
+          "nubity-hu",
+          "routing",
+          "sprint-3"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450030",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450030",
+      "key": "AC-672",
+      "fields": {
+        "summary": "HU-24: Flujo Inbound Call \u2014 Agente Customer Service",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-18",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "nubity-hu",
+          "routing",
+          "sprint-4"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450032",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450032",
+      "key": "AC-673",
+      "fields": {
+        "summary": "HU-25: Flujo Outbound Call \u2014 Agente Customer Service",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-18",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "nubity-hu",
+          "routing",
+          "sprint-4"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450034",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450034",
+      "key": "AC-674",
+      "fields": {
+        "summary": "HU-26: Flujo Chat Inbound \u2014 Agente Customer Service",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-18",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "nubity-hu",
+          "routing",
+          "sprint-4"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450036",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450036",
+      "key": "AC-675",
+      "fields": {
+        "summary": "HU-27: Flujo Inbound Call \u2014 Asesor Interno",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-08-01",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "asesor",
+          "nubity-hu",
+          "routing",
+          "sprint-5"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450038",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450038",
+      "key": "AC-676",
+      "fields": {
+        "summary": "HU-28: Flujo Outbound Call \u2014 Asesor Interno",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-08-01",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "asesor",
+          "nubity-hu",
+          "routing",
+          "sprint-5"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450040",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450040",
+      "key": "AC-677",
+      "fields": {
+        "summary": "HU-29: Flujo Chat Inbound \u2014 Asesor Interno",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-08-01",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "asesor",
+          "nubity-hu",
+          "routing",
+          "sprint-5"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450042",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450042",
+      "key": "AC-678",
+      "fields": {
+        "summary": "HU-30: Flujo WhatsApp Outbound \u2014 Asesor Interno",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448928",
+          "key": "AC-444",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448928",
+          "fields": {
+            "summary": "Epic 2: Intelligent Routing",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-08-15",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "asesor",
+          "nubity-hu",
+          "sprint-6",
+          "whatsapp"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450044",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450044",
+      "key": "AC-679",
+      "fields": {
+        "summary": "HU-20: Panel de metricas individuales del agente",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448931",
+          "key": "AC-447",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448931",
+          "fields": {
+            "summary": "Epic 5: Workspace Optimization",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-18",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "nubity-hu",
+          "sprint-4",
+          "workspace"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "450046",
+      "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/450046",
+      "key": "AC-680",
+      "fields": {
+        "summary": "HU-31: Recuperacion de errores en busqueda (back flow)",
+        "issuetype": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10009",
+          "id": "10009",
+          "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/story.svg",
+          "name": "Story",
+          "subtask": false,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "448931",
+          "key": "AC-447",
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/issue/448931",
+          "fields": {
+            "summary": "Epic 5: Workspace Optimization",
+            "status": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+              "description": "",
+              "iconUrl": "https://gbmprojects.atlassian.net/",
+              "name": "To Do",
+              "id": "10000",
+              "statusCategory": {
+                "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://gbmprojects.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A collection of related bugs, stories, and tasks.",
+              "iconUrl": "https://gbmprojects.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "duedate": "2026-07-18",
+        "assignee": null,
+        "priority": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://gbmprojects.atlassian.net/images/icons/priorities/medium_new.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "status": {
+          "self": "https://gbmprojects.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://gbmprojects.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://gbmprojects.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "labels": [
+          "nubity-hu",
+          "sprint-4",
+          "workspace"
+        ]
+      }
     }
   ],
-  "total": 200
+  "total": 238
 }
