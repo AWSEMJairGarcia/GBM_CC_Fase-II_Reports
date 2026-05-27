@@ -996,11 +996,16 @@
             if (!resp.ok) return;
             const jiraData = await resp.json();
 
+            // If it's an array (new format), build accordions dynamically
+            if (Array.isArray(jiraData)) {
+                buildAccordionsFromJira(jiraData);
+                return;
+            }
+
+            // Legacy object format
             document.querySelectorAll('tr[data-key]').forEach(row => {
                 const key = row.dataset.key;
                 if (!jiraData[key]) return;
-
-                // Fill Planned Start from duedate
                 const plannedCell = row.querySelector('[data-field="planned"]');
                 if (plannedCell && jiraData[key].duedate) {
                     const stored = getCellValue(key, 'planned');
@@ -1009,20 +1014,97 @@
                         setCellValue(key, 'planned', jiraData[key].duedate);
                     }
                 }
-
-                // Fill Asignado from assignee
-                const asignadoCell = row.querySelector('[data-field="asignado"]');
-                if (asignadoCell && jiraData[key].assignee) {
-                    const stored = getCellValue(key, 'asignado');
-                    if (!stored) {
-                        asignadoCell.textContent = jiraData[key].assignee;
-                        setCellValue(key, 'asignado', jiraData[key].assignee);
-                    }
-                }
             });
         } catch (e) {
             console.log('Jira JSON not available:', e.message);
         }
+    }
+
+    // Build accordions dynamically from Jira data
+    function buildAccordionsFromJira(issues) {
+        const container = document.getElementById('accordions-container');
+        if (!container) return;
+
+        // Get top-level items (no parent or parent is an Epic AC-44X)
+        const topLevel = issues.filter(i => !i.parent || i.parent.startsWith('AC-44'));
+        const subtasks = issues.filter(i => i.parent && !i.parent.startsWith('AC-44'));
+
+        // Group top-level by category
+        const groups = {
+            'Accesos': { color: '#ef4444', items: [] },
+            'Nivelacion': { color: '#448AFF', items: [] },
+            'Mixpanel': { color: '#22c55e', items: [] },
+            'API Queen': { color: '#FF9900', items: [] },
+            'Gestion': { color: '#B388FF', items: [] }
+        };
+
+        topLevel.forEach(item => {
+            const s = item.summary.toLowerCase();
+            if (s.includes('acceso') || s.includes('iam') || s.includes('github') || s.includes('credencial')) {
+                groups['Accesos'].items.push(item);
+            } else if (s.includes('nivelaci') || s.includes('assessment') || s.includes('entorno')) {
+                groups['Nivelacion'].items.push(item);
+            } else if (s.includes('mixpanel') || s.includes('t-450')) {
+                groups['Mixpanel'].items.push(item);
+            } else if (s.includes('queen') || s.includes('chatbot') || s.includes('t-451')) {
+                groups['API Queen'].items.push(item);
+            } else {
+                groups['Gestion'].items.push(item);
+            }
+        });
+
+        // Update stat cards
+        const totalEl = document.querySelector('.stats-grid .stat-card:nth-child(1) .value');
+        if (totalEl) totalEl.textContent = issues.length;
+        const todoEl = document.querySelector('.stats-grid .stat-card:nth-child(3) .value');
+        if (todoEl) todoEl.textContent = issues.filter(i => i.status !== 'Done').length;
+        const doneEl = document.querySelector('.stats-grid .stat-card:nth-child(2) .value');
+        if (doneEl) doneEl.textContent = issues.filter(i => i.status === 'Done').length;
+
+        // Build HTML
+        container.innerHTML = '';
+        Object.entries(groups).forEach(([name, group]) => {
+            if (group.items.length === 0) return;
+            const totalChildren = group.items.reduce((acc, item) => {
+                return acc + subtasks.filter(s => s.parent === item.key).length;
+            }, 0);
+
+            let html = '<div class=\"accordion\" data-epic=\"' + name.toLowerCase().replace(' ','-') + '\">';
+            html += '<div class=\"accordion-header\" onclick=\"toggleAccordion(this)\"><h3>';
+            html += '<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"' + group.color + '\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>';
+            html += name + ' <span class=\"hours\">' + group.items.length + ' tasks + ' + totalChildren + ' subtasks</span>';
+            html += '</h3><svg class=\"arrow\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"/></svg></div>';
+            html += '<div class=\"accordion-body\"><div class=\"accordion-body-inner\">';
+
+            group.items.forEach(item => {
+                const children = subtasks.filter(s => s.parent === item.key);
+                const statusBadge = item.status === 'Done' ? '<span style=\"color:#22c55e;font-size:0.75rem\">Done</span>' : '<span style=\"color:#888;font-size:0.75rem\">' + item.status + '</span>';
+
+                html += '<div style=\"margin-bottom:16px;border:1px solid #222;border-radius:8px;overflow:hidden\">';
+                html += '<div style=\"padding:12px 16px;background:#1a1a1a;display:flex;justify-content:space-between;align-items:center\">';
+                html += '<div><a href=\"https://gbmprojects.atlassian.net/browse/' + item.key + '\" target=\"_blank\" style=\"color:#448AFF;font-weight:600;text-decoration:none\">' + item.key + '</a>';
+                html += ' <span style=\"color:#e0e0e0;font-size:0.85rem;margin-left:8px\">' + item.summary.substring(0,60) + '</span></div>';
+                html += '<div style=\"display:flex;gap:8px;align-items:center\">' + statusBadge;
+                if (item.duedate) html += '<span style=\"color:#888;font-size:0.75rem\">' + item.duedate + '</span>';
+                html += '</div></div>';
+
+                if (children.length > 0) {
+                    html += '<table class=\"task-table\" style=\"margin:0\"><thead><tr><th>Subtask</th><th>Descripcion</th><th>Due</th><th>Status</th></tr></thead><tbody>';
+                    children.forEach(c => {
+                        const cStatus = c.status === 'Done' ? '<span style=\"color:#22c55e\">Done</span>' : '<span style=\"color:#888\">' + c.status + '</span>';
+                        html += '<tr data-key=\"' + c.key + '\"><td><a href=\"https://gbmprojects.atlassian.net/browse/' + c.key + '\" target=\"_blank\" style=\"color:#448AFF;text-decoration:none\">' + c.key + '</a></td>';
+                        html += '<td>' + c.summary.substring(0,50) + '</td>';
+                        html += '<td style=\"color:#888;font-size:0.8rem\">' + (c.duedate || '-') + '</td>';
+                        html += '<td>' + cStatus + '</td></tr>';
+                    });
+                    html += '</tbody></table>';
+                }
+                html += '</div>';
+            });
+
+            html += '</div></div></div>';
+            container.innerHTML += html;
+        });
     }
     </script>
 </body>

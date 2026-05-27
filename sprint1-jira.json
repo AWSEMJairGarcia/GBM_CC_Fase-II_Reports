@@ -1,104 +1,524 @@
-{
-  "AC-479": {
+[
+  {
+    "key": "AC-451",
+    "summary": "[Sprint 1] Migraci\u00f3n chatbot Lambda a API Queen",
+    "status": "To Do",
     "duedate": "2026-05-30",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [T-451] Dise\u00f1o t\u00e9cnico migraci\u00f3n chatbot Lambda a API Queen"
+    "type": "Story",
+    "parent": "AC-448",
+    "assignee": ""
   },
-  "AC-478": {
-    "duedate": "2026-06-06",
-    "assignee": "",
+  {
+    "key": "AC-465",
+    "summary": "[Sprint 1] [ACCESOS] Confirmar cuenta Dev separada o compartida con STG",
     "status": "To Do",
-    "summary": "[Sprint 1] [T-450] Testing refactor Mixpanel en ambiente Dev"
-  },
-  "AC-477": {
-    "duedate": "2026-06-06",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [T-450] Configurar SQS + DLQ + alarmas CloudWatch"
-  },
-  "AC-476": {
-    "duedate": "2026-06-06",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [T-450] Implementar Lambda 2 \u2014 Procesamiento y env\u00edo a Mixpanel"
-  },
-  "AC-475": {
-    "duedate": "2026-06-06",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [T-450] Implementar Lambda 1 \u2014 Ingesti\u00f3n de eventos Mixpanel"
-  },
-  "AC-474": {
-    "duedate": "2026-06-06",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [T-450] Dise\u00f1o arquitectura Refactor Mixpanel \u2014 2 Lambdas + SQS"
-  },
-  "AC-473": {
-    "duedate": "2026-05-30",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [ACCESOS] Obtener roles IAM en cuentas AWS (STG/DEV)"
-  },
-  "AC-472": {
-    "duedate": "2026-05-30",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [ACCESOS] Obtener acceso al repositorio GitHub (gbmcode/gbm-connect)"
-  },
-  "AC-471": {
     "duedate": "2026-05-23",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] Nivelaci\u00f3n de entornos \u2014 Assessment y alineaci\u00f3n Dev/STG"
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
   },
-  "AC-470": {
-    "duedate": "",
-    "assignee": "",
+  {
+    "key": "AC-466",
+    "summary": "[Sprint 1] [ACCESOS] Obtener credenciales API Entidad Cliente (client_id, client_secret)",
+    "status": "To Do",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-467",
+    "summary": "[Sprint 1] [ACCESOS] Obtener API Keys de Queen para 3 ambientes",
+    "status": "To Do",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-468",
+    "summary": "[Sprint 1] [ACCESOS] Crear cuentas GitHub Nubity con correo GBM",
+    "status": "To Do",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-469",
+    "summary": "[Sprint 1] [T-471] Ejecutar assessment de nivelaci\u00f3n de entornos",
+    "status": "To Do",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-470",
+    "summary": "[Sprint 1] Configurar dailys, weeklys y ceremonies del proyecto",
     "status": "Done",
-    "summary": "[Sprint 1] Configurar dailys, weeklys y ceremonies del proyecto"
+    "duedate": "",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
   },
-  "AC-469": {
-    "duedate": "2026-05-23",
-    "assignee": "",
+  {
+    "key": "AC-471",
+    "summary": "[Sprint 1] Nivelaci\u00f3n de entornos \u2014 Assessment y alineaci\u00f3n Dev/STG",
     "status": "To Do",
-    "summary": "[Sprint 1] [T-471] Ejecutar assessment de nivelaci\u00f3n de entornos"
-  },
-  "AC-468": {
     "duedate": "2026-05-23",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [ACCESOS] Crear cuentas GitHub Nubity con correo GBM"
+    "type": "Story",
+    "parent": "AC-448",
+    "assignee": ""
   },
-  "AC-467": {
-    "duedate": "2026-05-23",
-    "assignee": "",
+  {
+    "key": "AC-472",
+    "summary": "[Sprint 1] [ACCESOS] Obtener acceso al repositorio GitHub (gbmcode/gbm-connect)",
     "status": "To Do",
-    "summary": "[Sprint 1] [ACCESOS] Obtener API Keys de Queen para 3 ambientes"
-  },
-  "AC-466": {
-    "duedate": "2026-05-23",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [ACCESOS] Obtener credenciales API Entidad Cliente (client_id, client_secret)"
-  },
-  "AC-465": {
-    "duedate": "2026-05-23",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] [ACCESOS] Confirmar cuenta Dev separada o compartida con STG"
-  },
-  "AC-451": {
     "duedate": "2026-05-30",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 1] Migraci\u00f3n chatbot Lambda a API Queen"
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
   },
-  "AC-450": {
-    "duedate": "2026-06-20",
-    "assignee": "",
+  {
+    "key": "AC-473",
+    "summary": "[Sprint 1] [ACCESOS] Obtener roles IAM en cuentas AWS (STG/DEV)",
     "status": "To Do",
-    "summary": "[Sprint 1] Refactor Mixpanel Lambda \u2014 Split en 2 Lambdas + SQS + DLQ"
+    "duedate": "2026-05-30",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-474",
+    "summary": "[Sprint 1] [T-450] Dise\u00f1o arquitectura Refactor Mixpanel \u2014 2 Lambdas + SQS",
+    "status": "To Do",
+    "duedate": "2026-06-06",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-479",
+    "summary": "[Sprint 1] [T-451] Dise\u00f1o t\u00e9cnico migraci\u00f3n chatbot Lambda a API Queen",
+    "status": "To Do",
+    "duedate": "2026-05-30",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-483",
+    "summary": "[Sprint 3] Dise\u00f1o UI Agent Workspace \u2014 Pantalla principal por rol",
+    "status": "To Do",
+    "duedate": "2026-06-06",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-506",
+    "summary": "Auditar cambios manuales en produccion post-Fase 1",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-507",
+    "summary": "Comparar IaC vs estado actual de produccion",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-508",
+    "summary": "Documentar desnivelaciones encontradas",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-509",
+    "summary": "Nivelar ambiente Dev/STG con produccion",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-510",
+    "summary": "Validar Amazon Q habilitado en IaC",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-511",
+    "summary": "Confirmar usernames GitHub del equipo AWS (Jair, Rene, Ivan)",
+    "status": "Done",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-472",
+    "assignee": ""
+  },
+  {
+    "key": "AC-512",
+    "summary": "Solicitar a Abi acceso al repo gbmcode/gbm-connect",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-472",
+    "assignee": ""
+  },
+  {
+    "key": "AC-513",
+    "summary": "Validar permisos de escritura en branches Dev/STG",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-472",
+    "assignee": ""
+  },
+  {
+    "key": "AC-514",
+    "summary": "Verificar branch protection rules y CI/CD pipeline",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-472",
+    "assignee": ""
+  },
+  {
+    "key": "AC-515",
+    "summary": "Solicitar roles IAM para cuenta STG (505999908714)",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-473",
+    "assignee": ""
+  },
+  {
+    "key": "AC-516",
+    "summary": "Solicitar roles IAM para cuenta Dev (si se crea separada)",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-473",
+    "assignee": ""
+  },
+  {
+    "key": "AC-517",
+    "summary": "Validar principio de least privilege en roles asignados",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-473",
+    "assignee": ""
+  },
+  {
+    "key": "AC-518",
+    "summary": "Documentar accesos en matriz de accesos del proyecto",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-473",
+    "assignee": ""
+  },
+  {
+    "key": "AC-519",
+    "summary": "Listar todos los recursos de Connect en produccion",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-469",
+    "assignee": ""
+  },
+  {
+    "key": "AC-520",
+    "summary": "Comparar flujos de Connect prod vs repo",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-469",
+    "assignee": ""
+  },
+  {
+    "key": "AC-521",
+    "summary": "Listar Lambdas y sus versiones en prod vs Dev/STG",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-469",
+    "assignee": ""
+  },
+  {
+    "key": "AC-522",
+    "summary": "Generar reporte de assessment con horas estimadas de remediacion",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-469",
+    "assignee": ""
+  },
+  {
+    "key": "AC-523",
+    "summary": "Documentar arquitectura actual de Lambda Mixpanel",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-474",
+    "assignee": ""
+  },
+  {
+    "key": "AC-524",
+    "summary": "Disenar nueva arquitectura: Lambda Ingestion + Lambda Processing + SQS",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-474",
+    "assignee": ""
+  },
+  {
+    "key": "AC-525",
+    "summary": "Definir contrato de eventos entre Lambdas (schema)",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-474",
+    "assignee": ""
+  },
+  {
+    "key": "AC-526",
+    "summary": "Definir alarmas y metricas de monitoreo",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-474",
+    "assignee": ""
+  },
+  {
+    "key": "AC-527",
+    "summary": "Code review del dise\u00f1o con Ivan/Rene",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-474",
+    "assignee": ""
+  },
+  {
+    "key": "AC-537",
+    "summary": "Documentar flujo actual: Lambda cross-account del chatbot",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-479",
+    "assignee": ""
+  },
+  {
+    "key": "AC-538",
+    "summary": "Disenar nuevo flujo: Lambda Connect \u2192 API Queen",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-479",
+    "assignee": ""
+  },
+  {
+    "key": "AC-539",
+    "summary": "Definir manejo de errores y timeouts con API Queen",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-479",
+    "assignee": ""
+  },
+  {
+    "key": "AC-540",
+    "summary": "Validar API Keys disponibles para Dev/STG",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-479",
+    "assignee": ""
+  },
+  {
+    "key": "AC-658",
+    "summary": "[Sprint 1] [ACCESOS] Pendiente: Acceso repo GitHub (gbmcode/gbm-connect)",
+    "status": "Done",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": "AC-443",
+    "assignee": "Francisco Javier Ramirez Morales"
+  },
+  {
+    "key": "AC-659",
+    "summary": "[Sprint 1] [ACCESOS] Pendiente: Roles IAM en cuentas AWS (STG/DEV)",
+    "status": "Done",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": "AC-443",
+    "assignee": ""
+  },
+  {
+    "key": "AC-660",
+    "summary": "[Sprint 1] [ACCESOS] Pendiente: Cuentas GitHub Nubity con correo GBM",
+    "status": "Done",
+    "duedate": "2026-05-23",
+    "type": "Task",
+    "parent": "AC-443",
+    "assignee": ""
+  },
+  {
+    "key": "AC-715",
+    "summary": "Documentar flujo actual Lambda cross-account del chatbot",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-451",
+    "assignee": ""
+  },
+  {
+    "key": "AC-716",
+    "summary": "Dise\u00f1ar nuevo flujo Lambda Connect \u2192 API Queen",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-451",
+    "assignee": ""
+  },
+  {
+    "key": "AC-717",
+    "summary": "Implementar llamada a API Queen desde Lambda",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-451",
+    "assignee": ""
+  },
+  {
+    "key": "AC-718",
+    "summary": "Configurar manejo de errores y timeouts",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-451",
+    "assignee": ""
+  },
+  {
+    "key": "AC-719",
+    "summary": "Testing integraci\u00f3n con API Queen en Dev",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-451",
+    "assignee": ""
+  },
+  {
+    "key": "AC-720",
+    "summary": "Deploy y validaci\u00f3n en STG",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-451",
+    "assignee": ""
+  },
+  {
+    "key": "AC-728",
+    "summary": "Configurar pipeline DEV con branch develop",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": "Francisco Javier Ramirez Morales"
+  },
+  {
+    "key": "AC-729",
+    "summary": "Crear ambiente DEV con IaC",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": "Francisco Javier Ramirez Morales"
+  },
+  {
+    "key": "AC-730",
+    "summary": "Documentar desnivelaciones encontradas",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-731",
+    "summary": "Provisi\u00f3n de cuenta nueva DEV",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-732",
+    "summary": "Roles IAM equivalentes en los 3 ambientes",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-733",
+    "summary": "[Sprint 1] Creacion de Repositorio para app custom - AgentWorkspace",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Task",
+    "parent": null,
+    "assignee": ""
+  },
+  {
+    "key": "AC-734",
+    "summary": "Mixpanel por ambiente",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-735",
+    "summary": "Exportar flujo actual de PRD como fuente de verdad",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": "Juan Cruz Peluffo"
+  },
+  {
+    "key": "AC-736",
+    "summary": "Comparar contact flow productivo y documentar diferencias",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
+  },
+  {
+    "key": "AC-737",
+    "summary": "Nivelar Flow de STG y DEV con la versi\u00f3n de PRD",
+    "status": "To Do",
+    "duedate": "",
+    "type": "Sub-task",
+    "parent": "AC-471",
+    "assignee": ""
   }
-}
+]
