@@ -467,19 +467,19 @@
             <!-- Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="value" style="color:#448AFF;">11</div>
+                    <div class="value" style="color:#448AFF;">17</div>
                     <div class="label">Total Stories</div>
                 </div>
                 <div class="stat-card">
-                    <div class="value" style="color:#22c55e;">3</div>
+                    <div class="value" style="color:#22c55e;">0</div>
                     <div class="label">Done</div>
                 </div>
                 <div class="stat-card">
-                    <div class="value" style="color:#FF9900;">8</div>
+                    <div class="value" style="color:#FF9900;">17</div>
                     <div class="label">To Do</div>
                 </div>
                 <div class="stat-card">
-                    <div class="value" style="color:#B388FF;">~180h</div>
+                    <div class="value" style="color:#B388FF;">~220h</div>
                     <div class="label">Estimadas</div>
                 </div>
             </div>
@@ -865,7 +865,7 @@
         const options = {
             series: [{
                 name: 'Horas',
-                data: [40, 60, 30, 20, 15, 15]
+                data: [20, 40, 80, 60, 20]
             }],
             chart: {
                 type: 'bar',
@@ -887,7 +887,7 @@
             },
             dataLabels: { enabled: true, style: { colors: ['#e0e0e0'], fontSize: '12px' } },
             xaxis: {
-                categories: ['Nivelacion', 'API Queen', 'Blueprints', 'MVP', 'Auditoria', 'Config Dev'],
+                categories: ['Accesos (6)', 'Nivelacion (2)', 'Mixpanel (6)', 'API Queen (2)', 'Gestion (1)'],
                 labels: { style: { colors: '#888', fontSize: '11px' } },
                 axisBorder: { color: '#333' },
                 axisTicks: { color: '#333' }
@@ -921,10 +921,10 @@
 
     // Donut Chart
     function renderDonutChart() {
-        const series = [40, 60, 50, 30];
+        const series = [20, 40, 80, 60, 20];
         const total = series.reduce((a, b) => a + b, 0);
         const labels = series.map((val, i) => {
-            const names = ['Nivelacion', 'API Queen', 'Blueprints+MVP', 'Gestion'];
+            const names = ['Accesos', 'Nivelacion', 'Mixpanel', 'API Queen', 'Gestion'];
             const pct = Math.round((val / total) * 100);
             return names[i] + ' ' + val + 'h (' + pct + '%)';
         });
@@ -937,7 +937,7 @@
                 background: 'transparent'
             },
             labels: labels,
-            colors: ['#448AFF', '#FF9900', '#22c55e', '#B388FF'],
+            colors: ['#448AFF', '#FF9900', '#22c55e', '#B388FF', '#ef4444'],
             stroke: { width: 2, colors: ['#0a0a0a'] },
             dataLabels: {
                 enabled: true,
