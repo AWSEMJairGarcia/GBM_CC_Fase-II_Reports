@@ -340,7 +340,7 @@
             }
           }
         },
-        "duedate": "2026-06-06",
+        "duedate": "2026-06-20",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
@@ -1876,7 +1876,7 @@
           "avatarId": 10318,
           "hierarchyLevel": 0
         },
-        "duedate": null,
+        "duedate": "2026-05-30",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
@@ -1922,7 +1922,7 @@
           "avatarId": 10318,
           "hierarchyLevel": 0
         },
-        "duedate": null,
+        "duedate": "2026-05-30",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
@@ -2241,7 +2241,7 @@
           "avatarId": 10318,
           "hierarchyLevel": 0
         },
-        "duedate": null,
+        "duedate": "2026-05-27",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
@@ -2286,7 +2286,7 @@
           "avatarId": 10318,
           "hierarchyLevel": 0
         },
-        "duedate": null,
+        "duedate": "2026-05-27",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
@@ -2331,7 +2331,7 @@
           "avatarId": 10318,
           "hierarchyLevel": 0
         },
-        "duedate": null,
+        "duedate": "2026-05-30",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",
@@ -2376,7 +2376,7 @@
           "avatarId": 10318,
           "hierarchyLevel": 0
         },
-        "duedate": null,
+        "duedate": "2026-06-06",
         "assignee": null,
         "priority": {
           "self": "https://gbmprojects.atlassian.net/rest/api/3/priority/2",

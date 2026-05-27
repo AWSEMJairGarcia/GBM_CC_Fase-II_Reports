@@ -1,27 +1,21 @@
 {
-  "AC-483": {
-    "duedate": "2026-06-06",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "[Sprint 3] Dise\u00f1o UI Agent Workspace \u2014 Pantalla principal por rol"
-  },
-  "AC-482": {
+  "AC-479": {
     "duedate": "2026-05-30",
     "assignee": "",
     "status": "To Do",
-    "summary": "[Sprint 3] Implementar busqueda de cliente en contact flow"
+    "summary": "[Sprint 1] [T-451] Dise\u00f1o t\u00e9cnico migraci\u00f3n chatbot Lambda a API Queen"
   },
-  "AC-481": {
-    "duedate": "2026-05-27",
+  "AC-478": {
+    "duedate": "2026-06-06",
     "assignee": "",
     "status": "To Do",
-    "summary": "[Sprint 3] Integracion API Entidad Cliente \u2014 Autenticacion y conexion"
+    "summary": "[Sprint 1] [T-450] Testing refactor Mixpanel en ambiente Dev"
   },
-  "AC-480": {
-    "duedate": "2026-05-27",
+  "AC-477": {
+    "duedate": "2026-06-06",
     "assignee": "",
     "status": "To Do",
-    "summary": "[Sprint 3] Implementar Lambda de normalizacion de telefonos"
+    "summary": "[Sprint 1] [T-450] Configurar SQS + DLQ + alarmas CloudWatch"
   },
   "AC-476": {
     "duedate": "2026-06-06",
@@ -59,58 +53,52 @@
     "status": "To Do",
     "summary": "[Sprint 1] Nivelaci\u00f3n de entornos \u2014 Assessment y alineaci\u00f3n Dev/STG"
   },
-  "AC-463": {
-    "duedate": "2026-07-04",
+  "AC-470": {
+    "duedate": "",
     "assignee": "",
-    "status": "To Do",
-    "summary": "Normalizacion de telefonos \u2014 Lambda de busqueda multi-formato"
+    "status": "Done",
+    "summary": "[Sprint 1] Configurar dailys, weeklys y ceremonies del proyecto"
   },
-  "AC-462": {
-    "duedate": "2026-08-01",
+  "AC-469": {
+    "duedate": "2026-05-23",
     "assignee": "",
     "status": "To Do",
-    "summary": "Creacion manual de casos desde Workspace"
+    "summary": "[Sprint 1] [T-471] Ejecutar assessment de nivelaci\u00f3n de entornos"
   },
-  "AC-461": {
-    "duedate": "2026-07-18",
+  "AC-468": {
+    "duedate": "2026-05-23",
     "assignee": "",
     "status": "To Do",
-    "summary": "Registro automatico de actividades en Salesforce"
+    "summary": "[Sprint 1] [ACCESOS] Crear cuentas GitHub Nubity con correo GBM"
   },
-  "AC-460": {
-    "duedate": "2026-07-18",
+  "AC-467": {
+    "duedate": "2026-05-23",
     "assignee": "",
     "status": "To Do",
-    "summary": "Search Failure Recovery \u2014 Flujo de busqueda fallida"
+    "summary": "[Sprint 1] [ACCESOS] Obtener API Keys de Queen para 3 ambientes"
   },
-  "AC-455": {
-    "duedate": "2026-08-01",
+  "AC-466": {
+    "duedate": "2026-05-23",
     "assignee": "",
     "status": "To Do",
-    "summary": "Official Service Number Configuration"
+    "summary": "[Sprint 1] [ACCESOS] Obtener credenciales API Entidad Cliente (client_id, client_secret)"
   },
-  "AC-454": {
-    "duedate": "2026-08-01",
+  "AC-465": {
+    "duedate": "2026-05-23",
     "assignee": "",
     "status": "To Do",
-    "summary": "Segment-Based Priority Routing \u2014 Ruteo por segmento de cliente"
-  },
-  "AC-453": {
-    "duedate": "2026-07-04",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "Customer Profiles \u2014 Data Synchronization Connect vs Salesforce"
-  },
-  "AC-452": {
-    "duedate": "2026-07-04",
-    "assignee": "",
-    "status": "To Do",
-    "summary": "Automatic Customer Identification \u2014 Identificacion por telefono"
+    "summary": "[Sprint 1] [ACCESOS] Confirmar cuenta Dev separada o compartida con STG"
   },
   "AC-451": {
     "duedate": "2026-05-30",
     "assignee": "",
     "status": "To Do",
     "summary": "[Sprint 1] Migraci\u00f3n chatbot Lambda a API Queen"
+  },
+  "AC-450": {
+    "duedate": "2026-06-20",
+    "assignee": "",
+    "status": "To Do",
+    "summary": "[Sprint 1] Refactor Mixpanel Lambda \u2014 Split en 2 Lambdas + SQS + DLQ"
   }
 }
