@@ -173,13 +173,34 @@
         <table>
             <thead><tr><th style="width:70px">Prio</th><th>Objetivo</th><th>Descripción</th><th style="width:130px">Épica</th></tr></thead>
             <tbody>
-                <tr><td><span class="badge b-p0">P0</span></td><td><b>Customer Profiles</b></td><td>Búsqueda de cliente sin contacto activo. Resolver fuente de identidad (Entidad Cliente = DynamoDB cross-account; App Flow no aplica → evaluar DynamoDB Export a S3 o Streams+Lambda). Requiere compliance GBM.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-443" target="_blank">AC-443 Unified Entity</a></td></tr>
+                <tr><td><span class="badge b-p0">P0</span></td><td><b>Customer Profiles</b></td><td>Búsqueda de cliente sin contacto activo. Fuente de identidad = <b>Entidad Cliente (DynamoDB cross-account, GBM/Skynet)</b>. AppFlow NO aplica para DynamoDB (solo Salesforce) → evaluar DynamoDB Export a S3, o Streams+Lambda. Requiere compliance GBM.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-443" target="_blank">AC-443 Unified Entity</a></td></tr>
                 <tr><td><span class="badge b-p1">P1</span></td><td><b>UI Workspace nativo (MVP)</b></td><td>Primer entregable: vista de consulta de cliente integrada con Entidad Cliente.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-447" target="_blank">AC-447 Workspace</a></td></tr>
                 <tr><td><span class="badge b-p1">P1</span></td><td><b>Pruebas E2E API Queen</b></td><td>Bloqueado por SSO Connect DEV + número WhatsApp. Validar flujo chatbot migrado punta a punta.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-448" target="_blank">AC-448 Refactor</a></td></tr>
                 <tr><td><span class="badge b-p2">P2</span></td><td><b>Refactor Mixpanel</b></td><td>Implementación: 2 Lambdas + SQS + DLQ. Diseño aprobado (AC-474, AC-523 a AC-526).</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-448" target="_blank">AC-448 Refactor</a></td></tr>
                 <tr><td><span class="badge b-p2">P2</span></td><td><b>Entrega documentación código</b></td><td>AC-778: documentación + deploys DEV para revisión GBM. Responsable: René.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-662" target="_blank">AC-662 Governance</a></td></tr>
             </tbody>
         </table>
+
+        <!-- NOTA TECNICA CUSTOMER PROFILES -->
+        <div class="card" style="border-left:4px solid #FF9900;">
+            <h3 style="color:#FF9900;">⚠ Decisión técnica pendiente — Sincronización Entidad Cliente → Customer Profiles</h3>
+            <p style="font-size:.86rem;color:#ccc;margin-bottom:12px;">La Entidad Cliente (EC) es una <b style="color:#fff;">DynamoDB</b> (no RDS) en <b style="color:#fff;">otra cuenta AWS (GBM/Skynet)</b>. <b style="color:#fff;">AppFlow no tiene conector nativo para DynamoDB</b>, por lo que solo aplica para Salesforce, no para EC. Toda opción implica configuración <b style="color:#fff;">cross-account</b> (roles IAM, bucket policies).</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+                <div style="background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:14px;">
+                    <div style="font-family:'Sora',sans-serif;font-size:.72rem;color:#448AFF;font-weight:600;margin-bottom:6px;">OPCIÓN 1</div>
+                    <div style="font-size:.82rem;color:#ddd;">DynamoDB Export to S3 (nativo) + ingestión de Customer Profiles desde S3.</div>
+                </div>
+                <div style="background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:14px;">
+                    <div style="font-family:'Sora',sans-serif;font-size:.72rem;color:#22c55e;font-weight:600;margin-bottom:6px;">OPCIÓN 2</div>
+                    <div style="font-size:.82rem;color:#ddd;">DynamoDB Streams + Lambda que escribe a Customer Profiles vía API.</div>
+                </div>
+                <div style="background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:14px;">
+                    <div style="font-family:'Sora',sans-serif;font-size:.72rem;color:#B388FF;font-weight:600;margin-bottom:6px;">OPCIÓN 3</div>
+                    <div style="font-size:.82rem;color:#ddd;">GBM exporta periódicamente a un bucket S3 y nosotros consumimos desde ahí.</div>
+                </div>
+            </div>
+            <p style="font-size:.78rem;color:#888;margin-top:12px;">Fuente: Silvana García (Nubity). En revisión con René e Iván. Impacta la estimación de la tarea de ingesta de EC.</p>
+        </div>
 
         <!-- 02 GRAFICAS -->
         <div class="section-title"><span class="num">02</span> Distribución de Trabajo</div>
