@@ -149,7 +149,7 @@
             <div class="kpi orange"><div class="val">13</div><div class="lbl">Arrastres Sprint 1</div></div>
             <div class="kpi green"><div class="val">1</div><div class="lbl">Prioridad P0</div></div>
             <div class="kpi red"><div class="val">4 Jul</div><div class="lbl">Deadline Customer Profiles</div></div>
-            <div class="kpi purple"><div class="val">3</div><div class="lbl">Bloqueadores activos</div></div>
+            <div class="kpi purple"><div class="val">2</div><div class="lbl">Bloqueadores activos</div></div>
         </div>
 
         <!-- QUICK LINKS -->
@@ -216,24 +216,44 @@
         </div>
 
         <!-- 03 ARRASTRES + BLOQUEADORES -->
-        <div class="section-title"><span class="num">03</span> Arrastres y Bloqueadores</div>
+        <div class="section-title"><span class="num">03</span> Arrastres de Sprint 1 (13 tickets)</div>
+        <div class="note" style="margin-bottom:16px;">
+            <p>Estos 13 tickets <b>se iniciaron durante Sprint 1</b>, pero por planificación <b>pertenecen al alcance de Sprint 2</b>. No representan retraso ni impacto al proyecto: son trabajo que naturalmente continúa en este sprint (configuración por ambiente, pruebas E2E dependientes de accesos, documentación y diseño).</p>
+        </div>
+        <table>
+            <thead><tr><th style="width:80px">Ticket</th><th style="width:90px">Estado</th><th>Tarea</th><th style="width:110px">Área</th></tr></thead>
+            <tbody>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-451" target="_blank">AC-451</a></td><td><span class="badge b-p1">In Progress</span></td><td><b>Migración chatbot Lambda a API Queen</b></td><td>API Queen</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-720" target="_blank">AC-720</a></td><td><span class="badge b-p1">In Progress</span></td><td>[TEST] Deploy y validación en DEV — migración API Queen</td><td>API Queen</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-746" target="_blank">AC-746</a></td><td><span class="badge b-p1">In Progress</span></td><td>[TEST] Registro de clientes no existentes — endpoint POST /api/v1/external/users</td><td>API Queen</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-748" target="_blank">AC-748</a></td><td><span class="badge b-p1">In Progress</span></td><td>[FLOW] Ajustar flujo CHAT CUSTOMIZADO para pasar teléfono a Lambda</td><td>API Queen</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-751" target="_blank">AC-751</a></td><td><span class="badge b-p1">In Progress</span></td><td>[DOCS] Documentar integración Queen API por ambiente</td><td>API Queen</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-777" target="_blank">AC-777</a></td><td><span class="badge b-p1">In Progress</span></td><td>Creación de SSM asociados a API Queen</td><td>API Queen</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-734" target="_blank">AC-734</a></td><td><span class="badge b-p2">To Do</span></td><td>Mixpanel por ambiente</td><td>Mixpanel</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-738" target="_blank">AC-738</a></td><td><span class="badge b-p2">To Do</span></td><td>Mixpanel por ambiente — configuración</td><td>Mixpanel</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-471" target="_blank">AC-471</a></td><td><span class="badge b-p1">In Progress</span></td><td><b>Nivelación de entornos</b> — Assessment y alineación Dev/STG</td><td>Nivelación</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-717" target="_blank">AC-717</a></td><td><span class="badge b-p2">To Do</span></td><td>[INFRA] Actualizar template SAM</td><td>Infra</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-742" target="_blank">AC-742</a></td><td><span class="badge b-p2">To Do</span></td><td>Iteración de diseño</td><td>UI / Diseño</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-483" target="_blank">AC-483</a></td><td><span class="badge b-p1">In Progress</span></td><td>Diseño UI Agent Workspace — Pantalla principal por rol</td><td>UI / Diseño</td></tr>
+                <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-743" target="_blank">AC-743</a></td><td><span class="badge b-p2">To Do</span></td><td>Provisión de número WhatsApp Business para DEV</td><td>Acceso / Provisión</td></tr>
+            </tbody>
+        </table>
+
         <div class="grid-2">
-            <div class="card carry">
-                <h3>Arrastres de Sprint 1 (13 tickets)</h3>
-                <ul class="list">
-                    <li><b>Pruebas E2E API Queen</b> — bloqueado por SSO + WhatsApp</li>
-                    <li><b>Refactor Mixpanel</b> — diseño listo, falta implementación</li>
-                    <li><b>Nivelación flujos Connect</b> — internos vía CLI</li>
-                    <li><b>Definición ambientes Mixpanel</b></li>
-                    <li><b>Provisión número WhatsApp DEV</b></li>
-                </ul>
-            </div>
             <div class="card blockers">
                 <h3>Bloqueadores activos</h3>
                 <ul class="list">
-                    <li><b>SSO — Acceso Connect DEV</b> (10+ días). Falta identity provider; ticket en aprobación. Bloquea pruebas API Queen.</li>
-                    <li><b>Provisión número WhatsApp DEV</b> — Jair lo trabaja con Abigail.</li>
-                    <li><b>Definición ambientes Mixpanel</b> — pendiente para arrancar refactor.</li>
+                    <li><b>Provisión número WhatsApp DEV</b> (AC-743) — único bloqueo restante de pruebas API Queen. Jair lo trabaja con Abigail; reunión esta semana.</li>
+                    <li><b>Definición ambientes Mixpanel</b> — pendiente para configuración por ambiente (AC-734, AC-738).</li>
+                    <li><b>Fuente de identidad Customer Profiles</b> — requiere definición + compliance GBM.</li>
+                </ul>
+            </div>
+            <div class="card carry">
+                <h3>Nota de cierre</h3>
+                <ul class="list">
+                    <li><b>SSO Connect DEV: RESUELTO</b> — ya no bloquea API Queen.</li>
+                    <li>De los 13 arrastres, <b>6 son de API Queen</b> (pruebas, deploy, docs, SSM), <b>2 de Mixpanel</b>, <b>2 de UI/Diseño</b>, <b>1 nivelación, 1 infra y 1 provisión WhatsApp</b>.</li>
+                    <li>Ninguno representa riesgo de alcance: es continuidad natural hacia Sprint 2.</li>
                 </ul>
             </div>
         </div>
