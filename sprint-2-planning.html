@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint 2 Planning - GBM CC Fase II</title>
+    <meta name="description" content="Sprint 2 Planning del proyecto GBM Contact Center Fase II sobre Amazon Connect: prioridades, objetivos, bloqueadores y metricas Jira actualizadas.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3Cpath d='M16 56 Q32 62 48 56' fill='none' stroke='%23FF9900' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh}
+        .container{max-width:1100px;margin:0 auto;padding:24px}
+
+        /* Login gate */
+        #login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+        .login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+
+        /* Banner */
+        .banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+        .banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+        .banner img{height:30px}
+        .banner-divider{width:1px;height:30px;background:#333}
+        .banner-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+        .banner-subtitle{font-size:.85rem;color:#FF9900}
+        .banner-date{margin-left:auto;font-size:.85rem;color:#999;white-space:nowrap;text-align:right}
+
+        /* Sprint goal */
+        .goal-card{background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(34,197,94,.02));border:1px solid rgba(34,197,94,.2);border-left:4px solid #22c55e;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+        .goal-card h3{font-family:'Sora',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#22c55e;margin-bottom:6px}
+        .goal-card p{color:#ddd;font-size:.95rem}
+
+        /* KPIs */
+        .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+        .kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+        .kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+        .kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+        .kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+
+        /* Sections */
+        .section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:8px 0 16px;border-bottom:1px solid #222}
+        .section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+
+        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+        .card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+        .chart-card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+
+        /* Priority table */
+        table{width:100%;border-collapse:collapse;font-size:.85rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;margin-bottom:24px}
+        th{text-align:left;padding:12px 16px;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.05em;background:#181818;border-bottom:1px solid #2a2a2a}
+        td{padding:12px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;vertical-align:top}
+        tr:last-child td{border-bottom:none}
+        tr:hover td{background:#1a1a1a}
+        td b{color:#fff}
+        .badge{font-family:'Sora',sans-serif;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap}
+        .b-p0{color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25)}
+        .b-p1{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+        .b-p2{color:#448AFF;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25)}
+        .epic-link{color:#448AFF;text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;font-size:.72rem}
+        .epic-link:hover{text-decoration:underline}
+
+        /* Lists */
+        .list{list-style:none}
+        .list li{font-size:.86rem;color:#ccc;padding:8px 0 8px 26px;position:relative;border-bottom:1px solid #1a1a1a}
+        .list li:last-child{border-bottom:none}
+        .list li b{color:#fff}
+        .card h3{font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+        .card.blockers h3{color:#ef4444}
+        .card.blockers li::before{content:'';position:absolute;left:6px;top:15px;width:8px;height:8px;border-radius:50%;background:#ef4444}
+        .card.carry h3{color:#FF9900}
+        .card.carry li::before{content:'\2192';position:absolute;left:2px;color:#FF9900;font-weight:700}
+
+        /* Quick links */
+        .quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+        .ql-card{background:#141414;border:1px solid #222;border-radius:10px;padding:18px;text-align:center;text-decoration:none;color:#e0e0e0;transition:border-color .2s,transform .2s;display:block}
+        .ql-card:hover{border-color:#448AFF;transform:translateY(-2px)}
+        .ql-card h4{font-family:'Sora',sans-serif;font-size:.9rem;margin:8px 0 2px}
+        .ql-card p{font-size:.74rem;color:#888}
+
+        .note{background:linear-gradient(135deg,rgba(68,138,255,.05),rgba(68,138,255,.02));border:1px solid rgba(68,138,255,.2);border-left:3px solid #448AFF;border-radius:10px;padding:16px 22px;font-size:.86rem;color:#bbb;margin-bottom:24px}
+        .note b{color:#fff}
+        .note p+p{margin-top:8px}
+
+        .footer{margin-top:28px;padding-top:16px;border-top:1px solid #1a1a1a;text-align:center;font-size:.66rem;color:#555}
+
+        @media (max-width:768px){
+            .kpis{grid-template-columns:repeat(2,1fr)}
+            .grid-2{grid-template-columns:1fr}
+            .quick-links{grid-template-columns:1fr}
+            .banner{flex-wrap:wrap}
+            .banner-date{margin-left:0;width:100%;text-align:center}
+        }
+        @media print{@page{size:letter;margin:10mm}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}#login-overlay{display:none!important}}
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN GATE -->
+    <div id="login-overlay">
+        <div class="login-box">
+            <div style="margin-bottom:24px">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h2 style="color:#fff;font-size:1.2rem;margin-bottom:8px">Sprint 2 Planning</h2>
+            <p style="color:#888;font-size:.85rem;margin-bottom:24px">GBM — CC Fase II</p>
+            <input id="login-pass" type="password" placeholder="Clave de acceso" style="width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center" onkeydown="if(event.key==='Enter')checkLogin()">
+            <button onclick="checkLogin()" style="width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#000;font-weight:600;font-size:.9rem;cursor:pointer">Entrar</button>
+            <p id="login-error" style="color:#ef4444;font-size:.8rem;margin-top:12px;display:none">Clave incorrecta</p>
+        </div>
+    </div>
+    <script>
+    function checkLogin(){
+        const pass=document.getElementById('login-pass').value;
+        if(pass==='gbm2026'||pass==='sprint2'||pass==='sprint1'){
+            document.getElementById('login-overlay').style.display='none';
+            sessionStorage.setItem('sprint2-auth','true');
+        }else{document.getElementById('login-error').style.display='block';}
+    }
+    if(sessionStorage.getItem('sprint2-auth')==='true'){
+        document.addEventListener('DOMContentLoaded',()=>{document.getElementById('login-overlay').style.display='none';});
+    }
+    </script>
+
+    <div class="container">
+
+        <!-- BANNER -->
+        <div class="banner">
+            <img src="gbm-logo.png" alt="GBM">
+            <div class="banner-divider"></div>
+            <img src="aws-logo-white.png" alt="AWS">
+            <div class="banner-divider"></div>
+            <div>
+                <div class="banner-title">Sprint 2 Planning</div>
+                <div class="banner-subtitle">GBM — CC Fase II — Amazon Connect</div>
+            </div>
+            <div class="banner-date">24 Jun → ~7 Jul 2026<br><span style="color:#666;font-size:.72rem">Jira actualizado: 24 Jun</span></div>
+        </div>
+
+        <!-- SPRINT GOAL -->
+        <div class="goal-card">
+            <h3>Sprint Goal</h3>
+            <p>Habilitar el <b>API de Agendamiento en producción</b> antes del 1 de julio y entregar el <b>MVP del Workspace nativo</b> con consulta de cliente vía Entidad Cliente, desbloqueando las pruebas E2E de API Queen y avanzando el refactor de Mixpanel.</p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="kpis">
+            <div class="kpi"><div class="val">44</div><div class="lbl">Tickets Sprint 2</div></div>
+            <div class="kpi orange"><div class="val">13</div><div class="lbl">Arrastres Sprint 1</div></div>
+            <div class="kpi green"><div class="val">2</div><div class="lbl">Prioridades P0</div></div>
+            <div class="kpi red"><div class="val">1 Jul</div><div class="lbl">Deadline API Agend.</div></div>
+            <div class="kpi purple"><div class="val">3</div><div class="lbl">Bloqueadores activos</div></div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="quick-links">
+            <a href="https://gbmprojects.atlassian.net/jira/software/c/projects/AC/boards/4440" target="_blank" class="ql-card">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#448AFF" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <h4>Board Sprint 2</h4><p>Tablero ágil AC</p>
+            </a>
+            <a href="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/" target="_blank" class="ql-card">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B388FF" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-5"/></svg>
+                <h4>Dashboard</h4><p>Reportes y métricas</p>
+            </a>
+            <a href="sprint-1-planning.html" class="ql-card">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <h4>Sprint 1</h4><p>Cierre y planning previo</p>
+            </a>
+        </div>
+
+        <!-- 01 PRIORIDADES -->
+        <div class="section-title"><span class="num">01</span> Prioridades del Sprint</div>
+        <table>
+            <thead><tr><th style="width:70px">Prio</th><th>Objetivo</th><th>Descripción</th><th style="width:130px">Épica</th></tr></thead>
+            <tbody>
+                <tr><td><span class="badge b-p0">P0</span></td><td><b>API Agendamiento de Llamadas</b></td><td>Disponibilizar en producción. Deadline negocio: <b>1 Julio</b>. Microservicios ya existen (Fase 1); falta definir punto de consumo (pantalla standalone).</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-444" target="_blank">AC-444 Routing</a></td></tr>
+                <tr><td><span class="badge b-p0">P0</span></td><td><b>Customer Profiles</b></td><td>Búsqueda de cliente sin contacto activo. Resolver fuente de identidad (Entidad Cliente = DynamoDB cross-account; App Flow no aplica → evaluar DynamoDB Export a S3 o Streams+Lambda). Requiere compliance GBM.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-443" target="_blank">AC-443 Unified Entity</a></td></tr>
+                <tr><td><span class="badge b-p1">P1</span></td><td><b>UI Workspace nativo (MVP)</b></td><td>Primer entregable: vista de consulta de cliente integrada con Entidad Cliente.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-447" target="_blank">AC-447 Workspace</a></td></tr>
+                <tr><td><span class="badge b-p1">P1</span></td><td><b>Pruebas E2E API Queen</b></td><td>Bloqueado por SSO Connect DEV + número WhatsApp. Validar flujo chatbot migrado punta a punta.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-448" target="_blank">AC-448 Refactor</a></td></tr>
+                <tr><td><span class="badge b-p2">P2</span></td><td><b>Refactor Mixpanel</b></td><td>Implementación: 2 Lambdas + SQS + DLQ. Diseño aprobado (AC-474, AC-523 a AC-526).</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-448" target="_blank">AC-448 Refactor</a></td></tr>
+                <tr><td><span class="badge b-p2">P2</span></td><td><b>Entrega documentación código</b></td><td>AC-778: documentación + deploys DEV para revisión GBM. Responsable: René.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-662" target="_blank">AC-662 Governance</a></td></tr>
+            </tbody>
+        </table>
+
+        <!-- 02 GRAFICAS -->
+        <div class="section-title"><span class="num">02</span> Distribución de Trabajo</div>
+        <div class="grid-2">
+            <div class="chart-card">
+                <h3 style="font-family:'Sora',sans-serif;font-size:.8rem;color:#fff;margin-bottom:8px">Tickets por prioridad</h3>
+                <div id="priorityChart"></div>
+            </div>
+            <div class="chart-card">
+                <h3 style="font-family:'Sora',sans-serif;font-size:.8rem;color:#fff;margin-bottom:8px">Carga estimada por épica</h3>
+                <div id="epicChart"></div>
+            </div>
+        </div>
+
+        <!-- 03 ARRASTRES + BLOQUEADORES -->
+        <div class="section-title"><span class="num">03</span> Arrastres y Bloqueadores</div>
+        <div class="grid-2">
+            <div class="card carry">
+                <h3>Arrastres de Sprint 1 (13 tickets)</h3>
+                <ul class="list">
+                    <li><b>Pruebas E2E API Queen</b> — bloqueado por SSO + WhatsApp</li>
+                    <li><b>Refactor Mixpanel</b> — diseño listo, falta implementación</li>
+                    <li><b>Nivelación flujos Connect</b> — internos vía CLI</li>
+                    <li><b>Definición ambientes Mixpanel</b></li>
+                    <li><b>Provisión número WhatsApp DEV</b></li>
+                </ul>
+            </div>
+            <div class="card blockers">
+                <h3>Bloqueadores activos</h3>
+                <ul class="list">
+                    <li><b>SSO — Acceso Connect DEV</b> (10+ días). Falta identity provider; ticket en aprobación. Bloquea pruebas API Queen.</li>
+                    <li><b>Provisión número WhatsApp DEV</b> — Jair lo trabaja con Abigail.</li>
+                    <li><b>Definición ambientes Mixpanel</b> — pendiente para arrancar refactor.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 04 ACUERDOS -->
+        <div class="section-title"><span class="num">04</span> Acuerdos Operativos</div>
+        <div class="note">
+            <p><b>Daily técnico:</b> René (TL) + Silvana, 15 min diarios — progreso, bloqueos, sincronía de entregables.</p>
+            <p><b>Revisión de código:</b> AWS primero (René + seguridad), luego GBM. Revisión con Francisco cada miércoles.</p>
+            <p><b>Sesión Customer Profiles:</b> con Iván + Juan Carlos Manzanares (compliance GBM) para definir fuente de identidad.</p>
+            <p><b>Control de horas:</b> Jair + Sabrina sincronizan en daily para contabilizar y reflejar progreso en Jira.</p>
+        </div>
+
+        <div class="footer">GBM × AWS ProServe — Amazon Connect Fase II · Sprint 2 Planning · 24 Junio 2026</div>
+    </div>
+
+    <script>
+    function renderPriorityChart(){
+        const options={
+            series:[{name:'Tickets',data:[2,2,2]}],
+            chart:{type:'bar',height:260,background:'transparent',toolbar:{show:false}},
+            plotOptions:{bar:{borderRadius:6,columnWidth:'45%',distributed:true}},
+            colors:['#ef4444','#FF9900','#448AFF'],
+            dataLabels:{enabled:true,style:{colors:['#fff'],fontSize:'13px'}},
+            legend:{show:false},
+            xaxis:{categories:['P0 Crítico','P1 Alto','P2 Medio'],labels:{style:{colors:'#888',fontSize:'12px'}},axisBorder:{color:'#333'},axisTicks:{color:'#333'}},
+            yaxis:{labels:{style:{colors:'#888'}}},
+            grid:{borderColor:'#222',strokeDashArray:4},
+            tooltip:{theme:'dark'},
+            theme:{mode:'dark'}
+        };
+        new ApexCharts(document.querySelector('#priorityChart'),options).render();
+    }
+    function renderEpicChart(){
+        const series=[
+            {value:90,label:'AC-443 Unified Entity (35%)'},
+            {value:60,label:'AC-447 Workspace (23%)'},
+            {value:50,label:'AC-448 Refactor (19%)'},
+            {value:40,label:'AC-444 Routing (15%)'},
+            {value:20,label:'AC-662 Governance (8%)'}
+        ];
+        const options={
+            series:series.map(s=>s.value),
+            chart:{type:'donut',height:280,background:'transparent'},
+            labels:series.map(s=>s.label),
+            colors:['#448AFF','#22c55e','#FF9900','#B388FF','#ef4444'],
+            stroke:{width:2,colors:['#0a0a0a']},
+            dataLabels:{enabled:true,style:{fontSize:'11px',colors:['#fff']},dropShadow:{enabled:false}},
+            legend:{position:'bottom',labels:{colors:'#e0e0e0'},fontSize:'12px'},
+            plotOptions:{pie:{donut:{size:'55%',labels:{show:true,total:{show:true,label:'Foco',color:'#888',formatter:()=>'5 épicas'}}}}},
+            tooltip:{theme:'dark'},
+            theme:{mode:'dark'}
+        };
+        new ApexCharts(document.querySelector('#epicChart'),options).render();
+    }
+    document.addEventListener('DOMContentLoaded',()=>{renderPriorityChart();renderEpicChart();});
+    </script>
+</body>
+</html>

@@ -398,6 +398,41 @@
 
     <div class="container">
 
+        <!-- CIERRE SPRINT 1 (Sprint Review) -->
+        <div class="card" style="border-left:4px solid #22c55e;">
+            <div class="section-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Cierre Sprint 1 — Sprint Review
+                <a href="sprint-2-planning.html" style="margin-left:auto;font-size:.78rem;color:#FF9900;text-decoration:none;border:1px solid rgba(255,153,0,.3);background:rgba(255,153,0,.08);padding:6px 14px;border-radius:8px;white-space:nowrap">Ir a Sprint 2 Planning →</a>
+            </div>
+
+            <!-- KPIs de cierre -->
+            <div class="stats-grid" style="grid-template-columns:repeat(5,1fr);">
+                <div class="stat-card" style="border-top:3px solid #22c55e;"><div class="value" style="color:#22c55e;">80%</div><div class="label">Completado</div></div>
+                <div class="stat-card" style="border-top:3px solid #448AFF;"><div class="value" style="color:#448AFF;">53 / 66</div><div class="label">Tickets Done</div></div>
+                <div class="stat-card" style="border-top:3px solid #FF9900;"><div class="value" style="color:#FF9900;">8</div><div class="label">In Progress</div></div>
+                <div class="stat-card" style="border-top:3px solid #888;"><div class="value" style="color:#bbb;">5</div><div class="label">To Do</div></div>
+                <div class="stat-card" style="border-top:3px solid #ef4444;"><div class="value" style="color:#ef4444;">13</div><div class="label">Arrastres → S2</div></div>
+            </div>
+
+            <!-- Burndown / progreso -->
+            <div class="chart-container" id="closeChart"></div>
+
+            <!-- Entregado -->
+            <div style="margin-top:8px;">
+                <h4 style="font-family:'Sora',sans-serif;color:#22c55e;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;">Entregado</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;font-size:.86rem;color:#ccc;">
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">Nivelación 3 entornos</b> (Dev/Stage/Prod)</div>
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">API Queen:</b> 98.8% éxito · refactor ~65%</div>
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">Decisión arquitectónica:</b> enfoque nativo</div>
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">API de Agendamiento:</b> entregado, en pruebas</div>
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">Diseño UI Agent Workspace</b> ~75%</div>
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">Secrets</b> en Parameter Store</div>
+                    <div style="padding:4px 0;">✓ <b style="color:#fff;">Equipo onboardeado</b> + Pipeline DEV/IAM</div>
+                </div>
+            </div>
+        </div>
+
         <!-- BUSINESS MILESTONE -->
         <div class="card milestone-card">
             <div class="section-title">
@@ -993,9 +1028,37 @@
     document.addEventListener('DOMContentLoaded', () => {
         populateSavedData();
         fetchJiraDates();
+        renderCloseChart();
         renderBarChart();
         renderDonutChart();
     });
+
+    // Cierre Sprint 1 - estado final de tickets
+    function renderCloseChart() {
+        const el = document.querySelector('#closeChart');
+        if (!el) return;
+        const options = {
+            series: [{
+                name: 'Tickets',
+                data: [53, 8, 5]
+            }],
+            chart: { type: 'bar', height: 220, background: 'transparent', toolbar: { show: false } },
+            plotOptions: { bar: { borderRadius: 6, horizontal: true, distributed: true, barHeight: '55%' } },
+            colors: ['#22c55e', '#FF9900', '#888'],
+            dataLabels: { enabled: true, style: { colors: ['#fff'], fontSize: '13px' } },
+            legend: { show: false },
+            xaxis: {
+                categories: ['Done', 'In Progress', 'To Do'],
+                labels: { style: { colors: '#888' } },
+                axisBorder: { color: '#333' }, axisTicks: { color: '#333' }
+            },
+            yaxis: { labels: { style: { colors: '#bbb', fontSize: '12px' } } },
+            grid: { borderColor: '#222', strokeDashArray: 4 },
+            tooltip: { theme: 'dark', y: { formatter: (v) => v + ' tickets' } },
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(el, options).render();
+    }
 
     // Fetch planned start dates from Jira JSON (pre-loaded)
     async function fetchJiraDates() {
