@@ -140,15 +140,15 @@
         <!-- SPRINT GOAL -->
         <div class="goal-card">
             <h3>Sprint Goal</h3>
-            <p>Habilitar el <b>API de Agendamiento en producción</b> antes del 1 de julio y entregar el <b>MVP del Workspace nativo</b> con consulta de cliente vía Entidad Cliente, desbloqueando las pruebas E2E de API Queen y avanzando el refactor de Mixpanel.</p>
+            <p>Resolver la fuente de identidad para <b>Customer Profiles</b> y entregar el <b>MVP del Workspace nativo</b> con consulta de cliente vía Entidad Cliente, desbloqueando las pruebas E2E de API Queen y avanzando el refactor de Mixpanel.</p>
         </div>
 
         <!-- KPIs -->
         <div class="kpis">
             <div class="kpi"><div class="val">44</div><div class="lbl">Tickets Sprint 2</div></div>
             <div class="kpi orange"><div class="val">13</div><div class="lbl">Arrastres Sprint 1</div></div>
-            <div class="kpi green"><div class="val">2</div><div class="lbl">Prioridades P0</div></div>
-            <div class="kpi red"><div class="val">1 Jul</div><div class="lbl">Deadline API Agend.</div></div>
+            <div class="kpi green"><div class="val">1</div><div class="lbl">Prioridad P0</div></div>
+            <div class="kpi red"><div class="val">4 Jul</div><div class="lbl">Deadline Customer Profiles</div></div>
             <div class="kpi purple"><div class="val">3</div><div class="lbl">Bloqueadores activos</div></div>
         </div>
 
@@ -173,7 +173,6 @@
         <table>
             <thead><tr><th style="width:70px">Prio</th><th>Objetivo</th><th>Descripción</th><th style="width:130px">Épica</th></tr></thead>
             <tbody>
-                <tr><td><span class="badge b-p0">P0</span></td><td><b>API Agendamiento de Llamadas</b></td><td>Disponibilizar en producción. Deadline negocio: <b>1 Julio</b>. Microservicios ya existen (Fase 1); falta definir punto de consumo (pantalla standalone).</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-444" target="_blank">AC-444 Routing</a></td></tr>
                 <tr><td><span class="badge b-p0">P0</span></td><td><b>Customer Profiles</b></td><td>Búsqueda de cliente sin contacto activo. Resolver fuente de identidad (Entidad Cliente = DynamoDB cross-account; App Flow no aplica → evaluar DynamoDB Export a S3 o Streams+Lambda). Requiere compliance GBM.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-443" target="_blank">AC-443 Unified Entity</a></td></tr>
                 <tr><td><span class="badge b-p1">P1</span></td><td><b>UI Workspace nativo (MVP)</b></td><td>Primer entregable: vista de consulta de cliente integrada con Entidad Cliente.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-447" target="_blank">AC-447 Workspace</a></td></tr>
                 <tr><td><span class="badge b-p1">P1</span></td><td><b>Pruebas E2E API Queen</b></td><td>Bloqueado por SSO Connect DEV + número WhatsApp. Validar flujo chatbot migrado punta a punta.</td><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-448" target="_blank">AC-448 Refactor</a></td></tr>
@@ -233,7 +232,7 @@
     <script>
     function renderPriorityChart(){
         const options={
-            series:[{name:'Tickets',data:[2,2,2]}],
+            series:[{name:'Tickets',data:[1,2,2]}],
             chart:{type:'bar',height:260,background:'transparent',toolbar:{show:false}},
             plotOptions:{bar:{borderRadius:6,columnWidth:'45%',distributed:true}},
             colors:['#ef4444','#FF9900','#448AFF'],
