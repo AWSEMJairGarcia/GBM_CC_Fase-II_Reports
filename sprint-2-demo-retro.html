@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 2 Demo & Retrospectiva - GBM CC Fase II</title>
+<meta name="description" content="Sprint Demo y Retrospectiva del Sprint 2 - GBM Contact Center Fase II sobre Amazon Connect. Entregables, validacion del PO y plataforma de retrospectiva.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+.login-box h2{font-family:'Sora',sans-serif;color:#fff;margin-bottom:8px;font-size:1.2rem}
+.login-box p{color:#888;font-size:.85rem;margin-bottom:20px}
+.login-box input{width:100%;padding:12px 14px;background:#0a0a0a;border:1px solid #333;border-radius:8px;color:#fff;font-size:1rem;margin-bottom:14px}
+.login-box button{width:100%;padding:12px;background:#FF9900;border:none;border-radius:8px;color:#0a0a0a;font-weight:700;font-size:1rem;cursor:pointer;font-family:'Sora',sans-serif}
+.login-box .err{color:#ef4444;font-size:.8rem;margin-top:10px;min-height:18px}
+.banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner img{height:30px}
+.banner-divider{width:1px;height:30px;background:#333}
+.banner-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+.banner-subtitle{font-size:.85rem;color:#FF9900}
+.banner-date{margin-left:auto;font-size:.85rem;color:#999;white-space:nowrap;text-align:right}
+.goal-card{background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(34,197,94,.02));border:1px solid rgba(34,197,94,.2);border-left:4px solid #22c55e;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.goal-card h3{font-family:'Sora',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#22c55e;margin-bottom:6px}
+.goal-card p{color:#ddd;font-size:.95rem}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+.kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:18px 0 16px;border-bottom:1px solid #222}
+.section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:.85rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.05em;background:#181818;border-bottom:1px solid #2a2a2a}
+td{padding:12px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a1a1a}
+td b{color:#fff}
+.badge{font-family:'Sora',sans-serif;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap}
+.b-done{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-prog{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+.b-todo{color:#888;background:rgba(136,136,136,.12);border:1px solid rgba(136,136,136,.25)}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.demo-card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;border-left:4px solid #448AFF}
+.demo-card.g{border-left-color:#22c55e}.demo-card.p{border-left-color:#B388FF}.demo-card.o{border-left-color:#FF9900}
+.demo-card h3{font-family:'Sora',sans-serif;font-size:.95rem;color:#fff;margin-bottom:4px}
+.demo-card .meta{font-size:.72rem;color:#888;margin-bottom:12px}
+.demo-card ul{list-style:none}
+.demo-card li{font-size:.83rem;color:#ccc;padding:6px 0 6px 22px;position:relative}
+.demo-card li::before{content:'\2713';position:absolute;left:0;color:#22c55e;font-weight:700}
+.po-box{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.po-item{flex:1;min-width:220px;background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.po-check{width:22px;height:22px;border:2px solid #22c55e;border-radius:6px;flex-shrink:0}
+.po-item span{font-size:.85rem;color:#ddd}
+.retro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.retro-col{background:#141414;border:1px solid #222;border-radius:12px;padding:18px 20px}
+.retro-col h3{font-family:'Sora',sans-serif;font-size:.85rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.retro-col.good h3{color:#22c55e}.retro-col.improve h3{color:#FF9900}.retro-col.action h3{color:#B388FF}
+.retro-col .dot{width:10px;height:10px;border-radius:50%}
+.retro-col.good .dot{background:#22c55e}.retro-col.improve .dot{background:#FF9900}.retro-col.action .dot{background:#B388FF}
+.retro-col ul{list-style:none}
+.retro-col li{font-size:.82rem;color:#ccc;padding:10px 12px;margin-bottom:8px;background:#0f0f0f;border:1px solid #1f1f1f;border-radius:8px;line-height:1.4}
+.retro-col li b{color:#fff}
+.note{font-size:.78rem;color:#888;font-style:italic;margin-top:6px}
+.footer{text-align:center;padding:30px 0 10px;color:#666;font-size:.78rem;border-top:1px solid #1a1a1a;margin-top:20px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}.demo-grid,.retro-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="login-overlay">
+  <div class="login-box">
+    <h2>Sprint 2 - Demo & Retro</h2>
+    <p>GBM CC Fase II - Acceso restringido</p>
+    <input type="password" id="pw" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">Entrar</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<div class="container" id="content" style="display:none">
+
+  <div class="banner">
+    <img src="gbm-logo.png" alt="GBM">
+    <div class="banner-divider"></div>
+    <img src="aws-logo-white.png" alt="AWS">
+    <div>
+      <div class="banner-title">Sprint 2 - Demo & Retrospectiva</div>
+      <div class="banner-subtitle">GBM Contact Center Fase II - Amazon Connect</div>
+    </div>
+    <div class="banner-date">06 Julio 2026<br>Cierre Sprint 2</div>
+  </div>
+
+  <div class="goal-card">
+    <h3>Objetivo del Sprint 2</h3>
+    <p>Migrar API Queen a producción, refactorizar la plataforma de métricas (Mixpanel), y avanzar la identificación de cliente nativa (Entidad Cliente) en Amazon Connect.</p>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi green"><div class="val">95</div><div class="lbl">Tickets totales</div></div>
+    <div class="kpi green"><div class="val">77</div><div class="lbl">Done</div></div>
+    <div class="kpi orange"><div class="val">9</div><div class="lbl">In Progress</div></div>
+    <div class="kpi"><div class="val">9</div><div class="lbl">To Do</div></div>
+    <div class="kpi purple"><div class="val">81%</div><div class="lbl">Completado</div></div>
+  </div>
+
+  <div class="section-title"><span class="num">01</span> Sprint Demo - Entregables</div>
+
+  <div class="demo-grid">
+    <div class="demo-card g">
+      <h3>API Queen - Migración a Lambda</h3>
+      <div class="meta">Épica AC-451 · Juan Cruz, Silvana · Desplegado en Stage</div>
+      <ul>
+        <li>Migración del chatbot a arquitectura Lambda completada</li>
+        <li>Desplegado y validado en DEV y Stage (AC-720, AC-806)</li>
+        <li>Tests unitarios y de integración ejecutados</li>
+        <li>Candidato al primer pase a Producción</li>
+      </ul>
+    </div>
+    <div class="demo-card p">
+      <h3>Refactor Mixpanel - 2 Lambdas + SQS + DLQ</h3>
+      <div class="meta">Épica AC-450 · José Luis · Validado E2E en DEV</div>
+      <ul>
+        <li>Lambda monolítica dividida en 2 Lambdas modulares</li>
+        <li>Cola SQS + DLQ para envío ordenado y trazabilidad</li>
+        <li>Testing end-to-end en DEV completado (AC-727)</li>
+        <li>Brenda (Brains) y Rich integrados a las pruebas</li>
+      </ul>
+    </div>
+    <div class="demo-card">
+      <h3>Entidad Cliente - Vistas Nativas</h3>
+      <div class="meta">AC-478, AC-476 · Sabrina, Javier · En validación</div>
+      <ul>
+        <li>Custom Views creadas: Loading, Datos Cliente, Búsqueda Manual, Error/Fallback</li>
+        <li>Lambda consumer EC con OAuth + búsqueda en cascada teléfono→email</li>
+        <li>Flujo de identificación inbound nativo en construcción</li>
+        <li>Orquestador de vistas (flujo guía) avanzado</li>
+      </ul>
+    </div>
+    <div class="demo-card o">
+      <h3>Nivelación de Entornos & Seguridad</h3>
+      <div class="meta">AC-471 · Juan Cruz, Walter, Bruno · Finalizado / en curso</div>
+      <ul>
+        <li>Dev / Stage / Prod nivelados con IaC</li>
+        <li>Secrets Manager por ambiente (API Queen, Salesforce)</li>
+        <li>Mayoría de hallazgos de seguridad P3 resueltos</li>
+        <li>Roles IAM equivalentes en los 3 ambientes</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">02</span> Validación del Product Owner</div>
+  <div class="po-box">
+    <div class="po-item"><div class="po-check"></div><span><b>API Queen</b> - Aceptar / Rechazar</span></div>
+    <div class="po-item"><div class="po-check"></div><span><b>Refactor Mixpanel</b> - Aceptar / Rechazar</span></div>
+    <div class="po-item"><div class="po-check"></div><span><b>Custom Views EC</b> - Aceptar / Rechazar</span></div>
+    <div class="po-item"><div class="po-check"></div><span><b>Nivelación entornos</b> - Aceptar / Rechazar</span></div>
+  </div>
+
+  <div class="section-title"><span class="num">03</span> Arrastres a Sprint 3 (18 tickets en curso)</div>
+  <table>
+    <tr><th>Ticket</th><th>Estado</th><th>Responsable</th><th>Descripción</th></tr>
+    <tr><td><b>AC-478</b></td><td><span class="badge b-prog">In Progress</span></td><td>Sabrina</td><td>Flujo identificación inbound nativo con API Entidad Cliente</td></tr>
+    <tr><td><b>AC-476</b></td><td><span class="badge b-prog">In Progress</span></td><td>Javier</td><td>Integración inicial API Entidad Cliente</td></tr>
+    <tr><td><b>AC-789</b></td><td><span class="badge b-prog">In Progress</span></td><td>Juan Cruz</td><td>Flujo guía — orquestador de vistas (Agent UI)</td></tr>
+    <tr><td><b>AC-779</b></td><td><span class="badge b-prog">In Progress</span></td><td>Juan Cruz</td><td>Secrets Manager OAuth EC (client_id/secret) por ambiente</td></tr>
+    <tr><td><b>AC-793</b></td><td><span class="badge b-prog">In Progress</span></td><td>Juan Cruz</td><td>Iterar comentarios revisión repositorio — Seguridad</td></tr>
+    <tr><td><b>AC-805</b></td><td><span class="badge b-prog">In Progress</span></td><td>José Luis</td><td>Soporte Custom Views en script connect-sync</td></tr>
+    <tr><td><b>AC-790</b></td><td><span class="badge b-todo">To Do</span></td><td>Juan Cruz</td><td>Modificar flujos inbound (Voz + Chat + WA + Comercial)</td></tr>
+    <tr><td><b>AC-792</b></td><td><span class="badge b-todo">To Do</span></td><td>Juan Cruz</td><td>Testing E2E — Custom Views + flujo guía + Lambda EC</td></tr>
+    <tr><td><b>AC-791</b></td><td><span class="badge b-todo">To Do</span></td><td>Juan Cruz</td><td>Transferencia de contexto entre agentes (DynamoDB session)</td></tr>
+    <tr><td><b>AC-760 / AC-764</b></td><td><span class="badge b-todo">To Do</span></td><td>José Luis</td><td>Prueba de carga QA + regresión Lambda actual vs nueva (dependen entorno GBM)</td></tr>
+    <tr><td><b>AC-795</b></td><td><span class="badge b-todo">To Do</span></td><td>René</td><td>P1 — Rotar keys API Agendamiento</td></tr>
+    <tr><td><b>AC-796 / AC-803</b></td><td><span class="badge b-todo">To Do</span></td><td>René</td><td>Resource Policy API Gateway (P2) + WAF (P3)</td></tr>
+    <tr><td><b>AC-807</b></td><td><span class="badge b-todo">To Do</span></td><td>Abigail</td><td>Datos de prueba API Entidad Cliente — canalizar (GBM)</td></tr>
+  </table>
+
+  <div class="section-title"><span class="num">04</span> Retrospectiva</div>
+  <div class="retro-grid">
+    <div class="retro-col good">
+      <h3><span class="dot"></span> Qué funcionó bien</h3>
+      <ul>
+        <li><b>81% de completitud</b> (77/95 tickets Done) manteniendo calidad.</li>
+        <li><b>Dos entregables listos para producción:</b> API Queen en Stage y Mixpanel validado E2E.</li>
+        <li><b>Colaboración directa GBM-Nubity:</b> Brenda y Rich integrados a pruebas, menos triangulación.</li>
+        <li><b>Nivelación de entornos</b> Dev/Stage/Prod completada — base para despliegues confiables.</li>
+      </ul>
+    </div>
+    <div class="retro-col improve">
+      <h3><span class="dot"></span> Qué podemos mejorar</h3>
+      <ul>
+        <li><b>Dependencias del entorno GBM</b> frenan pruebas (carga QA, datos de prueba EC).</li>
+        <li><b>Trazabilidad de validaciones:</b> comentarios de Brenda deben ser tareas, no chat.</li>
+        <li><b>Hallazgos de seguridad</b> fuera de scope (rotación keys, WAF, Resource Policy) siguen en estimación.</li>
+        <li><b>Coincidencias dinámicas en EC:</b> definir manejo cuando la búsqueda devuelve múltiples resultados.</li>
+      </ul>
+    </div>
+    <div class="retro-col action">
+      <h3><span class="dot"></span> Action Items - Sprint 3</h3>
+      <ul>
+        <li><b>Pasar API Queen a Producción</b> (martes/miércoles) → luego Mixpanel a Stage.</li>
+        <li><b>Crear user story de pruebas</b> para trackear validaciones de Brenda.</li>
+        <li><b>Canalizar datos de prueba EC</b> con GBM (AC-807, Abigail).</li>
+        <li><b>Desbloquear número WhatsApp DEV</b> para pruebas E2E.</li>
+        <li><b>Cerrar estimación</b> de hallazgos de seguridad fuera de scope.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    GBM CC Fase II · Sprint 2 Demo & Retrospectiva · Datos en vivo desde Jira (Board 4440, Sprint 20824) · 06 Julio 2026
+  </div>
+
+</div>
+
+<script>
+function checkPw(){
+  var v=document.getElementById('pw').value;
+  if(v==='gbm2026'||v==='sprint2'){
+    document.getElementById('login-overlay').style.display='none';
+    document.getElementById('content').style.display='block';
+    try{sessionStorage.setItem('gbm_auth','1')}catch(e){}
+  }else{
+    document.getElementById('err').textContent='Contraseña incorrecta';
+  }
+}
+try{if(sessionStorage.getItem('gbm_auth')==='1'){
+  document.getElementById('login-overlay').style.display='none';
+  document.getElementById('content').style.display='block';
+}}catch(e){}
+</script>
+</body>
+</html>
