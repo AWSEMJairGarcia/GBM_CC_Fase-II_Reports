@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 3 Planning - GBM CC Fase II</title>
+<meta name="description" content="Sprint 3 Planning (Entity) del proyecto GBM Contact Center Fase II sobre Amazon Connect: user stories, prioridades, hold de arquitectura y metricas Jira.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+.banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner img{height:30px}
+.banner-divider{width:1px;height:30px;background:#333}
+.banner-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+.banner-subtitle{font-size:.85rem;color:#FF9900}
+.banner-date{margin-left:auto;font-size:.85rem;color:#999;white-space:nowrap;text-align:right}
+.goal-card{background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(34,197,94,.02));border:1px solid rgba(34,197,94,.2);border-left:4px solid #22c55e;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.goal-card h3{font-family:'Sora',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#22c55e;margin-bottom:6px}
+.goal-card p{color:#ddd;font-size:.95rem}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+.kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:18px 0 16px;border-bottom:1px solid #222}
+.section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:.84rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.05em;background:#181818;border-bottom:1px solid #2a2a2a}
+td{padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a1a1a}
+td b{color:#fff}
+.badge{font-family:'Sora',sans-serif;font-size:.58rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap}
+.b-go{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-hold{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+.b-prog{color:#448AFF;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25)}
+.epic-link{color:#448AFF;text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;font-size:.72rem}
+.epic-link:hover{text-decoration:underline}
+.hold-note{background:linear-gradient(135deg,rgba(239,68,68,.07),rgba(239,68,68,.02));border:1px solid rgba(239,68,68,.28);border-left:4px solid #ef4444;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.hold-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#ef4444;margin-bottom:8px}
+.hold-note p{font-size:.86rem;color:#ddd}
+.footer{text-align:center;padding:30px 0 10px;color:#666;font-size:.78rem;border-top:1px solid #1a1a1a;margin-top:20px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<div id="login-overlay">
+    <div class="login-box">
+        <div style="margin-bottom:20px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h2 style="color:#fff;font-size:1.2rem;margin-bottom:8px">Sprint 3 Planning</h2>
+        <p style="color:#888;font-size:.85rem;margin-bottom:20px">GBM &mdash; CC Fase II</p>
+        <input id="login-pass" type="password" placeholder="Clave de acceso" style="width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center" onkeydown="if(event.key==='Enter')checkLogin()">
+        <button onclick="checkLogin()" style="width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#000;font-weight:600;font-size:.9rem;cursor:pointer">Entrar</button>
+        <p id="login-error" style="color:#ef4444;font-size:.8rem;margin-top:12px;display:none">Clave incorrecta</p>
+    </div>
+</div>
+<script>
+function checkLogin(){
+    const p=document.getElementById('login-pass').value;
+    if(p==='gbm2026'||p==='sprint3'||p==='sprint2'){
+        document.getElementById('login-overlay').style.display='none';
+        sessionStorage.setItem('sprint3-auth','true');
+    }else{document.getElementById('login-error').style.display='block';}
+}
+if(sessionStorage.getItem('sprint3-auth')==='true'){
+    document.addEventListener('DOMContentLoaded',()=>{document.getElementById('login-overlay').style.display='none';});
+}
+</script>
+
+<div class="container">
+
+    <div class="banner">
+        <img src="gbm-logo.png" alt="GBM">
+        <div class="banner-divider"></div>
+        <img src="aws-logo-white.png" alt="AWS">
+        <div>
+            <div class="banner-title">Sprint 3 Planning &mdash; Entity</div>
+            <div class="banner-subtitle">GBM &mdash; CC Fase II &mdash; Amazon Connect</div>
+        </div>
+        <div class="banner-date">8 Jul &rarr; 22 Jul 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20825</span></div>
+    </div>
+
+    <div class="goal-card">
+        <h3>Sprint Goal</h3>
+        <p>Pasar <b>API Queen a Producción</b> y <b>Refactor Mixpanel a Stage</b>, y avanzar la <b>lógica de backend de Entidad Cliente</b> (consulta, múltiples resultados, identificación por teléfono, Salesforce). Todo lo de pantallas queda en hold hasta la decisión de arquitectura.</p>
+    </div>
+
+    <div class="kpis">
+        <div class="kpi"><div class="val">81</div><div class="lbl">Tickets Sprint 3</div></div>
+        <div class="kpi green"><div class="val">51</div><div class="lbl">Done</div></div>
+        <div class="kpi purple"><div class="val">8</div><div class="lbl">In Progress</div></div>
+        <div class="kpi orange"><div class="val">22</div><div class="lbl">To Do</div></div>
+        <div class="kpi red"><div class="val">Hold</div><div class="lbl">Decisión pantallas</div></div>
+    </div>
+
+    <div class="hold-note">
+        <h3>Bloqueo de alcance — Decisión de arquitectura pendiente</h3>
+        <p>Por instrucción de GBM, todo lo relacionado con <b>pantallas (Custom Views / app custom / nativo)</b> queda <b>detenido</b> hasta que se defina el camino en la sesión de Charlie con Pedro y Luis. El sprint avanza únicamente lo independiente a esa decisión: API Queen, Refactor Mixpanel, backend de Entidad Cliente, seguridad y HU-15 de fallbacks. El sprint no se inicia formalmente hasta desbloquear; confidence level alto si se resuelve esta semana.</p>
+    </div>
+
+    <!-- 01 User Stories -->
+    <div class="section-title"><span class="num">01</span> User Stories del Sprint 3</div>
+    <table>
+        <thead><tr><th style="width:90px">Historia</th><th>Descripción</th><th style="width:150px">Responsable</th><th style="width:110px">Estado</th></tr></thead>
+        <tbody>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-451" target="_blank">AC-451</a></td><td><b>Migración chatbot Lambda a API Queen</b> — en Stage, en UAT con Brenda; siguiente paso pase a Producción.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-prog">In Progress</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-450" target="_blank">AC-450</a></td><td><b>Refactor Mixpanel Lambda</b> — Split en 2 Lambdas + SQS + DLQ. Técnico completo; falta deploy a Stage y UAT.</td><td>José Luis Reyes</td><td><span class="badge b-prog">In Progress</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-666" target="_blank">AC-666</a></td><td><b>HU-15: Registro de todos los fallbacks del chatbot en Mixpanel</b> — historia descrita, lista para avanzar.</td><td>José Luis Reyes</td><td><span class="badge b-go">To Do</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-452" target="_blank">AC-452</a></td><td><b>Automatic Customer Identification</b> — identificación por teléfono. Lógica de backend (consulta a EC en el flujo), avanzable.</td><td>Silvana García</td><td><span class="badge b-hold">Revisar alcance</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-463" target="_blank">AC-463</a></td><td><b>Normalización de teléfonos</b> — Lambda multi-formato. Lambda avanzada; historia no cierra funcional hasta integrar con vistas.</td><td>Sabrina Tejada</td><td><span class="badge b-hold">En hold</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-478" target="_blank">AC-478</a></td><td><b>Flujo identificación inbound nativo + integración EC</b> — bloqueada (depende de la decisión de pantallas).</td><td>Sabrina Tejada</td><td><span class="badge b-hold">Bloqueada</span></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 02 Avanza -->
+    <div class="section-title"><span class="num">02</span> Continúa (independiente de la decisión)</div>
+    <table>
+        <thead><tr><th style="width:90px">Ticket</th><th>Tarea</th><th style="width:150px">Responsable</th></tr></thead>
+        <tbody>
+            <tr><td>AC-818</td><td>Pruebas UAT API Queen</td><td>Brenda (GBM)</td></tr>
+            <tr><td>AC-819 / AC-820</td><td>Refactor Mixpanel: deploy a Stage + pruebas UAT en Stage</td><td>José Luis / Brenda</td></tr>
+            <tr><td>AC-793</td><td>Iterar comentarios de revisión de repositorio — Seguridad</td><td>Juan Cruz Peluffo</td></tr>
+            <tr><td>AC-476</td><td>Integración inicial API Entidad Cliente (backend, sin deuda técnica; faltan pruebas)</td><td>Javier Saupurein</td></tr>
+            <tr><td>AC-821</td><td>Lambda resolución de selección de cliente (múltiples coincidencias)</td><td>Juan Cruz Peluffo</td></tr>
+            <tr><td>AC-697 a AC-700</td><td>HU-15: Lambda de fallback individual + eventos en Mixpanel + testing E2E</td><td>José Luis Reyes</td></tr>
+            <tr><td>AC-817</td><td>Validar mensajes de futuras funcionalidades (textos)</td><td>Abigail (GBM)</td></tr>
+        </tbody>
+    </table>
+
+    <!-- 03 Bloqueado -->
+    <div class="section-title"><span class="num">03</span> En Hold — depende de decisión de pantallas</div>
+    <table>
+        <thead><tr><th style="width:90px">Ticket</th><th>Tarea</th><th style="width:150px">Responsable</th></tr></thead>
+        <tbody>
+            <tr><td>AC-790</td><td>Modificar flujos inbound (Voz + Chat + WA + Comercial) &rarr; flujo guía EC</td><td>Juan Cruz Peluffo</td></tr>
+            <tr><td>AC-789</td><td>Crear flujo guía — orquestador de vistas (Agent UI flow)</td><td>Juan Cruz Peluffo</td></tr>
+            <tr><td>AC-792</td><td>Testing E2E — Custom Views + flujo guía + Lambda EC</td><td>Juan Cruz Peluffo</td></tr>
+            <tr><td>AC-791</td><td>Lógica de transferencia de contexto entre agentes (DynamoDB session)</td><td>Juan Cruz Peluffo</td></tr>
+            <tr><td>AC-805</td><td>Agregar soporte de Custom Views al script connect-sync</td><td>José Luis Reyes</td></tr>
+        </tbody>
+    </table>
+
+    <!-- 04 Seguridad + Orden de pases -->
+    <div class="section-title"><span class="num">04</span> Seguridad &amp; Orden de Pases a Producción</div>
+    <table>
+        <thead><tr><th style="width:90px">Ticket</th><th>Pendiente de Seguridad (Fase 1)</th><th style="width:150px">Responsable</th></tr></thead>
+        <tbody>
+            <tr><td>AC-795</td><td><span class="badge" style="color:#ef4444;background:rgba(239,68,68,.12)">P1</span> Rotar keys API Agendamiento</td><td>René Ramos</td></tr>
+            <tr><td>AC-796</td><td><span class="badge" style="color:#FF9900;background:rgba(255,153,0,.12)">P2</span> Resource Policy en API Gateway</td><td>René Ramos</td></tr>
+            <tr><td>AC-803</td><td><span class="badge b-prog">P3</span> WAF en API Gateway</td><td>René Ramos</td></tr>
+        </tbody>
+    </table>
+    <div class="card" style="border-left:4px solid #448AFF;">
+        <h3 style="font-family:'Sora',sans-serif;font-size:.8rem;color:#448AFF;margin-bottom:10px;">Orden de pases acordado</h3>
+        <p style="font-size:.86rem;color:#ddd;">1) Cerrar UAT API Queen (Brenda) + subir ajustes &rarr; 2) <b>API Queen a Producción</b> &rarr; 3) Deploy <b>Refactor Mixpanel a Stage</b> &rarr; 4) UAT Mixpanel en Stage. Los secrets de Entidad Cliente en Producción (AC-827) los configura GBM; asignar responsable esta semana.</p>
+    </div>
+
+    <div class="footer">
+        GBM CC Fase II · Sprint 3 Planning (Entity) · Datos en vivo desde Jira (Board 4440, Sprint 20825) · 06 Julio 2026
+    </div>
+
+</div>
+</body>
+</html>
