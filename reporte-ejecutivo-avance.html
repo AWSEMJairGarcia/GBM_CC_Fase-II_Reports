@@ -2,49 +2,49 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>GBM CC Fase II — Reporte Ejecutivo de Avance</title>
+<title>GBM CC Fase II — Avance del Proyecto</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0a0a;color:#e0e0e0;font-family:'Inter','Segoe UI',system-ui,sans-serif;padding:40px 20px}
-.container{max-width:900px;margin:0 auto}
+.container{max-width:920px;margin:0 auto}
 .bar{height:4px;background:#FF9900;border-radius:2px;margin-bottom:32px}
 .header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
 .header img{height:36px}
-h1{font-family:'Sora',sans-serif;font-size:32px;color:#fff;margin-bottom:6px}
-.subtitle{color:#FF9900;font-size:16px;margin-bottom:4px}
+h1{font-family:'Sora',sans-serif;font-size:30px;color:#fff;margin-bottom:6px}
+.subtitle{color:#FF9900;font-size:15px;margin-bottom:4px}
 .meta{color:#888;font-size:13px;margin-bottom:32px}
 .status-badge{display:inline-block;background:#22c55e;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-left:12px}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
-.kpi{background:#16161e;border-radius:10px;padding:16px;border-top:3px solid #FF9900;text-align:center}
-.kpi .val{font-size:24px;font-weight:700;color:#fff}
-.kpi .label{font-size:11px;color:#888;margin-top:4px;text-transform:uppercase}
 .section{margin-bottom:28px}
 .num{display:inline-block;background:#FF9900;color:#0a0a0a;font-weight:700;font-size:13px;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;margin-right:10px}
-.section-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center}
-table{width:100%;border-collapse:collapse;margin:10px 0}
-th,td{text-align:left;padding:10px 12px;font-size:13px;border-bottom:1px solid #2a2a2a}
-th{background:#1a1a2e;color:#FF9900;font-size:11px;text-transform:uppercase}
-td{color:#ccc}
-.done{color:#22c55e;font-weight:600}
-.progress{color:#FF9900;font-weight:600}
-.hold{color:#888;font-style:italic}
-ul{padding-left:20px;margin:8px 0}
-li{margin-bottom:6px;font-size:13px;line-height:1.5;color:#ccc}
+.section-title{font-size:17px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center}
 .timeline{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
-.sprint-chip{background:#16161e;border:1px solid #3a3a3a;border-radius:16px;padding:4px 12px;font-size:11px;color:#888}
+.sprint-chip{background:#16161e;border:1px solid #3a3a3a;border-radius:16px;padding:5px 14px;font-size:12px;color:#888}
 .sprint-chip.done-chip{border-color:#22c55e;color:#22c55e}
 .sprint-chip.active-chip{border-color:#FF9900;color:#FF9900;font-weight:600}
-.screenshots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
-.screenshots img{width:100%;border-radius:8px;border:1px solid #3a3a3a}
-.screenshots .caption{font-size:11px;color:#888;text-align:center;margin-top:6px}
+.progress-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+.progress-card{background:#16161e;border-radius:10px;padding:18px;border-left:4px solid #22c55e}
+.progress-card.active{border-left-color:#FF9900}
+.progress-card h3{font-size:14px;color:#fff;margin-bottom:8px}
+.progress-card p{font-size:12px;color:#aaa;line-height:1.5}
+.progress-card .badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;margin-bottom:8px}
+.badge-done{background:#22c55e;color:#fff}
+.badge-active{background:#FF9900;color:#0a0a0a}
+.screenshots{margin:16px 0}
+.screenshots h3{font-size:14px;color:#fff;margin-bottom:12px}
+.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shot-grid a{display:block;background:#16161e;border:1px solid #3a3a3a;border-radius:8px;overflow:hidden;text-decoration:none;transition:border-color .2s}
+.shot-grid a:hover{border-color:#FF9900}
+.shot-grid .thumb{width:100%;height:140px;object-fit:cover;display:block}
+.shot-grid .cap{padding:10px 12px;font-size:12px;color:#ccc}
+.shot-grid .cap strong{color:#fff}
+ul{padding-left:20px;margin:8px 0}
+li{margin-bottom:6px;font-size:13px;line-height:1.5;color:#ccc}
 .footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #222}
 .footer span{color:#555;font-size:11px}
 @page{size:letter portrait;margin:5mm}
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
   body{background:#0a0a0a!important;padding:4mm 6mm!important}
-  .kpi,.section,table{border-width:2px!important;border-color:#7a7a7a!important}
-  td,th{border-color:#6a6a6a!important}
 }
 </style>
 </head>
@@ -55,21 +55,13 @@ li{margin-bottom:6px;font-size:13px;line-height:1.5;color:#ccc}
     <img src="gbm-logo.png" alt="GBM">
     <img src="aws-logo-white.png" alt="AWS">
   </div>
-  <h1>Reporte Ejecutivo de Avance <span class="status-badge">ON TRACK</span></h1>
-  <div class="subtitle">Amazon Connect — Contact Center Fase II</div>
-  <div class="meta">Engagement Manager: Jair Garc&iacute;a &nbsp;|&nbsp; 09 Julio 2026</div>
-
-  <!-- KPIs -->
-  <div class="kpi-row">
-    <div class="kpi"><div class="val">$11.75M</div><div class="label">Contrato MXN</div></div>
-    <div class="kpi"><div class="val">3,454 h</div><div class="label">Esfuerzo Total</div></div>
-    <div class="kpi"><div class="val">566 h</div><div class="label">Horas Ejecutadas (Jun)</div></div>
-    <div class="kpi"><div class="val">3 / 8</div><div class="label">Sprints en curso</div></div>
-  </div>
+  <h1>Avance del Proyecto <span class="status-badge">ON TRACK</span></h1>
+  <div class="subtitle">Amazon Connect &mdash; Contact Center Fase II</div>
+  <div class="meta">09 Julio 2026</div>
 
   <!-- Timeline -->
   <div class="section">
-    <div class="section-title"><span class="num">01</span>L&iacute;nea de Tiempo</div>
+    <div class="section-title"><span class="num">01</span>Sprints</div>
     <div class="timeline">
       <span class="sprint-chip done-chip">S0 Discovery &#10003;</span>
       <span class="sprint-chip done-chip">S1 Accesos &#10003;</span>
@@ -81,76 +73,87 @@ li{margin-bottom:6px;font-size:13px;line-height:1.5;color:#ccc}
       <span class="sprint-chip">S7 Campaigns</span>
       <span class="sprint-chip">S8 CSAT</span>
     </div>
-    <p style="font-size:12px;color:#888;margin-top:8px">Inicio: 14 May 2026 &nbsp;|&nbsp; Cierre proyectado: Sep 2026 &nbsp;|&nbsp; Sprint 3 activo (8&ndash;22 Jul)</p>
   </div>
 
-  <!-- Entregables -->
+  <!-- Progress cards -->
   <div class="section">
-    <div class="section-title"><span class="num">02</span>Entregables Principales</div>
-    <table>
-      <tr><th>Entregable</th><th>Estado</th><th>Detalle</th></tr>
-      <tr><td>Nivelaci&oacute;n de entornos (Dev/STG/Prod)</td><td class="done">Finalizada</td><td>Infraestructura como C&oacute;digo operativa en 3 ambientes</td></tr>
-      <tr><td>Migraci&oacute;n API Queen (chatbot IA)</td><td class="progress">En Stage</td><td>Candidato a Producci&oacute;n esta semana</td></tr>
-      <tr><td>Refactor Mixpanel (anal&iacute;tica)</td><td class="progress">Validaci&oacute;n</td><td>Arquitectura modular lista, pruebas end-to-end en curso</td></tr>
-      <tr><td>Entidad Cliente (identificaci&oacute;n)</td><td class="progress">En curso</td><td>B&uacute;squeda de cliente por tel&eacute;fono/email operativa en DEV</td></tr>
-      <tr><td>Revisi&oacute;n de seguridad</td><td class="progress">En curso</td><td>Mayor&iacute;a de hallazgos resueltos</td></tr>
-      <tr><td>Dise&ntilde;o UI Agent Workspace</td><td class="hold">En pausa</td><td>Pendiente definici&oacute;n de alcance</td></tr>
-    </table>
-  </div>
-
-  <!-- Pantallas / Evidencia -->
-  <div class="section">
-    <div class="section-title"><span class="num">03</span>En Acci&oacute;n — Evidencia T&eacute;cnica</div>
-    <div class="screenshots">
-      <div>
-        <img src="shot1.png" alt="API Queen — chatbot migrado a Lambda">
-        <div class="caption">API Queen &mdash; chatbot migrado a Lambda</div>
+    <div class="section-title"><span class="num">02</span>Progreso por Sprint</div>
+    <div class="progress-grid">
+      <div class="progress-card">
+        <span class="badge badge-done">COMPLETADO</span>
+        <h3>Sprint 1 &mdash; Accesos y Nivelaci&oacute;n</h3>
+        <p>Entornos Dev/STG/Prod nivelados. Accesos GitHub, IAM, API Keys y credenciales de Entidad Cliente obtenidos. Pipeline CI/CD configurado.</p>
       </div>
-      <div>
-        <img src="shot2.png" alt="Refactor Mixpanel — eventos en tiempo real">
-        <div class="caption">Refactor Mixpanel &mdash; eventos en tiempo real</div>
+      <div class="progress-card">
+        <span class="badge badge-done">COMPLETADO</span>
+        <h3>Sprint 2 &mdash; Refactor y Migraci&oacute;n</h3>
+        <p>API Queen migrado a Lambda (en Stage). Refactor Mixpanel terminado (2 Lambdas + SQS). Documentaci&oacute;n de c&oacute;digo entregada a GBM. Amazon Q en DEV.</p>
       </div>
-      <div>
-        <img src="shot3.png" alt="Entidad Cliente — vistas nativas en Connect">
-        <div class="caption">Entidad Cliente &mdash; vistas nativas</div>
+      <div class="progress-card active">
+        <span class="badge badge-active">EN CURSO</span>
+        <h3>Sprint 3 &mdash; Entidad Cliente</h3>
+        <p>B&uacute;squeda de cliente por tel&eacute;fono/email funcional en DEV. Vistas nativas implementadas (Loading, Datos, Error). Seguridad en resoluci&oacute;n. API Queen candidato a Producci&oacute;n.</p>
+      </div>
+      <div class="progress-card active">
+        <span class="badge badge-active">PENDIENTE</span>
+        <h3>UI Workspace &mdash; En espera</h3>
+        <p>Dise&ntilde;o inicial completado (wireframes, user flows). Implementaci&oacute;n en pausa hasta definir alcance final.</p>
       </div>
     </div>
   </div>
 
-  <!-- Logros Sprint 2 -->
+  <!-- Screenshots del dashboard -->
   <div class="section">
-    <div class="section-title"><span class="num">04</span>Logros Clave del &Uacute;ltimo Sprint</div>
+    <div class="section-title"><span class="num">03</span>Pantallas del Progreso</div>
+    <div class="screenshots">
+      <div class="shot-grid">
+        <a href="sprint-1-planning.html" target="_blank">
+          <img class="thumb" src="shot1.png" alt="Sprint 1">
+          <div class="cap"><strong>Sprint 1</strong> &mdash; Cierre y planning</div>
+        </a>
+        <a href="sprint-2-planning.html" target="_blank">
+          <img class="thumb" src="shot2.png" alt="Sprint 2">
+          <div class="cap"><strong>Sprint 2</strong> &mdash; Planning y demo</div>
+        </a>
+        <a href="sprint-3-planning.html" target="_blank">
+          <img class="thumb" src="shot3.png" alt="Sprint 3">
+          <div class="cap"><strong>Sprint 3</strong> &mdash; Planning activo</div>
+        </a>
+        <a href="index.html" target="_blank">
+          <img class="thumb" src="gbm-logo.png" alt="Dashboard" style="object-fit:contain;background:#16161e;padding:30px">
+          <div class="cap"><strong>Dashboard</strong> &mdash; Vista general del proyecto</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logros concretos -->
+  <div class="section">
+    <div class="section-title"><span class="num">04</span>Qu&eacute; se ha entregado</div>
     <ul>
-      <li>API Queen desplegado en Stage &mdash; validado end-to-end desde WhatsApp.</li>
-      <li>Refactor Mixpanel completado: eventos reflejados correctamente en la plataforma de anal&iacute;tica.</li>
-      <li>71 tareas cerradas en Jira durante Junio.</li>
-      <li>Entidad Cliente: b&uacute;squeda en cascada tel&eacute;fono &rarr; email funcional en DEV.</li>
-      <li>Vistas nativas de cliente implementadas (Loading, Datos, Error/Fallback).</li>
-      <li>Amazon Q configurado en ambiente de Desarrollo.</li>
+      <li><strong>71 tareas cerradas en Jira</strong> durante Junio (de un total de ~160 en el proyecto).</li>
+      <li>Chatbot (API Queen) migrado y en pruebas &mdash; listo para pasar a Producci&oacute;n.</li>
+      <li>Anal&iacute;tica (Mixpanel) refactorizada &mdash; eventos ya se registran correctamente desde WhatsApp.</li>
+      <li>Identificaci&oacute;n del cliente operativa en DEV &mdash; b&uacute;squeda por tel&eacute;fono y email.</li>
+      <li>3 entornos nivelados (Dev, Stage, Producci&oacute;n) con infraestructura automatizada.</li>
+      <li>Revisi&oacute;n de seguridad con la mayor&iacute;a de hallazgos resueltos.</li>
     </ul>
   </div>
 
-  <!-- Próximos pasos -->
+  <!-- Próximos -->
   <div class="section">
-    <div class="section-title"><span class="num">05</span>Pr&oacute;ximos Pasos</div>
+    <div class="section-title"><span class="num">05</span>Pr&oacute;ximos pasos</div>
     <ul>
-      <li>Pase a Producci&oacute;n de API Queen.</li>
-      <li>Despliegue del Refactor Mixpanel en Stage &rarr; UAT.</li>
-      <li>Continuar desarrollo de Entidad Cliente (integraci&oacute;n Salesforce).</li>
-      <li>Definir ruta de UI Workspace una vez confirmada la decisi&oacute;n de alcance.</li>
-      <li>Evaluaci&oacute;n t&eacute;cnica de la solicitud de calendario de feriados.</li>
+      <li>Pase a Producci&oacute;n del chatbot (API Queen).</li>
+      <li>Pruebas de aceptaci&oacute;n del Refactor Mixpanel.</li>
+      <li>Continuar integraci&oacute;n de Entidad Cliente con Salesforce.</li>
+      <li>Evaluaci&oacute;n de la solicitud de calendario de feriados (en revisi&oacute;n t&eacute;cnica).</li>
+      <li>Definir siguiente fase del Workspace una vez confirmado el alcance.</li>
     </ul>
-  </div>
-
-  <!-- Equipo -->
-  <div class="section">
-    <div class="section-title"><span class="num">06</span>Equipo Integrado</div>
-    <p style="font-size:13px;color:#ccc;margin-bottom:8px"><strong style="color:#FF9900">AWS Professional Services:</strong> Jair Garc&iacute;a (EM), Ren&eacute; Ramos (TL), Reiner Mart&iacute;nez (Co-EM), Bruno Costa (Security), Iv&aacute;n Rocha (Arquitectura)</p>
-    <p style="font-size:13px;color:#ccc"><strong style="color:#22c55e">Nubity (Partner de entrega):</strong> Technical Lead, Product Owner y equipo de desarrollo &mdash; ejecuci&oacute;n diaria integrada con AWS y GBM</p>
   </div>
 
   <div class="footer">
-    <span>GBM &times; AWS ProServe &nbsp;|&nbsp; Amazon Connect Fase II &nbsp;|&nbsp; Confidencial &nbsp;|&nbsp; 09 Julio 2026</span>
+    <span>GBM &times; AWS ProServe &nbsp;|&nbsp; Amazon Connect Fase II &nbsp;|&nbsp; 09 Julio 2026</span>
   </div>
 </div>
 </body>
