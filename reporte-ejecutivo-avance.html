@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>GBM CC Fase II — Reporte Ejecutivo de Avance</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e0e0e0;font-family:'Inter','Segoe UI',system-ui,sans-serif;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.bar{height:4px;background:#FF9900;border-radius:2px;margin-bottom:32px}
+.header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.header img{height:36px}
+h1{font-family:'Sora',sans-serif;font-size:32px;color:#fff;margin-bottom:6px}
+.subtitle{color:#FF9900;font-size:16px;margin-bottom:4px}
+.meta{color:#888;font-size:13px;margin-bottom:32px}
+.status-badge{display:inline-block;background:#22c55e;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-left:12px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+.kpi{background:#16161e;border-radius:10px;padding:16px;border-top:3px solid #FF9900;text-align:center}
+.kpi .val{font-size:24px;font-weight:700;color:#fff}
+.kpi .label{font-size:11px;color:#888;margin-top:4px;text-transform:uppercase}
+.section{margin-bottom:28px}
+.num{display:inline-block;background:#FF9900;color:#0a0a0a;font-weight:700;font-size:13px;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;margin-right:10px}
+.section-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th,td{text-align:left;padding:10px 12px;font-size:13px;border-bottom:1px solid #2a2a2a}
+th{background:#1a1a2e;color:#FF9900;font-size:11px;text-transform:uppercase}
+td{color:#ccc}
+.done{color:#22c55e;font-weight:600}
+.progress{color:#FF9900;font-weight:600}
+.blocked{color:#ef4444;font-weight:600}
+ul{padding-left:20px;margin:8px 0}
+li{margin-bottom:6px;font-size:13px;line-height:1.5;color:#ccc}
+.timeline{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
+.sprint-chip{background:#16161e;border:1px solid #3a3a3a;border-radius:16px;padding:4px 12px;font-size:11px;color:#888}
+.sprint-chip.done-chip{border-color:#22c55e;color:#22c55e}
+.sprint-chip.active-chip{border-color:#FF9900;color:#FF9900;font-weight:600}
+.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #222}
+.footer span{color:#555;font-size:11px}
+@page{size:letter portrait;margin:5mm}
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#0a0a0a!important;padding:4mm 6mm!important}
+  .kpi,.section,table{border-width:2px!important;border-color:#7a7a7a!important}
+  td,th{border-color:#6a6a6a!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="bar"></div>
+  <div class="header">
+    <img src="gbm-logo.png" alt="GBM">
+    <img src="AWS_logo_RGB_1c_White.png" alt="AWS">
+  </div>
+  <h1>Reporte Ejecutivo de Avance <span class="status-badge">ON TRACK</span></h1>
+  <div class="subtitle">Amazon Connect — Contact Center Fase II</div>
+  <div class="meta">Engagement Manager: Jair García &nbsp;|&nbsp; 09 Julio 2026</div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi"><div class="val">$11.75M</div><div class="label">Contrato MXN</div></div>
+    <div class="kpi"><div class="val">3,454 h</div><div class="label">Esfuerzo Total</div></div>
+    <div class="kpi"><div class="val">566 h</div><div class="label">Horas Ejecutadas (Jun)</div></div>
+    <div class="kpi"><div class="val">3 / 8</div><div class="label">Sprints en curso</div></div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section">
+    <div class="section-title"><span class="num">01</span>Línea de Tiempo</div>
+    <div class="timeline">
+      <span class="sprint-chip done-chip">S0 Discovery ✓</span>
+      <span class="sprint-chip done-chip">S1 Accesos ✓</span>
+      <span class="sprint-chip done-chip">S2 Refactor ✓</span>
+      <span class="sprint-chip active-chip">S3 Entity (activo)</span>
+      <span class="sprint-chip">S4 Workspace</span>
+      <span class="sprint-chip">S5 Routing</span>
+      <span class="sprint-chip">S6 WhatsApp</span>
+      <span class="sprint-chip">S7 Campaigns</span>
+      <span class="sprint-chip">S8 CSAT</span>
+    </div>
+    <p style="font-size:12px;color:#888;margin-top:8px">Inicio: 14 May 2026 &nbsp;|&nbsp; Cierre proyectado: Sep 2026 &nbsp;|&nbsp; Sprint 3 (8–22 Jul)</p>
+  </div>
+
+  <!-- Entregables -->
+  <div class="section">
+    <div class="section-title"><span class="num">02</span>Entregables Principales</div>
+    <table>
+      <tr><th>Entregable</th><th>Estado</th><th>Detalle</th></tr>
+      <tr><td>Nivelación de entornos (Dev/STG/Prod)</td><td class="done">Finalizada</td><td>IaC operativo en 3 ambientes</td></tr>
+      <tr><td>Migración API Queen (chatbot IA)</td><td class="progress">En Stage</td><td>Candidato a Producción esta semana</td></tr>
+      <tr><td>Refactor Mixpanel (analítica)</td><td class="progress">Validación</td><td>2 Lambdas + SQS + DLQ, pruebas E2E</td></tr>
+      <tr><td>Entidad Cliente (identificación)</td><td class="progress">En curso</td><td>Lambda OAuth, búsqueda teléfono→email, vistas nativas</td></tr>
+      <tr><td>Revisión de seguridad</td><td class="progress">En curso</td><td>Mayoría hallazgos resueltos; P1-P3 en estimación</td></tr>
+      <tr><td>Diseño UI Agent Workspace</td><td class="blocked">En pausa</td><td>Pendiente decisión de arquitectura con Carlos Vázquez</td></tr>
+    </table>
+  </div>
+
+  <!-- Logros Sprint 2 -->
+  <div class="section">
+    <div class="section-title"><span class="num">03</span>Logros Clave del Último Sprint (S2)</div>
+    <ul>
+      <li>API Queen desplegado en Stage — validado E2E desde WhatsApp.</li>
+      <li>Refactor Mixpanel completado: cutover Firehose → Lambda 1 exitoso, eventos reflejados correctamente en Mixpanel.</li>
+      <li>71 issues de Jira cerrados en Junio (sub-tareas + tasks).</li>
+      <li>Entidad Cliente: Lambda con OAuth, normalización telefónica E.164, búsqueda en cascada — funcional en DEV.</li>
+      <li>Custom Views P1 (Loading), P2 (Datos Cliente), P7 (Error/Fallback) implementadas.</li>
+      <li>Amazon Q configurado en ambiente de Desarrollo.</li>
+    </ul>
+  </div>
+
+  <!-- Riesgos -->
+  <div class="section">
+    <div class="section-title"><span class="num">04</span>Riesgos y Bloqueos Activos</div>
+    <table>
+      <tr><th>Riesgo</th><th>Impacto</th><th>Mitigación</th></tr>
+      <tr><td>Decisión de UI (custom vs nativo) pendiente con Carlos Vázquez</td><td>Tareas de Workspace en hold</td><td>Avanzar tareas de Sprint 4/5 sin dependencia de EC</td></tr>
+      <tr><td>Calendario de feriados (petición nueva de GBM)</td><td>Posible adición de scope</td><td>En revisión con steering tech committee (10-Jul)</td></tr>
+      <tr><td>Hallazgos de seguridad P1-P3</td><td>Bajo — no bloquea funcionalidad</td><td>En estimación con Bruno Costa</td></tr>
+    </table>
+  </div>
+
+  <!-- Equipo -->
+  <div class="section">
+    <div class="section-title"><span class="num">05</span>Equipo</div>
+    <p style="font-size:13px;color:#ccc;margin-bottom:8px"><strong style="color:#FF9900">AWS Professional Services:</strong> Jair García (EM), René Ramos (TL), Reiner Martínez (Co-EM), Bruno Costa (Security), Iván Rocha (Arquitectura)</p>
+    <p style="font-size:13px;color:#ccc"><strong style="color:#22c55e">Nubity (Partner):</strong> Technical Lead, Product Owner, 4 desarrolladores — ejecución diaria integrada con AWS</p>
+  </div>
+
+  <!-- Próximos pasos -->
+  <div class="section">
+    <div class="section-title"><span class="num">06</span>Próximos Pasos (Sprint 3)</div>
+    <ul>
+      <li>Pase a Producción de API Queen.</li>
+      <li>Deploy de Mixpanel refactorizado en Stage → UAT.</li>
+      <li>Continuar backend Entidad Cliente y seguridad.</li>
+      <li>Definir con Carlos Vázquez/Pedro la ruta de UI Workspace.</li>
+      <li>Evaluar e integrar (o diferir) la petición de calendario de feriados.</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <span>GBM × AWS ProServe &nbsp;|&nbsp; Amazon Connect Fase II &nbsp;|&nbsp; Confidencial &nbsp;|&nbsp; 09 Julio 2026</span>
+  </div>
+</div>
+</body>
+</html>
