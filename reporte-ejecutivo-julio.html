@@ -238,8 +238,8 @@ h1{font-family:'Sora',sans-serif;font-size:28px;color:#fff;margin-bottom:6px}
 
   // Send on page load
   fetch(webhookUrl, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
     body:JSON.stringify({page: 'Opened | ' + ts + ' | MX Time'})
   }).catch(()=>{});
 
