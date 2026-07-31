@@ -237,10 +237,11 @@ h1{font-family:'Sora',sans-serif;font-size:28px;color:#fff;margin-bottom:6px}
   });
 
   // Send on page load
+  const device = navigator.platform + ' | ' + screen.width+'x'+screen.height + ' | ' + navigator.language + ' | ' + (navigator.userAgent.match(/Chrome|Safari|Firefox|Edge/)||['Unknown'])[0];
   fetch(webhookUrl, {
     method:'POST', mode:'no-cors',
     headers:{'Content-Type':'text/plain'},
-    body:JSON.stringify({page: 'Opened | ' + ts + ' | MX Time'})
+    body:JSON.stringify({page: 'Opened | ' + ts + ' | ' + device})
   }).catch(()=>{});
 
   // Send on page close (time spent + scroll depth)
@@ -249,7 +250,7 @@ h1{font-family:'Sora',sans-serif;font-size:28px;color:#fff;margin-bottom:6px}
     const mins = Math.floor(secs/60);
     const timeStr = mins > 0 ? mins+'m '+secs%60+'s' : secs+'s';
     navigator.sendBeacon(webhookUrl, JSON.stringify({
-      page: 'Closed | Time: '+timeStr+' | Scrolled: '+maxScroll+'% | '+ts
+      page: 'Closed | Time: '+timeStr+' | Scrolled: '+maxScroll+'% | ' + device + ' | '+ts
     }));
   });
 })();
