@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBM CC Fase II — Reporte Ejecutivo Sprint 3 &amp; 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh;padding:24px}
+.container{max-width:1000px;margin:0 auto}
+.bar{height:4px;background:#FF9900;border-radius:2px;margin-bottom:32px}
+.header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.header img{height:36px}
+h1{font-family:'Sora',sans-serif;font-size:28px;color:#fff;margin-bottom:6px}
+.subtitle{color:#FF9900;font-size:15px;margin-bottom:4px}
+.meta{color:#888;font-size:13px;margin-bottom:32px}
+.status-badge{display:inline-block;background:#22c55e;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-left:12px}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:24px 0 16px;border-bottom:1px solid #222}
+.section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+.timeline{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
+.sprint-chip{background:#16161e;border:1px solid #3a3a3a;border-radius:16px;padding:5px 14px;font-size:12px;color:#888}
+.sprint-chip.done{border-color:#22c55e;color:#22c55e}
+.sprint-chip.active{border-color:#FF9900;color:#FF9900;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+.kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.progress-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+.progress-card{background:#141414;border-radius:10px;padding:18px;border-left:4px solid #22c55e}
+.progress-card.active{border-left-color:#FF9900}
+.progress-card h3{font-size:14px;color:#fff;margin-bottom:8px}
+.progress-card p{font-size:12px;color:#aaa;line-height:1.5}
+.badge{font-family:'Sora',sans-serif;font-size:.58rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap;display:inline-block;margin-bottom:8px}
+.badge-done{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.badge-active{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="bar"></div>
+<div class="header">
+    <img src="../scripts/Dailys/gbm-logo.png" alt="GBM">
+    <img src="../scripts/Dailys/AWS_logo_RGB_1c_White.png" alt="AWS">
+</div>
+<h1>Reporte Ejecutivo de Entregables <span class="status-badge">ON TRACK</span></h1>
+<div class="subtitle">Amazon Connect &mdash; Contact Center Fase II</div>
+<div class="meta">30 Julio 2026 &mdash; Sprint 3 (cerrado) + Sprint 4 (en curso)</div>
+
+<!-- Timeline -->
+<div class="section-title"><span class="num">01</span>Timeline del Proyecto</div>
+<div class="timeline">
+    <span class="sprint-chip done">S0 Discovery &#10003;</span>
+    <span class="sprint-chip done">S1 Accesos &#10003;</span>
+    <span class="sprint-chip done">S2 Refactor &#10003;</span>
+    <span class="sprint-chip done">S3 Entity &#10003;</span>
+    <span class="sprint-chip active">S4 Workspace</span>
+    <span class="sprint-chip">S5 Routing</span>
+    <span class="sprint-chip">S6 WhatsApp</span>
+    <span class="sprint-chip">S7 Campaigns</span>
+    <span class="sprint-chip">S8 CSAT</span>
+</div>
+<p style="font-size:12px;color:#666;margin-top:8px;">Budget: 3,454h &middot; 27 semanas activas &middot; 7 releases &middot; 13 sprints &middot; Cierre estimado: Noviembre 2026</p>
+<p style="font-size:12px;color:#888;margin-top:4px;">Progreso: <strong style="color:#FF9900;">Sprint 4 de 13</strong> (~42% del proyecto)</p>
+
+<!-- KPIs -->
+<div class="section-title"><span class="num">02</span>M&eacute;tricas Clave</div>
+<div class="kpis">
+    <div class="kpi green"><div class="val">22/22</div><div class="lbl">Sprint 3 cerrado</div></div>
+    <div class="kpi orange"><div class="val">4</div><div class="lbl">Sprints completados</div></div>
+    <div class="kpi"><div class="val">7</div><div class="lbl">Deploys a Prod</div></div>
+    <div class="kpi green"><div class="val">3/3</div><div class="lbl">Ambientes nivelados</div></div>
+    <div class="kpi purple"><div class="val">R1</div><div class="lbl">Release 0.1 entregado</div></div>
+</div>
+
+<!-- Sprint 3 CERRADO -->
+<div class="section-title"><span class="num">03</span>Sprint 3 &mdash; Unified Customer Entity (8&ndash;24 Jul) &mdash; CERRADO</div>
+<div class="progress-grid">
+    <div class="progress-card">
+        <span class="badge badge-done">PRODUCCION</span>
+        <h3>API Queen &mdash; Migraci&oacute;n completada</h3>
+        <p>L&oacute;gica de identificaci&oacute;n de clientes migrada a Lambda y desplegada en producci&oacute;n (18-Jul). Elimina dependencia del sistema legacy y reduce tiempos de respuesta del chatbot.</p>
+    </div>
+    <div class="progress-card">
+        <span class="badge badge-done">PRODUCCION</span>
+        <h3>Entidad Cliente API &mdash; Operativa</h3>
+        <p>Los agentes ven datos reales del cliente (contratos, segmento, asesor, estrategias) directamente en el workspace. Fuente &uacute;nica de verdad conectada cross-account.</p>
+    </div>
+    <div class="progress-card">
+        <span class="badge badge-done">COMPLETADO</span>
+        <h3>Custom Views sincronizadas</h3>
+        <p>Vistas del workspace consistentes en PRD, STG y DEV. Herramienta connect-sync v3.2 operativa para sincronizaci&oacute;n continua entre ambientes.</p>
+    </div>
+    <div class="progress-card">
+        <span class="badge badge-done">COMPLETADO</span>
+        <h3>Fallbacks Salesforce validados</h3>
+        <p>Si Entidad Cliente no responde, el sistema consulta Salesforce autom&aacute;ticamente. El agente nunca se queda sin informaci&oacute;n. Prospectos SF integrados como segundo nivel de b&uacute;squeda.</p>
+    </div>
+    <div class="progress-card">
+        <span class="badge badge-done">COMPLETADO</span>
+        <h3>Seguridad &mdash; Resource Policies &amp; Secrets Manager</h3>
+        <p>Acceso seguro cross-account resuelto. IAM Resource Policies + rotaci&oacute;n de API Keys automatizada. Walter Amores (GBM) valid&oacute; la implementaci&oacute;n.</p>
+    </div>
+    <div class="progress-card">
+        <span class="badge badge-done">COMPLETADO</span>
+        <h3>Nivelaci&oacute;n PRD &rarr; STG &rarr; DEV</h3>
+        <p>Los tres ambientes nivelados y validados t&eacute;cnicamente (Walter + Francisco confirmaron 29-Jul). Cualquier cambio se prueba en ambiente fiel a producci&oacute;n.</p>
+    </div>
+</div>
+
+<!-- Sprint 4 EN CURSO -->
+<div class="section-title"><span class="num">04</span>Sprint 4 &mdash; Workspace Optimization (23 Jul&ndash;5 Ago) &mdash; EN CURSO</div>
+<div class="progress-grid">
+    <div class="progress-card active">
+        <span class="badge badge-active">EN PROGRESO</span>
+        <h3>WhatsApp &mdash; Tiempo de espera + Cancelar</h3>
+        <p>El cliente ve su posici&oacute;n en cola y puede cancelar sin cerrar la conversaci&oacute;n. Nueva Lambda creada. Reduce abandono y mejora satisfacci&oacute;n. En pruebas internas.</p>
+    </div>
+    <div class="progress-card active">
+        <span class="badge badge-active">EN PROGRESO</span>
+        <h3>Transferencia de contexto entre agentes</h3>
+        <p>La informaci&oacute;n del cliente viaja con la llamada al transferir. El cliente no repite datos. Primera capa (atributos de contacto) en desarrollo.</p>
+    </div>
+    <div class="progress-card active">
+        <span class="badge badge-active">EN PROGRESO</span>
+        <h3>Identificaci&oacute;n autom&aacute;tica &mdash; M&uacute;ltiples coincidencias</h3>
+        <p>Si un tel&eacute;fono tiene m&uacute;ltiples cuentas, el agente ve una lista para seleccionar. Resuelve ambig&uuml;edad sin escalar. AC-851 inicia esta semana.</p>
+    </div>
+    <div class="progress-card">
+        <span class="badge badge-done">RESUELTO</span>
+        <h3>Limitaci&oacute;n 32KB &mdash; Paginaci&oacute;n de contratos</h3>
+        <p>Clientes con 200+ contratos se visualizan sin problema. Soluci&oacute;n: enlaces cortos (~7 chars por contrato). Abigail valid&oacute; y acept&oacute;.</p>
+    </div>
+    <div class="progress-card active">
+        <span class="badge badge-active">PIPELINE</span>
+        <h3>Deploy seguridad a Producci&oacute;n</h3>
+        <p>Cambios de seguridad en Stage listos. Pipeline de CI/CD con aprobaciones. Deploy controlado, trazable y con rollback.</p>
+    </div>
+    <div class="progress-card active">
+        <span class="badge badge-active">PLANIFICADO</span>
+        <h3>UAT Funcionalidades WhatsApp</h3>
+        <p>Brenda y equipo GBM validan en Stage la pr&oacute;xima semana. Pasaje concentrado: Refactor + Fallbacks + Cancelaci&oacute;n + API cliente.</p>
+    </div>
+</div>
+
+<!-- Milestones -->
+<div class="section-title"><span class="num">05</span>Milestones &amp; Releases del Plan</div>
+<table style="width:100%;border-collapse:collapse;font-size:13px;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;">
+<thead>
+<tr style="background:#181818;">
+    <th style="padding:12px 16px;text-align:left;font-size:11px;color:#777;text-transform:uppercase;border-bottom:1px solid #2a2a2a;">Release</th>
+    <th style="padding:12px 16px;text-align:left;font-size:11px;color:#777;text-transform:uppercase;border-bottom:1px solid #2a2a2a;">Semanas</th>
+    <th style="padding:12px 16px;text-align:left;font-size:11px;color:#777;text-transform:uppercase;border-bottom:1px solid #2a2a2a;">Contenido</th>
+    <th style="padding:12px 16px;text-align:left;font-size:11px;color:#777;text-transform:uppercase;border-bottom:1px solid #2a2a2a;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;"><b style="color:#fff;">R0.1 Refactor</b></td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">s5 (23&ndash;27 Jun)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">Nivelaci&oacute;n + CR API Queen</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;"><span class="badge badge-done">Entregado</span></td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;"><b style="color:#fff;">R1 Etapa 1</b></td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">s10 (28 Jul&ndash;1 Ago)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">Refactor Lambda + Chatbot base</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;"><span class="badge badge-active">En curso</span></td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;"><b style="color:#fff;">Slice 1 &mdash; Quick Win</b></td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">s8 (14&ndash;18 Jul)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">Integraci&oacute;n b&uacute;squeda EC nativo</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;"><span class="badge badge-done">Entregado</span></td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;"><b style="color:#fff;">Slice 2 &mdash; Salesforce</b></td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">s13 (18&ndash;22 Ago)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">Integraci&oacute;n Salesforce completa</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;"><span class="badge" style="color:#888;background:#1a1a1a;border:1px solid #333;">Pendiente</span></td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;"><b style="color:#fff;">R2 Etapa 1</b></td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">s19 (29 Sep&ndash;3 Oct)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">Mixpanel completo + UX chatbot</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;"><span class="badge" style="color:#888;background:#1a1a1a;border:1px solid #333;">Pendiente</span></td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;"><b style="color:#fff;">R2 Etapa 2</b></td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">s22 (20&ndash;24 Oct)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;">Routing completo (todos los flujos)</td><td style="padding:11px 16px;border-bottom:1px solid #1a1a1a;"><span class="badge" style="color:#888;background:#1a1a1a;border:1px solid #333;">Pendiente</span></td></tr>
+<tr><td style="padding:11px 16px;color:#ccc;"><b style="color:#fff;">R5 Etapa 2 &mdash; Cierre</b></td><td style="padding:11px 16px;color:#ccc;">s27 (24&ndash;28 Nov)</td><td style="padding:11px 16px;color:#ccc;">Cierre final + entrega</td><td style="padding:11px 16px;"><span class="badge" style="color:#888;background:#1a1a1a;border:1px solid #333;">Pendiente</span></td></tr>
+</tbody>
+</table>
+
+<!-- Logros destacados del período -->
+<div class="section-title"><span class="num">06</span>Logros Destacados del Per&iacute;odo (Jul 8&ndash;30)</div>
+<div style="display:grid;grid-template-columns:1fr;gap:10px;">
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;border-left:4px solid #22c55e;">
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#fff;">Pase a Producci&oacute;n exitoso (18-Jul):</strong> API Queen migrada sin incidentes. Coordinaci&oacute;n con Francisco (GBM) y Ren&eacute; (AWS). Ceremonia de deploys establecida: viernes por la tarde.</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;border-left:4px solid #22c55e;">
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#fff;">Limitaci&oacute;n 32KB detectada y resuelta antes de Prod:</strong> Clientes con +3 contratos exced&iacute;an el l&iacute;mite. Soluci&oacute;n de paginaci&oacute;n por contrato implementada y validada con 200+ registros. Evit&oacute; incidente en producci&oacute;n.</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;border-left:4px solid #22c55e;">
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#fff;">Nivelaci&oacute;n de ambientes completada (28-Jul):</strong> PRD&rarr;STG&rarr;DEV sincronizados con connect-sync v3.2. Validaci&oacute;n t&eacute;cnica por Walter y Francisco. Desbloquea todos los futuros deploys.</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;border-left:4px solid #FF9900;">
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#fff;">Seguridad cross-account resuelta (23-Jul):</strong> Resource Policies en Secrets Manager habilitadas por Walter Amores. Acceso seguro entre cuentas AWS sin exponer credenciales.</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;border-left:4px solid #448AFF;">
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#fff;">Mixpanel validado en DEV:</strong> Eventos del chatbot se registran correctamente. Sesi&oacute;n inicio/fin coinciden. Listo para Stage una vez que se libere ambiente.</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;border-left:4px solid #B388FF;">
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#fff;">Metodolog&iacute;a de pruebas establecida:</strong> Tests en DEV &rarr; revalidaci&oacute;n en Stage &rarr; UAT por GBM. Cada tarea documentada con resultados de prueba antes de promover.</p>
+    </div>
+</div>
+
+<!-- Próximos pasos -->
+<div class="section-title"><span class="num">07</span>Pr&oacute;ximos Pasos (Semana 4&ndash;8 Ago)</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;">
+        <p style="font-size:11px;color:#FF9900;font-weight:700;text-transform:uppercase;margin-bottom:4px;">Lunes 4 Ago</p>
+        <p style="font-size:13px;color:#ccc;">Pasaje concentrado a Stage (WhatsApp + Fallbacks + API Cliente + Cancelaci&oacute;n)</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;">
+        <p style="font-size:11px;color:#FF9900;font-weight:700;text-transform:uppercase;margin-bottom:4px;">Semana 4&ndash;8 Ago</p>
+        <p style="font-size:13px;color:#ccc;">UAT funcionalidades WhatsApp (Brenda + equipo GBM validan en Stage)</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;">
+        <p style="font-size:11px;color:#448AFF;font-weight:700;text-transform:uppercase;margin-bottom:4px;">Esta semana</p>
+        <p style="font-size:13px;color:#ccc;">Sesi&oacute;n con David S&aacute;nchez &mdash; Propuesta cascadeo din&aacute;mico y gesti&oacute;n de colas</p>
+    </div>
+    <div style="background:#141414;border:1px solid #222;border-radius:10px;padding:14px 18px;">
+        <p style="font-size:11px;color:#448AFF;font-weight:700;text-transform:uppercase;margin-bottom:4px;">Pr&oacute;xima semana</p>
+        <p style="font-size:13px;color:#ccc;">Sesi&oacute;n Marketing con Beatriz &mdash; Discovery campañas personalizadas (Advisory)</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center;margin-top:48px;padding-top:20px;border-top:1px solid #222;">
+    <img src="../scripts/Dailys/AWS_logo_RGB_yellow.png" alt="AWS" height="28" style="opacity:0.6;">
+    <p style="color:#555;font-size:11px;margin-top:8px;">GBM &mdash; CC Fase II &mdash; Reporte Ejecutivo de Entregables &mdash; AWS Professional Services</p>
+    <p style="color:#444;font-size:10px;margin-top:4px;">Engagement Manager: Jair Garc&iacute;a &middot; Technical Lead: Ren&eacute; Ramos &middot; Security: Bruno Costa</p>
+</div>
+
+</div>
+</body>
+</html>
+
+<!-- View Tracker - notifica al abrir -->
+<script>
+(function(){
+  const ts = new Date().toLocaleString('es-MX',{timeZone:'America/Mexico_City'});
+  const ref = document.referrer || 'direct';
+  const ua = navigator.userAgent;
+  // Slack webhook - reemplazar con el tuyo
+  const webhookUrl = localStorage.getItem('gbm_webhook');
+  if(webhookUrl){
+    fetch(webhookUrl, {
+      method:'POST',
+      body:JSON.stringify({text:`📊 *Reporte Ejecutivo Julio abierto*\n• Hora: ${ts}\n• Referrer: ${ref}\n• UA: ${ua.substring(0,80)}`})
+    }).catch(()=>{});
+  }
+  // Fallback: Google Analytics event (si tienes GA)
+  if(window.gtag) gtag('event','view_report',{report:'julio-2026'});
+})();
+</script>
