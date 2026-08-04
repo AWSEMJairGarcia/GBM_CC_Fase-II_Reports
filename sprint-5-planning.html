@@ -258,11 +258,23 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
   });
   const viewer = new URLSearchParams(window.location.search).get('v') || 'unknown';
   const device = navigator.platform + ' | ' + screen.width+'x'+screen.height + ' | ' + navigator.language + ' | ' + (navigator.userAgent.match(/Chrome|Safari|Firefox|Edge/)||['Unknown'])[0];
-  fetch(webhookUrl, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'text/plain'},
-    body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | ' + device})
-  }).catch(()=>{});
+
+  // Get IP then notify
+  fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{
+    const ip = d.ip || 'no-ip';
+    fetch(webhookUrl, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | IP: ' + ip + ' | ' + device})
+    }).catch(()=>{});
+  }).catch(()=>{
+    fetch(webhookUrl, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | IP: blocked | ' + device})
+    }).catch(()=>{});
+  });
+
   window.addEventListener('beforeunload', function(){
     const secs = Math.round((Date.now() - start) / 1000);
     const mins = Math.floor(secs/60);
