@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sprint 5 Planning - GBM CC Fase II</title>
-<meta name="description" content="Sprint 5 Planning (Routing + Identificaci&oacute;n) del proyecto GBM Contact Center Fase II sobre Amazon Connect: user stories, prioridades y métricas Jira.">
+<meta name="description" content="Sprint 5 Planning (Routing + Identificación) del proyecto GBM Contact Center Fase II sobre Amazon Connect: user stories, prioridades y métricas Jira.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -13,6 +13,8 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 .container{max-width:1100px;margin:0 auto;padding:24px}
 #login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
 .login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+</style>
+<style>
 .banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
 .banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
 .banner img{height:30px}
@@ -96,43 +98,44 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
         <div class="banner-divider"></div>
         <img src="aws-logo-white.png" alt="AWS">
         <div>
-            <div class="banner-title">Sprint 5 Planning &mdash; Routing + Identificaci&oacute;n</div>
+            <div class="banner-title">Sprint 5 Planning &mdash; Routing</div>
             <div class="banner-subtitle">GBM &mdash; CC Fase II &mdash; Amazon Connect</div>
         </div>
-        <div class="banner-date">22 Jul &rarr; 5 Ago 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20826</span></div>
+        <div class="banner-date">5 &rarr; 19 Ago 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20827</span></div>
     </div>
 
     <!-- Sprint Goal -->
     <div class="goal-card">
         <h3>Sprint Goal</h3>
-        <p>Integrar <b>Entidad Cliente en los flujos de voz, chat y WhatsApp</b> para identificaci&oacute;n autom&aacute;tica. Implementar <b>enrutamiento por segmento</b> (Plus/Personal/Premium/Private). Cerrar <b>UAT WhatsApp</b> y desplegar a Producci&oacute;n.</p>
+        <p>Implementar <b>enrutamiento inteligente por segmento de cliente</b> (Plus/Personal/Premium/Private), completar la <b>identificación automática de prospecto vía Salesforce</b>, y cerrar las <b>mejoras de búsqueda múltiple en Entidad Cliente</b>. El sistema debe derivar al cliente a la cola correcta según su nivel antes de atender.</p>
     </div>
 
     <!-- KPIs -->
     <div class="kpis">
-        <div class="kpi green"><div class="val">17</div><div class="lbl">DONE SPRINT 4</div></div>
-        <div class="kpi purple"><div class="val">22</div><div class="lbl">Carry-over</div></div>
-        <div class="kpi orange"><div class="val">~35</div><div class="lbl">Tickets Sprint 5</div></div>
+        <div class="kpi green"><div class="val">5</div><div class="lbl">Sprints Cerrados</div></div>
+        <div class="kpi purple"><div class="val">2</div><div class="lbl">Carry-over S4</div></div>
+        <div class="kpi orange"><div class="val">7</div><div class="lbl">Stories Sprint 5</div></div>
         <div class="kpi"><div class="val">2 sem</div><div class="lbl">Duración</div></div>
-        <div class="kpi green"><div class="val">On Track</div><div class="lbl">Estado General</div></div>
+        <div class="kpi green"><div class="val">38%</div><div class="lbl">Avance Proyecto</div></div>
     </div>
 
     <!-- Carry-over note -->
     <div class="carry-note">
         <h3>Carry-over de Sprint 4</h3>
-        <p>Tareas que no cerraron en Sprint 4 pasan a Sprint 5. Incluyen pasaje concentrado a Stage (Mixpanel + fallbacks + cancelaci&oacute;n WhatsApp), UAT con Brenda, b&uacute;squeda m&uacute;ltiples resultados EC y conclusi&oacute;n de transferencia de contexto entre agentes.</p>
+        <p>2 tareas de Sprint 4 pasan a Sprint 5: <b>AC-450</b> (Refactor Mixpanel &rarr; Stage/Prod) y <b>AC-664</b> (Botones cancelar espera WhatsApp). Ambas en fase final de validación.</p>
     </div>
 
     <!-- 01 Sprint 4 Recap -->
-    <div class="section-title"><span class="num">01</span> Cierre Sprint 4 &mdash; Logros</div>
+    <div class="section-title"><span class="num">01</span> Cierre Sprint 4 &mdash; Workspace (23 Jul&ndash;4 Ago) &mdash; Logros</div>
     <table>
         <thead><tr><th>Entregable</th><th>Resultado</th><th>Estado</th></tr></thead>
         <tbody>
-            <tr><td><b>WhatsApp &mdash; Tiempo de espera + Cancelar</b></td><td>Cliente ve posici&oacute;n en cola y puede cancelar. Lambda desplegada. Anti-spam inteligente. Demo exitosa ante Carlos V&aacute;zquez.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>Nivelaci&oacute;n PRD&rarr;STG&rarr;DEV</b></td><td>Tres ambientes nivelados y validados por Walter + Francisco (29-Jul). connect-sync v3.2.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>Entidad Cliente en flujos</b></td><td>Identificaci&oacute;n autom&aacute;tica de clientes integrada en flujo de voz y chat productivo.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>Seguridad &mdash; Resource Policies</b></td><td>Cross-account IAM resuelto. Secrets Manager + rotaci&oacute;n API Keys. Pipeline CI/CD con aprobaciones.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>Limitaci&oacute;n 32KB resuelta</b></td><td>Paginaci&oacute;n por contrato implementada. 200+ contratos sin problema. Abigail valid&oacute;.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Entidad Cliente en flujos productivos</b></td><td>Identificación automática de clientes integrada en flujo de voz y chat. Operativa en Producción.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>WhatsApp &mdash; tiempo de espera + cancelar</b></td><td>Cliente ve posición en cola y puede cancelar. Lambda desplegada, anti-spam activo. Demo exitosa ante Carlos Vázquez.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Nivelación PRD&rarr;STG&rarr;DEV</b></td><td>Tres ambientes idénticos. Validado por Walter Hiram Amores Macías y Francisco.</td><td><span class="badge b-done">Validado</span></td></tr>
+            <tr><td><b>Limitación 32KB resuelta</b></td><td>Paginación por contrato implementada. 200+ contratos sin problema de payload.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Seguridad desplegada a Prod</b></td><td>Resource Policies + Secrets Manager + pipeline CI/CD con aprobaciones.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Cierre automático fuera de horario</b></td><td>Feriados gestionados vía DynamoDB. Chatbot cierra automáticamente en días no laborables.</td><td><span class="badge b-done">Completado</span></td></tr>
         </tbody>
     </table>
 
@@ -141,71 +144,113 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
     <table>
         <thead><tr><th style="width:85px">Ticket</th><th>Descripción</th><th style="width:140px">Responsable</th><th style="width:100px">Prioridad</th></tr></thead>
         <tbody>
-            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-450" target="_blank">AC-450</a></td><td><b>Refactor Mixpanel &rarr; Stage/Prod</b> — Pasaje concentrado a Stage + UAT con Brenda. Deploy a Prod post-validaci&oacute;n.</td><td>Jos&eacute; Luis Reyes</td><td><span class="badge b-carry">Carry-over S4</span></td></tr>
-            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-476" target="_blank">AC-476</a></td><td><b>Integraci&oacute;n API EC en flujos voz y chat</b> — Identificaci&oacute;n autom&aacute;tica del cliente en el flujo inbound antes del ruteo.</td><td>Silvana Garc&iacute;a</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
-            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-463" target="_blank">AC-463</a></td><td><b>B&uacute;squeda m&uacute;ltiples resultados EC</b> — Cuando un tel&eacute;fono devuelve m&uacute;ltiples clientes, mostrar lista de selecci&oacute;n al agente.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
-            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-664" target="_blank">AC-664</a></td><td><b>HU-13: Botones cancelar espera WhatsApp</b> — Botones interactivos + l&oacute;gica de cancelaci&oacute;n integrada en loop CQF.</td><td>Jos&eacute; Luis Reyes</td><td><span class="badge b-carry">Carry-over S4</span></td></tr>
-            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-454" target="_blank">AC-454</a></td><td><b>HU-02: Enrutamiento por segmento</b> — Seg&uacute;n nivel del cliente (Plus/Personal/Premium/Private) derivar a cola correspondiente por canal.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
-            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-793" target="_blank">AC-793</a></td><td><b>Seguridad &mdash; Iteraci&oacute;n hallazgos repositorio</b> — Cierre de observaciones de revisi&oacute;n de seguridad.</td><td>Ren&eacute; Ramos</td><td><span class="badge b-prog">P2 - Media</span></td></tr>
-            <tr><td>Prospecto SF</td><td><b>Identificaci&oacute;n de prospecto</b> — Si no est&aacute; en EC, buscar en Salesforce y crear caso como prospecto nuevo.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-prog">P2 - Media</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-476" target="_blank">AC-476</a></td><td><b>Integración API EC en flujos voz y chat</b> &mdash; Consolidar la identificación automática del cliente en todos los canales inbound usando Entidad Cliente.</td><td>Silvana García</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-463" target="_blank">AC-463</a></td><td><b>Búsqueda múltiples resultados EC</b> &mdash; Cuando un teléfono devuelve múltiples clientes, el agente ve lista para seleccionar el correcto.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-454" target="_blank">AC-454</a></td><td><b>Enrutamiento por segmento</b> &mdash; Según nivel del cliente (Plus/Personal/Premium/Private) se deriva a la cola correspondiente por canal (voz, chat, WhatsApp).</td><td>Juan Cruz Peluffo</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-450" target="_blank">AC-450</a></td><td><b>Refactor Mixpanel &rarr; Stage/Prod</b> &mdash; Deploy final del refactor validado. Carry-over de Sprint 4.</td><td>José Luis Reyes</td><td><span class="badge b-carry">Carry-over</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-664" target="_blank">AC-664</a></td><td><b>Botones cancelar espera WhatsApp</b> &mdash; Wording final + UAT de Brenda. Carry-over de Sprint 4.</td><td>José Luis Reyes</td><td><span class="badge b-carry">Carry-over</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-793" target="_blank">AC-793</a></td><td><b>Seguridad &mdash; iteración hallazgos</b> &mdash; Cierre de observaciones pendientes del repositorio (DSR en progreso).</td><td>René Ramos</td><td><span class="badge b-prog">P2 - Media</span></td></tr>
+            <tr><td>&mdash;</td><td><b>Identificación de prospecto (Salesforce)</b> &mdash; Si el contacto no está en EC, se identifica como prospecto vía SF y se crea el caso automáticamente.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-prog">P2 - Media</span></td></tr>
         </tbody>
     </table>
 
-    <!-- 03 Dependencias -->
-    <div class="section-title"><span class="num">03</span> Dependencias y Riesgos</div>
-    <div class="dep-note">
-        <h3>Dependencias del equipo GBM</h3>
-        <p><b>1.</b> Deduplicación / indexación de Entidad Cliente &mdash; GBM debe decidir cómo manejar búsquedas por correo (no indexado actualmente). Sin esto, las vistas pueden mostrar resultados incorrectos.<br>
-        <b>2.</b> Salesforce sandbox &mdash; ticket AC-830 (<code>invalid_client_id</code>). No bloquea PRD pero limita testing de prospectos en DEV/STG.<br>
-        <b>3.</b> Confirmación de horas para Portal Feriados &mdash; Abigail López debe aprobar las 26h estimadas para activar la tarea.</p>
-    </div>
-
-    <!-- 04 Capacidad -->
-    <div class="section-title"><span class="num">04</span> Capacidad del Equipo</div>
-    <table>
-        <thead><tr><th>Recurso</th><th>Rol</th><th>Org</th><th>Sem 22-Jul</th><th>Sem 29-Jul</th></tr></thead>
-        <tbody>
-            <tr><td><b>Jair García</b></td><td>Engagement Manager</td><td>AWS</td><td>18h</td><td>14h</td></tr>
-            <tr><td><b>René Ramos</b></td><td>Technical Lead</td><td>AWS</td><td>18h</td><td>14h</td></tr>
-            <tr><td><b>Bruno Costa</b></td><td>Seguridad</td><td>AWS</td><td>6h</td><td>6h</td></tr>
-            <tr><td><b>Reiner Martínez</b></td><td>Co-EM</td><td>AWS</td><td>4h</td><td>4h</td></tr>
-            <tr><td><b>Sabrina Tejada</b></td><td>Product Owner</td><td>Nubity</td><td>17h</td><td>17h</td></tr>
-            <tr><td><b>Silvana García</b></td><td>Technical Lead</td><td>Nubity</td><td>15h</td><td>15h</td></tr>
-            <tr><td><b>Juan Cruz Peluffo</b></td><td>Desarrollador</td><td>Nubity</td><td>25h</td><td>25h</td></tr>
-            <tr><td><b>Javier Saupurín</b></td><td>Desarrollador</td><td>Nubity</td><td>16h</td><td>16h</td></tr>
-            <tr><td><b>José Luis Reyes</b></td><td>Desarrollador</td><td>Nubity</td><td>35h</td><td>35h</td></tr>
-            <tr><td><b>Agustín Moglie</b></td><td>Desarrollador</td><td>Nubity</td><td>2h</td><td>2h</td></tr>
-        </tbody>
-    </table>
-
-    <!-- 05 Timeline -->
-    <div class="section-title"><span class="num">05</span> Timeline &amp; Milestones</div>
+    <!-- 03 Cascadeo Dinámico -->
+    <div class="section-title"><span class="num">03</span> Cascadeo Dinámico &mdash; Avance Técnico (David Sánchez)</div>
     <div class="card">
         <table style="border:none;margin:0">
-            <thead><tr><th>Semana</th><th>Milestone</th><th>Entregable esperado</th></tr></thead>
             <tbody>
-                <tr><td><b>5-8 Ago</b></td><td>UAT WhatsApp + Pasaje Stage concentrado</td><td>Brenda valida; Mixpanel + fallbacks + cancelaci&oacute;n en Stage</td></tr>
-                <tr><td><b>11-15 Ago</b></td><td>Identificaci&oacute;n EC en flujos + Routing segmento</td><td>Cliente identificado autom&aacute;ticamente; ruteo por nivel funcionando en DEV</td></tr>
-                <tr><td><b>18-19 Ago</b></td><td>Sprint Review + Demo</td><td>Demo routing + identificaci&oacute;n al equipo GBM; Sprint 5 cierre</td></tr>
+                <tr><td style="border-left:3px solid #448AFF;padding-left:12px"><b>Lambda funcional:</b> Lee prioridades de DynamoDB, retorna ARN del agente disponible según cascadas (1&rarr;2&rarr;3).</td></tr>
+                <tr><td style="border-left:3px solid #448AFF;padding-left:12px"><b>Lógica implementada:</b> Cascada 1 (asesor directo) &rarr; Cascada 2 (grupo/equipo) &rarr; Cascada 3 (overflow). Si nadie disponible &rarr; callback/scheduler.</td></tr>
+                <tr><td style="border-left:3px solid #FF9900;padding-left:12px"><b>Pendiente:</b> Frontend de gestión (alta/baja agentes en cascadas) + integración con flujo productivo de Comercial.</td></tr>
+                <tr><td style="border-left:3px solid #FF9900;padding-left:12px"><b>Estimación:</b> David entrega estimación a mediados de agosto. Sesiones recurrentes de seguimiento establecidas.</td></tr>
+                <tr><td style="border-left:3px solid #22c55e;padding-left:12px"><b>Impacto:</b> Resuelve dolor operativo de Abigail López (7 pasos manuales &rarr; 1 click para asignar/desasignar agentes).</td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- 06 Definition of Done -->
-    <div class="section-title"><span class="num">06</span> Definition of Done &mdash; Sprint 5</div>
+    <!-- 04 Dependencias -->
+    <div class="section-title"><span class="num">04</span> Dependencias y Riesgos</div>
+    <div class="dep-note">
+        <h3>Dependencias del equipo GBM</h3>
+        <p><b>1.</b> Nombre del asesor &mdash; Abigail López debe confirmar campo y endpoint para transferencia + vista del workspace.<br>
+        <b>2.</b> Colas por segmento WhatsApp &mdash; Brenda/Abigail deben indicar nombres exactos de colas destino (Plus/Personal/Premium/Private).<br>
+        <b>3.</b> Wording botones cancelar/continuar &mdash; Brenda valida copies finales (UAT esta semana).<br>
+        <b>4.</b> AUC por contrato &mdash; On hold. Equipo de data de GBM lo entrega próximo mes; desarrollo preparado para incorporación rápida.<br>
+        <b>5.</b> DSR (Deliverable Security Review) &mdash; Deadline 7-Ago-2026. SIM V2189474576. STL: Valdomiro.</p>
+    </div>
+
+    <!-- 05 Capacidad -->
+    <div class="section-title"><span class="num">05</span> Capacidad del Equipo</div>
+    <table>
+        <thead><tr><th>Recurso</th><th>Rol</th><th>Org</th><th>Sem 5-Ago</th><th>Sem 12-Ago</th></tr></thead>
+        <tbody>
+            <tr><td><b>Jair García</b></td><td>Engagement Manager</td><td>AWS</td><td>18h</td><td>14h</td></tr>
+            <tr><td><b>René Ramos</b></td><td>Technical Lead</td><td>AWS</td><td>18h</td><td>14h</td></tr>
+            <tr><td><b>Reiner Martínez</b></td><td>Co-EM</td><td>AWS</td><td>4h</td><td>4h</td></tr>
+            <tr><td><b>Sabrina Tejada</b></td><td>Product Owner</td><td>Nubity</td><td>17h</td><td>17h</td></tr>
+            <tr><td><b>Silvana García</b></td><td>Technical Lead</td><td>Nubity</td><td>20h</td><td>20h</td></tr>
+            <tr><td><b>Juan Cruz Peluffo</b></td><td>Desarrollador</td><td>Nubity</td><td>27h</td><td>27h</td></tr>
+            <tr><td><b>Javier Saupurín</b></td><td>Desarrollador</td><td>Nubity</td><td>16h</td><td>16h</td></tr>
+            <tr><td><b>José Luis Reyes</b></td><td>Desarrollador</td><td>Nubity</td><td>35h</td><td>35h</td></tr>
+            <tr><td><b>Gustavo Olascoaga Barrera</b></td><td>Desarrollador</td><td>Nubity</td><td>10h</td><td>10h</td></tr>
+            <tr><td><b>Agustín Schinner</b></td><td>Desarrollador</td><td>Nubity</td><td>10h</td><td>10h</td></tr>
+        </tbody>
+    </table>
+    <div style="font-size:.8rem;color:#888;margin-top:-16px;margin-bottom:24px;padding-left:4px;">
+        <em>Nota: Pablo Ontiveros no disponible este sprint. Horas redistribuidas a Silvana (+15h), Juan Cruz (+10h), Javier (+10h).</em>
+    </div>
+
+    <!-- 06 Timeline -->
+    <div class="section-title"><span class="num">06</span> Timeline &amp; Milestones</div>
+    <div class="card">
+        <table style="border:none;margin:0">
+            <thead><tr><th>Semana</th><th>Milestone</th><th>Entregable esperado</th></tr></thead>
+            <tbody>
+                <tr><td><b>5&ndash;8 Ago</b></td><td>Demo S4 + Cierre carry-overs</td><td>Demo EC + Workspace a Carlos Vázquez; Mixpanel a PRD; UAT WhatsApp cerrada</td></tr>
+                <tr><td><b>11&ndash;15 Ago</b></td><td>Routing por segmento + Prospecto SF</td><td>Flujo de enrutamiento según nivel de cliente operativo en STG; identificación de prospecto funcional</td></tr>
+                <tr><td><b>18&ndash;19 Ago</b></td><td>Sprint Review + Demo S5</td><td>Demo routing inteligente; búsqueda múltiple EC validada; Sprint 5 cierre</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 07 Definition of Done -->
+    <div class="section-title"><span class="num">07</span> Definition of Done &mdash; Sprint 5</div>
     <div class="card">
         <ul style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#ccc">
-            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Mixpanel refactor operando en Producción con eventos registrándose</li>
-            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Agente ve datos del cliente (nombre, contrato, segmento, asesor) en su workspace</li>
-            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Identificación automática inbound funcionando en STG</li>
-            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Hallazgos de seguridad P1 cerrados; P2-P3 con plan de remediación</li>
-            <li style="padding:8px 0;">&#x2714; Código en STG validado, listo para PRD en Sprint 5</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Cliente identificado automáticamente en todos los canales inbound (voz, chat, WhatsApp)</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Enrutamiento por segmento derivando a cola correcta según nivel del cliente</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Búsqueda múltiple de EC permite al agente seleccionar el cliente correcto</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Prospecto identificado vía Salesforce cuando no existe en Entidad Cliente</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Mixpanel refactor desplegado en Producción con eventos registrándose</li>
+            <li style="padding:8px 0;">&#x2714; Hallazgos de seguridad del repositorio iterados; DSR entregado</li>
         </ul>
     </div>
 
+    <!-- 08 Plan Completo -->
+    <div class="section-title"><span class="num">08</span> Plan Completo del Proyecto &mdash; 13 Sprints</div>
+    <table>
+        <thead><tr><th>Sprint</th><th>Fechas</th><th>Foco</th><th style="text-align:center">Estado</th></tr></thead>
+        <tbody>
+            <tr style="background:rgba(34,197,94,.05)"><td><b>S0</b></td><td>14 May</td><td>Discovery &amp; Governance</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
+            <tr style="background:rgba(34,197,94,.05)"><td><b>S1</b></td><td>28 May &ndash; 19 Jun</td><td>Accesos + Nivelación</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
+            <tr style="background:rgba(34,197,94,.05)"><td><b>S2</b></td><td>22 Jun &ndash; 3 Jul</td><td>Refactor + connect-sync</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
+            <tr style="background:rgba(34,197,94,.05)"><td><b>S3</b></td><td>8 &ndash; 22 Jul</td><td>Entity + API Queen PRD</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
+            <tr style="background:rgba(34,197,94,.05)"><td><b>S4</b></td><td>23 Jul &ndash; 4 Ago</td><td>Workspace + WhatsApp</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
+            <tr style="background:rgba(255,153,0,.08)"><td><b style="color:#FF9900">S5</b></td><td><b>5 &ndash; 19 Ago</b></td><td><b>Routing + Identificación</b></td><td style="text-align:center"><span class="badge b-hold">&#9654; Activo</span></td></tr>
+            <tr><td><b>S6</b></td><td>19 Ago &ndash; 2 Sep</td><td>WhatsApp + Mensajes</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S7</b></td><td>2 &ndash; 16 Sep</td><td>Campaigns + Fallback SF</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S8</b></td><td>16 &ndash; 30 Sep</td><td>CSAT + Routing canales</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S9</b></td><td>30 Sep &ndash; 14 Oct</td><td>Routing II (asesor, AFA)</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S10</b></td><td>14 &ndash; 28 Oct</td><td>Workspace II + SF async</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S11</b></td><td>28 Oct &ndash; 11 Nov</td><td>Integration + Callbacks</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S12</b></td><td>11 &ndash; 25 Nov</td><td>Ajustes Ops + Config</td><td style="text-align:center;color:#666">Futuro</td></tr>
+            <tr><td><b>S13</b></td><td>25 &ndash; 28 Nov</td><td>UAT + Go-Live</td><td style="text-align:center;color:#666">Futuro</td></tr>
+        </tbody>
+    </table>
+
     <!-- Footer -->
     <div class="footer">
-        GBM Contact Center Fase II &middot; Amazon Web Services &middot; Sprint 5 Planning &middot; 21 Julio 2026<br>
+        GBM Contact Center Fase II &middot; Amazon Web Services &middot; Sprint 5 Planning &middot; 4 Agosto 2026<br>
         Engagement Manager: Jair García &middot; Technical Lead: René Ramos &middot; Co-EM: Reiner Martínez
     </div>
 
