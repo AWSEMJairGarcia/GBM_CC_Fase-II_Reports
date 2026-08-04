@@ -101,13 +101,13 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
             <div class="banner-title">Sprint 5 Planning &mdash; Routing</div>
             <div class="banner-subtitle">GBM &mdash; CC Fase II &mdash; Amazon Connect</div>
         </div>
-        <div class="banner-date">5 &rarr; 19 Ago 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20827</span></div>
+        <div class="banner-date">4 &rarr; 19 Ago 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20827</span></div>
     </div>
 
     <!-- Sprint Goal -->
     <div class="goal-card">
         <h3>Sprint Goal</h3>
-        <p>Implementar <b>enrutamiento inteligente por segmento de cliente</b> (Plus/Personal/Premium/Private), completar la <b>identificación automática de prospecto vía Salesforce</b>, y cerrar las <b>mejoras de búsqueda múltiple en Entidad Cliente</b>. El sistema debe derivar al cliente a la cola correcta según su nivel antes de atender.</p>
+        <p>Implementar <b>enrutamiento inteligente por segmento de cliente</b> (Plus/Personal/Premium/Private), completar la <b>identificación automática de prospecto vía Salesforce</b>, y cerrar las <b>mejoras de búsqueda múltiple en Entidad Cliente</b>. El sistema debe derivar al cliente a la cola correcta según su nivel antes de atender. Sprint inicia 4-Ago con cierre de carry-overs del Sprint 4 (UAT WhatsApp + Mixpanel a PRD).</p>
     </div>
 
     <!-- KPIs -->
@@ -130,9 +130,10 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
     <table>
         <thead><tr><th>Entregable</th><th>Resultado</th><th>Estado</th></tr></thead>
         <tbody>
-            <tr><td><b>Entidad Cliente en flujos productivos</b></td><td>Identificación automática de clientes integrada en flujo de voz y chat. Operativa en Producción.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>WhatsApp &mdash; tiempo de espera + cancelar</b></td><td>Cliente ve posición en cola y puede cancelar. Lambda desplegada, anti-spam activo. Demo exitosa ante Carlos Vázquez.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>Nivelación PRD&rarr;STG&rarr;DEV</b></td><td>Tres ambientes idénticos. Validado por Walter Hiram Amores Macías y Francisco.</td><td><span class="badge b-done">Validado</span></td></tr>
+            <tr><td><b>Entidad Cliente en flujos productivos</b></td><td>Identificación automática de clientes integrada en flujo de voz y chat. Operativa en Producción con ~600 agentes.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>WhatsApp &mdash; tiempo de espera + cancelar</b></td><td>Loop cada 180s informa posición en cola y tiempo estimado. Anti-spam inteligente: no repite si no hay cambio real. Demo exitosa ante Carlos Vázquez sin observaciones.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Cierre automático fuera de horario</b></td><td>Lambda valida siguiente día hábil via tabla feriados DynamoDB. Mensaje dinámico al cliente. Registra evento Mixpanel.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Nivelación PRD&rarr;STG&rarr;DEV</b></td><td>Tres ambientes idénticos. Validado por Walter Hiram Amores Macías y Francisco (29-Jul).</td><td><span class="badge b-done">Validado</span></td></tr>
             <tr><td><b>Limitación 32KB resuelta</b></td><td>Paginación por contrato implementada. 200+ contratos sin problema de payload.</td><td><span class="badge b-done">Completado</span></td></tr>
             <tr><td><b>Seguridad desplegada a Prod</b></td><td>Resource Policies + Secrets Manager + pipeline CI/CD con aprobaciones.</td><td><span class="badge b-done">Completado</span></td></tr>
             <tr><td><b>Cierre automático fuera de horario</b></td><td>Feriados gestionados vía DynamoDB. Chatbot cierra automáticamente en días no laborables.</td><td><span class="badge b-done">Completado</span></td></tr>
@@ -154,22 +155,8 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
         </tbody>
     </table>
 
-    <!-- 03 Cascadeo Dinámico -->
-    <div class="section-title"><span class="num">03</span> Cascadeo Dinámico &mdash; Avance Técnico (David Sánchez)</div>
-    <div class="card">
-        <table style="border:none;margin:0">
-            <tbody>
-                <tr><td style="border-left:3px solid #448AFF;padding-left:12px"><b>Lambda funcional:</b> Lee prioridades de DynamoDB, retorna ARN del agente disponible según cascadas (1&rarr;2&rarr;3).</td></tr>
-                <tr><td style="border-left:3px solid #448AFF;padding-left:12px"><b>Lógica implementada:</b> Cascada 1 (asesor directo) &rarr; Cascada 2 (grupo/equipo) &rarr; Cascada 3 (overflow). Si nadie disponible &rarr; callback/scheduler.</td></tr>
-                <tr><td style="border-left:3px solid #FF9900;padding-left:12px"><b>Pendiente:</b> Frontend de gestión (alta/baja agentes en cascadas) + integración con flujo productivo de Comercial.</td></tr>
-                <tr><td style="border-left:3px solid #FF9900;padding-left:12px"><b>Estimación:</b> David entrega estimación a mediados de agosto. Sesiones recurrentes de seguimiento establecidas.</td></tr>
-                <tr><td style="border-left:3px solid #22c55e;padding-left:12px"><b>Impacto:</b> Resuelve dolor operativo de Abigail López (7 pasos manuales &rarr; 1 click para asignar/desasignar agentes).</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- 04 Dependencias -->
-    <div class="section-title"><span class="num">04</span> Dependencias y Riesgos</div>
+    <!-- 03 Dependencias -->
+    <div class="section-title"><span class="num">03</span> Dependencias y Riesgos</div>
     <div class="dep-note">
         <h3>Dependencias del equipo GBM</h3>
         <p><b>1.</b> Nombre del asesor &mdash; Abigail López debe confirmar campo y endpoint para transferencia + vista del workspace.<br>
@@ -179,10 +166,10 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
         <b>5.</b> DSR (Deliverable Security Review) &mdash; Deadline 7-Ago-2026. SIM V2189474576. STL: Valdomiro.</p>
     </div>
 
-    <!-- 05 Capacidad -->
-    <div class="section-title"><span class="num">05</span> Capacidad del Equipo</div>
+    <!-- 04 Capacidad -->
+    <div class="section-title"><span class="num">04</span> Capacidad del Equipo</div>
     <table>
-        <thead><tr><th>Recurso</th><th>Rol</th><th>Org</th><th>Sem 5-Ago</th><th>Sem 12-Ago</th></tr></thead>
+        <thead><tr><th>Recurso</th><th>Rol</th><th>Org</th><th>Sem 4-Ago</th><th>Sem 11-Ago</th></tr></thead>
         <tbody>
             <tr><td><b>Jair García</b></td><td>Engagement Manager</td><td>AWS</td><td>18h</td><td>14h</td></tr>
             <tr><td><b>René Ramos</b></td><td>Technical Lead</td><td>AWS</td><td>18h</td><td>14h</td></tr>
@@ -200,21 +187,21 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
         <em>Nota: Pablo Ontiveros no disponible este sprint. Horas redistribuidas a Silvana (+15h), Juan Cruz (+10h), Javier (+10h).</em>
     </div>
 
-    <!-- 06 Timeline -->
-    <div class="section-title"><span class="num">06</span> Timeline &amp; Milestones</div>
+    <!-- 05 Timeline -->
+    <div class="section-title"><span class="num">05</span> Timeline &amp; Milestones</div>
     <div class="card">
         <table style="border:none;margin:0">
             <thead><tr><th>Semana</th><th>Milestone</th><th>Entregable esperado</th></tr></thead>
             <tbody>
-                <tr><td><b>5&ndash;8 Ago</b></td><td>Demo S4 + Cierre carry-overs</td><td>Demo EC + Workspace a Carlos Vázquez; Mixpanel a PRD; UAT WhatsApp cerrada</td></tr>
+                <tr><td><b>4&ndash;8 Ago</b></td><td>Demo S4 + Cierre carry-overs</td><td>Demo EC + Workspace a Carlos Vázquez; Mixpanel a PRD; UAT WhatsApp cerrada</td></tr>
                 <tr><td><b>11&ndash;15 Ago</b></td><td>Routing por segmento + Prospecto SF</td><td>Flujo de enrutamiento según nivel de cliente operativo en STG; identificación de prospecto funcional</td></tr>
                 <tr><td><b>18&ndash;19 Ago</b></td><td>Sprint Review + Demo S5</td><td>Demo routing inteligente; búsqueda múltiple EC validada; Sprint 5 cierre</td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- 07 Definition of Done -->
-    <div class="section-title"><span class="num">07</span> Definition of Done &mdash; Sprint 5</div>
+    <!-- 06 Definition of Done -->
+    <div class="section-title"><span class="num">06</span> Definition of Done &mdash; Sprint 5</div>
     <div class="card">
         <ul style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#ccc">
             <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Cliente identificado automáticamente en todos los canales inbound (voz, chat, WhatsApp)</li>
@@ -226,8 +213,8 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
         </ul>
     </div>
 
-    <!-- 08 Plan Completo -->
-    <div class="section-title"><span class="num">08</span> Plan Completo del Proyecto &mdash; 13 Sprints</div>
+    <!-- 07 Plan Completo -->
+    <div class="section-title"><span class="num">07</span> Plan Completo del Proyecto &mdash; 13 Sprints</div>
     <table>
         <thead><tr><th>Sprint</th><th>Fechas</th><th>Foco</th><th style="text-align:center">Estado</th></tr></thead>
         <tbody>
@@ -236,7 +223,7 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
             <tr style="background:rgba(34,197,94,.05)"><td><b>S2</b></td><td>22 Jun &ndash; 3 Jul</td><td>Refactor + connect-sync</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
             <tr style="background:rgba(34,197,94,.05)"><td><b>S3</b></td><td>8 &ndash; 22 Jul</td><td>Entity + API Queen PRD</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
             <tr style="background:rgba(34,197,94,.05)"><td><b>S4</b></td><td>23 Jul &ndash; 4 Ago</td><td>Workspace + WhatsApp</td><td style="text-align:center"><span class="badge b-done">&#10003;</span></td></tr>
-            <tr style="background:rgba(255,153,0,.08)"><td><b style="color:#FF9900">S5</b></td><td><b>5 &ndash; 19 Ago</b></td><td><b>Routing + Identificación</b></td><td style="text-align:center"><span class="badge b-hold">&#9654; Activo</span></td></tr>
+            <tr style="background:rgba(255,153,0,.08)"><td><b style="color:#FF9900">S5</b></td><td><b>4 &ndash; 19 Ago</b></td><td><b>Routing + Identificación</b></td><td style="text-align:center"><span class="badge b-hold">&#9654; Activo</span></td></tr>
             <tr><td><b>S6</b></td><td>19 Ago &ndash; 2 Sep</td><td>WhatsApp + Mensajes</td><td style="text-align:center;color:#666">Futuro</td></tr>
             <tr><td><b>S7</b></td><td>2 &ndash; 16 Sep</td><td>Campaigns + Fallback SF</td><td style="text-align:center;color:#666">Futuro</td></tr>
             <tr><td><b>S8</b></td><td>16 &ndash; 30 Sep</td><td>CSAT + Routing canales</td><td style="text-align:center;color:#666">Futuro</td></tr>
