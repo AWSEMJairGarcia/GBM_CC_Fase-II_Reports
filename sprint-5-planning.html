@@ -244,3 +244,32 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
 </div>
 </body>
 </html>
+
+<!-- View Tracker - notifica en Slack al abrir -->
+<script>
+(function(){
+  const start = Date.now();
+  const ts = new Date().toLocaleString('en-US',{timeZone:'America/Mexico_City'});
+  const webhookUrl = 'https://hooks.slack.com/triggers/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';
+  let maxScroll = 0;
+  window.addEventListener('scroll', function(){
+    const pct = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+    if(pct > maxScroll) maxScroll = pct;
+  });
+  const viewer = new URLSearchParams(window.location.search).get('v') || 'unknown';
+  const device = navigator.platform + ' | ' + screen.width+'x'+screen.height + ' | ' + navigator.language + ' | ' + (navigator.userAgent.match(/Chrome|Safari|Firefox|Edge/)||['Unknown'])[0];
+  fetch(webhookUrl, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | ' + device})
+  }).catch(()=>{});
+  window.addEventListener('beforeunload', function(){
+    const secs = Math.round((Date.now() - start) / 1000);
+    const mins = Math.floor(secs/60);
+    const timeStr = mins > 0 ? mins+'m '+secs%60+'s' : secs+'s';
+    navigator.sendBeacon(webhookUrl, JSON.stringify({
+      page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Closed | Time: '+timeStr+' | Scrolled: '+maxScroll+'% | ' + device + ' | '+ts
+    }));
+  });
+})();
+</script>
