@@ -105,12 +105,12 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
     <!-- Sprint Goal -->
     <div class="goal-card">
         <h3>Sprint Goal</h3>
-        <p>Llevar <b>Mixpanel a Producción</b>, completar las <b>vistas nativas del Routing + Identificaci&oacute;n del agente</b> con datos de Entidad Cliente, y cerrar los <b>hallazgos de seguridad P1-P3</b>. El agente de GBM debe poder ver los datos del cliente en su pantalla antes de atender.</p>
+        <p>Integrar <b>Entidad Cliente en los flujos de voz, chat y WhatsApp</b> para identificaci&oacute;n autom&aacute;tica. Implementar <b>enrutamiento por segmento</b> (Plus/Personal/Premium/Private). Cerrar <b>UAT WhatsApp</b> y desplegar a Producci&oacute;n.</p>
     </div>
 
     <!-- KPIs -->
     <div class="kpis">
-        <div class="kpi green"><div class="val">52</div><div class="lbl">Done Sprint 3</div></div>
+        <div class="kpi green"><div class="val">17</div><div class="lbl">Done Sprint 3</div></div>
         <div class="kpi purple"><div class="val">22</div><div class="lbl">Carry-over</div></div>
         <div class="kpi orange"><div class="val">~35</div><div class="lbl">Tickets Sprint 5</div></div>
         <div class="kpi"><div class="val">2 sem</div><div class="lbl">Duración</div></div>
@@ -119,20 +119,20 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
 
     <!-- Carry-over note -->
     <div class="carry-note">
-        <h3>Carry-over de Sprint 3</h3>
-        <p>22 tareas que no cerraron en Sprint 3 pasan a Sprint 5. Incluyen las pantallas de Routing + Identificaci&oacute;n (desbloqueadas tras decisión de arquitectura híbrida el 15-Jul) y subtareas de Entidad Cliente pendientes de integración con vistas.</p>
+        <h3>Carry-over de Sprint 4</h3>
+        <p>Tareas que no cerraron en Sprint 4 pasan a Sprint 5. Incluyen las pantallas de Routing + Identificaci&oacute;n (desbloqueadas tras decisión de arquitectura híbrida el 15-Jul) y subtareas de Entidad Cliente pendientes de integración con vistas.</p>
     </div>
 
     <!-- 01 Sprint 3 Recap -->
-    <div class="section-title"><span class="num">01</span> Cierre Sprint 3 &mdash; Logros</div>
+    <div class="section-title"><span class="num">01</span> Cierre Sprint 4 &mdash; Logros</div>
     <table>
         <thead><tr><th>Entregable</th><th>Resultado</th><th>Estado</th></tr></thead>
         <tbody>
-            <tr><td><b>API Queen &rarr; Producción</b></td><td>Chatbot migrado a Lambda. Desplegado en PRD el 18-Jul sin incidentes. Operando con ~600 agentes.</td><td><span class="badge b-done">Completado</span></td></tr>
-            <tr><td><b>Refactor Mixpanel &rarr; Stage</b></td><td>2 Lambdas + SQS + DLQ desplegadas en Stage. Brenda confirmó eventos llegando el 21-Jul.</td><td><span class="badge b-done">Validado</span></td></tr>
-            <tr><td><b>Entidad Cliente (backend)</b></td><td>Lambda con OAuth, consulta por teléfono/email, integración DynamoDB cross-account operativa en DEV.</td><td><span class="badge b-done">DEV listo</span></td></tr>
-            <tr><td><b>Decisión de Arquitectura</b></td><td>Híbrida aprobada: vistas nativas Connect + app embebida React SPA para acciones outbound.</td><td><span class="badge b-done">Aprobada</span></td></tr>
-            <tr><td><b>Nivelación de Views</b></td><td>connect-sync v3.2: views custom sincronizadas entre PRD/STG/DEV.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>WhatsApp &mdash; Tiempo de espera + Cancelar</b></td><td>Cliente ve posici&oacute;n en cola y puede cancelar. Lambda desplegada. Anti-spam inteligente. Demo exitosa ante Carlos V&aacute;zquez.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Nivelaci&oacute;n PRD&rarr;STG&rarr;DEV</b></td><td>Tres ambientes nivelados y validados por Walter + Francisco (29-Jul). connect-sync v3.2.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Entidad Cliente en flujos</b></td><td>Identificaci&oacute;n autom&aacute;tica de clientes integrada en flujo de voz y chat productivo.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Seguridad &mdash; Resource Policies</b></td><td>Cross-account IAM resuelto. Secrets Manager + rotaci&oacute;n API Keys. Pipeline CI/CD con aprobaciones.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Limitaci&oacute;n 32KB resuelta</b></td><td>Paginaci&oacute;n por contrato implementada. 200+ contratos sin problema. Abigail valid&oacute;.</td><td><span class="badge b-done">Completado</span></td></tr>
         </tbody>
     </table>
 
