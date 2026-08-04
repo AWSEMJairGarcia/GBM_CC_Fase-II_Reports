@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 5 Planning - GBM CC Fase II</title>
+<meta name="description" content="Sprint 5 Planning (Routing + Identificaci&oacute;n) del proyecto GBM Contact Center Fase II sobre Amazon Connect: user stories, prioridades y métricas Jira.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+.banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner img{height:30px}
+.banner-divider{width:1px;height:30px;background:#333}
+.banner-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+.banner-subtitle{font-size:.85rem;color:#FF9900}
+.banner-date{margin-left:auto;font-size:.85rem;color:#999;white-space:nowrap;text-align:right}
+.goal-card{background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(34,197,94,.02));border:1px solid rgba(34,197,94,.2);border-left:4px solid #22c55e;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.goal-card h3{font-family:'Sora',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#22c55e;margin-bottom:6px}
+.goal-card p{color:#ddd;font-size:.95rem}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+.kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:18px 0 16px;border-bottom:1px solid #222}
+.section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:.84rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.05em;background:#181818;border-bottom:1px solid #2a2a2a}
+td{padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a1a1a}
+td b{color:#fff}
+.badge{font-family:'Sora',sans-serif;font-size:.58rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap}
+.b-go{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-hold{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+.b-prog{color:#448AFF;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25)}
+.b-done{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-carry{color:#B388FF;background:rgba(179,136,255,.12);border:1px solid rgba(179,136,255,.25)}
+.epic-link{color:#448AFF;text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;font-size:.72rem}
+.epic-link:hover{text-decoration:underline}
+.dep-note{background:linear-gradient(135deg,rgba(255,153,0,.07),rgba(255,153,0,.02));border:1px solid rgba(255,153,0,.28);border-left:4px solid #FF9900;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.dep-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#FF9900;margin-bottom:8px}
+.dep-note p{font-size:.86rem;color:#ddd}
+.carry-note{background:linear-gradient(135deg,rgba(179,136,255,.07),rgba(179,136,255,.02));border:1px solid rgba(179,136,255,.28);border-left:4px solid #B388FF;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.carry-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#B388FF;margin-bottom:8px}
+.carry-note p{font-size:.86rem;color:#ddd}
+.footer{text-align:center;padding:30px 0 10px;color:#666;font-size:.78rem;border-top:1px solid #1a1a1a;margin-top:20px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@page{size:letter portrait;margin:5mm}
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
+  body{background:#0a0a0a !important;padding:4mm 6mm !important}
+  .banner,.goal-card,.dep-note,.carry-note,.card,table{border:2px solid #7a7a7a !important}
+  .kpi{border:2px solid #7a7a7a !important}
+  th,td{border-color:#6a6a6a !important}
+  #login-overlay{display:none !important}
+}
+</style>
+</head>
+<body>
+
+<div id="login-overlay">
+    <div class="login-box">
+        <div style="margin-bottom:20px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h2 style="color:#fff;font-size:1.2rem;margin-bottom:8px">Sprint 5 Planning</h2>
+        <p style="color:#888;font-size:.85rem;margin-bottom:20px">GBM &mdash; CC Fase II</p>
+        <input id="login-pass" type="password" placeholder="Clave de acceso" style="width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center" onkeydown="if(event.key==='Enter')checkLogin()">
+        <button onclick="checkLogin()" style="width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#000;font-weight:600;font-size:.9rem;cursor:pointer">Entrar</button>
+        <p id="login-error" style="color:#ef4444;font-size:.8rem;margin-top:12px;display:none">Clave incorrecta</p>
+    </div>
+</div>
+<script>
+function checkLogin(){
+    const p=document.getElementById('login-pass').value;
+    if(p==='gbm2026'||p==='sprint5'){
+        document.getElementById('login-overlay').style.display='none';
+        sessionStorage.setItem('sprint5-auth','true');
+    }else{document.getElementById('login-error').style.display='block';}
+}
+if(sessionStorage.getItem('sprint5-auth')==='true'){
+    document.addEventListener('DOMContentLoaded',()=>{document.getElementById('login-overlay').style.display='none';});
+}
+</script>
+
+<div class="container">
+
+    <div class="banner">
+        <img src="gbm-logo.png" alt="GBM">
+        <div class="banner-divider"></div>
+        <img src="aws-logo-white.png" alt="AWS">
+        <div>
+            <div class="banner-title">Sprint 5 Planning &mdash; Routing + Identificaci&oacute;n</div>
+            <div class="banner-subtitle">GBM &mdash; CC Fase II &mdash; Amazon Connect</div>
+        </div>
+        <div class="banner-date">22 Jul &rarr; 5 Ago 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20826</span></div>
+    </div>
+
+    <!-- Sprint Goal -->
+    <div class="goal-card">
+        <h3>Sprint Goal</h3>
+        <p>Llevar <b>Mixpanel a Producción</b>, completar las <b>vistas nativas del Routing + Identificaci&oacute;n del agente</b> con datos de Entidad Cliente, y cerrar los <b>hallazgos de seguridad P1-P3</b>. El agente de GBM debe poder ver los datos del cliente en su pantalla antes de atender.</p>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpis">
+        <div class="kpi green"><div class="val">52</div><div class="lbl">Done Sprint 3</div></div>
+        <div class="kpi purple"><div class="val">22</div><div class="lbl">Carry-over</div></div>
+        <div class="kpi orange"><div class="val">~35</div><div class="lbl">Tickets Sprint 5</div></div>
+        <div class="kpi"><div class="val">2 sem</div><div class="lbl">Duración</div></div>
+        <div class="kpi green"><div class="val">On Track</div><div class="lbl">Estado General</div></div>
+    </div>
+
+    <!-- Carry-over note -->
+    <div class="carry-note">
+        <h3>Carry-over de Sprint 3</h3>
+        <p>22 tareas que no cerraron en Sprint 3 pasan a Sprint 5. Incluyen las pantallas de Routing + Identificaci&oacute;n (desbloqueadas tras decisión de arquitectura híbrida el 15-Jul) y subtareas de Entidad Cliente pendientes de integración con vistas.</p>
+    </div>
+
+    <!-- 01 Sprint 3 Recap -->
+    <div class="section-title"><span class="num">01</span> Cierre Sprint 3 &mdash; Logros</div>
+    <table>
+        <thead><tr><th>Entregable</th><th>Resultado</th><th>Estado</th></tr></thead>
+        <tbody>
+            <tr><td><b>API Queen &rarr; Producción</b></td><td>Chatbot migrado a Lambda. Desplegado en PRD el 18-Jul sin incidentes. Operando con ~600 agentes.</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Refactor Mixpanel &rarr; Stage</b></td><td>2 Lambdas + SQS + DLQ desplegadas en Stage. Brenda confirmó eventos llegando el 21-Jul.</td><td><span class="badge b-done">Validado</span></td></tr>
+            <tr><td><b>Entidad Cliente (backend)</b></td><td>Lambda con OAuth, consulta por teléfono/email, integración DynamoDB cross-account operativa en DEV.</td><td><span class="badge b-done">DEV listo</span></td></tr>
+            <tr><td><b>Decisión de Arquitectura</b></td><td>Híbrida aprobada: vistas nativas Connect + app embebida React SPA para acciones outbound.</td><td><span class="badge b-done">Aprobada</span></td></tr>
+            <tr><td><b>Nivelación de Views</b></td><td>connect-sync v3.2: views custom sincronizadas entre PRD/STG/DEV.</td><td><span class="badge b-done">Completado</span></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 02 User Stories Sprint 5 -->
+    <div class="section-title"><span class="num">02</span> User Stories &mdash; Sprint 5</div>
+    <table>
+        <thead><tr><th style="width:85px">Ticket</th><th>Descripción</th><th style="width:140px">Responsable</th><th style="width:100px">Prioridad</th></tr></thead>
+        <tbody>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-450" target="_blank">AC-450</a></td><td><b>Refactor Mixpanel &rarr; Stage/Prod</b> — Pasaje concentrado a Stage + UAT con Brenda. Deploy a Prod post-validaci&oacute;n.</td><td>Jos&eacute; Luis Reyes</td><td><span class="badge b-carry">Carry-over S4</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-476" target="_blank">AC-476</a></td><td><b>Integraci&oacute;n API EC en flujos voz y chat</b> — Identificaci&oacute;n autom&aacute;tica del cliente en el flujo inbound antes del ruteo.</td><td>Silvana Garc&iacute;a</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-463" target="_blank">AC-463</a></td><td><b>B&uacute;squeda m&uacute;ltiples resultados EC</b> — Cuando un tel&eacute;fono devuelve m&uacute;ltiples clientes, mostrar lista de selecci&oacute;n al agente.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-664" target="_blank">AC-664</a></td><td><b>HU-13: Botones cancelar espera WhatsApp</b> — Botones interactivos + l&oacute;gica de cancelaci&oacute;n integrada en loop CQF.</td><td>Jos&eacute; Luis Reyes</td><td><span class="badge b-carry">Carry-over S4</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-454" target="_blank">AC-454</a></td><td><b>HU-02: Enrutamiento por segmento</b> — Seg&uacute;n nivel del cliente (Plus/Personal/Premium/Private) derivar a cola correspondiente por canal.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-go">P1 - Alta</span></td></tr>
+            <tr><td><a class="epic-link" href="https://gbmprojects.atlassian.net/browse/AC-793" target="_blank">AC-793</a></td><td><b>Seguridad &mdash; Iteraci&oacute;n hallazgos repositorio</b> — Cierre de observaciones de revisi&oacute;n de seguridad.</td><td>Ren&eacute; Ramos</td><td><span class="badge b-prog">P2 - Media</span></td></tr>
+            <tr><td>Prospecto SF</td><td><b>Identificaci&oacute;n de prospecto</b> — Si no est&aacute; en EC, buscar en Salesforce y crear caso como prospecto nuevo.</td><td>Juan Cruz Peluffo</td><td><span class="badge b-prog">P2 - Media</span></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 03 Dependencias -->
+    <div class="section-title"><span class="num">03</span> Dependencias y Riesgos</div>
+    <div class="dep-note">
+        <h3>Dependencias del equipo GBM</h3>
+        <p><b>1.</b> Deduplicación / indexación de Entidad Cliente &mdash; GBM debe decidir cómo manejar búsquedas por correo (no indexado actualmente). Sin esto, las vistas pueden mostrar resultados incorrectos.<br>
+        <b>2.</b> Salesforce sandbox &mdash; ticket AC-830 (<code>invalid_client_id</code>). No bloquea PRD pero limita testing de prospectos en DEV/STG.<br>
+        <b>3.</b> Confirmación de horas para Portal Feriados &mdash; Abigail López debe aprobar las 26h estimadas para activar la tarea.</p>
+    </div>
+
+    <!-- 04 Capacidad -->
+    <div class="section-title"><span class="num">04</span> Capacidad del Equipo</div>
+    <table>
+        <thead><tr><th>Recurso</th><th>Rol</th><th>Org</th><th>Sem 22-Jul</th><th>Sem 29-Jul</th></tr></thead>
+        <tbody>
+            <tr><td><b>Jair García</b></td><td>Engagement Manager</td><td>AWS</td><td>18h</td><td>14h</td></tr>
+            <tr><td><b>René Ramos</b></td><td>Technical Lead</td><td>AWS</td><td>18h</td><td>14h</td></tr>
+            <tr><td><b>Bruno Costa</b></td><td>Seguridad</td><td>AWS</td><td>6h</td><td>6h</td></tr>
+            <tr><td><b>Reiner Martínez</b></td><td>Co-EM</td><td>AWS</td><td>4h</td><td>4h</td></tr>
+            <tr><td><b>Sabrina Tejada</b></td><td>Product Owner</td><td>Nubity</td><td>17h</td><td>17h</td></tr>
+            <tr><td><b>Silvana García</b></td><td>Technical Lead</td><td>Nubity</td><td>15h</td><td>15h</td></tr>
+            <tr><td><b>Juan Cruz Peluffo</b></td><td>Desarrollador</td><td>Nubity</td><td>25h</td><td>25h</td></tr>
+            <tr><td><b>Javier Saupurín</b></td><td>Desarrollador</td><td>Nubity</td><td>16h</td><td>16h</td></tr>
+            <tr><td><b>José Luis Reyes</b></td><td>Desarrollador</td><td>Nubity</td><td>35h</td><td>35h</td></tr>
+            <tr><td><b>Agustín Moglie</b></td><td>Desarrollador</td><td>Nubity</td><td>2h</td><td>2h</td></tr>
+        </tbody>
+    </table>
+
+    <!-- 05 Timeline -->
+    <div class="section-title"><span class="num">05</span> Timeline &amp; Milestones</div>
+    <div class="card">
+        <table style="border:none;margin:0">
+            <thead><tr><th>Semana</th><th>Milestone</th><th>Entregable esperado</th></tr></thead>
+            <tbody>
+                <tr><td><b>5-8 Ago</b></td><td>UAT WhatsApp + Pasaje Stage concentrado</td><td>Brenda valida; Mixpanel + fallbacks + cancelaci&oacute;n en Stage</td></tr>
+                <tr><td><b>11-15 Ago</b></td><td>Identificaci&oacute;n EC en flujos + Routing segmento</td><td>Cliente identificado autom&aacute;ticamente; ruteo por nivel funcionando en DEV</td></tr>
+                <tr><td><b>18-19 Ago</b></td><td>Sprint Review + Demo</td><td>Demo routing + identificaci&oacute;n al equipo GBM; Sprint 5 cierre</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 06 Definition of Done -->
+    <div class="section-title"><span class="num">06</span> Definition of Done &mdash; Sprint 5</div>
+    <div class="card">
+        <ul style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#ccc">
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Mixpanel refactor operando en Producción con eventos registrándose</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Agente ve datos del cliente (nombre, contrato, segmento, asesor) en su workspace</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Identificación automática inbound funcionando en STG</li>
+            <li style="padding:8px 0;border-bottom:1px solid #1a1a1a">&#x2714; Hallazgos de seguridad P1 cerrados; P2-P3 con plan de remediación</li>
+            <li style="padding:8px 0;">&#x2714; Código en STG validado, listo para PRD en Sprint 5</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        GBM Contact Center Fase II &middot; Amazon Web Services &middot; Sprint 5 Planning &middot; 21 Julio 2026<br>
+        Engagement Manager: Jair García &middot; Technical Lead: René Ramos &middot; Co-EM: Reiner Martínez
+    </div>
+
+</div>
+</body>
+</html>
