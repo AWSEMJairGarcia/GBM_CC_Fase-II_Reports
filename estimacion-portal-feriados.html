@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Feriados — Estimacion y Estado</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#e0e0e0;padding:32px 20px}
+.container{max-width:1000px;margin:0 auto}
+.banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner img{height:38px}
+.banner-divider{width:1px;height:38px;background:#333}
+h1{font-family:'Sora',sans-serif;font-size:1.8rem;color:#fff;margin-bottom:4px}
+.subtitle{color:#FF9900;font-size:.9rem}
+.meta{color:#666;font-size:.8rem;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22C55E}.kpi.done{border-top-color:#22C55E}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:700;color:#fff}
+.kpi .lbl{font-size:.65rem;color:#888;margin-top:4px;text-transform:uppercase}
+.section{margin:28px 0}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #222}
+.num{font-size:.7rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+table{width:100%;border-collapse:collapse;font-size:.84rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden}
+th{text-align:left;padding:10px 14px;font-size:.65rem;font-weight:600;color:#777;text-transform:uppercase;background:#181818;border-bottom:1px solid #2a2a2a}
+td{padding:10px 14px;border-bottom:1px solid #1a1a1a;color:#ccc}
+tr:last-child td{border-bottom:none}
+.badge{font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase}
+.b-done{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-prog{color:#448AFF;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25)}
+.b-pend{color:#888;background:rgba(136,136,136,.12);border:1px solid rgba(136,136,136,.25)}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:18px 22px;margin-bottom:16px}
+.footer{text-align:center;padding:24px 0;margin-top:32px;border-top:1px solid #222}
+.footer-logos{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+.footer-logos img{height:24px;opacity:.6}
+.footer-text{font-size:.7rem;color:#555}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Banner -->
+<div class="banner">
+    <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/gbm-logo.png" alt="GBM">
+    <div class="banner-divider"></div>
+    <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/aws-logo-white.png" alt="AWS">
+    <div style="margin-left:auto;text-align:right;">
+        <div style="font-size:.8rem;color:#999;">Jira: AC-840</div>
+        <div style="font-size:.7rem;color:#666;">Sprint 3-4 (Jul 2026)</div>
+    </div>
+</div>
+
+<h1>Portal de Gestion de Dias Feriados</h1>
+<div class="subtitle">Estimacion y Estado de Desarrollo</div>
+<div class="meta">Actualizado: 4 Agosto 2026 &middot; Desarrollo: Rene Ramos (AWS TL) &middot; Inicio: 8 Julio 2026</div>
+
+<!-- KPIs -->
+<div class="kpis">
+    <div class="kpi green"><div class="val">26h</div><div class="lbl">Estimacion Total</div></div>
+    <div class="kpi done"><div class="val">22h</div><div class="lbl">Horas Ejecutadas</div></div>
+    <div class="kpi orange"><div class="val">4h</div><div class="lbl">Horas Restantes</div></div>
+    <div class="kpi"><div class="val">85%</div><div class="lbl">Avance</div></div>
+    <div class="kpi green"><div class="val">On Track</div><div class="lbl">Estado</div></div>
+</div>
+
+<!-- Estado por Fase -->
+<div class="section">
+    <div class="section-title"><span class="num">01</span> Estado por Fase</div>
+    <table>
+        <thead><tr><th>Fase</th><th>Componente</th><th>Horas Est.</th><th>Ejecutadas</th><th>Estado</th></tr></thead>
+        <tbody>
+            <tr><td><b>Fase 1</b></td><td>Backend / API (Lambda + API Gateway + DynamoDB)</td><td>10h</td><td>10h</td><td><span class="badge b-done">Completado</span></td></tr>
+            <tr><td><b>Fase 2</b></td><td>Frontend / Portal Web (Calendario + CRUD)</td><td>13h</td><td>12h</td><td><span class="badge b-prog">90% — falta Edit + UX</span></td></tr>
+            <tr><td><b>Fase 3</b></td><td>Conexion Frontend → Backend + Deploy</td><td>3h</td><td>0h</td><td><span class="badge b-pend">Pendiente</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Detalle Backend -->
+<div class="section">
+    <div class="section-title"><span class="num">02</span> Backend (Fase 1) &mdash; COMPLETADO (Rene Ramos)</div>
+    <table>
+        <thead><tr><th>Tarea</th><th>Horas</th><th>Estado</th></tr></thead>
+        <tbody>
+            <tr><td>Setup Lambda + IAM + DynamoDB (tabla existente)</td><td>2h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>POST /holidays (crear feriado con validacion)</td><td>2.5h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>GET /holidays (listar feriados por anio)</td><td>2h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>DELETE /holidays (eliminar feriado)</td><td>1.5h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>API Gateway + CORS + testing endpoints</td><td>2h</td><td><span class="badge b-done">Done</span></td></tr>
+        </tbody>
+    </table>
+    <div class="card" style="margin-top:12px;">
+        <b style="color:#22C55E;">Backend confirmado por Rene Ramos:</b> Lambda + API Gateway + DynamoDB operativos.<br>
+        <span style="font-size:.75rem;color:#888;">Pendiente: conectar frontend con el backend y deploy final. Se revisa viernes con Jair para visto bueno.</span>
+    </div>
+</div>
+
+<!-- Detalle Frontend -->
+<div class="section">
+    <div class="section-title"><span class="num">03</span> Frontend (Fase 2) &mdash; 90% (Rene Ramos)</div>
+    <table>
+        <thead><tr><th>Tarea (Jira)</th><th>Horas</th><th>Estado</th></tr></thead>
+        <tbody>
+            <tr><td>AC-841: Setup proyecto + dependencias</td><td>2h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>AC-842: Componente Calendario (vista mensual)</td><td>3h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>AC-843: Agregar Feriado (POST)</td><td>2h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>AC-845: Eliminar Feriado (DELETE)</td><td>1h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>AC-846: Integracion API + estado</td><td>2h</td><td><span class="badge b-done">Done</span></td></tr>
+            <tr><td>AC-844: Editar Feriado (PUT)</td><td>1.5h</td><td><span class="badge b-prog">In Progress</span></td></tr>
+            <tr><td>AC-847: UX/UI final + branding GBM</td><td>1.5h</td><td><span class="badge b-prog">In Progress</span></td></tr>
+        </tbody>
+    </table>
+    <div class="card" style="margin-top:12px;">
+        <span style="font-size:.8rem;color:#888;">Portal funcional en laboratorio (Archive.zip entregado 4-Ago). Revision con Jair programada viernes para visto bueno antes de presentar a Abigail.</span>
+    </div>
+</div>
+
+<!-- Deploy -->
+<div class="section">
+    <div class="section-title"><span class="num">04</span> Deploy (Fase 3) &mdash; PENDIENTE</div>
+    <table>
+        <thead><tr><th>Tarea</th><th>Horas</th><th>Estado</th></tr></thead>
+        <tbody>
+            <tr><td>Build produccion + S3 bucket</td><td>1h</td><td><span class="badge b-pend">Pendiente</span></td></tr>
+            <tr><td>CloudFront + SSL</td><td>1h</td><td><span class="badge b-pend">Pendiente</span></td></tr>
+            <tr><td>Testing E2E en produccion</td><td>1h</td><td><span class="badge b-pend">Pendiente</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Stack -->
+<div class="section">
+    <div class="section-title"><span class="num">05</span> Stack Tecnologico</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div class="card"><b style="color:#FF9900;">Backend</b><br><br>Lambda (Node.js 18)<br>API Gateway REST<br>DynamoDB (tabla existente)<br>IAM least-privilege</div>
+        <div class="card"><b style="color:#FF9900;">Frontend</b><br><br>HTML/CSS/JS (single file)<br>Calendario nativo<br>Fetch API<br>Dark theme GBM+AWS</div>
+        <div class="card"><b style="color:#FF9900;">Infra</b><br><br>S3 static hosting<br>CloudFront CDN<br>ACM (SSL)<br>CloudWatch monitoring</div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-logos">
+        <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/gbm-logo.png" alt="GBM">
+        <span style="width:1px;height:20px;background:#333;display:inline-block;"></span>
+        <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/aws-logo-white.png" alt="AWS">
+    </div>
+    <div class="footer-text">GBM &mdash; CC Fase II &mdash; Portal Feriados AC-840 &mdash; AWS Professional Services</div>
+</div>
+
+</div>
+</body>
+</html>

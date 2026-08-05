@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBM — Administración de Feriados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --border: #222;
+    --text: #e0e0e0;
+    --text-muted: #888;
+    --orange: #FF9900;
+    --green: #22C55E;
+    --red: #ef4444;
+    --blue: #448AFF;
+    --purple: #B388FF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+</style>
+</head>
+<body>
+<style>
+.container { max-width:1200px; margin:0 auto; padding:24px; }
+.banner { position:relative; overflow:hidden; background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%); border:1px solid var(--border); border-radius:14px; padding:22px 32px; display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+.banner::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--orange),transparent); }
+.banner img { height:38px; }
+.banner-divider { width:1px; height:38px; background:#333; }
+.banner-title { font-family:'Sora',sans-serif; font-size:1.4rem; font-weight:700; color:#fff; }
+.banner-subtitle { font-size:.8rem; color:var(--orange); }
+.main-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.panel { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; }
+.panel-title { font-family:'Sora',sans-serif; font-size:1rem; font-weight:600; color:#fff; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.calendar-controls { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.calendar-controls h3 { font-size:1rem; color:var(--text); }
+.btn-nav { background:var(--surface); color:var(--orange); border:1px solid var(--orange); padding:6px 14px; border-radius:6px; cursor:pointer; font-size:.85rem; transition:all .2s; }
+.btn-nav:hover { background:var(--orange); color:#000; }
+#calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.cal-header { text-align:center; font-size:.7rem; font-weight:600; color:var(--text-muted); padding:6px; text-transform:uppercase; }
+.cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:6px; cursor:pointer; font-size:.85rem; transition:all .2s; background:var(--bg); }
+.cal-day:hover { border-color:var(--orange); background:#1a1200; }
+.cal-day.disabled { color:#333; cursor:default; border-color:transparent; background:transparent; }
+.cal-day.disabled:hover { border-color:transparent; background:transparent; }
+.cal-day.today { border:2px solid var(--orange); font-weight:700; color:var(--orange); }
+.cal-day.holiday { background:var(--green); color:#000; font-weight:700; border-color:var(--green); }
+.cal-day.selected { background:var(--orange); color:#000; font-weight:700; border-color:var(--orange); }
+.legend { display:flex; gap:16px; margin-top:12px; justify-content:center; }
+.legend-item { display:flex; align-items:center; gap:6px; font-size:.75rem; color:var(--text-muted); }
+.legend-dot { width:12px; height:12px; border-radius:3px; }
+.search-bar { display:flex; gap:8px; margin-bottom:12px; }
+.search-bar input { flex:1; background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 12px; color:var(--text); font-size:.85rem; outline:none; }
+.search-bar input:focus { border-color:var(--orange); }
+.btn-refresh { background:var(--bg); border:1px solid var(--border); color:var(--text-muted); padding:8px 12px; border-radius:6px; cursor:pointer; transition:all .2s; }
+.btn-refresh:hover { border-color:var(--orange); color:var(--orange); }
+.holidays-list { max-height:320px; overflow-y:auto; margin-bottom:16px; }
+.holiday-item { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; margin-bottom:6px; background:var(--bg); border:1px solid var(--border); border-radius:8px; transition:all .2s; }
+.holiday-item:hover { border-color:var(--green); }
+.holiday-date { font-weight:600; color:#fff; font-size:.9rem; }
+.btn-delete { background:transparent; border:1px solid var(--red); color:var(--red); padding:4px 10px; border-radius:4px; cursor:pointer; font-size:.75rem; transition:all .2s; }
+.btn-delete:hover { background:var(--red); color:#fff; }
+.actions { display:flex; gap:10px; }
+.btn-primary { flex:1; background:var(--orange); color:#000; border:none; padding:10px; border-radius:8px; font-weight:600; cursor:pointer; font-size:.9rem; transition:all .2s; }
+.btn-primary:hover { opacity:.9; transform:translateY(-1px); }
+.btn-secondary { flex:1; background:transparent; color:var(--text); border:1px solid var(--border); padding:10px; border-radius:8px; cursor:pointer; font-size:.9rem; transition:all .2s; }
+.btn-secondary:hover { border-color:var(--orange); color:var(--orange); }
+.modal { position:fixed; inset:0; background:rgba(0,0,0,.8); display:flex; align-items:center; justify-content:center; z-index:1000; }
+.modal-content { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:28px; max-width:420px; width:90%; }
+.modal-content h3 { color:#fff; margin-bottom:12px; font-family:'Sora',sans-serif; }
+.modal-content p { color:var(--text-muted); margin-bottom:20px; }
+.modal-actions { display:flex; gap:10px; }
+.notification { position:fixed; top:20px; right:20px; background:var(--surface); border:1px solid var(--green); color:var(--green); padding:12px 20px; border-radius:8px; z-index:2000; font-size:.85rem; animation:slideIn .3s ease-out; }
+@keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+.hidden { display:none; }
+.footer { text-align:center; padding:24px 0; margin-top:24px; border-top:1px solid var(--border); }
+.footer-logos { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:8px; }
+.footer-logos img { height:24px; opacity:.6; }
+.footer-text { font-size:.75rem; color:#555; }
+@media(max-width:900px) { .main-grid { grid-template-columns:1fr; } }
+</style>
+
+<div class="container">
+    <!-- Banner -->
+    <div class="banner">
+        <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/gbm-logo.png" alt="GBM">
+        <div class="banner-divider"></div>
+        <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/aws-logo-white.png" alt="AWS">
+        <div>
+            <div class="banner-title">Administracion de Feriados</div>
+            <div class="banner-subtitle">Amazon Connect &middot; Contact Center Fase II</div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="main-grid">
+        <!-- Calendar Panel -->
+        <div class="panel">
+            <div class="panel-title">Seleccionar Fechas</div>
+            <div class="calendar-controls">
+                <button id="prevMonth" class="btn-nav">&#9664; Anterior</button>
+                <h3 id="currentMonth"></h3>
+                <button id="nextMonth" class="btn-nav">Siguiente &#9654;</button>
+            </div>
+            <div id="calendar"></div>
+            <div class="legend">
+                <div class="legend-item"><span class="legend-dot" style="border:2px solid var(--orange);background:transparent;"></span>Hoy</div>
+                <div class="legend-item"><span class="legend-dot" style="background:var(--green);"></span>Feriado</div>
+                <div class="legend-item"><span class="legend-dot" style="background:var(--orange);"></span>Seleccionado</div>
+            </div>
+        </div>
+
+        <!-- Holidays Panel -->
+        <div class="panel">
+            <div class="panel-title">Feriados Registrados</div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar por fecha...">
+                <button id="refreshBtn" class="btn-refresh">Actualizar</button>
+            </div>
+            <div id="loadingIndicator" class="hidden" style="text-align:center;padding:20px;color:var(--text-muted);">Cargando...</div>
+            <div id="holidaysList" class="holidays-list"></div>
+            <div class="actions">
+                <button id="addHolidayBtn" class="btn-primary">Agregar Feriado</button>
+                <button id="clearSelectionBtn" class="btn-secondary">Limpiar Seleccion</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-logos">
+            <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/gbm-logo.png" alt="GBM">
+            <span style="width:1px;height:20px;background:#333;display:inline-block;"></span>
+            <img src="https://awsemjairgarcia.github.io/GBM_CC_Fase-II_Reports/aws-logo-white.png" alt="AWS">
+        </div>
+        <div class="footer-text">GBM &mdash; CC Fase II &mdash; Portal de Feriados &mdash; AWS Professional Services</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="confirmModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Confirmar</h3>
+        <p id="modalMessage"></p>
+        <div class="modal-actions">
+            <button id="confirmBtn" class="btn-primary">Confirmar</button>
+            <button id="cancelBtn" class="btn-secondary">Cancelar</button>
+        </div>
+    </div>
+</div>
+<div id="notificationModal" class="notification hidden"><p id="notificationMessage"></p></div>
+
+<script>
+const API_CONFIG = {
+    baseUrl: 'https://tn9nlgy8p5.execute-api.us-east-1.amazonaws.com/dev',
+    endpoints: { list: '/holidays', add: '/holidays', delete: '/holidays' }
+};
+
+let currentDate = new Date();
+let selectedDates = new Set();
+let holidaysData = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeEventListeners();
+    renderCalendar();
+    loadHolidays();
+});
+
+function initializeEventListeners() {
+    document.getElementById('prevMonth').addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); });
+    document.getElementById('nextMonth').addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); });
+    document.getElementById('addHolidayBtn').addEventListener('click', addHolidays);
+    document.getElementById('clearSelectionBtn').addEventListener('click', clearSelection);
+    document.getElementById('refreshBtn').addEventListener('click', loadHolidays);
+    document.getElementById('searchInput').addEventListener('input', filterHolidays);
+    document.getElementById('confirmBtn').addEventListener('click', handleConfirm);
+    document.getElementById('cancelBtn').addEventListener('click', hideModal);
+}
+
+function renderCalendar() {
+    const year = currentDate.getFullYear(), month = currentDate.getMonth();
+    const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    document.getElementById('currentMonth').textContent = monthNames[month] + ' ' + year;
+    const calendar = document.getElementById('calendar');
+    calendar.innerHTML = '';
+    ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'].forEach(d => { const h = document.createElement('div'); h.className = 'cal-header'; h.textContent = d; calendar.appendChild(h); });
+    const firstDay = new Date(year, month, 1).getDay();
+    for (let i = 0; i < firstDay; i++) { const e = document.createElement('div'); e.className = 'cal-day disabled'; calendar.appendChild(e); }
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+    for (let day = 1; day <= daysInMonth; day++) {
+        const el = document.createElement('div'); el.className = 'cal-day'; el.textContent = day;
+        const dateStr = year + '-' + String(month+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+        if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) el.classList.add('today');
+        if (holidaysData.some(h => h.date === dateStr)) el.classList.add('holiday');
+        if (selectedDates.has(dateStr)) el.classList.add('selected');
+        el.addEventListener('click', () => toggleDate(dateStr, el));
+        calendar.appendChild(el);
+    }
+}
+
+function toggleDate(dateStr, el) {
+    if (el.classList.contains('holiday')) { showNotification('Ya es feriado. Eliminalo primero.'); return; }
+    if (selectedDates.has(dateStr)) { selectedDates.delete(dateStr); el.classList.remove('selected'); }
+    else { selectedDates.add(dateStr); el.classList.add('selected'); }
+}
+
+function clearSelection() { selectedDates.clear(); renderCalendar(); showNotification('Seleccion limpiada'); }
+
+async function loadHolidays() {
+    document.getElementById('loadingIndicator').classList.remove('hidden');
+    try {
+        const r = await fetch(API_CONFIG.baseUrl + API_CONFIG.endpoints.list);
+        if (!r.ok) throw new Error('Error');
+        const data = await r.json();
+        holidaysData = data.holidays || [];
+        renderHolidaysList(); renderCalendar(); showNotification('Feriados cargados');
+    } catch(e) { showNotification('Error al cargar. Verifique conexion.'); }
+    finally { document.getElementById('loadingIndicator').classList.add('hidden'); }
+}
+
+function renderHolidaysList(filtered) {
+    const list = document.getElementById('holidaysList');
+    const data = filtered || holidaysData;
+    if (!data.length) { list.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:20px;">Sin feriados registrados</p>'; return; }
+    const sorted = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
+    list.innerHTML = sorted.map(h => '<div class="holiday-item"><span class="holiday-date">' + formatDisplay(h.date) + '</span><button class="btn-delete" onclick="confirmDelete(\'' + h.date + '\')">Eliminar</button></div>').join('');
+}
+
+function filterHolidays(e) {
+    const t = e.target.value.toLowerCase();
+    if (!t) { renderHolidaysList(); return; }
+    renderHolidaysList(holidaysData.filter(h => h.date.includes(t) || formatDisplay(h.date).toLowerCase().includes(t)));
+}
+
+async function addHolidays() {
+    if (!selectedDates.size) { showNotification('Seleccione al menos una fecha'); return; }
+    const dates = Array.from(selectedDates);
+    showConfirmModal('Agregar ' + dates.length + ' fecha(s) como feriado?', async () => {
+        try {
+            await Promise.all(dates.map(d => fetch(API_CONFIG.baseUrl + API_CONFIG.endpoints.add, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({date:d,feriado:true}) })));
+            selectedDates.clear(); await loadHolidays(); showNotification(dates.length + ' feriado(s) agregado(s)');
+        } catch(e) { showNotification('Error al agregar'); }
+    });
+}
+
+function confirmDelete(date) { showConfirmModal('Eliminar feriado ' + formatDisplay(date) + '?', () => deleteHoliday(date)); }
+
+async function deleteHoliday(date) {
+    try {
+        await fetch(API_CONFIG.baseUrl + API_CONFIG.endpoints.delete, { method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({date}) });
+        await loadHolidays(); showNotification('Feriado eliminado');
+    } catch(e) { showNotification('Error al eliminar'); }
+}
+
+let confirmCallback = null;
+function showConfirmModal(msg, cb) { document.getElementById('modalMessage').textContent = msg; document.getElementById('confirmModal').classList.remove('hidden'); confirmCallback = cb; }
+function hideModal() { document.getElementById('confirmModal').classList.add('hidden'); confirmCallback = null; }
+function handleConfirm() { if(confirmCallback) confirmCallback(); hideModal(); }
+function showNotification(msg) { const n = document.getElementById('notificationModal'); document.getElementById('notificationMessage').textContent = msg; n.classList.remove('hidden'); setTimeout(() => n.classList.add('hidden'), 3000); }
+function formatDisplay(d) { const [y,m,day] = d.split('-'); const mn = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']; return day + ' ' + mn[parseInt(m)-1] + ' ' + y; }
+</script>
+</body>
+</html>
