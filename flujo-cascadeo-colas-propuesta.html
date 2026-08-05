@@ -8,6 +8,10 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-serif; padding:40px 20px; }
 .container { max-width:1100px; margin:0 auto; }
+.banner { position:relative; overflow:hidden; background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%); border:1px solid #222; border-radius:14px; padding:22px 32px; display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+.banner::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,#FF9900,transparent); }
+.banner img { height:30px; }
+.banner-divider { width:1px; height:30px; background:#333; }
 .header { text-align:center; margin-bottom:48px; }
 .header h1 { font-size:28px; color:#fff; font-weight:300; margin-bottom:8px; }
 .header .subtitle { font-size:15px; color:#FF9900; }
@@ -31,6 +35,18 @@ body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-
 </head>
 <body>
 <div class="container">
+
+<!-- Banner GBM + AWS -->
+<div class="banner">
+    <img src="gbm-logo.png" alt="GBM">
+    <div class="banner-divider"></div>
+    <img src="aws-logo-white.png" alt="AWS">
+    <div style="margin-left:auto; text-align:right;">
+        <div style="font-size:12px; color:#999;">GBM &mdash; CC Fase II</div>
+        <div style="font-size:11px; color:#666;">Amazon Connect &middot; AWS Professional Services</div>
+    </div>
+</div>
+
 <div class="header">
     <h1>Propuesta T&eacute;cnica: Gesti&oacute;n de Colas, Cascadeo &amp; Campa&ntilde;as Outbound</h1>
     <div class="subtitle">GBM &mdash; CC Fase II / Advisory Extension &mdash; Amazon Connect</div>
@@ -202,6 +218,10 @@ body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-
 
 <!-- Footer -->
 <div style="text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #222;">
-    <img src="../scripts/Dailys/AWS_logo_RGB_yellow.png" alt="AWS" height="28" style="opacity:0.6;">
-    <div style="font-size:11px; color:#555; margin-top:8px;">GBM &mdash; CC Fase II + Advisory &mdash; Propuesta T&eacute;cnica Consolidada &mdash; AWS Professional Services</div>
+    <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:12px;">
+        <img src="gbm-logo.png" alt="GBM" height="24" style="opacity:0.7;">
+        <span style="width:1px; height:20px; background:#333; display:inline-block;"></span>
+        <img src="aws-logo-white.png" alt="AWS" height="18" style="opacity:0.7;">
+    </div>
+    <div style="font-size:11px; color:#555;">GBM &mdash; CC Fase II + Advisory &mdash; Propuesta T&eacute;cnica Consolidada &mdash; AWS Professional Services</div>
 </div>
