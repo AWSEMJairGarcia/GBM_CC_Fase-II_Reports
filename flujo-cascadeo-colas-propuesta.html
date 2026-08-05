@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBM — Propuesta Técnica: Colas, Cascadeo y Campañas</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-serif; padding:40px 20px; }
+.container { max-width:1100px; margin:0 auto; }
+.header { text-align:center; margin-bottom:48px; }
+.header h1 { font-size:28px; color:#fff; font-weight:300; margin-bottom:8px; }
+.header .subtitle { font-size:15px; color:#FF9900; }
+.header .meta { font-size:12px; color:#666; margin-top:8px; }
+.section { margin-bottom:48px; }
+.section-title { font-size:18px; color:#FF9900; font-weight:600; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #222; }
+.section-num { color:#555; font-weight:300; margin-right:8px; }
+.flow-container { background:#111; border:1px solid #222; border-radius:12px; padding:32px; margin-bottom:24px; overflow-x:auto; }
+.flow-row { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; flex-wrap:wrap; }
+.flow-node { background:#1a1a2e; border:2px solid #333; border-radius:8px; padding:12px 20px; text-align:center; min-width:140px; }
+.flow-node.start { border-color:#FF9900; background:#1a1200; }
+.flow-node.decision { border-color:#448AFF; background:#0a1528; border-radius:4px; }
+.flow-node.queue { border-color:#00C853; background:#0a1a0f; }
+.flow-node.cascade { border-color:#B388FF; background:#1a0f2e; }
+.flow-node.end { border-color:#ef4444; background:#1a0a0a; }
+.flow-node .label { font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px; }
+.flow-node .value { font-size:14px; color:#fff; font-weight:500; margin-top:4px; }
+.flow-arrow { color:#555; font-size:20px; }
+.flow-arrow-down { text-align:center; color:#555; font-size:20px; margin:8px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+    <h1>Propuesta T&eacute;cnica: Gesti&oacute;n de Colas, Cascadeo &amp; Campa&ntilde;as Outbound</h1>
+    <div class="subtitle">GBM &mdash; CC Fase II / Advisory Extension &mdash; Amazon Connect</div>
+    <div class="meta">Documento interno AWS &mdash; 30 Julio 2026 &mdash; Professional Services</div>
+</div>
+
+<!-- PARTE A: CASCADEO -->
+<div class="section">
+    <div class="section-title"><span class="section-num">01</span>Flujo de Enrutamiento con Cascadeo Din&aacute;mico</div>
+    <p style="color:#999;font-size:13px;margin-bottom:16px;">Resuelve el dolor operativo de alta/baja de agentes y cascadeo. Entra en scope de Fase II (AC-963).</p>
+    <div class="flow-container">
+        <div class="flow-row">
+            <div class="flow-node start"><div class="label">Entrada</div><div class="value">Llamada Inbound</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node decision"><div class="label">Lambda</div><div class="value">Identificar Cliente</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node decision"><div class="label">API Entidad Cliente</div><div class="value">Obtener Segmento</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="label">Resultado</div><div class="value">VIP / Med / Low</div></div>
+        </div>
+        <div class="flow-arrow-down">&darr;</div>
+        <div class="flow-row">
+            <div class="flow-node queue" style="border-color:#FF9900;"><div class="label">VIP (Private+Premium)</div><div class="value">Cola Asesor Directo</div></div>
+            <div class="flow-node queue"><div class="label">Med (Personal)</div><div class="value">Cola Concierge</div></div>
+            <div class="flow-node queue" style="border-color:#448AFF;"><div class="label">Low (Plus)</div><div class="value">Cola Customer Connect</div></div>
+        </div>
+        <div class="flow-arrow-down">&darr;</div>
+        <div class="flow-row">
+            <div class="flow-node cascade"><div class="label">Si no contesta</div><div class="value">Cascada 1 &rarr; 2 &rarr; 3</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node end"><div class="label">Fallback</div><div class="value">Voicemail / Callback</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- PARTE A.2: Arquitectura Cascadeo -->
+<div class="section">
+    <div class="section-title"><span class="section-num">02</span>Arquitectura &mdash; Gesti&oacute;n Din&aacute;mica de Agentes</div>
+    <div class="flow-container">
+        <div class="flow-row">
+            <div class="flow-node start"><div class="label">Admin (Abigail)</div><div class="value">Consola Web</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="label">API Gateway</div><div class="value">REST API</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node decision"><div class="label">Lambda</div><div class="value">Provisioning</div></div>
+        </div>
+        <div class="flow-arrow-down">&darr;</div>
+        <div class="flow-row">
+            <div class="flow-node queue"><div class="label">Amazon Connect</div><div class="value">APIs: Queues, Routing, Users</div></div>
+            <div class="flow-arrow">&larr;&rarr;</div>
+            <div class="flow-node"><div class="label">DynamoDB</div><div class="value">Grupos + Cascadas + Config</div></div>
+            <div class="flow-arrow">&larr;</div>
+            <div class="flow-node cascade"><div class="label">Contact Flow</div><div class="value">Lee DynamoDB para rutear</div></div>
+        </div>
+    </div>
+    <div style="background:#111;border:1px solid #222;border-radius:8px;padding:16px;margin-top:12px;">
+        <p style="font-size:13px;color:#ccc;margin-bottom:8px;"><strong style="color:#FF9900;">Beneficio clave:</strong> El flujo de Connect NO se modifica al dar alta/baja agentes. DynamoDB almacena la configuraci&oacute;n din&aacute;micamente.</p>
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#00C853;">Alta en 1 click:</strong> Formulario &rarr; Lambda crea n&uacute;mero + cola + routing profile + quick connects + agrega a grupo en DynamoDB.</p>
+    </div>
+</div>
+
+<!-- PARTE B: CAMPAÑAS -->
+<div class="section">
+    <div class="section-title"><span class="section-num">03</span>Campa&ntilde;as Outbound &mdash; Proceso Actual (as-is)</div>
+    <p style="color:#999;font-size:13px;margin-bottom:16px;">Proyecto Advisory / Extensi&oacute;n (NO Fase II actual). Prerequisito: API Entidad Cliente operativa.</p>
+    <div class="flow-container">
+        <div class="flow-row">
+            <div class="flow-node" style="border-color:#448AFF;"><div class="label">Growth / Datos</div><div class="value">Define campa&ntilde;a + segmento</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node" style="border-color:#FF9900;"><div class="label">Marketing</div><div class="value">Extrae audiencia (CSV manual)</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node end"><div class="label">Ejecuci&oacute;n (Abigail)</div><div class="value">6 pasos manuales &times;20/d&iacute;a</div></div>
+        </div>
+        <div class="flow-arrow-down">&darr;</div>
+        <div class="flow-row">
+            <div class="flow-node" style="border-color:#ef4444;min-width:500px;"><div class="label" style="color:#ef4444;">Dolor</div><div class="value" style="font-size:12px;">100% manual &bull; +medio d&iacute;a &bull; error humano alto &bull; no escala &bull; 1 persona dedicada</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- PARTE B.2: Campañas TO-BE -->
+<div class="section">
+    <div class="section-title"><span class="section-num">04</span>Campa&ntilde;as Outbound &mdash; Propuesta por Fases</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+        <div style="background:#111;border:1px solid #00C853;border-radius:10px;padding:20px;">
+            <div style="font-size:11px;color:#00C853;font-weight:700;text-transform:uppercase;">Fase 1 &mdash; Base</div>
+            <div style="font-size:15px;color:#fff;font-weight:600;margin:8px 0;">Fuente de clientes conectada</div>
+            <p style="font-size:12px;color:#999;">Conectar API Entidad Cliente &rarr; Customer Profiles en Connect. Segmentos autom&aacute;ticos sin CSV manual.</p>
+            <p style="font-size:11px;color:#666;margin-top:8px;">Elimina pasos 1 y 3 del proceso actual</p>
+        </div>
+        <div style="background:#111;border:1px solid #FF9900;border-radius:10px;padding:20px;">
+            <div style="font-size:11px;color:#FF9900;font-weight:700;text-transform:uppercase;">Fase 2 &mdash; Preparaci&oacute;n</div>
+            <div style="font-size:15px;color:#fff;font-weight:600;margin:8px 0;">Automatizar armado</div>
+            <p style="font-size:12px;color:#999;">Carga autom&aacute;tica de im&aacute;genes a S3 + alta de plantillas en Connect via Lambda. Biblioteca de templates.</p>
+            <p style="font-size:11px;color:#666;margin-top:8px;">Elimina pasos 4 y 5</p>
+        </div>
+        <div style="background:#111;border:1px solid #448AFF;border-radius:10px;padding:20px;">
+            <div style="font-size:11px;color:#448AFF;font-weight:700;text-transform:uppercase;">Fase 3 &mdash; Multicanal</div>
+            <div style="font-size:15px;color:#fff;font-weight:600;margin:8px 0;">Orquestaci&oacute;n de canales</div>
+            <p style="font-size:12px;color:#999;">Integrar WhatsApp primero (mayor volumen), luego SMS, email. Journey tracking autom&aacute;tico (qui&eacute;n abri&oacute;, qui&eacute;n deposit&oacute;).</p>
+            <p style="font-size:11px;color:#666;margin-top:8px;">Un solo flujo para m&uacute;ltiples canales</p>
+        </div>
+        <div style="background:#111;border:1px solid #B388FF;border-radius:10px;padding:20px;">
+            <div style="font-size:11px;color:#B388FF;font-weight:700;text-transform:uppercase;">Fase 4 &mdash; Autoservicio</div>
+            <div style="font-size:15px;color:#fff;font-weight:600;margin:8px 0;">Portal para &aacute;reas solicitantes</div>
+            <p style="font-size:12px;color:#999;">&Aacute;rea de Growth/Marketing arma y lanza campa&ntilde;as sin intermediario. Posible asistente con IA.</p>
+            <p style="font-size:11px;color:#666;margin-top:8px;">Elimina cuello de botella completamente</p>
+        </div>
+    </div>
+</div>
+
+<!-- PARTE C: Arquitectura Campañas -->
+<div class="section">
+    <div class="section-title"><span class="section-num">05</span>Arquitectura &mdash; Campa&ntilde;as Automatizadas</div>
+    <div class="flow-container">
+        <div class="flow-row">
+            <div class="flow-node start"><div class="label">Fuente</div><div class="value">API Entidad Cliente</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node decision"><div class="label">Conector</div><div class="value">Lambda / AppFlow</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node queue"><div class="label">Amazon Connect</div><div class="value">Customer Profiles</div></div>
+        </div>
+        <div class="flow-arrow-down">&darr;</div>
+        <div class="flow-row">
+            <div class="flow-node"><div class="label">Segmentaci&oacute;n</div><div class="value">Connect Segments (filtros + banderas GBM)</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node" style="border-color:#FF9900;"><div class="label">Ejecuci&oacute;n</div><div class="value">Connect Outbound Campaigns</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node cascade"><div class="label">Canal</div><div class="value">WhatsApp / SMS / Voice</div></div>
+        </div>
+        <div class="flow-arrow-down">&darr;</div>
+        <div class="flow-row">
+            <div class="flow-node" style="border-color:#448AFF;"><div class="label">Tracking</div><div class="value">Pinpoint Analytics + Journey</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node end"><div class="label">Resultado</div><div class="value">Funnel: envi&oacute; &rarr; abri&oacute; &rarr; deposit&oacute;</div></div>
+        </div>
+    </div>
+    <div style="background:#111;border:1px solid #222;border-radius:8px;padding:16px;margin-top:12px;">
+        <p style="font-size:13px;color:#ccc;margin-bottom:8px;"><strong style="color:#ef4444;">Restricci&oacute;n compliance:</strong> La base de datos de clientes NO se copia a Amazon. Se consume v&iacute;a API (Entidad Cliente). Datos confidenciales financieros.</p>
+        <p style="font-size:13px;color:#ccc;"><strong style="color:#FF9900;">Prerequisito:</strong> API Entidad Cliente operativa con segmentos expuestos (en desarrollo en Fase II actual).</p>
+    </div>
+</div>
+
+<!-- PARTE D: Scope -->
+<div class="section">
+    <div class="section-title"><span class="section-num">06</span>Scope &amp; Alcance</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#0a1a0f;border:1px solid #00C853;border-radius:10px;padding:20px;">
+            <div style="font-size:12px;color:#00C853;font-weight:700;margin-bottom:8px;">FASE II ACTUAL (en scope)</div>
+            <ul style="font-size:13px;color:#ccc;list-style:none;padding:0;">
+                <li style="padding:4px 0;border-bottom:1px solid #1a2a1a;">&bull; Cascadeo din&aacute;mico (AC-963)</li>
+                <li style="padding:4px 0;border-bottom:1px solid #1a2a1a;">&bull; Gesti&oacute;n simplificada de colas/agentes</li>
+                <li style="padding:4px 0;border-bottom:1px solid #1a2a1a;">&bull; Reporter&iacute;a por franjas (AC-964)</li>
+                <li style="padding:4px 0;">&bull; Entidad Cliente (prerequisito para todo)</li>
+            </ul>
+        </div>
+        <div style="background:#1a1200;border:1px solid #FF9900;border-radius:10px;padding:20px;">
+            <div style="font-size:12px;color:#FF9900;font-weight:700;margin-bottom:8px;">EXTENSI&Oacute;N / ADVISORY (siguiente fase)</div>
+            <ul style="font-size:13px;color:#ccc;list-style:none;padding:0;">
+                <li style="padding:4px 0;border-bottom:1px solid #2a2200;">&bull; Automatizaci&oacute;n de campa&ntilde;as outbound</li>
+                <li style="padding:4px 0;border-bottom:1px solid #2a2200;">&bull; Customer Profiles + segmentaci&oacute;n</li>
+                <li style="padding:4px 0;border-bottom:1px solid #2a2200;">&bull; Journey tracking (funnel)</li>
+                <li style="padding:4px 0;">&bull; Portal autoservicio para Marketing/Growth</li>
+            </ul>
+        </div>
+    </div>
+    <p style="font-size:12px;color:#666;margin-top:12px;text-align:center;">Pedro Rodr&iacute;guez (30-Jul): &ldquo;Esto no entra en el proyecto actual. Es para abrir apetito y continuar con la extensi&oacute;n.&rdquo;</p>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #222;">
+    <img src="../scripts/Dailys/AWS_logo_RGB_yellow.png" alt="AWS" height="28" style="opacity:0.6;">
+    <div style="font-size:11px; color:#555; margin-top:8px;">GBM &mdash; CC Fase II + Advisory &mdash; Propuesta T&eacute;cnica Consolidada &mdash; AWS Professional Services</div>
+</div>
