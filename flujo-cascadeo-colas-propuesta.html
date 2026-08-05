@@ -6,31 +6,31 @@
 <title>GBM — Propuesta Técnica: Colas, Cascadeo y Campañas</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-serif; padding:40px 20px; }
+body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-serif; padding:40px 20px; font-size:16px; }
 .container { max-width:1100px; margin:0 auto; }
 .banner { position:relative; overflow:hidden; background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%); border:1px solid #222; border-radius:14px; padding:22px 32px; display:flex; align-items:center; gap:16px; margin-bottom:32px; }
 .banner::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,#FF9900,transparent); }
 .banner img { height:54px; }
 .banner-divider { width:1px; height:54px; background:#333; }
 .header { text-align:center; margin-bottom:48px; }
-.header h1 { font-size:28px; color:#fff; font-weight:300; margin-bottom:8px; }
-.header .subtitle { font-size:15px; color:#FF9900; }
-.header .meta { font-size:12px; color:#666; margin-top:8px; }
+.header h1 { font-size:44px; color:#fff; font-weight:300; margin-bottom:8px; }
+.header .subtitle { font-size:22px; color:#FF9900; }
+.header .meta { font-size:16px; color:#666; margin-top:8px; }
 .section { margin-bottom:48px; }
-.section-title { font-size:18px; color:#FF9900; font-weight:600; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #222; }
+.section-title { font-size:28px; color:#FF9900; font-weight:600; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #222; }
 .section-num { color:#555; font-weight:300; margin-right:8px; }
 .flow-container { background:#111; border:1px solid #222; border-radius:12px; padding:32px; margin-bottom:24px; overflow-x:auto; }
 .flow-row { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; flex-wrap:wrap; }
-.flow-node { background:#1a1a2e; border:2px solid #333; border-radius:8px; padding:12px 20px; text-align:center; min-width:140px; }
+.flow-node { background:#1a1a2e; border:2px solid #333; border-radius:8px; padding:16px 24px; text-align:center; min-width:160px; }
 .flow-node.start { border-color:#FF9900; background:#1a1200; }
 .flow-node.decision { border-color:#448AFF; background:#0a1528; border-radius:4px; }
 .flow-node.queue { border-color:#00C853; background:#0a1a0f; }
 .flow-node.cascade { border-color:#B388FF; background:#1a0f2e; }
 .flow-node.end { border-color:#ef4444; background:#1a0a0a; }
-.flow-node .label { font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px; }
-.flow-node .value { font-size:14px; color:#fff; font-weight:500; margin-top:4px; }
-.flow-arrow { color:#555; font-size:20px; }
-.flow-arrow-down { text-align:center; color:#555; font-size:20px; margin:8px 0; }
+.flow-node .label { font-size:14px; color:#888; text-transform:uppercase; letter-spacing:0.5px; }
+.flow-node .value { font-size:18px; color:#fff; font-weight:500; margin-top:4px; }
+.flow-arrow { color:#555; font-size:28px; }
+.flow-arrow-down { text-align:center; color:#555; font-size:28px; margin:8px 0; }
 </style>
 </head>
 <body>
