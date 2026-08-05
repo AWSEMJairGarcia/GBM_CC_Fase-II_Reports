@@ -259,28 +259,28 @@ if(sessionStorage.getItem('sprint5-auth')==='true'){
   const viewer = new URLSearchParams(window.location.search).get('v') || 'unknown';
   const device = navigator.platform + ' | ' + screen.width+'x'+screen.height + ' | ' + navigator.language + ' | ' + (navigator.userAgent.match(/Chrome|Safari|Firefox|Edge/)||['Unknown'])[0];
 
-  // Get IP then notify
-  fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{
-    const ip = d.ip || 'no-ip';
+  // Fire Slack immediately (don't wait for IP)
+  fetch(webhookUrl, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | ' + device})
+  }).catch(()=>{});
+
+  // Send IP as separate follow-up notification
+  fetch('https://api.ipify.org?format=json').then(function(r){return r.json()}).then(function(d){
     fetch(webhookUrl, {
       method:'POST', mode:'no-cors',
       headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | IP: ' + ip + ' | ' + device})
+      body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | IP: ' + d.ip})
     }).catch(()=>{});
-  }).catch(()=>{
-    fetch(webhookUrl, {
-      method:'POST', mode:'no-cors',
-      headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify({page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Opened | ' + ts + ' | IP: blocked | ' + device})
-    }).catch(()=>{});
-  });
+  }).catch(()=>{});
 
   window.addEventListener('beforeunload', function(){
     const secs = Math.round((Date.now() - start) / 1000);
     const mins = Math.floor(secs/60);
     const timeStr = mins > 0 ? mins+'m '+secs%60+'s' : secs+'s';
     navigator.sendBeacon(webhookUrl, JSON.stringify({
-      page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Closed | Time: '+timeStr+' | Scrolled: '+maxScroll+'% | ' + device + ' | '+ts
+      page: 'S5-PLANNING | ' + viewer.toUpperCase() + ' | Closed | Time: '+timeStr+' | Scrolled: '+maxScroll+'% | '+ts
     }));
   });
 })();
