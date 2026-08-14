@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBM — Roadmap de Negocio v1.4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0a0a0a;color:#e0e0e0;font-family:'Inter',sans-serif;padding:2rem 1.5rem}
+        .container{max-width:1200px;margin:0 auto}
+        h1{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+        h2{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:.8rem;margin-top:2rem}
+        .sub{font-size:.85rem;color:#888;margin-bottom:.3rem}
+        .note-box{background:#141414;border:1px solid #222;border-left:3px solid #FF9900;border-radius:8px;padding:14px 18px;margin:1.5rem 0;font-size:.82rem;color:#888;line-height:1.6}
+        .note-box b{color:#FF9900}
+        .note-box.changes{border-left-color:#22c55e}
+        .note-box.changes b{color:#22c55e}
+        .gantt-wrap{overflow-x:auto;overflow-y:hidden;margin:1.5rem 0}
+        table{border-collapse:collapse;font-size:.75rem;min-width:900px;width:100%}
+        th{font-family:'Sora',sans-serif;font-size:.65rem;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.04em;padding:6px 4px;border-bottom:1px solid #222;text-align:center;min-width:52px}
+        th.label-col{text-align:left;min-width:280px;padding-left:12px}
+        td{padding:6px 4px;border-bottom:1px solid #1a1a1a;text-align:center;position:relative}
+        td.label{text-align:left;padding-left:12px;font-size:.78rem;color:#ccc;white-space:nowrap}
+        td.label.epic{font-family:'Sora',sans-serif;font-weight:600;color:#fff;font-size:.8rem}
+        td.label.milestone{font-weight:500;color:#FF9900;padding-left:24px}
+        td.label.milestone-biz{font-weight:600;color:#f59e0b;padding-left:24px;font-size:.8rem}
+        td.label.sub-item{color:#888;padding-left:36px;font-size:.72rem}
+        td.label.due-date{color:#ef4444;padding-left:36px;font-size:.68rem;font-style:italic}
+        .bar{border-radius:4px;height:18px;display:block}
+        .bar-green{background:linear-gradient(90deg,#00C853,#69F0AE);opacity:.7}
+        .bar-blue{background:linear-gradient(90deg,#448AFF,#82B1FF);opacity:.7}
+        .bar-orange{background:linear-gradient(90deg,#FF9900,#FFB74D);opacity:.7}
+        .bar-purple{background:linear-gradient(90deg,#B388FF,#D1C4E9);opacity:.7}
+        .bar-cyan{background:linear-gradient(90deg,#18FFFF,#84FFFF);opacity:.6}
+        .bar-gray{background:#333;height:18px}
+        .bar-completed{background:linear-gradient(90deg,#00C853,#69F0AE);opacity:.7}
+        .bar-inprogress{background:linear-gradient(90deg,#FFB300,#FFD54F);opacity:.8}
+        .milestone-diamond{display:inline-block;width:14px;height:14px;background:#FF9900;transform:rotate(45deg);border-radius:2px;margin:2px auto}
+        .milestone-biz-diamond{display:inline-block;width:16px;height:16px;background:#f59e0b;transform:rotate(45deg);border-radius:2px;margin:2px auto;box-shadow:0 0 8px rgba(245,158,11,0.5)}
+        .dep-diamond{display:inline-block;width:12px;height:12px;background:#ef4444;transform:rotate(45deg);border-radius:2px;margin:2px auto;box-shadow:0 0 6px rgba(239,68,68,0.5)}
+        .today-col{background:rgba(255,153,0,0.12)}
+        .legend{display:flex;gap:1.5rem;margin:1rem 0;flex-wrap:wrap}
+        .legend-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:#888}
+        .legend-color{width:16px;height:10px;border-radius:3px}
+        .section-divider{height:1px;background:#222;margin:2rem 0}
+        .filter-btns{display:flex;gap:.6rem;margin:1rem 0}
+        .filter-btn{padding:8px 20px;border-radius:8px;border:1px solid #333;background:#141414;color:#888;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s}
+        .filter-btn:hover{border-color:#555;color:#ccc}
+        .filter-btn.active{border-color:#FF9900;color:#FF9900;background:rgba(255,153,0,0.08)}
+        .row-tech{transition:opacity .3s}
+        .hide-tech .row-tech{display:none}
+        .dep-table{width:100%;border-collapse:collapse;font-size:.78rem;min-width:auto}
+        .dep-table th{font-size:.7rem;text-align:left;padding:8px 12px;border-bottom:2px solid #555;color:#888}
+        .dep-table td{padding:8px 12px;border-bottom:1px solid #333;text-align:left;white-space:nowrap}
+        .dep-table td:last-child{white-space:normal;max-width:220px}
+        .dep-table .status-blocked{color:#ef4444;font-weight:600}
+        .dep-table .status-pending{color:#FFB300;font-weight:500}
+        .dep-table .status-ok{color:#22c55e;font-weight:500}
+        .dep-table .status-progress{color:#448AFF;font-weight:500}
+        .dep-table .owner{color:#82B1FF;font-size:.72rem}
+        .dep-table .due{color:#ef4444;font-weight:600;font-size:.75rem}
+        @media print {
+            @page{size:letter landscape;margin:5mm}
+            *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
+            body{background:#0a0a0a !important;padding:4mm 6mm !important}
+            .filter-btns{display:none !important}
+            .row-tech{display:none !important}
+            table{min-width:auto;font-size:.5rem}
+            th{font-size:.4rem;padding:2px 1px;min-width:18px}
+            th.label-col{min-width:120px}
+            td{padding:2px 1px}
+            td.label{font-size:.48rem}
+            .bar{height:8px}
+            .milestone-diamond,.milestone-biz-diamond{width:6px;height:6px}
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- HEADER -->
+    <div style="position:relative;overflow:hidden;border-radius:16px;padding:2.5rem 2rem 2rem;margin-bottom:2rem;background:linear-gradient(135deg,#111 0%,#1a1a1a 40%,#1c1408 100%);border:1px solid #222">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)"></div>
+        <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:1.2rem">
+            <img src="gbm-logo.png" alt="GBM" style="height:48px;">
+            <span style="width:1px;height:32px;background:#333"></span>
+            <img src="aws-logo-white.png" alt="AWS" style="height:32px;">
+        </div>
+        <h1 style="position:relative;z-index:1;text-align:center">Roadmap de Negocio v1.4</h1>
+        <div class="sub" style="position:relative;z-index:1;text-align:center">GBM Amazon Connect Fase II — Sprint 5 en curso (WW33)</div>
+        <div class="sub" style="position:relative;z-index:1;text-align:center;color:#555">14 Agosto 2026</div>
+    </div>
+
+    <!-- CHANGELOG -->
+    <div class="note-box changes">
+        <b>Cambios v1.4 (14 Agosto 2026):</b><br>
+        • Sprints S1-S4 completados. Sprint 5 en curso (4 Ago - 15 Ago)<br>
+        • Nivelacion de entornos COMPLETA (connect-sync v3.2)<br>
+        • Refactor Lambdas Mixpanel COMPLETADO<br>
+        • Entidad Cliente: modulo voz DONE, chat en progreso<br>
+        • Workspace: views custom desplegadas, P4 desambiguacion DONE<br>
+        • Chatbot: ETA en cola funcional, botones cancelar en DEV<br>
+        • Portal Feriados: backend DONE, frontend 90%<br>
+        • Security: DSR en progreso (V2189474576)<br>
+        • Demo S5 movido al 25-Ago (UAT pendiente)<br>
+        • Facturacion Jun+Jul aprobada: MXN $2,969,480
+    </div>
+
+    <div class="note-box">
+        <b>Contexto:</b> 14 sprints de 2 semanas (WW20-WW48, 11 May - 27 Nov 2026). Estamos en Sprint 5 (WW32-33). 
+        Avance global estimado: ~45%. Fases 0 y preparacion tecnica completas. Entidad Cliente y Workspace en progreso simultaneo.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-btns">
+        <button class="filter-btn active" id="btn-all" onclick="showAll()">Todo</button>
+        <button class="filter-btn" id="btn-biz" onclick="showBiz()">Solo Negocio</button>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+        <div class="legend-item"><span class="legend-color" style="background:linear-gradient(90deg,#00C853,#69F0AE)"></span> Completado</div>
+        <div class="legend-item"><span class="legend-color" style="background:linear-gradient(90deg,#FFB300,#FFD54F)"></span> En Progreso</div>
+        <div class="legend-item"><span class="legend-color" style="background:#333"></span> Planificado</div>
+        <div class="legend-item"><span class="legend-color" style="background:linear-gradient(90deg,#B388FF,#D1C4E9)"></span> Preparacion Tecnica</div>
+        <div class="legend-item"><span class="legend-color" style="background:linear-gradient(90deg,#448AFF,#82B1FF)"></span> Workspace</div>
+        <div class="legend-item"><span class="legend-color" style="background:linear-gradient(90deg,#FF9900,#FFB74D)"></span> Routing</div>
+        <div class="legend-item"><span class="legend-color" style="background:linear-gradient(90deg,#18FFFF,#84FFFF)"></span> Chatbot / WhatsApp</div>
+        <div class="legend-item"><div class="milestone-biz-diamond" style="width:12px;height:12px;margin:0"></div> <span style="color:#f59e0b;font-weight:600">Milestone de NEGOCIO</span></div>
+    </div>
+
+    <!-- GANTT CHART -->
+    <div class="gantt-wrap">
+    <table>
+        <thead>
+        <tr style="border-bottom:none">
+            <th class="label-col" rowspan="2" style="vertical-align:bottom">Entregable</th>
+            <th colspan="4" style="border-bottom:1px solid #333;color:#666">Mayo</th>
+            <th colspan="4" style="border-bottom:1px solid #333;color:#666">Junio</th>
+            <th colspan="5" style="border-bottom:1px solid #333;color:#666">Julio</th>
+            <th colspan="4" style="border-bottom:1px solid #333;color:#666">Agosto</th>
+            <th colspan="5" style="border-bottom:1px solid #333;color:#666">Septiembre</th>
+            <th colspan="4" style="border-bottom:1px solid #333;color:#666">Octubre</th>
+            <th colspan="4" style="border-bottom:1px solid #333;color:#666">Noviembre</th>
+        </tr>
+        <tr>
+            <!-- Mayo WW20-23 -->
+            <th style="color:#22c55e">20<br><span style="font-size:.5rem">S0</span></th>
+            <th style="color:#22c55e">21<br><span style="font-size:.5rem">S1</span></th>
+            <th style="color:#22c55e">22<br><span style="font-size:.5rem">S1</span></th>
+            <th style="color:#22c55e">23<br><span style="font-size:.5rem">S1</span></th>
+            <!-- Junio WW24-27 -->
+            <th style="color:#22c55e">24<br><span style="font-size:.5rem">S2</span></th>
+            <th style="color:#22c55e">25<br><span style="font-size:.5rem">S2</span></th>
+            <th style="color:#22c55e">26<br><span style="font-size:.5rem">S3</span></th>
+            <th style="color:#22c55e">27<br><span style="font-size:.5rem">S3</span></th>
+            <!-- Julio WW28-32 -->
+            <th style="color:#22c55e">28<br><span style="font-size:.5rem">S4</span></th>
+            <th style="color:#22c55e">29<br><span style="font-size:.5rem">S4</span></th>
+            <th style="color:#22c55e">30<br><span style="font-size:.5rem">S4</span></th>
+            <th>31<br><span style="font-size:.5rem">S4</span></th>
+            <th>32<br><span style="font-size:.5rem">S5</span></th>
+            <!-- Agosto WW32-35 -->
+            <th class="today-col" style="color:#FF9900;position:relative">33<br><span style="font-size:.5rem">S5</span><div style="position:absolute;top:0;left:50%;width:2px;height:3000px;background:rgba(255,153,0,0.4);pointer-events:none;z-index:1"></div></th>
+            <th>34<br><span style="font-size:.5rem">S6</span></th>
+            <th>35<br><span style="font-size:.5rem">S6</span></th>
+            <th>36<br><span style="font-size:.5rem">S7</span></th>
+            <!-- Septiembre WW36-40 -->
+            <th>37<br><span style="font-size:.5rem">S7</span></th>
+            <th>38<br><span style="font-size:.5rem">S8</span></th>
+            <th>39<br><span style="font-size:.5rem">S8</span></th>
+            <th>40<br><span style="font-size:.5rem">S9</span></th>
+            <th>41<br><span style="font-size:.5rem">S9</span></th>
+            <!-- Octubre WW41-44 -->
+            <th>42<br><span style="font-size:.5rem">S10</span></th>
+            <th>43<br><span style="font-size:.5rem">S10</span></th>
+            <th>44<br><span style="font-size:.5rem">S11</span></th>
+            <th>45<br><span style="font-size:.5rem">S11</span></th>
+            <!-- Noviembre WW45-48 -->
+            <th>46<br><span style="font-size:.5rem">S12</span></th>
+            <th>47<br><span style="font-size:.5rem">S12</span></th>
+            <th>48<br><span style="font-size:.5rem">S13</span></th>
+            <th>49<br><span style="font-size:.5rem">S13</span></th>
+        </tr></thead>
+        <tbody>
+            <!-- ═══════ GESTION DEL PROYECTO ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #555">Gestion del Proyecto (EM + TL + PO)</td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+            </tr>
+
+            <!-- ═══════ FASE 0 — PREPARACION TECNICA ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #B388FF">Fase 0 — Preparacion Tecnica (764h)</td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#22c55e">Nivelacion entornos (connect-sync v3.2) — DONE</td>
+                <td></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#22c55e">Refactor Lambdas Mixpanel (180h) — DONE</td>
+                <td></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#22c55e">Chatbot ETA en cola + Copies — DONE</td>
+                <td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.06)"><td class="label milestone-biz">M1: Chatbot mejorado + tracking Mixpanel — datos para decisiones CX</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><div class="milestone-biz-diamond"></div></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ ENTIDAD CLIENTE ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #00C853">Entidad Cliente — Identificacion (272h)</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-inprogress"></span></td><td><span class="bar bar-inprogress"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress"></span></td><td><span class="bar bar-gray"></span></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#22c55e">API EC + Integracion flujos Connect (voz) — DONE</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#FFB300">Modulo EC en chat + pasaje a Stage — EN PROGRESO</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-inprogress" style="height:12px"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.06)"><td class="label milestone-biz">M2: Agente ve datos del cliente al contestar — cero preguntas</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td><div class="milestone-biz-diamond"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ WORKSPACE ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #448AFF">Workspace Agente (840h)</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-inprogress"></span></td><td><span class="bar bar-inprogress"></span></td><td><span class="bar bar-inprogress"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#22c55e">Views custom desplegadas (P4 desambiguacion DONE)</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td>
+                <td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#FFB300">Workspace optimization + mensaje unico — EN PROGRESO</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-inprogress" style="height:12px"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ ROUTING ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #FF9900">Routing Inteligente + Operaciones (756h)</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td><span class="bar bar-inprogress"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#FFB300">Routing por segmento (Plus/Personal/Premium/Private) — Sprint 5</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-inprogress" style="height:12px"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item">Routing directo a asesor (comercial)</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td><span class="bar bar-gray" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item">WhatsApp Outbound + Callbacks</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td><span class="bar bar-gray" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.06)"><td class="label milestone-biz">M3: Llamadas llegan al agente correcto — menos transferencias</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td><div class="milestone-biz-diamond"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ CHATBOT / WHATSAPP ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #18FFFF">Chatbot WhatsApp — Botones + Cancelacion</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-completed"></span></td><td><span class="bar bar-inprogress"></span></td><td><span class="bar bar-inprogress"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress"></span></td><td><span class="bar bar-gray"></span></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr class="row-tech"><td class="label sub-item" style="color:#FFB300">Botones cancelar espera WhatsApp — EN PROGRESO (DEV)</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-inprogress" style="height:12px"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress" style="height:12px"></span></td><td><span class="bar bar-gray" style="height:12px"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ CAMPANAS OUTBOUND ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #f59e0b">Campanas Outbound Multicanal</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td>
+                <td></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.06)"><td class="label milestone-biz">M4: Campanas automatizadas — marketing segmentado</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td><div class="milestone-biz-diamond"></div></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ CSAT / NPS ═══════ -->
+            <tr><td class="label epic" style="border-left:3px solid #a78bfa">CSAT / NPS</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td><span class="bar bar-gray"></span></td>
+                <td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td><span class="bar bar-gray"></span></td><td></td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ SECURITY ═══════ -->
+            <tr class="row-tech"><td class="label epic" style="border-left:3px solid #ef4444">Seguridad y DSR (continuo)</td>
+                <td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td>
+                <td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td>
+                <td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-completed" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-inprogress" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-inprogress" style="opacity:.5;height:10px"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress" style="opacity:.5;height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td>
+                <td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td>
+                <td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td>
+                <td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td><td><span class="bar bar-gray" style="height:10px"></span></td>
+            </tr>
+
+            <!-- ═══════ PORTAL FERIADOS (non-billable) ═══════ -->
+            <tr class="row-tech"><td class="label epic" style="border-left:3px solid #22c55e">Portal Feriados (non-billable, 78h)</td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-completed" style="height:12px"></span></td><td><span class="bar bar-inprogress" style="height:12px"></span></td>
+                <td class="today-col"><span class="bar bar-inprogress" style="height:12px"></span></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+
+            <!-- ═══════ MILESTONE FINAL ═══════ -->
+            <tr style="background:rgba(245,158,11,0.06)"><td class="label milestone-biz">M5: GO-LIVE Fase II Completa — 27 Nov 2026</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="today-col"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td><div class="milestone-biz-diamond"></div></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <!-- MILESTONES SUMMARY -->
+    <h2>Milestones de Negocio</h2>
+    <table class="dep-table">
+        <thead><tr><th>Milestone</th><th>Descripcion</th><th>Fecha Est.</th><th>Estado</th></tr></thead>
+        <tbody>
+            <tr><td style="color:#f59e0b;font-weight:600">M1</td><td>Chatbot mejorado + tracking Mixpanel</td><td>Jul 2026</td><td class="status-ok">COMPLETADO</td></tr>
+            <tr><td style="color:#f59e0b;font-weight:600">M2</td><td>Agente ve datos cliente (Entidad Cliente)</td><td>Ago 2026</td><td class="status-progress">EN PROGRESO</td></tr>
+            <tr><td style="color:#f59e0b;font-weight:600">M3</td><td>Routing inteligente (menos transferencias)</td><td>Sep 2026</td><td class="status-pending">PLANIFICADO</td></tr>
+            <tr><td style="color:#f59e0b;font-weight:600">M4</td><td>Campanas automatizadas multicanal</td><td>Oct 2026</td><td class="status-pending">PLANIFICADO</td></tr>
+            <tr><td style="color:#f59e0b;font-weight:600">M5</td><td>GO-LIVE Fase II Completa</td><td>27 Nov 2026</td><td class="status-pending">PLANIFICADO</td></tr>
+        </tbody>
+    </table>
+
+    <!-- FOOTER -->
+    <div style="padding-top:16px;text-align:center;border-top:1px solid #222;margin-top:2rem">
+        <img src="aws-logo-white.png" alt="AWS" style="height:24px;opacity:.5">
+        <div style="font-size:.7rem;color:#444;margin-top:6px">GBM Contact Center Fase II — Amazon Connect | Confidencial</div>
+    </div>
+</div>
+
+<script>
+function showAll(){
+    document.querySelector('tbody').classList.remove('hide-tech');
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('btn-all').classList.add('active');
+}
+function showBiz(){
+    document.querySelector('tbody').classList.add('hide-tech');
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('btn-biz').classList.add('active');
+}
+</script>
+</body>
+</html>
