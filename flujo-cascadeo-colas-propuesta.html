@@ -31,9 +31,40 @@ body { background:#0a0a0a; color:#e0e0e0; font-family:'Segoe UI',system-ui,sans-
 .flow-node .value { font-size:18px; color:#fff; font-weight:500; margin-top:4px; }
 .flow-arrow { color:#555; font-size:28px; }
 .flow-arrow-down { text-align:center; color:#555; font-size:28px; margin:8px 0; }
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center}
+#login-box{background:#141414;border:1px solid #222;border-radius:12px;padding:36px 32px;max-width:360px;width:90%;text-align:center}
+#login-box img{height:36px;margin-bottom:20px}
+#login-box input{width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center}
+#login-box button{width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#0a0a0a;font-weight:600;font-size:.9rem;cursor:pointer}
+#login-err{color:#ef4444;font-size:.8rem;margin-top:8px;min-height:1em}
 </style>
 </head>
 <body>
+<div id="login-overlay">
+  <div id="login-box">
+    <img src="aws-logo-white.png" alt="AWS">
+    <div style="color:#888;font-size:.85rem;margin-bottom:16px">Documento confidencial — GBM CC Fase II</div>
+    <input id="login-pass" type="password" placeholder="Clave de acceso" onkeydown="if(event.key==='Enter')checkLogin()">
+    <button onclick="checkLogin()">Ingresar</button>
+    <div id="login-err"></div>
+  </div>
+</div>
+<script>
+function setCookie(name,val,hours){var d=new Date();d.setTime(d.getTime()+(hours*60*60*1000));document.cookie=name+"="+val+";expires="+d.toUTCString()+";path=/";}
+function getCookie(name){var m=document.cookie.match('(^|;)\\s*'+name+'\\s*=\\s*([^;]+)');return m?m.pop():'';}
+function checkLogin(){
+  var p=document.getElementById('login-pass').value;
+  if(p==='gbmaws2026'){
+    setCookie('gbm-fase3-auth','true',28);
+    document.getElementById('login-overlay').style.display='none';
+  }else{
+    document.getElementById('login-err').textContent='Clave incorrecta';
+  }
+}
+if(getCookie('gbm-fase3-auth')==='true'){
+  document.addEventListener('DOMContentLoaded',function(){document.getElementById('login-overlay').style.display='none';});
+}
+</script>
 <div class="container">
 
 <!-- Banner GBM + AWS -->

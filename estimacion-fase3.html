@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBM — Estimación Fase III: Cascadeo & Campañas</title>
+<link rel="icon" type="image/png" href="gbm-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e0e0e0;font-family:'Inter',sans-serif;padding:2rem 1.5rem;font-size:15px}
+.container{max-width:1100px;margin:0 auto}
+h1{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+h2{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:600;color:#fff;margin:2rem 0 .8rem}
+.sub{font-size:.85rem;color:#888;margin-bottom:.3rem}
+.banner{position:relative;overflow:hidden;border-radius:16px;padding:2rem;margin-bottom:1.5rem;background:linear-gradient(135deg,#111 0%,#1a1a1a 40%,#1c1408 100%);border:1px solid #222}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner-logos{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-bottom:1rem}
+.banner-logos img{height:40px}
+.banner-logos .divider{width:1px;height:28px;background:#333}
+.note{background:#141414;border:1px solid #222;border-left:3px solid #FF9900;border-radius:8px;padding:14px 18px;margin:1.2rem 0;font-size:.85rem;color:#aaa;line-height:1.6}
+.note b{color:#FF9900}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:1.5rem 0}
+.card{background:#111;border:1px solid #222;border-radius:12px;padding:22px;position:relative}
+.card.temporal{border-top:3px solid #22c55e}
+.card.david{border-top:3px solid #B388FF}
+.card.campanas{border-top:3px solid #448AFF}
+.card .tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.card.temporal .tag{background:rgba(34,197,94,.15);color:#22c55e}
+.card.david .tag{background:rgba(179,136,255,.15);color:#B388FF}
+.card.campanas .tag{background:rgba(68,138,255,.15);color:#448AFF}
+.card h3{font-family:'Sora',sans-serif;font-size:1.05rem;color:#fff;margin-bottom:6px}
+.card .hours{font-family:'Sora',sans-serif;font-size:2rem;font-weight:700;margin:8px 0}
+.card.temporal .hours{color:#22c55e}
+.card.david .hours{color:#B388FF}
+.card.campanas .hours{color:#448AFF}
+.card .desc{font-size:.82rem;color:#999;line-height:1.5;margin-bottom:12px}
+.card .meta{font-size:.75rem;color:#666;border-top:1px solid #1a1a1a;padding-top:10px;margin-top:10px}
+.card .meta span{color:#FF9900}
+.arch-img{width:100%;border:1px solid #222;border-radius:10px;margin:1rem 0;display:block}
+.arch-img-crop-wrap{border:1px solid #222;border-radius:10px;margin:1rem 0;overflow:hidden}
+.arch-img-crop{width:100%;display:block;margin-bottom:-6%}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin:1rem 0}
+th{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:2px solid #333;text-align:left}
+td{padding:9px 12px;border-bottom:1px solid #1a1a1a;color:#ccc}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{border-top:2px solid #333;font-weight:600;color:#fff;background:rgba(255,153,0,.05)}
+.badge{font-size:.7rem;padding:2px 8px;border-radius:4px;font-weight:600}
+.badge-green{background:rgba(34,197,94,.15);color:#22c55e}
+.badge-purple{background:rgba(179,136,255,.15);color:#B388FF}
+.badge-blue{background:rgba(68,138,255,.15);color:#448AFF}
+.section-divider{height:1px;background:#222;margin:2rem 0}
+.footer{text-align:center;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid #222}
+.footer img{height:22px;opacity:.5}
+.footer div{font-size:.7rem;color:#444;margin-top:6px}
+@media print{
+@page{size:letter portrait;margin:5mm}
+*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+body{background:#0a0a0a !important;padding:4mm 6mm !important}
+.card,.note,table,.arch-img{border-width:2px !important;border-color:#7a7a7a !important}
+}
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#login-box{background:#141414;border:1px solid #222;border-radius:12px;padding:36px 32px;max-width:360px;width:90%;text-align:center}
+#login-box img{height:36px;margin-bottom:20px}
+#login-box input{width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center}
+#login-box button{width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#0a0a0a;font-weight:600;font-size:.9rem;cursor:pointer}
+#login-err{color:#ef4444;font-size:.8rem;margin-top:8px;min-height:1em}
+</style>
+</head>
+<body>
+<div id="login-overlay">
+  <div id="login-box">
+    <img src="aws-logo-white.png" alt="AWS">
+    <div style="color:#888;font-size:.85rem;margin-bottom:16px">Documento confidencial — GBM CC Fase II</div>
+    <input id="login-pass" type="password" placeholder="Clave de acceso" onkeydown="if(event.key==='Enter')checkLogin()">
+    <button onclick="checkLogin()">Ingresar</button>
+    <div id="login-err"></div>
+  </div>
+</div>
+<script>
+function setCookie(name,val,hours){var d=new Date();d.setTime(d.getTime()+(hours*60*60*1000));document.cookie=name+"="+val+";expires="+d.toUTCString()+";path=/";}
+function getCookie(name){var m=document.cookie.match('(^|;)\\s*'+name+'\\s*=\\s*([^;]+)');return m?m.pop():'';}
+function checkLogin(){
+  var p=document.getElementById('login-pass').value;
+  if(p==='gbmaws2026'){
+    setCookie('gbm-fase3-auth','true',28);
+    document.getElementById('login-overlay').style.display='none';
+  }else{
+    document.getElementById('login-err').textContent='Clave incorrecta';
+  }
+}
+if(getCookie('gbm-fase3-auth')==='true'){
+  document.addEventListener('DOMContentLoaded',function(){document.getElementById('login-overlay').style.display='none';});
+}
+</script>
+<div class="container">
+
+<div class="banner">
+    <div class="banner-logos">
+        <img src="gbm-logo.png" alt="GBM">
+        <span class="divider"></span>
+        <img src="aws-logo-white.png" alt="AWS">
+    </div>
+    <h1 style="text-align:center">Estimación Fase III — Cascadeo & Campañas Outbound</h1>
+    <div class="sub" style="text-align:center">GBM CC Fase II · Dimensionamiento de esfuerzo</div>
+    <div class="sub" style="text-align:center;color:#555">17 Agosto 2026</div>
+</div>
+
+<div class="note">
+    Este documento dimensiona el esfuerzo de tres componentes que GBM quiere atender, para decidir qué se ejecuta ahora de forma provisional, qué pasa a Fase III y qué requiere aprobación de GBM. Son <b>dos proyectos independientes</b>: Cascadeo (llamadas entrantes, inbound) y Campañas (llamadas salientes, outbound). No dependen entre sí; cualquiera de los dos funciona sin el otro.
+</div>
+
+<!-- RESUMEN DE ESCENARIOS -->
+<h2>Resumen — Tres Componentes</h2>
+<div class="cards">
+    <div class="card temporal">
+        <div class="tag">Provisional · Ahora</div>
+        <h3>Cascadeo Temporal</h3>
+        <div class="hours">50h</div>
+        <div class="desc">Solución austera pero funcional. Ruteo provisional con Connect API, Lambda y Data Tables dentro de Connect. Resuelve la urgencia de Daniel.</div>
+        <div class="meta">Modalidad: <span>Billable / Non-billable</span> · Incluye requerimientos, UAT, pase a Stage y a producción</div>
+    </div>
+    <div class="card david">
+        <div class="tag">Fase III</div>
+        <h3>Cascadeo Completo</h3>
+        <div class="hours">200h</div>
+        <div class="desc">Versión con portal de administración visual y completa. Consola web donde GBM gestiona agentes, DynamoDB encriptado y seguridad completa.</div>
+        <div class="meta">Modalidad: <span>Billable Fase III</span> · Partner + SA</div>
+    </div>
+    <div class="card campanas">
+        <div class="tag">Fase III</div>
+        <h3>Campañas Outbound</h3>
+        <div class="hours">600h</div>
+        <div class="desc">Proyecto mayor de Fase III. Hoy es un proceso manual pero funciona; toma alrededor de 8 horas a la semana. Automatiza el armado de campañas.</div>
+        <div class="meta">Modalidad: <span>Billable Fase III</span> · Proyecto mayor</div>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ESCENARIO 1: TEMPORAL -->
+<h2><span class="badge badge-green">1</span> Cascadeo Temporal</h2>
+<p class="sub">Flujo de enrutamiento prioritario. El Contact Flow no se modifica al dar de alta o baja agentes; la configuración vive en las Data Tables de Connect.</p>
+
+<div class="arch-img-crop-wrap"><img class="arch-img-crop" src="Cascadeo-temporal.png" alt="Arquitectura Cascadeo Temporal"></div>
+
+<table>
+    <thead><tr><th>Actividad</th><th>Responsable</th><th class="num">Horas</th></tr></thead>
+    <tbody>
+        <tr><td>Sesión de requerimientos con GBM (grupos, prioridades, cascadas)</td><td>Jair / René</td><td class="num">20</td></tr>
+        <tr><td>Planning (10%)</td><td>Jair</td><td class="num">2</td></tr>
+        <tr><td>Desarrollo (Lambda + Data Tables + Connect API)</td><td>René</td><td class="num">8</td></tr>
+        <tr><td>Testing / QA</td><td>René</td><td class="num">5</td></tr>
+        <tr><td>Pase a Dev / Stage</td><td>Jair / René</td><td class="num">5</td></tr>
+        <tr><td>Deploy y pruebas en producción</td><td>Jair / René</td><td class="num">5</td></tr>
+        <tr><td>Buffer / holgura</td><td>—</td><td class="num">5</td></tr>
+        <tr class="total"><td>Total</td><td></td><td class="num">50</td></tr>
+    </tbody>
+</table>
+<div class="note">
+    El desarrollo, testing, pases de ambiente (Stage y producción) y buffer se cubren con horas <b>billable / non-billable</b> ya disponibles (hay 80h). <b>Por definir con GBM:</b> confirmar si esto cambia el scope de la Fase II.
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ESCENARIO 2: COMPLETO -->
+<h2><span class="badge badge-purple">2</span> Cascadeo Completo</h2>
+<p class="sub">La versión de Fase III: administración visual y completa. Mismo motor de ruteo del temporal, más un portal de gestión.</p>
+
+<img class="arch-img" src="Cascadeo-Formal.png" alt="Arquitectura Cascadeo Completo">
+
+<table>
+    <thead><tr><th>Componente</th><th>Responsable</th><th class="num">Horas</th></tr></thead>
+    <tbody>
+        <tr><td>Sesión de requerimientos con GBM</td><td>Jair / René</td><td class="num">20</td></tr>
+        <tr><td>Planning</td><td>Jair</td><td class="num">20</td></tr>
+        <tr><td>Motor de ruteo (verde + morado) — ya realizado en la fase provisional</td><td>René / Partner</td><td class="num">50</td></tr>
+        <tr><td>Portal web de administración</td><td>Partner</td><td class="num">40</td></tr>
+        <tr><td>DynamoDB + esquema del Partner + capa de encriptación</td><td>Partner</td><td class="num">25</td></tr>
+        <tr><td>Permisos y hardening del portal</td><td>Partner / René</td><td class="num">15</td></tr>
+        <tr><td>Integración Lambda ↔ portal ↔ Connect</td><td>René</td><td class="num">15</td></tr>
+        <tr><td>QA</td><td>René / Partner</td><td class="num">8</td></tr>
+        <tr><td>Deploy (Dev, Stage, producción)</td><td>René / Partner</td><td class="num">7</td></tr>
+        <tr class="total"><td>Total</td><td></td><td class="num">200</td></tr>
+    </tbody>
+</table>
+<div class="note">
+    Requiere transición del SA saliente al nuevo SA asignado al proyecto. En caso de requerir apoyo adicional, se solicitaría el apoyo de Iván. El motor de ruteo es el mismo del temporal; lo que agrega valor es el portal visual para que GBM gestione sin intervención técnica.
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ESCENARIO 3: CAMPAÑAS -->
+<h2><span class="badge badge-blue">3</span> Campañas Outbound</h2>
+<p class="sub">Proyecto mayor de Fase III. Solo dos piezas técnicas son complejas; el resto se apoya en capacidades nativas de Connect.</p>
+<table>
+    <thead><tr><th>Componente</th><th>Detalle</th><th class="num">Horas</th></tr></thead>
+    <tbody>
+        <tr><td>Sesión de requerimientos con GBM</td><td>Growth, Marketing, definición de audiencias</td><td class="num">60</td></tr>
+        <tr><td>Planning</td><td>Arquitectura, backlog, definición técnica</td><td class="num">40</td></tr>
+        <tr><td>API Entidad Cliente → Custom Profiles</td><td>Lambda que trae datos y los guarda en Customer Profiles</td><td class="num">80</td></tr>
+        <tr><td>Portal carga de imágenes + plantillas</td><td>Botón cargar imagen, texto del mensaje, guardar en bucket S3, alta de templates</td><td class="num">120</td></tr>
+        <tr><td>Segmentación (filtros + banderas GBM)</td><td>Connect Segments</td><td class="num">70</td></tr>
+        <tr><td>Orquestación multicanal (WhatsApp, SMS, Voz)</td><td>Connect Outbound Campaigns por canal</td><td class="num">120</td></tr>
+        <tr><td>Journey tracking / dashboard</td><td>Funnel envió → abrió → depositó (Pinpoint + UTM)</td><td class="num">80</td></tr>
+        <tr><td>Portal autoservicio Growth/Marketing + seguridad</td><td>Área lanza campañas sin intermediario</td><td class="num">30</td></tr>
+        <tr class="total"><td>Total</td><td></td><td class="num">600</td></tr>
+    </tbody>
+</table>
+<div class="note">
+    <b>Alcance real:</b> GBM seguirá creando audiencias, calendarizando campañas y analizando resultados. Lo que se automatiza es eliminar dos dolores: (1) descargar el Excel de forma manual, y (2) cargar las imágenes una por una. El resto — segmentar, medir y decidir — sigue siendo trabajo de marketing.
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ACLARACIÓN CLAVE + PLANES -->
+<h2>Aclaración Clave de estos Tres Proyectos</h2>
+<div class="note">
+    Existe la percepción de que la Fase III sería un proyecto de tamaño similar a la Fase II (3,400h). No lo es. Estos dos componentes juntos no pasan de 800h. Son técnicamente conocidos y ya validados en laboratorio: sabemos los componentes y cómo se conectan. La complejidad percibida es menor a la real.
+</div>
+
+<h2>Los Dos Planes a Presentar</h2>
+<table>
+    <thead><tr><th>Plan</th><th>Qué es</th><th class="num">Horas</th><th>Modalidad</th></tr></thead>
+    <tbody>
+        <tr><td><span class="badge badge-green">Provisional</span></td><td>Cascadeo temporal para resolver la urgencia de Daniel</td><td class="num">50</td><td>Billable / Non-billable</td></tr>
+        <tr><td><span class="badge badge-purple">Fase III — Cascadeo</span></td><td>Portal de administración completo</td><td class="num">200</td><td>Billable Fase III</td></tr>
+        <tr><td><span class="badge badge-blue">Fase III — Campañas</span></td><td>Automatización outbound</td><td class="num">600</td><td>Billable Fase III</td></tr>
+        <tr class="total"><td>Total Fase III</td><td>Cascadeo + Campañas</td><td class="num">800</td><td></td></tr>
+    </tbody>
+</table>
+
+<div class="footer">
+    <img src="aws-logo-white.png" alt="AWS">
+    <div>GBM CC Fase II · Estimación Fase III · Documento interno AWS · Confidencial</div>
+</div>
+
+</div>
+</body>
+</html>
