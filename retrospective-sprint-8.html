@@ -3,155 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GBM CC Fase II — Retrospectiva Sprint 8</title>
+<title>Sprint 8 Demo + Retrospectiva — GBM CC Fase II</title>
+<meta name="description" content="Sprint 8 Demo + Retrospectiva del proyecto GBM Contact Center Fase II sobre Amazon Connect: entregables demostrados, decisiones, dependencias y riesgos (RAID), timeline de releases y plan completo del proyecto. Métricas Jira en vivo.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{ --bg:#0a0a0a; --card:#16161e; --head:#181818; --orange:#FF9900; --white:#fff; --cc:#ccc; --g88:#888; --g55:#555;
-    --green:#22C55E; --blue:#448AFF; --purple:#B388FF; --red:#EF4444; --yellow:#FFB020; }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--white);font-family:'Inter','Segoe UI',Arial,sans-serif;line-height:1.55;padding:0 0 60px;}
-  .bar{height:5px;background:var(--orange);}
-  .wrap{max-width:960px;margin:0 auto;padding:0 26px;}
-  header{padding:30px 0 18px;border-bottom:1px solid #222;}
-  .logos{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
-  .logos img{height:30px;}
-  .logos .sep{width:1px;height:26px;background:#444;}
-  h1{font-size:30px;font-weight:800;letter-spacing:-.5px;}
-  .sub{color:var(--orange);font-size:15px;font-weight:600;margin-top:6px;}
-  .meta{color:var(--g88);font-size:12.5px;margin-top:10px;}
-  .kpis{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 8px;}
-  .kpi{flex:1;min-width:150px;background:var(--card);border:1px solid #23232e;border-radius:10px;padding:16px 18px;}
-  .kpi .l{color:var(--g88);font-size:11px;text-transform:uppercase;letter-spacing:1px;}
-  .kpi .v{font-size:26px;font-weight:800;margin-top:6px;}
-  .kpi .v.green{color:var(--green);} .kpi .v.blue{color:var(--blue);} .kpi .v.orange{color:var(--orange);}
-  h2{font-size:19px;font-weight:700;margin:34px 0 4px;display:flex;align-items:center;gap:10px;}
-  h2 .num{background:var(--orange);color:#111;font-size:13px;font-weight:800;border-radius:6px;padding:2px 9px;}
-  .list{margin-top:12px;}
-  .row{background:var(--card);border-left:4px solid var(--g55);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:8px;font-size:14px;color:#e7e7ea;}
-  .row.g{border-left-color:var(--green);} .row.b{border-left-color:var(--blue);}
-  .row.y{border-left-color:var(--yellow);} .row.r{border-left-color:var(--red);} .row.p{border-left-color:var(--purple);}
-  .row b{color:#fff;}
-  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px;}
-  th{background:var(--head);color:var(--g88);text-align:left;padding:10px 12px;font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.5px;}
-  td{padding:10px 12px;border-top:1px solid #23232e;color:#e7e7ea;vertical-align:top;}
-  .tag{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:2px 8px;}
-  .tag.done{background:rgba(34,197,94,.15);color:var(--green);}
-  .tag.prog{background:rgba(68,138,255,.15);color:var(--blue);}
-  .tag.todo{background:rgba(255,176,32,.15);color:var(--yellow);}
-  .note{background:rgba(179,136,255,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:13px;color:#cfc6e6;}
-  footer{margin-top:44px;padding-top:20px;border-top:1px solid #222;text-align:center;}
-  footer img{height:24px;} footer .f{color:var(--g55);font-size:11.5px;margin-top:10px;}
-  #login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#0a0a0a,#16213e);display:flex;align-items:center;justify-content:center;z-index:99999;}
-  .login-box{background:#16161e;border:1px solid #23232e;border-radius:14px;padding:36px 34px;text-align:center;max-width:340px;width:90%;}
-  .login-box h2{font-size:20px;color:#fff;margin-bottom:6px;}
-  .login-box p{color:var(--g88);font-size:13px;margin-bottom:20px;}
-  .login-box input{width:100%;padding:11px 14px;border-radius:8px;border:1px solid #333;background:#0f0f0f;color:#fff;font-size:14px;margin-bottom:12px;}
-  .login-box button{width:100%;padding:11px;border:none;border-radius:8px;background:var(--orange);color:#111;font-size:14px;font-weight:700;cursor:pointer;}
-  .login-box .err{color:var(--red);font-size:12.5px;margin-top:10px;min-height:16px;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+.banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner img{height:30px}
+.banner-divider{width:1px;height:30px;background:#333}
+.banner-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+.banner-subtitle{font-size:.85rem;color:#FF9900}
+.banner-date{margin-left:auto;font-size:.85rem;color:#999;white-space:nowrap;text-align:right}
+.goal-card{background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(34,197,94,.02));border:1px solid rgba(34,197,94,.2);border-left:4px solid #22c55e;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.goal-card h3{font-family:'Sora',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#22c55e;margin-bottom:6px}
+.goal-card p{color:#ddd;font-size:.95rem}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+.kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:18px 0 16px;border-bottom:1px solid #222}
+.section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+.phase-title{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:700;color:#FF9900;margin:32px 0 4px;padding-top:14px;border-top:2px solid #FF9900}
+.phase-sub{font-size:.85rem;color:#888;margin-bottom:8px}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:.84rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.05em;background:#181818;border-bottom:1px solid #2a2a2a}
+td{padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a1a1a}
+td b{color:#fff}
+.badge{font-family:'Sora',sans-serif;font-size:.58rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap}
+.b-go{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-hold{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+.b-prog{color:#448AFF;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25)}
+.b-done{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-carry{color:#B388FF;background:rgba(179,136,255,.12);border:1px solid rgba(179,136,255,.25)}
+.b-todo{color:#888;background:rgba(136,136,136,.12);border:1px solid rgba(136,136,136,.28)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.retro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.retro-col{background:#141414;border:1px solid #222;border-radius:12px;padding:18px 20px}
+.retro-col h3{font-family:'Sora',sans-serif;font-size:.85rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.retro-col.good h3{color:#22c55e}.retro-col.improve h3{color:#FF9900}.retro-col.action h3{color:#B388FF}
+.retro-col .dot{width:10px;height:10px;border-radius:50%}
+.retro-col.good .dot{background:#22c55e}.retro-col.improve .dot{background:#FF9900}.retro-col.action .dot{background:#B388FF}
+.retro-col ul{list-style:none}
+.retro-col li{font-size:.82rem;color:#ccc;padding:10px 12px;margin-bottom:8px;background:#0f0f0f;border:1px solid #1f1f1f;border-radius:8px;line-height:1.4}
+.retro-col li b{color:#fff}
+.wcard{background:#141414;border:1px solid #222;border-radius:12px;padding:18px 22px}
+.wcard.good{border-left:4px solid #22c55e}
+.wcard.improve{border-left:4px solid #FF9900}
+.wcard h3{font-family:'Sora',sans-serif;font-size:.85rem;margin-bottom:10px}
+.wcard.good h3{color:#22c55e}.wcard.improve h3{color:#FF9900}
+.wcard ul{padding-left:18px;font-size:.84rem;color:#ccc}
+.wcard li{margin-bottom:6px}
+.dep-note{background:linear-gradient(135deg,rgba(255,153,0,.07),rgba(255,153,0,.02));border:1px solid rgba(255,153,0,.28);border-left:4px solid #FF9900;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.dep-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#FF9900;margin-bottom:8px}
+.dep-note p{font-size:.86rem;color:#ddd}
+.carry-note{background:linear-gradient(135deg,rgba(179,136,255,.07),rgba(179,136,255,.02));border:1px solid rgba(179,136,255,.28);border-left:4px solid #B388FF;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.carry-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#B388FF;margin-bottom:8px}
+.carry-note p{font-size:.86rem;color:#ddd}
+.footer{text-align:center;padding:30px 0 10px;color:#666;font-size:.78rem;border-top:1px solid #1a1a1a;margin-top:20px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}.two,.retro-grid{grid-template-columns:1fr}}
+@page{size:letter portrait;margin:0}
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
+  html,body{background:#0a0a0a !important}
+  body{padding:0 !important;margin:0 !important}
+  .container{zoom:var(--pdf-scale,0.40);padding:6mm 8mm !important;max-width:none !important}
+  .banner,.goal-card,.dep-note,.carry-note,.card,table,.wcard,.retro-col{border:2px solid #7a7a7a !important}
+  .kpi{border:2px solid #7a7a7a !important}
+  th,td{border-color:#6a6a6a !important}
+  .banner{padding:12px 20px !important;margin-bottom:12px !important}
+  .goal-card,.carry-note,.dep-note{padding:10px 16px !important;margin-bottom:12px !important}
+  .kpis{margin-bottom:14px !important}
+  .card{padding:12px 16px !important;margin-bottom:12px !important}
+  table{margin-bottom:12px !important}
+  .section-title{margin:10px 0 8px !important;padding:6px 0 !important}
+  .phase-title{margin:14px 0 2px !important}
+  .two,.retro-grid{margin-bottom:12px !important}
+  th{padding:6px 10px !important}
+  td{padding:6px 10px !important}
+  .two,.kpis,.retro-grid{page-break-inside:avoid}
+  #login-overlay{display:none !important}
+}
 </style>
 </head>
 <body>
-
 <div id="login-overlay">
-  <div class="login-box">
-    <h2>Retrospectiva — Sprint 8</h2>
-    <p>GBM CC Fase II · Acceso restringido</p>
-    <input type="password" id="pw" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPw()">
-    <button onclick="checkPw()">Entrar</button>
-    <div class="err" id="err"></div>
-  </div>
+    <div class="login-box">
+        <div style="margin-bottom:20px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h2 style="color:#fff;font-size:1.2rem;margin-bottom:8px">Sprint 8 Demo + Retrospectiva</h2>
+        <p style="color:#888;font-size:.85rem;margin-bottom:20px">GBM &mdash; CC Fase II</p>
+        <input id="login-pass" type="password" placeholder="Clave de acceso" style="width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center" onkeydown="if(event.key==='Enter')checkLogin()">
+        <button onclick="checkLogin()" style="width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#000;font-weight:600;font-size:.9rem;cursor:pointer">Entrar</button>
+        <p id="login-error" style="color:#ef4444;font-size:.8rem;margin-top:12px;display:none">Clave incorrecta</p>
+    </div>
 </div>
-
-<div id="content" style="display:none">
-<div class="bar"></div>
-<div class="wrap">
-
-<header>
-  <div class="logos">
-    <img src="gbm-logo.png" alt="GBM">
-    <span class="sep"></span>
-    <img src="aws-logo-white.png" alt="AWS">
-  </div>
-  <h1>Retrospectiva — Sprint 8</h1>
-  <div class="sub">GBM — CC Fase II — Amazon Connect</div>
-  <div class="meta">28 de septiembre de 2026 &nbsp;·&nbsp; Sprint Demo + Retrospective &nbsp;·&nbsp; Engagement Manager: Jair García &nbsp;·&nbsp; Jira board 4440 (Sprint 20830)</div>
-</header>
-
-<div class="kpis">
-  <div class="kpi"><div class="l">Items totales</div><div class="v">114</div></div>
-  <div class="kpi"><div class="l">Done</div><div class="v green">63 · 55%</div></div>
-  <div class="kpi"><div class="l">In Progress</div><div class="v blue">29</div></div>
-  <div class="kpi"><div class="l">To Do</div><div class="v orange">22</div></div>
-</div>
-<div class="note">Datos de avance tomados en vivo de Jira (board 4440, Sprint 20830) al 28-Sep-2026. Desglose por tipo: 15 Historias, 3 Tasks, 96 sub-tareas.</div>
-
-<h2><span class="num">01</span> Qué salió bien</h2>
-<div class="list">
-  <div class="row g">Se completó y validó con GBM la <b>demo de 3 entregables</b>: vista de After Call Work (ACW), registro de interacciones en Salesforce y el diseño de la configuración sin código para callback.</div>
-  <div class="row g">La <b>integración con Salesforce</b> quedó funcionando en los 3 escenarios de identificación (Entidad Cliente, prospecto en Salesforce y no identificado), demostrada en vivo.</div>
-  <div class="row g">Se <b>desbloquearon los accesos de Juan Cruz Peluffo</b> a DEV/STG, que habían frenado sus tareas durante varios días del sprint.</div>
-  <div class="row g">Se <b>resolvió la definición de AC-1077</b> (customer segment del prospecto → "No aplica") con Brenda Gil y Eduardo Godínez, destrabando la tarea para el Sprint 9.</div>
-</div>
-
-<h2><span class="num">02</span> Qué mejorar</h2>
-<div class="list">
-  <div class="row r"><b>Dependencias de definición de GBM:</b> varias historias en UAT quedaron bloqueadas esperando información de GBM (validación de pruebas desde el 8-sep, templates de WhatsApp, speech de callback). El ida y vuelta ralentizó el cierre.</div>
-  <div class="row y"><b>Definiciones cambiantes:</b> AC-1077 se inició con una definición y luego se cambió, generando retrabajo. Confirmar la definición antes de empezar a desarrollar.</div>
-  <div class="row y"><b>Doble registro por timeout:</b> consultas a Salesforce &gt; ~5 s generaban timeout y el fallback creaba la Task dos veces. Ya se ajustó; mantener bajo observación.</div>
-  <div class="row y"><b>Accesos y VPN del partner:</b> los bloqueos de acceso (DEV/STG) y de desconexión de VPN para recursos externos consumieron tiempo del sprint; conviene un proceso más ágil.</div>
-</div>
-
-<h2><span class="num">03</span> Acciones acordadas</h2>
-<table>
-  <tr><th style="width:52%">Acción</th><th style="width:28%">Responsable</th><th style="width:20%">Fecha</th></tr>
-  <tr><td>Cerrar Sprint 8 y abrir Sprint 9; documentar acuerdos</td><td>Jair García</td><td>29-Sep</td></tr>
-  <tr><td>Integrar feedback de ACW al resto de flujos + actualización de la Task al cierre de la interacción + exponer el Task ID en el workspace</td><td>Equipo Nubity</td><td>Sprint 9</td></tr>
-  <tr><td>Hacer visible el campo "type" (canal) en las Tasks para reportería</td><td>Eduardo Godínez</td><td>Sprint 9</td></tr>
-  <tr><td>Resolver comportamiento de callback por WhatsApp y cerrar templates y speech</td><td>Abigail López Berry</td><td>29-Sep / 2-Oct</td></tr>
-  <tr><td>Entregar feedback completo de las pruebas UAT en STG</td><td>GBM (Abigail / Brenda)</td><td>Esta semana</td></tr>
-</table>
-
-<h2><span class="num">04</span> Estado de historias del Sprint 8</h2>
-<table>
-  <tr><th style="width:16%">Ticket</th><th>Historia</th><th style="width:14%">Estado</th></tr>
-  <tr><td><b>AC-997</b></td><td>Enrutamiento e identificación del asesor (RF-5.6)</td><td><span class="tag done">Done</span></td></tr>
-  <tr><td><b>AC-461</b></td><td>HU-09 / RF-10: Registro de Interacciones en Salesforce</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-504</b></td><td>After Call Work — motivo de llamada</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-682</b></td><td>HU-07: Configuración sin código de callback (supervisores)</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-464</b></td><td>Flujo de desambiguación — múltiples resultados en Entidad Cliente</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-452 / AC-463</b></td><td>Identificación por teléfono / normalización de teléfonos</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-453</b></td><td>Identificación de prospectos</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-460</b></td><td>HU-11 / RF-09: Búsqueda manual</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-454</b></td><td>HU-02 / RF-05: Enrutamiento por segmento</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-664 / 667 / 668 / 669</b></td><td>WhatsApp cancelar espera · Mixpanel · chatbot · feedback IA</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-670 / AC-671</b></td><td>Gestión de llamadas perdidas / Flujo AFA agentes externos</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-793</b></td><td>Revisión de seguridad del repositorio</td><td><span class="tag prog">In Progress</span></td></tr>
-  <tr><td><b>AC-1077</b></td><td>UAT — Ajuste identificación de cliente en chat</td><td><span class="tag prog">In Progress</span></td></tr>
-</table>
-<div class="note">Las historias In Progress se re-priorizan y arrastran al Sprint 9. El cierre formal del sprint (mover a Done lo entregado y arrastrar el resto) se ejecuta en la sesión del martes.</div>
-
-<footer>
-  <img src="aws-logo-white.png" alt="AWS">
-  <div class="f">GBM — CC Fase II · Retrospectiva Sprint 8 · 28-Sep-2026 · AWS Professional Services</div>
-</footer>
-
-</div>
-</div>
-
 <script>
-function checkPw(){
-  var v=document.getElementById('pw').value.trim();
-  if(v==='gbm2026'||v==='sprint8'){
-    document.getElementById('login-overlay').style.display='none';
-    document.getElementById('content').style.display='block';
-    try{sessionStorage.setItem('gbm_auth','1')}catch(e){}
-  } else {
-    document.getElementById('err').textContent='Contraseña incorrecta';
-  }
+function checkLogin(){
+    const p=document.getElementById('login-pass').value;
+    if(p==='gbm2026'||p==='sprint8'){
+        document.getElementById('login-overlay').style.display='none';
+        sessionStorage.setItem('sprint8-auth','true');
+    }else{document.getElementById('login-error').style.display='block';}
 }
-try{if(sessionStorage.getItem('gbm_auth')==='1'){
-  document.getElementById('login-overlay').style.display='none';
-  document.getElementById('content').style.display='block';
-}}catch(e){}
+if(sessionStorage.getItem('sprint8-auth')==='true'){
+    document.addEventListener('DOMContentLoaded',()=>{document.getElementById('login-overlay').style.display='none';});
+}
 </script>
+<div class="container">
+    <div class="banner">
+        <img src="gbm-logo.png" alt="GBM">
+        <div class="banner-divider"></div>
+        <img src="aws-logo-white.png" alt="AWS">
+        <div>
+            <div class="banner-title">Sprint 8 &mdash; Demo &amp; Retrospectiva</div>
+            <div class="banner-subtitle">GBM Contact Center Fase II &mdash; Amazon Connect</div>
+        </div>
+        <div class="banner-date">28 Sep 2026<br>Cierre Sprint 8</div>
+    </div>
+
+    <div class="goal-card">
+        <h3>Objetivo del Sprint 8</h3>
+        <p>CSAT + After Call Work (ACW) + Workspace / integraci&oacute;n con Salesforce. Demostrar los avances de ACW, registro de interacciones en Salesforce y el dise&ntilde;o de configuraci&oacute;n sin c&oacute;digo del callback; recopilar feedback de GBM y cerrar el sprint para abrir el Sprint 9.</p>
+    </div>
+
+    <div class="kpis">
+        <div class="kpi"><div class="val">114</div><div class="lbl">Items totales</div></div>
+        <div class="kpi green"><div class="val">63</div><div class="lbl">Done · 55%</div></div>
+        <div class="kpi"><div class="val">29</div><div class="lbl">In Progress</div></div>
+        <div class="kpi orange"><div class="val">22</div><div class="lbl">To Do</div></div>
+        <div class="kpi purple"><div class="val">15</div><div class="lbl">Historias</div></div>
+    </div>
+
+    <div class="phase-title">Parte A &mdash; Sprint 8 Demo</div>
+    <div class="phase-sub">"CSAT + ACW + Workspace / Salesforce" &middot; 28 Sep &middot; 13 asistentes (AWS · Nubity · GBM)</div>
+
+    <div class="section-title"><span class="num">01</span> Funcionalidades demostradas</div>
+    <table>
+        <tr><th style="width:22%">Entregable</th><th>Detalle</th><th style="width:14%">Estado</th></tr>
+        <tr><td><b>After Call Work (ACW)</b><br>Sabrina Tejada</td><td>Vista nativa al finalizar la interacci&oacute;n (voz o chat) con motivo/tipificaci&oacute;n en desplegable filtrable (integrado con Salesforce) y notas. Muestra con qui&eacute;n fue la interacci&oacute;n, contrato, nivel de servicio, origen del dato y duraci&oacute;n.</td><td><span class="badge b-done">Validado</span></td></tr>
+        <tr><td><b>Registro en Salesforce</b><br>Jos&eacute; Luis Reyes</td><td>Al iniciar la interacci&oacute;n se crea una actividad tipo <b>Task</b> (ClientEntityId / WhoId / no identificado). Demostrados los 3 escenarios en vivo. Registro as&iacute;ncrono para no afectar los tiempos del workspace.</td><td><span class="badge b-done">Validado</span></td></tr>
+        <tr><td><b>Config. sin c&oacute;digo callback</b><br>(dise&ntilde;o / entregable)</td><td>Wireframe con vista de supervisor: colas configurables por modelo de servicio, umbral de tiempo, y log de auditor&iacute;a (CloudWatch). Pantalla principal de acceso que a futuro albergue el cascadeo. App embebida en el Agent Workspace, solo perfil supervisor.</td><td><span class="badge b-prog">Dise&ntilde;o</span></td></tr>
+    </table>
+
+    <div class="section-title"><span class="num">02</span> Decisiones &amp; hallazgos t&eacute;cnicos</div>
+    <div class="card" style="font-size:.86rem;color:#ccc">
+        <b style="color:#fff">Task ID de Salesforce:</b> la creaci&oacute;n ser&aacute; as&iacute;ncrona pero debe devolver el Task ID. Eduardo God&iacute;nez confirm&oacute; que la Task no tiene folio; el ID retornado en la inserci&oacute;n permite armar el enlace directo al registro desde el workspace. A revisar por Nubity c&oacute;mo exponerlo.<br><br>
+        <b style="color:#fff">Campo "type" (canal):</b> Eduardo God&iacute;nez har&aacute; visible el campo type para reporter&iacute;a (chat entrante, llamada entrante/saliente), independiente del asunto que el usuario pueda cambiar.<br><br>
+        <b style="color:#fff">Latencia de identificaci&oacute;n:</b> en DEV la consulta es r&aacute;pida (candidatos &lt; 1 M &asymp; 1&ndash;3 s); en producci&oacute;n con ~3 M de clientes puede llegar a 20&ndash;30 s, motivo por el que existe la API Entidad Cliente. Considerar la diferencia en las pruebas.<br><br>
+        <b style="color:#fff">Doble registro por timeout:</b> consultas a Salesforce &gt; ~5 s daban timeout y el fallback creaba la Task dos veces; ya se ajust&oacute;. Mantener bajo observaci&oacute;n.
+    </div>
+
+    <div class="phase-title">Parte B &mdash; Retrospectiva</div>
+    <div class="phase-sub">Qu&eacute; salió bien &middot; Qu&eacute; mejorar &middot; Acciones</div>
+
+    <div class="section-title"><span class="num">03</span> Retrospectiva</div>
+    <div class="retro-grid">
+        <div class="retro-col good">
+            <h3><span class="dot"></span>Qu&eacute; salió bien</h3>
+            <ul>
+                <li>Demo de <b>3 entregables</b> validada con GBM (ACW, registro Salesforce, dise&ntilde;o callback).</li>
+                <li>Integraci&oacute;n con <b>Salesforce</b> funcionando en los 3 escenarios de identificaci&oacute;n.</li>
+                <li>Se <b>desbloquearon los accesos de Juan Cruz</b> a DEV/STG.</li>
+                <li><b>AC-1077 resuelta en definici&oacute;n</b> (prospecto &rarr; "No aplica") con Brenda Gil y Eduardo God&iacute;nez.</li>
+            </ul>
+        </div>
+        <div class="retro-col improve">
+            <h3><span class="dot"></span>Qu&eacute; mejorar</h3>
+            <ul>
+                <li><b>Dependencias de GBM:</b> validaci&oacute;n UAT pendiente desde el 8-sep frenó el cierre.</li>
+                <li><b>Definiciones cambiantes</b> (AC-1077 cambi&oacute; tras 1 d&iacute;a de trabajo &rarr; retrabajo).</li>
+                <li><b>Doble registro por timeout</b> en Salesforce (ya ajustado; vigilar).</li>
+                <li><b>Accesos y VPN del partner</b> consumieron tiempo del sprint.</li>
+            </ul>
+        </div>
+        <div class="retro-col action">
+            <h3><span class="dot"></span>Acciones</h3>
+            <ul>
+                <li><b>Jair García:</b> cerrar S8, abrir S9 y documentar acuerdos.</li>
+                <li><b>Nubity:</b> integrar ACW al resto de flujos + actualizaci&oacute;n de la Task al cierre + exponer Task ID.</li>
+                <li><b>Eduardo God&iacute;nez:</b> hacer visible el campo "type" en las Tasks.</li>
+                <li><b>Abigail L&oacute;pez Berry:</b> resolver callback WhatsApp, templates y speech.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="carry-note">
+        <h3>Arrastre al Sprint 9</h3>
+        <p>Las historias In Progress se re-priorizan y arrastran al Sprint 9: <b>AC-461</b> (registro Salesforce), <b>AC-504</b> (ACW motivo de llamada), <b>AC-682</b> (config sin c&oacute;digo callback), <b>AC-464</b> (desambiguaci&oacute;n EC), <b>AC-452 / AC-463</b> (identificaci&oacute;n por tel&eacute;fono / normalizaci&oacute;n), <b>AC-453</b> (identificaci&oacute;n de prospectos), <b>AC-460</b> (b&uacute;squeda manual), <b>AC-454</b> (enrutamiento por segmento), <b>AC-664 / 667 / 668 / 669</b> (WhatsApp, Mixpanel, chatbot, feedback IA), <b>AC-670 / AC-671</b> (llamadas perdidas / AFA), <b>AC-793</b> (revisi&oacute;n de seguridad del repo) y <b>AC-1077</b> (ajuste identificaci&oacute;n de cliente en chat). <b>AC-997</b> qued&oacute; Done. Cerrar arrastre antes de comprometer alcance nuevo.</p>
+    </div>
+
+    <div class="section-title"><span class="num">04</span> Dependencias y Riesgos (RAID)</div>
+    <div class="dep-note">
+        <h3>Dependencias del equipo GBM</h3>
+        <p>1. <b style="color:#ef4444">Feedback de pruebas UAT en STG</b> &mdash; Abigail L&oacute;pez Berry / Brenda Gil; pendiente desde el 8-sep, bloquea el pase a producci&oacute;n.<br>
+        2. <b>Comportamiento de callback por WhatsApp</b> &mdash; Abigail L&oacute;pez Berry; falta definir si el mensaje outbound ya ofrece el callback.<br>
+        3. <b>Listado de templates de WhatsApp outbound</b> &mdash; Abigail L&oacute;pez Berry (deadline 2-oct).<br>
+        4. <b>Speech del callback (AC-681)</b> &mdash; Abigail L&oacute;pez Berry con visto bueno de Carlos Alberto V&aacute;zquez Ter&aacute;n (deadline 29-sep).<br>
+        5. <b>Campo objeto / mapeo Salesforce</b> &mdash; Eduardo God&iacute;nez (campo "type", visibilidad para reporter&iacute;a).</p>
+    </div>
+    <div class="two">
+        <div class="wcard improve">
+            <h3>&#9888; Riesgos / Issues</h3>
+            <ul>
+                <li><b style="color:#ef4444">Dependencias de definici&oacute;n de GBM</b> concentradas en pocas personas; frenan cierre de historias.</li>
+                <li>Definiciones que cambian a mitad de desarrollo generan retrabajo (ej. AC-1077).</li>
+                <li>Latencia de Salesforce en PROD (~20&ndash;30 s con 3 M clientes) vs DEV; validar con datos reales.</li>
+                <li>Doble registro por timeout (mitigado; monitorear).</li>
+                <li>Entrega final (cronograma v7): <b>31-Oct-2026</b> &mdash; presi&oacute;n de cierre en octubre.</li>
+            </ul>
+        </div>
+        <div class="wcard good">
+            <h3>Equipo &amp; Capacity</h3>
+            <ul>
+                <li>Nubity: Silvana Garc&iacute;a (TL), Sabrina Tejada (PO), Juan Cruz Peluffo, Jos&eacute; Luis Reyes.</li>
+                <li>AWS: Jair García (EM), Ren&eacute; Ramos (TL), Carlos Vega.</li>
+                <li>GBM/CX: Brenda Gil, Abigail L&oacute;pez Berry; Salesforce: Eduardo God&iacute;nez.</li>
+                <li>Prioridad: cerrar arrastre S8 &rarr; ACW + registro Salesforce &rarr; callback en S9.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title"><span class="num">05</span> Timeline de Releases &mdash; Cronograma Ajustado v7</div>
+    <table>
+        <tr><th style="width:16%">Release</th><th style="width:20%">Fechas</th><th>Alcance</th></tr>
+        <tr><td><b>R0.1 Refactor</b></td><td>s5 &middot; 23&ndash;27 Jun</td><td>Nivelaci&oacute;n + CR API Queen</td></tr>
+        <tr><td><b>R1 Etapa 1</b></td><td>s10 &middot; 28 Jul &ndash; 1 Ago</td><td>Refactor Lambda + Chatbot base</td></tr>
+        <tr><td><b>R1 Etapa 2</b></td><td>s13 &middot; 18&ndash;22 Ago</td><td>Mixpanel completo + UX chatbot</td></tr>
+        <tr><td><b>R2 Etapa 1</b></td><td>s17 &middot; 15&ndash;19 Sep</td><td>Entidad Cliente + Workspace MVP</td></tr>
+        <tr><td><b>R2 Etapa 2</b></td><td>s22 &middot; 20&ndash;24 Oct</td><td>Routing completo (todos los flujos)</td></tr>
+        <tr><td><b>R3 Etapa 2</b></td><td>s23 &middot; 27&ndash;31 Oct</td><td>Salesforce integraci&oacute;n completa</td></tr>
+        <tr><td><b>R4 Etapa 2</b></td><td>s22 &middot; 20&ndash;24 Oct</td><td>Ajustes operativos + Config sin c&oacute;digo</td></tr>
+        <tr><td><b style="color:#22c55e">R5 Etapa 2</b></td><td style="color:#22c55e">s23 &middot; 27&ndash;31 Oct</td><td><b style="color:#22c55e">Cierre final + entrega</b></td></tr>
+    </table>
+    <div class="goal-card">
+        <h3 style="color:#22c55e">Entrega del Proyecto</h3>
+        <p><b>31 de octubre 2026</b> (s23, Release 5 Etapa 2 &mdash; cierre final + entrega). 23 semanas activas, budget 3,454h. Vacaciones 5&ndash;9 Oct (s20). Fuente: GBM Fase 2 &mdash; Cronograma Ajustado v7, Nubity by Evertec (11-Sep-2026).</p>
+    </div>
+
+    <div class="section-title"><span class="num">06</span> Plan Completo del Proyecto</div>
+    <table>
+        <tr><th>Sprint</th><th>Fechas</th><th>Foco</th><th style="width:12%">Estado</th></tr>
+        <tr><td><b>S0</b></td><td>14 May</td><td>Discovery &amp; Governance</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S1</b></td><td>28 May – 19 Jun</td><td>Accesos + Nivelaci&oacute;n</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S2</b></td><td>22 Jun – 3 Jul</td><td>Refactor + connect-sync</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S3</b></td><td>8 – 22 Jul</td><td>Entity + API Queen PRD</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S4</b></td><td>22 Jul – 5 Ago</td><td>Workspace + WhatsApp</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S5</b></td><td>7 – 18 Ago</td><td>Routing + Identificaci&oacute;n</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S6</b></td><td>25 Ago – 2 Sep</td><td>WhatsApp + Mixpanel</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S7</b></td><td>1 – 13 Sep</td><td>Campaigns + Modelo Comercial</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S8</b></td><td>14 – 30 Sep</td><td>CSAT + ACW + Workspace / Salesforce</td><td><span class="badge b-go">Cierre</span></td></tr>
+        <tr><td><b>S9</b></td><td>29 Sep – 11 Oct</td><td>App Outbound + Callback + Routing II</td><td><span class="badge b-prog">Activo</span></td></tr>
+        <tr><td><b>S10</b></td><td>13 – 24 Oct</td><td>Workspace II + Salesforce (actualizaci&oacute;n)</td><td><span class="badge b-todo">Futuro</span></td></tr>
+        <tr><td><b>S11</b></td><td>20 – 24 Oct</td><td>Integration + Routing completo (R2/R4-E2)</td><td><span class="badge b-todo">Futuro</span></td></tr>
+        <tr><td><b>S12</b></td><td>27 – 31 Oct</td><td>Salesforce integraci&oacute;n + <b style="color:#22c55e">Cierre final + entrega</b> (R5-E2)</td><td><span class="badge b-go">Entrega</span></td></tr>
+    </table>
+    <div style="font-size:.78rem;color:#888;margin:-12px 0 24px 2px">Alineado al <b>Cronograma Ajustado v7</b> (Nubity, 11-Sep): 23 semanas activas, entrega <b>31-Oct-2026</b> (s23). Nota: la numeraci&oacute;n de sprints S9&ndash;S12 puede diferir de los nombres en Jira; las fechas siguen el cronograma del partner.</div>
+
+    <div class="footer">
+        GBM CC Fase II &mdash; Sprint 8 Demo + Retrospectiva &middot; Datos en vivo de Jira Board 4440 (Sprint 20830) &middot; 28 Sep 2026 &middot; AWS Professional Services
+    </div>
+</div>
 </body>
 </html>
