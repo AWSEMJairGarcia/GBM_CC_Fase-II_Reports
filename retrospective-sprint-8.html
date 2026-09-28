@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBM CC Fase II — Retrospectiva Sprint 8</title>
+<style>
+  :root{ --bg:#0a0a0a; --card:#16161e; --head:#181818; --orange:#FF9900; --white:#fff; --cc:#ccc; --g88:#888; --g55:#555;
+    --green:#22C55E; --blue:#448AFF; --purple:#B388FF; --red:#EF4444; --yellow:#FFB020; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--white);font-family:'Inter','Segoe UI',Arial,sans-serif;line-height:1.55;padding:0 0 60px;}
+  .bar{height:5px;background:var(--orange);}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px;}
+  header{padding:30px 0 18px;border-bottom:1px solid #222;}
+  .logos{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+  .logos img{height:30px;}
+  .logos .sep{width:1px;height:26px;background:#444;}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.5px;}
+  .sub{color:var(--orange);font-size:15px;font-weight:600;margin-top:6px;}
+  .meta{color:var(--g88);font-size:12.5px;margin-top:10px;}
+  .kpis{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 8px;}
+  .kpi{flex:1;min-width:150px;background:var(--card);border:1px solid #23232e;border-radius:10px;padding:16px 18px;}
+  .kpi .l{color:var(--g88);font-size:11px;text-transform:uppercase;letter-spacing:1px;}
+  .kpi .v{font-size:26px;font-weight:800;margin-top:6px;}
+  .kpi .v.green{color:var(--green);} .kpi .v.blue{color:var(--blue);} .kpi .v.orange{color:var(--orange);}
+  h2{font-size:19px;font-weight:700;margin:34px 0 4px;display:flex;align-items:center;gap:10px;}
+  h2 .num{background:var(--orange);color:#111;font-size:13px;font-weight:800;border-radius:6px;padding:2px 9px;}
+  .list{margin-top:12px;}
+  .row{background:var(--card);border-left:4px solid var(--g55);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:8px;font-size:14px;color:#e7e7ea;}
+  .row.g{border-left-color:var(--green);} .row.b{border-left-color:var(--blue);}
+  .row.y{border-left-color:var(--yellow);} .row.r{border-left-color:var(--red);} .row.p{border-left-color:var(--purple);}
+  .row b{color:#fff;}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px;}
+  th{background:var(--head);color:var(--g88);text-align:left;padding:10px 12px;font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.5px;}
+  td{padding:10px 12px;border-top:1px solid #23232e;color:#e7e7ea;vertical-align:top;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:2px 8px;}
+  .tag.done{background:rgba(34,197,94,.15);color:var(--green);}
+  .tag.prog{background:rgba(68,138,255,.15);color:var(--blue);}
+  .tag.todo{background:rgba(255,176,32,.15);color:var(--yellow);}
+  .note{background:rgba(179,136,255,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:13px;color:#cfc6e6;}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid #222;text-align:center;}
+  footer img{height:24px;} footer .f{color:var(--g55);font-size:11.5px;margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<div class="wrap">
+
+<header>
+  <div class="logos">
+    <img src="gbm-logo.png" alt="GBM">
+    <span class="sep"></span>
+    <img src="aws-logo-white.png" alt="AWS">
+  </div>
+  <h1>Retrospectiva — Sprint 8</h1>
+  <div class="sub">GBM — CC Fase II — Amazon Connect</div>
+  <div class="meta">28 de septiembre de 2026 &nbsp;·&nbsp; Sprint Demo + Retrospective &nbsp;·&nbsp; Engagement Manager: Jair García &nbsp;·&nbsp; Jira board 4440 (Sprint 20830)</div>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">Items totales</div><div class="v">114</div></div>
+  <div class="kpi"><div class="l">Done</div><div class="v green">63 · 55%</div></div>
+  <div class="kpi"><div class="l">In Progress</div><div class="v blue">29</div></div>
+  <div class="kpi"><div class="l">To Do</div><div class="v orange">22</div></div>
+</div>
+<div class="note">Datos de avance tomados en vivo de Jira (board 4440, Sprint 20830) al 28-Sep-2026. Desglose por tipo: 15 Historias, 3 Tasks, 96 sub-tareas.</div>
+
+<h2><span class="num">01</span> Qué salió bien</h2>
+<div class="list">
+  <div class="row g">Se completó y validó con GBM la <b>demo de 3 entregables</b>: vista de After Call Work (ACW), registro de interacciones en Salesforce y el diseño de la configuración sin código para callback.</div>
+  <div class="row g">La <b>integración con Salesforce</b> quedó funcionando en los 3 escenarios de identificación (Entidad Cliente, prospecto en Salesforce y no identificado), demostrada en vivo.</div>
+  <div class="row g">Se <b>desbloquearon los accesos de Juan Cruz Peluffo</b> a DEV/STG, que habían frenado sus tareas durante varios días del sprint.</div>
+  <div class="row g">Se <b>resolvió la definición de AC-1077</b> (customer segment del prospecto → "No aplica") con Brenda Gil y Eduardo Godínez, destrabando la tarea para el Sprint 9.</div>
+</div>
+
+<h2><span class="num">02</span> Qué mejorar</h2>
+<div class="list">
+  <div class="row r"><b>Dependencias de definición de GBM:</b> varias historias en UAT quedaron bloqueadas esperando información de GBM (validación de pruebas desde el 8-sep, templates de WhatsApp, speech de callback). El ida y vuelta ralentizó el cierre.</div>
+  <div class="row y"><b>Definiciones cambiantes:</b> AC-1077 se inició con una definición y luego se cambió, generando retrabajo. Confirmar la definición antes de empezar a desarrollar.</div>
+  <div class="row y"><b>Doble registro por timeout:</b> consultas a Salesforce &gt; ~5 s generaban timeout y el fallback creaba la Task dos veces. Ya se ajustó; mantener bajo observación.</div>
+  <div class="row y"><b>Accesos y VPN del partner:</b> los bloqueos de acceso (DEV/STG) y de desconexión de VPN para recursos externos consumieron tiempo del sprint; conviene un proceso más ágil.</div>
+</div>
+
+<h2><span class="num">03</span> Acciones acordadas</h2>
+<table>
+  <tr><th style="width:52%">Acción</th><th style="width:28%">Responsable</th><th style="width:20%">Fecha</th></tr>
+  <tr><td>Cerrar Sprint 8 y abrir Sprint 9; documentar acuerdos</td><td>Jair García</td><td>29-Sep</td></tr>
+  <tr><td>Integrar feedback de ACW al resto de flujos + actualización de la Task al cierre de la interacción + exponer el Task ID en el workspace</td><td>Equipo Nubity</td><td>Sprint 9</td></tr>
+  <tr><td>Hacer visible el campo "type" (canal) en las Tasks para reportería</td><td>Eduardo Godínez</td><td>Sprint 9</td></tr>
+  <tr><td>Resolver comportamiento de callback por WhatsApp y cerrar templates y speech</td><td>Abigail López Berry</td><td>29-Sep / 2-Oct</td></tr>
+  <tr><td>Entregar feedback completo de las pruebas UAT en STG</td><td>GBM (Abigail / Brenda)</td><td>Esta semana</td></tr>
+</table>
+
+<h2><span class="num">04</span> Estado de historias del Sprint 8</h2>
+<table>
+  <tr><th style="width:16%">Ticket</th><th>Historia</th><th style="width:14%">Estado</th></tr>
+  <tr><td><b>AC-997</b></td><td>Enrutamiento e identificación del asesor (RF-5.6)</td><td><span class="tag done">Done</span></td></tr>
+  <tr><td><b>AC-461</b></td><td>HU-09 / RF-10: Registro de Interacciones en Salesforce</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-504</b></td><td>After Call Work — motivo de llamada</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-682</b></td><td>HU-07: Configuración sin código de callback (supervisores)</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-464</b></td><td>Flujo de desambiguación — múltiples resultados en Entidad Cliente</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-452 / AC-463</b></td><td>Identificación por teléfono / normalización de teléfonos</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-453</b></td><td>Identificación de prospectos</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-460</b></td><td>HU-11 / RF-09: Búsqueda manual</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-454</b></td><td>HU-02 / RF-05: Enrutamiento por segmento</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-664 / 667 / 668 / 669</b></td><td>WhatsApp cancelar espera · Mixpanel · chatbot · feedback IA</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-670 / AC-671</b></td><td>Gestión de llamadas perdidas / Flujo AFA agentes externos</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-793</b></td><td>Revisión de seguridad del repositorio</td><td><span class="tag prog">In Progress</span></td></tr>
+  <tr><td><b>AC-1077</b></td><td>UAT — Ajuste identificación de cliente en chat</td><td><span class="tag prog">In Progress</span></td></tr>
+</table>
+<div class="note">Las historias In Progress se re-priorizan y arrastran al Sprint 9. El cierre formal del sprint (mover a Done lo entregado y arrastrar el resto) se ejecuta en la sesión del martes.</div>
+
+<footer>
+  <img src="aws-logo-white.png" alt="AWS">
+  <div class="f">GBM — CC Fase II · Retrospectiva Sprint 8 · 28-Sep-2026 · AWS Professional Services</div>
+</footer>
+
+</div>
+</body>
+</html>
