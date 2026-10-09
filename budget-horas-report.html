@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBM CC Fase II — Budget & Horas</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{ --orange:#FF9900; --bg:#0a0a0a; --card:#16161e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:#fff; font-family:'Segoe UI',Inter,Arial,sans-serif; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:28px 24px 48px; }
+  .bar{ height:4px; background:var(--orange); border-radius:2px; margin-bottom:22px; }
+  .head{ display:flex; align-items:center; gap:16px; margin-bottom:6px; }
+  .head img{ height:30px; }
+  .sep{ width:1px; height:26px; background:#444; }
+  h1{ font-size:26px; margin:14px 0 2px; }
+  .sub{ color:var(--orange); font-weight:600; font-size:15px; }
+  .date{ color:#888; font-size:12.5px; margin-top:6px; }
+  .kpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:24px 0; }
+  .kpi{ background:var(--card); border-radius:10px; padding:16px 18px; border:1px solid #262630; }
+  .kpi .l{ font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; }
+  .kpi .v{ font-size:22px; font-weight:700; margin-top:6px; }
+  .kpi .s{ font-size:12px; color:#aaa; margin-top:3px; }
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .panel{ background:var(--card); border-radius:12px; padding:20px 22px; border:1px solid #262630; }
+  .panel h2{ font-size:16px; margin:0 0 4px; }
+  .panel .ph{ font-size:12px; color:#888; margin-bottom:14px; }
+  canvas{ max-height:340px; }
+  .note{ font-size:11.5px; color:#888; margin-top:14px; line-height:1.6; }
+  table.ftab{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  table.ftab th{ background:#232F3E; color:#fff; font-weight:700; padding:9px 10px; text-align:left; border:1px solid #2d2d38; }
+  table.ftab td{ padding:7px 10px; border:1px solid #2d2d38; color:#ddd; vertical-align:middle; }
+  table.ftab td.r, table.ftab th.r{ text-align:right; }
+  table.ftab td.sm{ font-size:12px; color:#bbb; }
+  table.ftab tr.sub td{ background:#1d2430; color:#fff; }
+  table.ftab tfoot tr.tot td{ background:#FF9900; color:#111; font-size:13px; border-color:#FF9900; }
+  .tag{ display:inline-block; font-size:9.5px; padding:1px 6px; border-radius:4px; margin-left:6px; vertical-align:middle;
+        background:#262630; color:#9ab; border:1px solid #333; }
+  select#monthSel{ background:#232F3E; color:#fff; border:1px solid #3a3a48; border-radius:6px;
+        padding:7px 12px; font-size:13px; font-family:inherit; cursor:pointer; }
+  select#monthSel:hover{ border-color:var(--orange); }
+  .foot{ text-align:center; margin-top:34px; }
+  .foot img{ height:22px; }
+  .foot div{ font-size:11px; color:#777; margin-top:8px; }
+  @media(max-width:860px){ .grid{grid-template-columns:1fr;} .kpis{grid-template-columns:repeat(2,1fr);} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar"></div>
+  <div class="head">
+    <img src="gbm-logo.png" alt="GBM">
+    <span class="sep"></span>
+    <img src="AWS_logo_RGB_1c_White.png" alt="AWS">
+  </div>
+  <h1>GBM CC Fase II — Control de Budget y Horas</h1>
+  <div class="sub">Amazon Connect · AWS Professional Services</div>
+  <div class="date">Corte 06-Oct-2026 · Horas aprobadas abr–sep 2026 · Montos en MXN</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Valor del proyecto (Bookings)</div><div class="v">MXN 11.75M</div><div class="s">USD 652,567</div></div>
+    <div class="kpi"><div class="l">Facturado (Approved Billings)</div><div class="v" style="color:#FFB020;">MXN 10.12M</div><div class="s">USD 561,728 · 86.1% del budget</div></div>
+    <div class="kpi"><div class="l">Queda en el budget (Remaining)</div><div class="v" style="color:#22C55E;">MXN 1.64M</div><div class="s">USD 90,839 · 13.9% del budget</div></div>
+    <div class="kpi"><div class="l">Horas aprobadas (proyecto)</div><div class="v">4,108.3 h</div><div class="s">395 timecards · abr–sep 2026</div></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:20px;">
+    <h2>Facturas emitidas — GBM CC Fase II</h2>
+    <div class="ph">Horas totales facturadas por documento. Montos en MXN · Total = Subtotal + IVA 16%</div>
+    <table class="ftab">
+      <thead>
+        <tr>
+          <th>Factura</th><th>Periodo facturado</th><th>Fecha</th><th class="r">Horas totales</th>
+          <th class="r">Subtotal</th><th class="r">IVA 16%</th><th class="r">Total c/IVA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><b>INV3100</b></td><td>Junio 2026 <sup>*1</sup></td><td>23-jun-2026</td>
+            <td class="r">539.95 h</td><td class="r">2,143,176.50</td><td class="r">342,908.24</td><td class="r">2,486,084.74</td></tr>
+        <tr><td><b>MXIN26-534756</b></td><td>Junio + Julio 2026 <sup>*2</sup></td><td>11-ago-2026</td>
+            <td class="r">1,072.50 h</td><td class="r">2,969,480.00</td><td class="r">475,116.80</td><td class="r">3,444,596.80</td></tr>
+        <tr><td><b>MXIN26-630817</b></td><td>Agosto 2026 <sup>*3</sup></td><td>18-sep-2026</td>
+            <td class="r">1,353.60 h</td><td class="r">3,554,826.00</td><td class="r">568,772.16</td><td class="r">4,123,598.16</td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="tot"><td colspan="3"><b>TOTAL Fase II</b></td>
+          <td class="r"><b>2,966.05 h</b></td><td class="r"><b>8,667,482.50</b></td><td class="r"><b>1,386,797.20</b></td><td class="r"><b>10,054,279.70</b></td></tr>
+      </tfoot>
+    </table>
+    <div class="note">
+      <b>Condiciones de facturación:</b><br>
+      <sup>*1</sup> <b>INV3100</b> factura el trabajo de <b>junio</b> (arranque de Fase II). Es el primer corte de horas del proyecto.<br>
+      <sup>*2</sup> <b>MXIN26-534756</b> es el <b>consolidado de junio + julio juntos</b>, aprobado el 4-Ago-2026 (1,072.5 h = USD 164,880). Incluye timecards de Nubity que llegaron después del corte. <b>No separa junio de julio</b>: se facturó como un solo bloque.<br>
+      <sup>*3</sup> <b>MXIN26-630817</b> factura <b>solo agosto</b> (periodo 1–31 ago).<br>
+      <b>Aviso:</b> INV3100 (jun) y MXIN26-534756 (jun+jul) pueden traslapar junio. Validar con Finanzas que junio no se cuente doble antes de usar el TOTAL como monto pagado real.<br>
+      <b>Excluidas:</b> INV2971 (Fase I — CX Contact Center) e INV3099 (proyecto Sigma, otro cliente).
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>Budget del proyecto</h2>
+      <div class="ph">Valor total vs facturado vs lo que queda en el budget</div>
+      <canvas id="pie"></canvas>
+      <div class="note">Budget total (Bookings) MXN 11,751,610 = facturado MXN 10,115,762 (86.1%) + remanente MXN 1,635,848 (13.9%). Verde = disponible, ámbar = consumido. Fuente: pantalla Financials del proyecto.</div>
+    </div>
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+        <div>
+          <h2>Horas aprobadas por semana</h2>
+          <div class="ph">Total de horas aprobadas del equipo (AWS + Nubity) · con acumulado</div>
+        </div>
+        <select id="monthSel" onchange="filterMonth(this.value)">
+          <option value="all">Todo el proyecto</option>
+          <option value="4">Abril</option>
+          <option value="5">Mayo</option>
+          <option value="6">Junio</option>
+          <option value="7">Julio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Septiembre</option>
+        </select>
+      </div>
+      <div id="monthTotal" style="font-size:13px;color:var(--orange);font-weight:700;margin:6px 0 10px;"></div>
+      <canvas id="line"></canvas>
+      <div class="note">Fuente: HorasTotalesOct9.xlsx (export de timecards). 395 timecards en estatus Approved = <b>4,108.3 h</b>. Semana agrupada por la fecha del Timecard ID (TCH-MM-DD-YYYY). Barras = horas por semana · línea = acumulado del proyecto.</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <img src="AWS_logo_RGB_1c_White.png" alt="AWS" style="height:37px;">
+    <div>GBM — CC Fase II · Control de Budget y Horas · AWS Professional Services</div>
+  </div>
+</div>
+
+<script>
+Chart.defaults.color='#cfcfcf';
+Chart.defaults.font.family="'Segoe UI',Inter,Arial,sans-serif";
+
+new Chart(document.getElementById('pie'),{
+  type:'doughnut',
+  data:{
+    labels:['Facturado (86.1%)','Disponible en budget (13.9%)'],
+    datasets:[{
+      data:[10115762.5, 1635847.5],
+      backgroundColor:['#FFB020','#22C55E'],
+      borderColor:'#16161e', borderWidth:3
+    }]
+  },
+  options:{
+    plugins:{
+      legend:{ position:'bottom', labels:{ padding:16, font:{size:13} } },
+      tooltip:{ callbacks:{ label:(c)=> c.label+': MXN '+c.parsed.toLocaleString('es-MX') } }
+    },
+    cutout:'58%'
+  }
+});
+
+// semana: [label, mes(4-9), horas]
+var WEEKS=[
+  ['20 Abr',4,7.0],['27 Abr',4,66.0],
+  ['04 May',5,45.5],['11 May',5,79.6],['18 May',5,126.0],['25 May',5,183.0],
+  ['01 Jun',6,90.5],['08 Jun',6,100.0],['15 Jun',6,122.0],['22 Jun',6,110.1],['29 Jun',6,135.0],
+  ['06 Jul',7,156.0],['13 Jul',7,157.0],['20 Jul',7,160.0],['27 Jul',7,354.0],
+  ['03 Ago',8,197.0],['10 Ago',8,85.0],['17 Ago',8,368.0],['24 Ago',8,369.0],['31 Ago',8,180.0],
+  ['07 Sep',9,287.6],['14 Sep',9,249.0],['21 Sep',9,234.0],['28 Sep',9,247.0]
+];
+var MONTHNAME={'all':'Todo el proyecto',4:'Abril',5:'Mayo',6:'Junio',7:'Julio',8:'Agosto',9:'Septiembre'};
+
+function buildSeries(month){
+  var rows = (month==='all') ? WEEKS : WEEKS.filter(function(w){ return w[1]==Number(month); });
+  var labels=rows.map(function(w){return w[0];});
+  var hours=rows.map(function(w){return w[2];});
+  var cum=[]; var s=0; for(var i=0;i<hours.length;i++){ s+=hours[i]; cum.push(Math.round(s*10)/10); }
+  return {labels:labels,hours:hours,cum:cum,total:Math.round(s*10)/10};
+}
+
+var init=buildSeries('all');
+var hoursChart=new Chart(document.getElementById('line'),{
+  type:'bar',
+  data:{
+    labels:init.labels,
+    datasets:[
+      { type:'bar', label:'Horas / semana', data:init.hours,
+        backgroundColor:'rgba(255,153,0,0.75)', borderColor:'#FF9900', borderWidth:1, yAxisID:'y', order:2 },
+      { type:'line', label:'Acumulado', data:init.cum,
+        borderColor:'#22C55E', backgroundColor:'rgba(34,197,94,0.12)', fill:false,
+        tension:0.25, pointRadius:2, borderWidth:2.5, yAxisID:'y1', order:1 }
+    ]
+  },
+  options:{
+    plugins:{
+      legend:{ position:'bottom', labels:{ padding:14, font:{size:12} } },
+      tooltip:{ callbacks:{ label:(c)=> c.dataset.label+': '+c.parsed.y+' h' } }
+    },
+    scales:{
+      x:{ grid:{ color:'#262630' }, ticks:{ maxRotation:60, minRotation:60, font:{size:10} } },
+      y:{ grid:{ color:'#262630' }, title:{ display:true, text:'Horas / semana' }, beginAtZero:true, position:'left' },
+      y1:{ grid:{ display:false }, title:{ display:true, text:'Acumulado' }, beginAtZero:true, position:'right' }
+    }
+  }
+});
+
+function filterMonth(month){
+  var s=buildSeries(month);
+  hoursChart.data.labels=s.labels;
+  hoursChart.data.datasets[0].data=s.hours;
+  hoursChart.data.datasets[1].data=s.cum;
+  hoursChart.update();
+  document.getElementById('monthTotal').textContent=
+    MONTHNAME[month]+': '+s.total.toLocaleString('es-MX')+' h'+(month==='all'?' (24 semanas)':' ('+s.labels.length+' semanas)');
+}
+filterMonth('all');
+</script>
+</body>
+</html>
