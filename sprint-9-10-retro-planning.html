@@ -157,12 +157,13 @@ if(sessionStorage.getItem('sprint910-auth')==='true'){
         <tr><td><b>API de llamadas (schedule / call)</b><br>Walter Hiram Amores Mac&iacute;as</td><td>Se prob&oacute; y valid&oacute; directamente en el API Gateway productivo.</td><td><span class="badge b-done">Validado</span></td></tr>
         <tr><td><b>Cambio de integraci&oacute;n Salesforce</b><br>Eduardo God&iacute;nez Loza</td><td>Se reemplaza el endpoint nativo por un servicio propio; misma l&oacute;gica y par&aacute;metros, solo cambia la URL.</td><td><span class="badge b-prog">En progreso</span></td></tr>
         <tr><td><b>Workspace por rol / callback / flujos Inbound</b></td><td>Arrastre t&eacute;cnico de Sprint 8 que sigui&oacute; en desarrollo durante Sprint 9.</td><td><span class="badge b-prog">En progreso</span></td></tr>
+        <tr><td><b>Plantillas de WhatsApp Comercial y Servicio</b><br>Abigail L&oacute;pez Berry</td><td>Lleg&oacute; la propuesta completa: 10 plantillas para el flujo Comercial (intento de contacto, llamada no exitosa, captaci&oacute;n de lead, seguimiento, bienvenida, reactivaci&oacute;n) y 9 para Servicio (intento de contacto, seguimiento a tr&aacute;mite, validaci&oacute;n, incidencias, PLD, operaci&oacute;n). Falta que Nubity las mapee en la plataforma de Meta.</td><td><span class="badge b-done">Recibido</span></td></tr>
     </table>
 
     <div class="section-title"><span class="num">02</span> Lo que arrastra + incidente de producci&oacute;n</div>
     <div class="card" style="font-size:.86rem;color:#ccc">
         <b style="color:#fff">Honestidad del cierre:</b> al 9 de octubre quedan 23 items In Progress y 2 en To Do. Ese alcance pasa completo al Sprint 10 bajo el mecanismo de Pase a Stage (ver Parte C).<br><br>
-        <b style="color:#fff">Pendientes de negocio que frenan el pase:</b> plantillas de WhatsApp (primero servicio, despu&eacute;s comerciales), mensajes de Outbound/Goldman, normalizaci&oacute;n de tel&eacute;fonos, y la decisi&oacute;n por escrito de si el pase a producci&oacute;n es &uacute;nico o por partes.<br><br>
+        <b style="color:#fff">Pendientes de negocio que frenan el pase:</b> mensajes de Outbound/Goldman, normalizaci&oacute;n de tel&eacute;fonos, y la decisi&oacute;n por escrito de si el pase a producci&oacute;n es &uacute;nico o por partes. Las plantillas de WhatsApp (10 Comercial + 9 Servicio) ya las entreg&oacute; Abigail L&oacute;pez Berry, as&iacute; que ese pendiente se cierra.<br><br>
         <b style="color:#fff">Hallazgos de calidad por atrapar antes de Stage:</b> registros de Entidad Cliente con contratos vac&iacute;os, que corrige Abigail L&oacute;pez Berry; y el caso en el que Entidad Cliente reconoce el n&uacute;mero pero Connect no termina de cargar la informaci&oacute;n.<br><br>
         <b style="color:#ef4444">Incidente PROD &mdash; 9 de octubre:</b> audio unidireccional en llamadas entrantes. Caso de AWS Support <b>Sev-5 179157017000258</b>, con IDR activo. Causa probable: tema de telecom/carrier. Es un bloqueo t&eacute;cnico y operativo nuevo, distinto al patr&oacute;n hist&oacute;rico de dependencias del lado del cliente (ver secci&oacute;n 04).
     </div>
@@ -181,13 +182,14 @@ if(sessionStorage.getItem('sprint910-auth')==='true'){
                 <li>API de llamadas (schedule y call) validada en el API Gateway productivo con Walter Hiram Amores Mac&iacute;as.</li>
                 <li>Mixpanel y el correo de alertas de Salesforce quedaron resueltos.</li>
                 <li>Bloqueo de Entidad Cliente en Stage aislado y corregido (URL, secretos y permisos) por Walter Hiram Amores Mac&iacute;as.</li>
+                <li>Plantillas de WhatsApp Comercial y Servicio entregadas por Abigail L&oacute;pez Berry (19 en total): desbloquea el mapeo con Meta.</li>
             </ul>
         </div>
         <div class="retro-col improve">
             <h3><span class="dot"></span>Qu&eacute; mejorar</h3>
             <ul>
                 <li>Definiciones de negocio concentradas en pocas personas de GBM (Abigail L&oacute;pez Berry); frenan el cierre.</li>
-                <li>Pendientes de definici&oacute;n que llegaron tarde: plantillas de WhatsApp, mensajes de Outbound/Goldman.</li>
+                <li>Pendientes de definici&oacute;n que todav&iacute;a frenan: mensajes de Outbound/Goldman. Las plantillas de WhatsApp llegaron tarde pero ya llegaron.</li>
                 <li>Trabajo fuera del radar: normalizar formatos de tel&eacute;fono (espacios, guiones, ceros, +52) para que el match con Entidad Cliente no falle.</li>
                 <li>Calidad de datos: registros de Entidad Cliente con contratos vac&iacute;os, detectados en pruebas.</li>
                 <li>Decisi&oacute;n de despliegue (pase &uacute;nico vs por partes) sin cerrar por escrito; de eso depende c&oacute;mo se arma el Stage.</li>
@@ -198,7 +200,7 @@ if(sessionStorage.getItem('sprint910-auth')==='true'){
             <h3><span class="dot"></span>Acciones</h3>
             <ul>
                 <li><b>Jair Garc&iacute;a:</b> cerrar S9, abrir S10/S11, documentar acuerdos; crear el mecanismo de Pase a Stage en Jira.</li>
-                <li><b>Abigail L&oacute;pez Berry:</b> entregar definiciones de negocio, plantillas de WhatsApp (servicio primero, comerciales despu&eacute;s) y mensajes de Outbound; coordinar la correcci&oacute;n de Entidad Cliente; confirmar por escrito si el pase es &uacute;nico o por partes.</li>
+                <li><b>Abigail L&oacute;pez Berry:</b> entregar definiciones de negocio y mensajes de Outbound (plantillas de WhatsApp ya entregadas); coordinar la correcci&oacute;n de Entidad Cliente; confirmar por escrito si el pase es &uacute;nico o por partes.</li>
                 <li><b>Equipo t&eacute;cnico (Nubity):</b> ajustar la l&oacute;gica de normalizaci&oacute;n y la Lambda para soportar varios formatos de tel&eacute;fono.</li>
                 <li><b>Eduardo God&iacute;nez Loza:</b> dejar lista la nueva integraci&oacute;n de Salesforce (servicio propio, nueva URL) y la vinculaci&oacute;n de casos con actividades.</li>
                 <li><b>Brenda Gabriela Gil Hern&aacute;ndez:</b> mantener Jira al d&iacute;a con el estado real de prueba y validaci&oacute;n.</li>
@@ -272,10 +274,10 @@ if(sessionStorage.getItem('sprint910-auth')==='true'){
         <tr>
             <td><b>Plantillas de WhatsApp / mensajes Outbound sin entregar</b></td>
             <td>Definici&oacute;n / cliente</td>
-            <td>Abierto en S9</td>
+            <td>Resuelto S9 &mdash; Abigail L&oacute;pez Berry entreg&oacute; las 19 plantillas (10 Comercial + 9 Servicio)</td>
             <td>S8, S9</td>
-            <td><span class="badge b-prog">Medio</span></td>
-            <td>Negocio entrega t&iacute;tulos y contenido antes del sprint; el mapeo con Meta no arranca sin eso.</td>
+            <td><span class="badge b-done">Resuelto</span></td>
+            <td>Negocio entreg&oacute; t&iacute;tulos y contenido; sigue el mapeo con Meta en Nubity, ya sin bloqueo de definici&oacute;n.</td>
         </tr>
         <tr>
             <td><b>Normalizaci&oacute;n de tel&eacute;fonos (multi-formato)</b></td>
