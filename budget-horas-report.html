@@ -56,7 +56,7 @@
   </div>
   <h1>GBM CC Fase II — Control de Budget y Horas</h1>
   <div class="sub">Amazon Connect · AWS Professional Services</div>
-  <div class="date">Corte 06-Oct-2026 · Horas aprobadas abr–sep 2026 · Montos en MXN</div>
+  <div class="date">Corte 12-Oct-2026 · Horas aprobadas abr–sep 2026 · Montos en MXN</div>
 
   <div class="kpis">
     <div class="kpi"><div class="l">Valor del proyecto (Bookings)</div><div class="v">MXN 11.75M</div><div class="s">USD 652,567</div></div>
@@ -111,19 +111,135 @@
           <h2>Horas aprobadas por semana</h2>
           <div class="ph">Total de horas aprobadas del equipo (AWS + Nubity) · con acumulado</div>
         </div>
-        <select id="monthSel" onchange="filterMonth(this.value)">
-          <option value="all">Todo el proyecto</option>
+        <select id="monthSel" multiple size="4" onchange="filterMonth(Array.from(this.selectedOptions).map(o=>o.value))" style="min-width:170px;">
+          <option value="all" selected>Todo el proyecto</option>
           <option value="4">Abril</option>
           <option value="5">Mayo</option>
           <option value="6">Junio</option>
           <option value="7">Julio</option>
           <option value="8">Agosto</option>
           <option value="9">Septiembre</option>
+          <option value="10">Octubre (pronóstico)</option>
+          <option value="11">Noviembre (pronóstico)</option>
         </select>
       </div>
+      <div style="font-size:10.5px;color:#777;margin-top:4px;">Mantén Cmd (Mac) o Ctrl (Windows) para seleccionar 2 o 3 meses a la vez.</div>
       <div id="monthTotal" style="font-size:13px;color:var(--orange);font-weight:700;margin:6px 0 10px;"></div>
       <canvas id="line"></canvas>
       <div class="note">Fuente: HorasTotalesOct9.xlsx (export de timecards). 395 timecards en estatus Approved = <b>4,108.3 h</b>. Semana agrupada por la fecha del Timecard ID (TCH-MM-DD-YYYY). Barras = horas por semana · línea = acumulado del proyecto.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:20px;">
+    <h2>Dónde vamos hoy — Fases, Sprints y Cierre</h2>
+    <div class="ph">Corte 09-Oct-2026 · Sprint 9 "Routing II" · cierre comprometido 20-Nov-2026</div>
+    <div class="kpis" style="margin:0 0 14px;">
+      <div class="kpi"><div class="l">Sprint actual</div><div class="v" style="color:var(--orange);">9 · Routing II</div><div class="s">29-Sep al 14-Oct-2026</div></div>
+      <div class="kpi"><div class="l">Avance en Jira</div><div class="v">63%</div><div class="s">252 de 401 ítems (sin sub-tareas)</div></div>
+      <div class="kpi"><div class="l">Status</div><div class="v" style="color:#22C55E;">GREEN</div><div class="s">Corte 06–09-Oct-2026</div></div>
+      <div class="kpi"><div class="l">Cierre comprometido</div><div class="v" style="color:var(--orange);">20-Nov-2026</div><div class="s">Viernes · consistente con el pronóstico de horas</div></div>
+    </div>
+    <div class="note">Hoy el proyecto va en el Sprint 9. En Jira marca 63% (252 de 401 ítems, sin contar sub-tareas) y el status sigue en verde. Con el pase a Stage que está pendiente el avance real sube a un rango de 75-80%. Nada de esto es definitivo, es la fotografía del corte.</div>
+  </div>
+
+  <div class="panel" style="margin-bottom:20px;">
+    <h2>Fases y sprints — dónde vamos y qué falta</h2>
+    <div class="ph">Jira board 4440 · Cronograma Ajustado v7 (Nubity, 11-Sep-2026)</div>
+    <table class="ftab">
+      <thead>
+        <tr><th>Sprint</th><th>Fechas</th><th>Foco</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S0</td><td>14-May</td><td>Discovery &amp; Governance</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S1</td><td>28-May a 19-Jun</td><td>Accesos + Nivelación</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S2</td><td>22-Jun a 3-Jul</td><td>Refactor + connect-sync</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S3</td><td>8 a 22-Jul</td><td>Entity + API Queen PRD</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S4</td><td>22-Jul a 5-Ago</td><td>Workspace + WhatsApp</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S5</td><td>7 a 18-Ago</td><td>Routing + Identificación</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S6</td><td>25-Ago a 2-Sep</td><td>WhatsApp + Mixpanel</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S7</td><td>1 a 13-Sep</td><td>Campaigns + Modelo Comercial</td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr><td>S8</td><td>15 a 29-Sep</td><td>CSAT + ACW + Workspace / Salesforce <span class="tag" style="color:#FFB020;border-color:#FFB020;">56% Done (64/114)</span></td><td><span class="tag" style="color:#22C55E;border-color:#22C55E;">Cerrado</span></td></tr>
+        <tr class="sub"><td><b>S9</b></td><td><b>29-Sep a 14-Oct</b></td><td><b>Routing II</b> (25 ítems, 23 en progreso: UAT identificación cliente, callback, Salesforce) <span class="tag" style="color:#FFB020;border-color:#FFB020;">en curso</span></td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;"><b>Activo (actual)</b></span></td></tr>
+        <tr><td>S10</td><td>13 a 28-Oct</td><td>Workspace II (10 ítems: Outbound, WhatsApp a prospectos, dashboards operativos)</td><td><span class="tag" style="color:#448AFF;border-color:#448AFF;">Futuro</span></td></tr>
+        <tr><td>S11</td><td>27-Oct a 11-Nov</td><td>Integration — UAT completo + Hardening + Documentación + Go-Live + Handoff (6 ítems)</td><td><span class="tag" style="color:var(--orange);border-color:var(--orange);">Cierre</span></td></tr>
+        <tr class="sub"><td><b>S12</b></td><td><b>12 a 20-Nov</b></td><td><b>Cierre del proyecto</b> — secuencia final, ver sub-etapas abajo</td><td><span class="tag" style="color:var(--orange);border-color:var(--orange);"><b>Hito de cierre</b></span></td></tr>
+        <tr class="phase-sub"><td></td><td style="color:#aaa;">12 a 17-Nov</td><td style="color:#ccc;">↳ UAT final — pruebas de aceptación con GBM (tiene que cerrar antes del Go-Live)</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">Antes del cierre</span></td></tr>
+        <tr class="phase-sub"><td></td><td style="color:#aaa;">12 a 19-Nov</td><td style="color:#ccc;">↳ Hardening de seguridad + Documentación técnica final (en paralelo al UAT)</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">Antes del cierre</span></td></tr>
+        <tr class="phase-sub"><td></td><td style="color:#aaa;"><b>20-Nov (viernes)</b></td><td style="color:#ccc;">↳ <b>Go-Live</b> — activación completa en producción + Handoff a GBM</td><td><span class="tag" style="color:var(--orange);border-color:var(--orange);"><b>Día de cierre</b></span></td></tr>
+        <tr><td>S13</td><td>10 a 22-Nov</td><td>UAT <span class="tag" style="color:#888;border-color:#444;">no se usa como sprint aparte</span></td><td><span class="tag" style="color:#888;border-color:#444;">Absorbido en S12</span></td></tr>
+        <tr><td>S14</td><td>24 a 28-Nov</td><td>Go-Live <span class="tag" style="color:#888;border-color:#444;">no se usa como sprint aparte</span></td><td><span class="tag" style="color:#888;border-color:#444;">Absorbido en S12</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">Fechas y conteo de ítems consultados en vivo en Jira (board 4440, 09-Oct-2026). El trabajo de construcción (UAT completo, Hardening, Documentación, Go-Live, Handoff) nace en S11 (27-Oct a 11-Nov) y cierra su última semana en S12. El orden importa: el UAT y la documentación tienen que estar listos ANTES del Go-Live, no después — por eso el Go-Live es el último paso, el 20-Nov. S13 y S14 existen en el calendario pero no se usan como sprints aparte.</div>
+  </div>
+
+  <div class="panel" style="margin-bottom:20px;">
+    <h2>Historias esperando pasar a Stage — Sprint 9</h2>
+    <div class="ph">Consultado en vivo en Jira (sprint 20831) · 09-Oct-2026</div>
+    <div class="kpis" style="margin:0 0 14px;">
+      <div class="kpi"><div class="l">Total Sprint 9</div><div class="v">25</div><div class="s">Historias y tareas (sin sub-tareas)</div></div>
+      <div class="kpi"><div class="l">En progreso, esperando pase</div><div class="v" style="color:#FFB020;">23</div><div class="s">Ya trabajadas en Dev, listas para STG</div></div>
+      <div class="kpi"><div class="l">Sin arrancar</div><div class="v" style="color:#888;">2</div><div class="s">AC-682, AC-502 — aún en To Do</div></div>
+    </div>
+    <table class="ftab">
+      <thead>
+        <tr><th>Ticket</th><th>Responsable</th><th>Resumen</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AC-459</td><td>Juan Cruz Peluffo</td><td>HU-23: Workspace Custom App — interfaz por rol</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-452</td><td>Sabrina N Tejada</td><td>Identificación automática del cliente por teléfono</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-453</td><td>Juan Cruz Peluffo</td><td>Identificación de prospectos</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-454</td><td>Silvana García</td><td>HU-02 / RF-05: enrutamiento por segmento</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-460</td><td>Juan Cruz Peluffo</td><td>HU-11 / RF-09: búsqueda manual</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-461</td><td>José Luis Reyes</td><td>HU-09 / RF-10: registro de interacciones en Salesforce</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-462</td><td>Agustín Schinner</td><td>Vinculación manual de casos desde Workspace</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-463</td><td>Sabrina N Tejada</td><td>Normalización de teléfonos — Lambda multi-formato</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-464</td><td>Sabrina N Tejada</td><td>Flujo de desambiguación — múltiples resultados en Entidad Cliente</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-504</td><td>Agustín Schinner</td><td>After Call Work — motivo de llamada</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-664</td><td>José Luis Reyes</td><td>HU-13: opción de cancelar espera en WhatsApp</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-667</td><td>José Luis Reyes</td><td>HU-16: ajustes Mixpanel — nuevos atributos</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-668</td><td>José Luis Reyes</td><td>HU-17: mejoras de experiencia del chatbot</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-669</td><td>Silvana García</td><td>HU-18: feedback con botones al cierre de conversación</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-670</td><td>Agustín Schinner</td><td>HU-19: gestión de llamadas perdidas</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-671</td><td>Agustín Schinner</td><td>HU-22: flujo AFA — agentes externos</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-679</td><td>Sabrina N Tejada</td><td>HU-20: panel de métricas individuales del agente</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-680</td><td>Agustín Schinner</td><td>RF-G: back flow ante errores técnicos de identificación</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-681</td><td>Javier Saupurein</td><td>HU-05: callback en cola — devolver llamada al cliente</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-793</td><td>René Ramos</td><td>Iterar comentarios de revisión de repositorio — Seguridad</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-992</td><td>José Luis Reyes</td><td>HU-10 / RF-10: actualización de interacciones en Salesforce</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-1031</td><td>Silvana García</td><td>Análisis técnico — diseño de interacciones outbound</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-1077</td><td>Juan Cruz Peluffo</td><td>UAT — ajuste de identificación de cliente en chat</td><td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td>AC-682</td><td>Javier Saupurein</td><td>HU-07: configuración sin código por supervisores — callback</td><td><span class="tag" style="color:#888;border-color:#444;">To Do</span></td></tr>
+        <tr><td>AC-502</td><td>José Luis Reyes</td><td>Registro de llamadas outbound</td><td><span class="tag" style="color:#888;border-color:#444;">To Do</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">23 de 25 ya están en progreso, listas para subir a STG en cuanto cierre el pase. Las 2 en To Do (AC-682, AC-502) son las únicas que ni siquiera han arrancado.</div>
+  </div>
+
+  <div class="panel" style="margin-bottom:20px;">
+    <h2>Lo que falta para el cierre</h2>
+    <div class="ph">Tres pases a Stage, UAT y documentación. Confirmado en Jira (board 4440) y en la llamada del 09-Oct con Abigail López Berry.</div>
+    <table class="ftab">
+      <thead>
+        <tr><th>#</th><th>Hito</th><th>Timing</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="r">1</td><td>Pase 1 — Entidad Cliente + Routing (~40% del proyecto, AC-1077/681/992 y resto de S9)</td><td>Sprint 9 · 29-Sep a 14-Oct</td>
+            <td><span class="tag" style="color:#FFB020;border-color:#FFB020;">En progreso</span></td></tr>
+        <tr><td class="r">2</td><td>Pase 2 — Cierra M3 Routing + Workspace II (Outbound, WhatsApp a prospectos, dashboards operativos)</td><td>Sprint 10 · 13 a 28-Oct</td>
+            <td><span class="tag" style="color:#448AFF;border-color:#448AFF;">Pendiente</span></td></tr>
+        <tr><td class="r">3</td><td>Pase 3 — Cierra M4 (grabaciones/Salesforce) + UAT completo (AC-937) + Hardening (AC-942) + Documentación técnica (AC-947) + Go-Live (AC-952) + Handoff (AC-957)</td><td>Sprint 11 · 27-Oct a 11-Nov</td>
+            <td><span class="tag" style="color:#448AFF;border-color:#448AFF;">Pendiente</span></td></tr>
+        <tr class="sub"><td class="r">4</td><td><b>Cierre comprometido</b></td><td><b>20-Nov-2026 (viernes)</b></td>
+            <td><span class="tag" style="color:var(--orange);border-color:var(--orange);"><b>Hito de cierre</b></span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">UAT, hardening, documentación y Go-Live ya no son hitos sueltos: todos viven dentro del Sprint 11 (AC-937, AC-942, AC-947, AC-952, AC-957), que termina el 11-Nov. El cierre comprometido con GBM sigue en 20-Nov, dejando ~9 días de colchón después de S11 para estabilizar.</div>
+    <div class="note" style="border-left:2px solid #FFB020;padding-left:10px;margin-top:10px;">
+      <b style="color:#FFB020;">Riesgo de fecha (llamada 09-Oct con Abigail López Berry):</b> en la propia llamada, Jair comentó que probablemente el cierre se recorra <b>una semana más allá del 15-Nov</b> si el Pase 1 no cierra limpio esta semana, porque ese pase trae el ~40% del proyecto y condiciona todo lo que sigue. El 20-Nov es el objetivo; si el Pase 1 se atrasa, el cierre real podría moverse a la última semana de noviembre.
+    </div>
+    <div class="note" style="border-left:2px solid #B388FF;padding-left:10px;margin-top:10px;">
+      <b style="color:#B388FF;">Lección del Sprint 8:</b> el 70% del tiempo perdido fue por dependencias de accesos y definiciones de GBM, no por temas técnicos. Para los pases que vienen, los datos y accesos deben quedar listos antes, no durante.
     </div>
   </div>
 
@@ -165,52 +281,113 @@ var WEEKS=[
   ['03 Ago',8,197.0],['10 Ago',8,85.0],['17 Ago',8,368.0],['24 Ago',8,369.0],['31 Ago',8,180.0],
   ['07 Sep',9,287.6],['14 Sep',9,249.0],['21 Sep',9,234.0],['28 Sep',9,247.0]
 ];
-var MONTHNAME={'all':'Todo el proyecto',4:'Abril',5:'Mayo',6:'Junio',7:'Julio',8:'Agosto',9:'Septiembre'};
+// Pronóstico 05-Oct -> 16-Nov (cierra la semana del viernes 20-Nov-2026) para llegar al 100%
+// de Total Assigned Hours del proyecto (4,595.08 h, Project Money). Faltan 486.8 h desde las
+// 4,108.3 h acumuladas al 28-Sep. Curva decreciente hacia el cierre (no es plan de recursos real,
+// es proyección de tendencia).
+var FORECAST=[
+  ['05 Oct',10,90.4],['12 Oct',10,83.5],['19 Oct',10,76.5],['26 Oct',10,69.5],
+  ['02 Nov',11,62.6],['09 Nov',11,55.6],['16 Nov',11,48.7]
+];
+var PROJECT_TOTAL_HOURS = 4595.08; // 100% = Total Assigned Hours (Project Money)
+var MONTHNAME={'all':'Todo el proyecto',4:'Abril',5:'Mayo',6:'Junio',7:'Julio',8:'Agosto',9:'Septiembre',10:'Octubre (pronóstico)',11:'Noviembre (pronóstico)'};
 
 function buildSeries(month){
-  var rows = (month==='all') ? WEEKS : WEEKS.filter(function(w){ return w[1]==Number(month); });
+  var all = WEEKS.concat(FORECAST);
+  var rows = (month==='all') ? all : all.filter(function(w){ return w[1]==Number(month); });
   var labels=rows.map(function(w){return w[0];});
   var hours=rows.map(function(w){return w[2];});
-  var cum=[]; var s=0; for(var i=0;i<hours.length;i++){ s+=hours[i]; cum.push(Math.round(s*10)/10); }
-  return {labels:labels,hours:hours,cum:cum,total:Math.round(s*10)/10};
+  var cum=[]; var s=0;
+  var startCum = (month==='all') ? 0 : WEEKS.filter(function(w){return w[1]<Number(month);}).reduce(function(a,w){return a+w[2];},0);
+  s = startCum;
+  var realCount = (month==='all') ? WEEKS.length : rows.filter(function(w){return w[1]<10;}).length;
+  for(var i=0;i<hours.length;i++){ s+=hours[i]; cum.push(Math.round(s*10)/10); }
+  return {labels:labels,hours:hours,cum:cum,total:Math.round(s*10)/10,realCount:realCount};
 }
 
 var init=buildSeries('all');
+var realN = WEEKS.length; // primeras realN barras son reales, el resto pronóstico
 var hoursChart=new Chart(document.getElementById('line'),{
   type:'bar',
   data:{
     labels:init.labels,
     datasets:[
-      { type:'bar', label:'Horas / semana', data:init.hours,
-        backgroundColor:'rgba(255,153,0,0.75)', borderColor:'#FF9900', borderWidth:1, yAxisID:'y', order:2 },
-      { type:'line', label:'Acumulado', data:init.cum,
+      { type:'bar', label:'Horas / semana (real)', data:init.hours.map(function(v,i){return i<realN?v:null;}),
+        backgroundColor:'rgba(255,153,0,0.75)', borderColor:'#FF9900', borderWidth:1, yAxisID:'y', order:3 },
+      { type:'bar', label:'Horas / semana (pronóstico)', data:init.hours.map(function(v,i){return i>=realN?v:null;}),
+        backgroundColor:'rgba(255,153,0,0.28)', borderColor:'#FF9900', borderWidth:1, borderDash:[4,3], yAxisID:'y', order:3 },
+      { type:'line', label:'Acumulado real', data:init.cum.map(function(v,i){return i<realN?v:null;}),
         borderColor:'#22C55E', backgroundColor:'rgba(34,197,94,0.12)', fill:false,
-        tension:0.25, pointRadius:2, borderWidth:2.5, yAxisID:'y1', order:1 }
+        tension:0.25, pointRadius:2, borderWidth:2.5, yAxisID:'y1', order:1 },
+      { type:'line', label:'Acumulado proyectado (100% = '+PROJECT_TOTAL_HOURS+' h)',
+        data:init.cum.map(function(v,i){return i>=realN-1?v:null;}),
+        borderColor:'#448AFF', backgroundColor:'rgba(68,138,255,0.10)', fill:false, borderDash:[6,4],
+        tension:0.25, pointRadius:2, borderWidth:2.5, yAxisID:'y1', order:2 }
     ]
   },
   options:{
     plugins:{
-      legend:{ position:'bottom', labels:{ padding:14, font:{size:12} } },
+      legend:{ position:'bottom', labels:{ padding:14, font:{size:11} } },
       tooltip:{ callbacks:{ label:(c)=> c.dataset.label+': '+c.parsed.y+' h' } }
     },
     scales:{
       x:{ grid:{ color:'#262630' }, ticks:{ maxRotation:60, minRotation:60, font:{size:10} } },
       y:{ grid:{ color:'#262630' }, title:{ display:true, text:'Horas / semana' }, beginAtZero:true, position:'left' },
-      y1:{ grid:{ display:false }, title:{ display:true, text:'Acumulado' }, beginAtZero:true, position:'right' }
+      y1:{ grid:{ display:false }, title:{ display:true, text:'Acumulado' }, beginAtZero:true, position:'right', suggestedMax:PROJECT_TOTAL_HOURS }
     }
   }
 });
 
-function filterMonth(month){
-  var s=buildSeries(month);
-  hoursChart.data.labels=s.labels;
-  hoursChart.data.datasets[0].data=s.hours;
-  hoursChart.data.datasets[1].data=s.cum;
+function filterMonth(months){
+  // acepta un solo valor ('all', '9', ...) o un array de valores (selección múltiple)
+  var sel = Array.isArray(months) ? months : [months];
+  if(sel.length===0) sel=['all'];
+  var showAll = sel.indexOf('all')>=0;
+  var monthNums = sel.filter(function(m){return m!=='all';}).map(Number);
+
+  var all = WEEKS.concat(FORECAST);
+  var rows = showAll ? all : all.filter(function(w){ return monthNums.indexOf(w[1])>=0; });
+  var labels = rows.map(function(w){return w[0];});
+  var hours = rows.map(function(w){return w[2];});
+  var isForecast = rows.map(function(w){return w[1]>=10;});
+
+  // acumulado: arranca en 0 si incluye todo o parte de lo real; si el filtro es solo meses
+  // de pronóstico (todos >=10) y no incluye nada real, arranca desde el total real + pronóstico previo
+  var cum=[]; var s=0;
+  var onlyForecast = !showAll && monthNums.length>0 && monthNums.every(function(m){return m>=10;});
+  if(onlyForecast){
+    var minMonth = Math.min.apply(null, monthNums);
+    s = WEEKS.reduce(function(a,w){return a+w[2];},0); // 4,108.3 (todo lo real)
+    s += FORECAST.filter(function(w){return w[1]<minMonth;}).reduce(function(a,w){return a+w[2];},0);
+  }
+  for(var i=0;i<hours.length;i++){ s+=hours[i]; cum.push(Math.round(s*10)/10); }
+
+  var realBars=[], fcBars=[], realLine=[], fcLine=[];
+  for(var i=0;i<rows.length;i++){
+    if(isForecast[i]){ realBars.push(null); fcBars.push(hours[i]); realLine.push(null); fcLine.push(cum[i]); }
+    else { realBars.push(hours[i]); fcBars.push(null); realLine.push(cum[i]); fcLine.push(null); }
+  }
+  // puente: que la línea de pronóstico arranque desde el último punto real (continuidad visual)
+  for(var i=0;i<rows.length;i++){
+    if(isForecast[i]){
+      var prev = i-1>=0?i-1:0;
+      if(fcLine[prev]===null) fcLine[prev]=realLine[prev];
+      break;
+    }
+  }
+
+  hoursChart.data.labels=labels;
+  hoursChart.data.datasets[0].data=realBars;
+  hoursChart.data.datasets[1].data=fcBars;
+  hoursChart.data.datasets[2].data=realLine;
+  hoursChart.data.datasets[3].data=fcLine;
   hoursChart.update();
+  var total = Math.round(hours.reduce(function(a,b){return a+b;},0)*10)/10;
+  var label = showAll ? 'Todo el proyecto' : sel.map(function(m){return MONTHNAME[m];}).join(' + ');
   document.getElementById('monthTotal').textContent=
-    MONTHNAME[month]+': '+s.total.toLocaleString('es-MX')+' h'+(month==='all'?' (24 semanas)':' ('+s.labels.length+' semanas)');
+    label+': '+total.toLocaleString('es-MX')+' h'+(showAll?' (31 semanas, 24 reales + 7 pronóstico a 20-Nov)':' ('+labels.length+' semanas)');
 }
-filterMonth('all');
+filterMonth(['all']);
 </script>
 
 <!-- View Tracker - notifica a Slack al abrir -->
