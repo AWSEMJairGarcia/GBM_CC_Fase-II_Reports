@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 9 Retrospectiva + Sprint 10/11 Planning — GBM CC Fase II</title>
+<meta name="description" content="Sprint 9 Retrospectiva (con analisis de bloqueos historico del proyecto: cuales, duracion, sprints afectados y mejoras) y Sprint 10/11 Planning del proyecto GBM Contact Center Fase II sobre Amazon Connect. Metricas Jira en vivo, mecanismo de pase a Stage, dependencias y riesgos, y plan completo del proyecto.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='32' y='28' font-size='26' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EGBM%3C/text%3E%3Cline x1='8' y1='35' x2='56' y2='35' stroke='%23FF9900' stroke-width='2'/%3E%3Ctext x='32' y='52' font-size='24' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+#login-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#141414;border:1px solid #222;border-radius:16px;padding:40px;width:360px;text-align:center}
+.banner{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#1c1408 100%);border:1px solid #222;border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FF9900,transparent)}
+.banner img{height:30px}
+.banner-divider{width:1px;height:30px;background:#333}
+.banner-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+.banner-subtitle{font-size:.85rem;color:#FF9900}
+.banner-date{margin-left:auto;font-size:.85rem;color:#999;white-space:nowrap;text-align:right}
+.goal-card{background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(34,197,94,.02));border:1px solid rgba(34,197,94,.2);border-left:4px solid #22c55e;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.goal-card h3{font-family:'Sora',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#22c55e;margin-bottom:6px}
+.goal-card p{color:#ddd;font-size:.95rem}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#141414;border:1px solid #222;border-radius:10px;padding:16px;text-align:center;border-top:3px solid #448AFF}
+.kpi.orange{border-top-color:#FF9900}.kpi.green{border-top-color:#22c55e}.kpi.red{border-top-color:#ef4444}.kpi.purple{border-top-color:#B388FF}
+.kpi .val{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1}
+.kpi .lbl{font-size:.66rem;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.section-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 0;margin:18px 0 16px;border-bottom:1px solid #222}
+.section-title .num{font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;color:#FF9900;background:rgba(255,153,0,.1);padding:3px 9px;border-radius:6px;border:1px solid rgba(255,153,0,.25)}
+.phase-title{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:700;color:#FF9900;margin:32px 0 4px;padding-top:14px;border-top:2px solid #FF9900}
+.phase-sub{font-size:.85rem;color:#888;margin-bottom:8px}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:.84rem;background:#141414;border:1px solid #222;border-radius:12px;overflow:hidden;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;font-family:'Sora',sans-serif;font-size:.62rem;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.05em;background:#181818;border-bottom:1px solid #2a2a2a}
+td{padding:11px 16px;border-bottom:1px solid #1a1a1a;color:#ccc;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a1a1a}
+td b{color:#fff}
+.badge{font-family:'Sora',sans-serif;font-size:.58rem;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;white-space:nowrap}
+.b-go{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-hold{color:#FF9900;background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25)}
+.b-prog{color:#448AFF;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25)}
+.b-done{color:#22c55e;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
+.b-carry{color:#B388FF;background:rgba(179,136,255,.12);border:1px solid rgba(179,136,255,.25)}
+.b-todo{color:#888;background:rgba(136,136,136,.12);border:1px solid rgba(136,136,136,.28)}
+.b-crit{color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.retro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.retro-col{background:#141414;border:1px solid #222;border-radius:12px;padding:18px 20px}
+.retro-col h3{font-family:'Sora',sans-serif;font-size:.85rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.retro-col.good h3{color:#22c55e}.retro-col.improve h3{color:#FF9900}.retro-col.action h3{color:#B388FF}
+.retro-col .dot{width:10px;height:10px;border-radius:50%}
+.retro-col.good .dot{background:#22c55e}.retro-col.improve .dot{background:#FF9900}.retro-col.action .dot{background:#B388FF}
+.retro-col ul{list-style:none}
+.retro-col li{font-size:.82rem;color:#ccc;padding:10px 12px;margin-bottom:8px;background:#0f0f0f;border:1px solid #1f1f1f;border-radius:8px;line-height:1.4}
+.retro-col li b{color:#fff}
+.wcard{background:#141414;border:1px solid #222;border-radius:12px;padding:18px 22px}
+.wcard.good{border-left:4px solid #22c55e}
+.wcard.improve{border-left:4px solid #FF9900}
+.wcard h3{font-family:'Sora',sans-serif;font-size:.85rem;margin-bottom:10px}
+.wcard.good h3{color:#22c55e}.wcard.improve h3{color:#FF9900}
+.wcard ul{padding-left:18px;font-size:.84rem;color:#ccc}
+.wcard li{margin-bottom:6px}
+.dep-note{background:linear-gradient(135deg,rgba(255,153,0,.07),rgba(255,153,0,.02));border:1px solid rgba(255,153,0,.28);border-left:4px solid #FF9900;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.dep-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#FF9900;margin-bottom:8px}
+.dep-note p{font-size:.86rem;color:#ddd}
+.carry-note{background:linear-gradient(135deg,rgba(179,136,255,.07),rgba(179,136,255,.02));border:1px solid rgba(179,136,255,.28);border-left:4px solid #B388FF;border-radius:10px;padding:16px 22px;margin-bottom:24px}
+.carry-note h3{font-family:'Sora',sans-serif;font-size:.8rem;color:#B388FF;margin-bottom:8px}
+.carry-note p{font-size:.86rem;color:#ddd}
+.footer{text-align:center;padding:30px 0 10px;color:#666;font-size:.78rem;border-top:1px solid #1a1a1a;margin-top:20px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}.two,.retro-grid{grid-template-columns:1fr}}
+@page{size:letter portrait;margin:0}
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
+  html,body{background:#0a0a0a !important}
+  body{padding:0 !important;margin:0 !important}
+  .container{zoom:var(--pdf-scale,0.40);padding:6mm 8mm !important;max-width:none !important}
+  .banner,.goal-card,.dep-note,.carry-note,.card,table,.wcard,.retro-col{border:2px solid #7a7a7a !important}
+  .kpi{border:2px solid #7a7a7a !important}
+  th,td{border-color:#6a6a6a !important}
+  .banner{padding:12px 20px !important;margin-bottom:12px !important}
+  .goal-card,.carry-note,.dep-note{padding:10px 16px !important;margin-bottom:12px !important}
+  .kpis{margin-bottom:14px !important}
+  .card{padding:12px 16px !important;margin-bottom:12px !important}
+  table{margin-bottom:12px !important}
+  .section-title{margin:10px 0 8px !important;padding:6px 0 !important}
+  .phase-title{margin:14px 0 2px !important}
+  .two,.retro-grid{margin-bottom:12px !important}
+  th{padding:6px 10px !important}
+  td{padding:6px 10px !important}
+  .two,.kpis,.retro-grid{page-break-inside:avoid}
+  #login-overlay{display:none !important}
+}
+</style>
+</head>
+<body>
+<div id="login-overlay">
+    <div class="login-box">
+        <div style="margin-bottom:20px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h2 style="color:#fff;font-size:1.2rem;margin-bottom:8px">Sprint 9 Retro + Sprint 10/11 Planning</h2>
+        <p style="color:#888;font-size:.85rem;margin-bottom:20px">GBM &mdash; CC Fase II</p>
+        <input id="login-pass" type="password" placeholder="Clave de acceso" style="width:100%;padding:12px 16px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#e0e0e0;font-size:.9rem;outline:none;margin-bottom:12px;text-align:center" onkeydown="if(event.key==='Enter')checkLogin()">
+        <button onclick="checkLogin()" style="width:100%;padding:12px;border-radius:8px;border:none;background:#FF9900;color:#000;font-weight:600;font-size:.9rem;cursor:pointer">Entrar</button>
+        <p id="login-error" style="color:#ef4444;font-size:.8rem;margin-top:12px;display:none">Clave incorrecta</p>
+    </div>
+</div>
+<script>
+function checkLogin(){
+    const p=document.getElementById('login-pass').value;
+    if(p==='gbm2026'||p==='sprint9'||p==='sprint10'){
+        document.getElementById('login-overlay').style.display='none';
+        sessionStorage.setItem('sprint910-auth','true');
+    }else{document.getElementById('login-error').style.display='block';}
+}
+if(sessionStorage.getItem('sprint910-auth')==='true'){
+    document.addEventListener('DOMContentLoaded',()=>{document.getElementById('login-overlay').style.display='none';});
+}
+</script>
+<div class="container">
+    <div class="banner">
+        <img src="gbm-logo.png" alt="GBM">
+        <div class="banner-divider"></div>
+        <img src="aws-white.png" alt="AWS">
+        <div>
+            <div class="banner-title">Sprint 9 Retrospectiva + Sprint 10/11 Planning</div>
+            <div class="banner-subtitle">GBM Contact Center Fase II &mdash; Amazon Connect</div>
+        </div>
+        <div class="banner-date">09 Oct 2026<br><span style="color:#666;font-size:.72rem">Jira: Sprint 20831 / 20832 / 20833</span></div>
+    </div>
+
+    <div class="goal-card">
+        <h3>Sprint 9 &mdash; Resumen del cierre</h3>
+        <p>Sprint 9 "Routing II" (29 Sep &ndash; 14 Oct) no cierra completo. Al corte del 9 de octubre quedan <b>23 historias y tareas In Progress</b> y solo <b>2 en To Do</b>, as&iacute; que el grueso del alcance se arrastra al Sprint 10. Se avanz&oacute; fuerte en la capa de routing y post-contacto: Workspace por rol, callback en cola, actualizaci&oacute;n de interacciones en Salesforce y los flujos Inbound. Pero el pase a Stage sigue condicionado a cerrar definiciones de negocio y a resolver un incidente de producci&oacute;n que apareci&oacute; el mismo 9 de octubre. El avance global del proyecto va en <b>63% (252 de 401 &iacute;tems en Jira)</b>; sube de forma importante cuando el pase a Stage pendiente pase a Done.</p>
+    </div>
+
+    <div class="kpis">
+        <div class="kpi"><div class="val">25</div><div class="lbl">Items S9 (Jira)</div></div>
+        <div class="kpi"><div class="val">23</div><div class="lbl">In Progress</div></div>
+        <div class="kpi orange"><div class="val">2</div><div class="lbl">To Do</div></div>
+        <div class="kpi purple"><div class="val">63%</div><div class="lbl">Avance global (252/401)</div></div>
+        <div class="kpi red"><div class="val">1</div><div class="lbl">Incidente PROD &middot; Sev-5</div></div>
+    </div>
+    <!-- ================= PARTE A: CIERRE S9 ================= -->
+    <div class="phase-title">Parte A &mdash; Sprint 9 Cierre</div>
+    <div class="phase-sub">"Routing II" &middot; 29 Sep &ndash; 14 Oct &middot; Jira Sprint 20831</div>
+
+    <div class="section-title"><span class="num">01</span> Qu&eacute; se avanz&oacute; y valid&oacute; en Sprint 9</div>
+    <table>
+        <tr><th style="width:22%">Tema</th><th>Detalle</th><th style="width:14%">Estado</th></tr>
+        <tr><td><b>Config. de supervisores (no-code)</b><br>Sabrina Tejada / Abigail L&oacute;pez Berry</td><td>Los wireframes de la pantalla de supervisor (colas por modelo de servicio, umbrales, log de auditor&iacute;a) se presentaron y se validaron. El alcance qued&oacute; cerrado y el pendiente que arrastraba de S8 se cierra.</td><td><span class="badge b-done">Validado</span></td></tr>
+        <tr><td><b>Alcance del primer pase a producci&oacute;n</b></td><td>Qued&oacute; definido: el primer pase considera &uacute;nicamente Entidad Cliente. Salesforce entra en un pase posterior, no en el mismo corte.</td><td><span class="badge b-done">Definido</span></td></tr>
+        <tr><td><b>Mixpanel &mdash; atributo diferenciador</b><br>Brenda Gabriela Gil Hern&aacute;ndez</td><td>Se confirm&oacute; que la informaci&oacute;n del atributo diferenciador se envi&oacute; el viernes previo al corte.</td><td><span class="badge b-done">Resuelto</span></td></tr>
+        <tr><td><b>Alertas de Salesforce</b><br>Eduardo God&iacute;nez Loza</td><td>Se compartió en el grupo el correo que recibe las alertas de la integraci&oacute;n.</td><td><span class="badge b-done">Resuelto</span></td></tr>
+        <tr><td><b>API de llamadas (schedule / call)</b><br>Walter Hiram Amores Mac&iacute;as</td><td>Se prob&oacute; y valid&oacute; directamente en el API Gateway productivo.</td><td><span class="badge b-done">Validado</span></td></tr>
+        <tr><td><b>Cambio de integraci&oacute;n Salesforce</b><br>Eduardo God&iacute;nez Loza</td><td>Se reemplaza el endpoint nativo por un servicio propio; misma l&oacute;gica y par&aacute;metros, solo cambia la URL.</td><td><span class="badge b-prog">En progreso</span></td></tr>
+        <tr><td><b>Workspace por rol / callback / flujos Inbound</b></td><td>Arrastre t&eacute;cnico de Sprint 8 que sigui&oacute; en desarrollo durante Sprint 9.</td><td><span class="badge b-prog">En progreso</span></td></tr>
+    </table>
+
+    <div class="section-title"><span class="num">02</span> Lo que arrastra + incidente de producci&oacute;n</div>
+    <div class="card" style="font-size:.86rem;color:#ccc">
+        <b style="color:#fff">Honestidad del cierre:</b> al 9 de octubre quedan 23 items In Progress y 2 en To Do. Ese alcance pasa completo al Sprint 10 bajo el mecanismo de Pase a Stage (ver Parte C).<br><br>
+        <b style="color:#fff">Pendientes de negocio que frenan el pase:</b> plantillas de WhatsApp (primero servicio, despu&eacute;s comerciales), mensajes de Outbound/Goldman, normalizaci&oacute;n de tel&eacute;fonos, y la decisi&oacute;n por escrito de si el pase a producci&oacute;n es &uacute;nico o por partes.<br><br>
+        <b style="color:#fff">Hallazgos de calidad por atrapar antes de Stage:</b> registros de Entidad Cliente con contratos vac&iacute;os, que corrige Abigail L&oacute;pez Berry; y el caso en el que Entidad Cliente reconoce el n&uacute;mero pero Connect no termina de cargar la informaci&oacute;n.<br><br>
+        <b style="color:#ef4444">Incidente PROD &mdash; 9 de octubre:</b> audio unidireccional en llamadas entrantes. Caso de AWS Support <b>Sev-5 179157017000258</b>, con IDR activo. Causa probable: tema de telecom/carrier. Es un bloqueo t&eacute;cnico y operativo nuevo, distinto al patr&oacute;n hist&oacute;rico de dependencias del lado del cliente (ver secci&oacute;n 04).
+    </div>
+
+    <!-- ================= PARTE B: RETROSPECTIVA ================= -->
+    <div class="phase-title">Parte B &mdash; Retrospectiva Sprint 9</div>
+    <div class="phase-sub">Qu&eacute; sali&oacute; bien &middot; Qu&eacute; mejorar &middot; Acciones</div>
+
+    <div class="section-title"><span class="num">03</span> Retrospectiva</div>
+    <div class="retro-grid">
+        <div class="retro-col good">
+            <h3><span class="dot"></span>Qu&eacute; sali&oacute; bien</h3>
+            <ul>
+                <li>Config de supervisores (no-code) cerrada: wireframes validados con Abigail L&oacute;pez Berry, se desbloquea el desarrollo.</li>
+                <li>Alcance del primer pase definido: solo Entidad Cliente primero, Salesforce despu&eacute;s.</li>
+                <li>API de llamadas (schedule y call) validada en el API Gateway productivo con Walter Hiram Amores Mac&iacute;as.</li>
+                <li>Mixpanel y el correo de alertas de Salesforce quedaron resueltos.</li>
+                <li>Bloqueo de Entidad Cliente en Stage aislado y corregido (URL, secretos y permisos) por Walter Hiram Amores Mac&iacute;as.</li>
+            </ul>
+        </div>
+        <div class="retro-col improve">
+            <h3><span class="dot"></span>Qu&eacute; mejorar</h3>
+            <ul>
+                <li>Definiciones de negocio concentradas en pocas personas de GBM (Abigail L&oacute;pez Berry); frenan el cierre.</li>
+                <li>Pendientes de definici&oacute;n que llegaron tarde: plantillas de WhatsApp, mensajes de Outbound/Goldman.</li>
+                <li>Trabajo fuera del radar: normalizar formatos de tel&eacute;fono (espacios, guiones, ceros, +52) para que el match con Entidad Cliente no falle.</li>
+                <li>Calidad de datos: registros de Entidad Cliente con contratos vac&iacute;os, detectados en pruebas.</li>
+                <li>Decisi&oacute;n de despliegue (pase &uacute;nico vs por partes) sin cerrar por escrito; de eso depende c&oacute;mo se arma el Stage.</li>
+                <li>El sprint arrastra fuerte (23 In Progress al corte): la capacity qued&oacute; corta frente al alcance comprometido.</li>
+            </ul>
+        </div>
+        <div class="retro-col action">
+            <h3><span class="dot"></span>Acciones</h3>
+            <ul>
+                <li><b>Jair Garc&iacute;a:</b> cerrar S9, abrir S10/S11, documentar acuerdos; crear el mecanismo de Pase a Stage en Jira.</li>
+                <li><b>Abigail L&oacute;pez Berry:</b> entregar definiciones de negocio, plantillas de WhatsApp (servicio primero, comerciales despu&eacute;s) y mensajes de Outbound; coordinar la correcci&oacute;n de Entidad Cliente; confirmar por escrito si el pase es &uacute;nico o por partes.</li>
+                <li><b>Equipo t&eacute;cnico (Nubity):</b> ajustar la l&oacute;gica de normalizaci&oacute;n y la Lambda para soportar varios formatos de tel&eacute;fono.</li>
+                <li><b>Eduardo God&iacute;nez Loza:</b> dejar lista la nueva integraci&oacute;n de Salesforce (servicio propio, nueva URL) y la vinculaci&oacute;n de casos con actividades.</li>
+                <li><b>Brenda Gabriela Gil Hern&aacute;ndez:</b> mantener Jira al d&iacute;a con el estado real de prueba y validaci&oacute;n.</li>
+                <li><b>IDR / AWS Support:</b> atender el incidente Sev-5 179157017000258 (audio unidireccional) hasta aislar el tema de carrier.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title"><span class="num">04</span> An&aacute;lisis de Bloqueos &mdash; Hist&oacute;rico del Proyecto</div>
+    <div class="card" style="font-size:.85rem;color:#bbb;margin-bottom:16px">
+        An&aacute;lisis de los bloqueos que han costado tiempo a lo largo del proyecto, con cu&aacute;nto duraron, en qu&eacute; sprints pegaron y c&oacute;mo evitarlos. El patr&oacute;n es claro y se repite: la mayor&iacute;a del tiempo perdido viene de dependencias de accesos y definiciones del lado de GBM, no de problemas t&eacute;cnicos. La columna <b style="color:#fff">Sprint(s) afectados</b> muestra que no son hechos aislados sino un patr&oacute;n que cruza casi todo el proyecto.
+    </div>
+    <table>
+        <tr><th style="width:17%">Bloqueo</th><th style="width:9%">Tipo</th><th style="width:11%">Duraci&oacute;n aprox.</th><th style="width:10%">Sprint(s) afectados</th><th style="width:7%">Impacto</th><th>C&oacute;mo mejorar en la pr&oacute;xima ejecuci&oacute;n</th></tr>
+        <tr>
+            <td><b>Accesos AWS (Dev/Stage/Prod) y repos GitHub</b></td>
+            <td>Acceso / cliente</td>
+            <td>~2 semanas (may)</td>
+            <td>S0&ndash;S1</td>
+            <td><span class="badge b-hold">Alto</span></td>
+            <td>Provisionar accesos en un <b>Sprint 0 de onboarding</b> como gate de arranque. Matriz de accesos por rol firmada antes del kickoff; due&ntilde;o &uacute;nico en GBM con SLA de 48 h.</td>
+        </tr>
+        <tr>
+            <td><b>Alta de recursos partner (PSA) y VPN / Zscaler</b></td>
+            <td>Acceso / partner</td>
+            <td>24&ndash;48 h por recurso; recurrente</td>
+            <td>S1, S6, S8</td>
+            <td><span class="badge b-hold">Medio</span></td>
+            <td>Iniciar el alta PSA y la habilitaci&oacute;n de VPN/Zscaler <b>antes</b> de que el recurso arranque. Checklist de conectividad validado el d&iacute;a 1, no durante el sprint.</td>
+        </tr>
+        <tr>
+            <td><b>Falta de datos representativos en STG para UAT</b></td>
+            <td>Definici&oacute;n / dato / cliente</td>
+            <td>Recurrente, varias semanas</td>
+            <td>S6, S7, S8</td>
+            <td><span class="badge b-hold">Alto</span></td>
+            <td>Dar de alta datos de prueba con volumen tipo PROD antes de la demo. Sin datos, la historia de UAT no entra al sprint.</td>
+        </tr>
+        <tr>
+            <td><b>Validaci&oacute;n UAT en STG pendiente (desde 8-sep)</b></td>
+            <td>Definici&oacute;n / cliente</td>
+            <td>~3+ semanas abierta</td>
+            <td>S7, S8, S9</td>
+            <td><span class="badge b-hold">Alto</span></td>
+            <td>Agendar la <b>ventana de UAT dentro del mismo sprint</b> con due&ntilde;o y fecha comprometidos. No dejar UAT como tarea flotante sin fecha.</td>
+        </tr>
+        <tr>
+            <td><b>Definiciones que cambian a mitad de desarrollo</b></td>
+            <td>Alcance / cliente</td>
+            <td>~1 d&iacute;a de retrabajo por caso</td>
+            <td>S6, S8</td>
+            <td><span class="badge b-prog">Medio</span></td>
+            <td>Confirmar reglas de negocio <b>en el refinamiento previo</b>, no durante la construcci&oacute;n. Historia bloqueada hasta tener la definici&oacute;n por escrito.</td>
+        </tr>
+        <tr>
+            <td><b>Callback por WhatsApp sin definir</b></td>
+            <td>Definici&oacute;n / cliente</td>
+            <td>Abierto (arrastr&oacute; S8&rarr;S9)</td>
+            <td>S8, S9</td>
+            <td><span class="badge b-prog">Medio</span></td>
+            <td>Definir con Abigail L&oacute;pez Berry si el mensaje outbound ya ofrece el callback antes de comprometer la historia. Sin definici&oacute;n, no entra al sprint.</td>
+        </tr>
+        <tr>
+            <td><b>Definiciones de negocio concentradas en pocas personas de GBM</b></td>
+            <td>Organizaci&oacute;n / cliente</td>
+            <td>Transversal, todo el proyecto</td>
+            <td>S6, S7, S8, S9</td>
+            <td><span class="badge b-hold">Alto</span></td>
+            <td>Repartir ownership de definiciones en GBM; backups por tema. Un solo cuello de botella frena varias historias a la vez.</td>
+        </tr>
+        <tr>
+            <td><b>Plantillas de WhatsApp / mensajes Outbound sin entregar</b></td>
+            <td>Definici&oacute;n / cliente</td>
+            <td>Abierto en S9</td>
+            <td>S8, S9</td>
+            <td><span class="badge b-prog">Medio</span></td>
+            <td>Negocio entrega t&iacute;tulos y contenido antes del sprint; el mapeo con Meta no arranca sin eso.</td>
+        </tr>
+        <tr>
+            <td><b>Normalizaci&oacute;n de tel&eacute;fonos (multi-formato)</b></td>
+            <td>T&eacute;cnico / dato</td>
+            <td>Apareci&oacute; y se trabaja en S9</td>
+            <td>S6, S9</td>
+            <td><span class="badge b-prog">Medio</span></td>
+            <td>Pedir el cat&aacute;logo de formatos a Data al inicio; la Lambda debe soportar +52, guiones, espacios y ceros desde el dise&ntilde;o.</td>
+        </tr>
+        <tr>
+            <td><b>Permiso PutMetricData faltante en rol Lambda</b></td>
+            <td>T&eacute;cnico / acceso</td>
+            <td>Resuelto en el sprint</td>
+            <td>S7</td>
+            <td><span class="badge b-done">Bajo</span></td>
+            <td>Dejar permisos de CloudWatch en la definici&oacute;n de terminado de la integraci&oacute;n.</td>
+        </tr>
+        <tr>
+            <td><b>Doble registro por timeout en Salesforce (&gt;5 s)</b></td>
+            <td>T&eacute;cnico</td>
+            <td>Resuelto en el sprint</td>
+            <td>S8</td>
+            <td><span class="badge b-done">Bajo</span></td>
+            <td>Ya mitigado con control de reintentos. Alarma de fallas recurrentes como parte del DoD de Salesforce.</td>
+        </tr>
+        <tr>
+            <td><b>Latencia de identificaci&oacute;n en PROD (~20&ndash;30 s con 3 M clientes)</b></td>
+            <td>T&eacute;cnico / dato</td>
+            <td>Estructural (mitigado por API EC)</td>
+            <td>S8</td>
+            <td><span class="badge b-prog">Medio</span></td>
+            <td>Validar tiempos con volumen real, no solo DEV (1&ndash;3 s). Confirmar indexaci&oacute;n de Salesforce en PROD antes del corte.</td>
+        </tr>
+        <tr>
+            <td><b>Registro de horas del TL de AWS (Ren&eacute; Ramos)</b></td>
+            <td>Administrativo</td>
+            <td>En proceso (RR en Hold)</td>
+            <td>S8</td>
+            <td><span class="badge b-done">Bajo</span></td>
+            <td>Cerrar el Resource Request (fechas + pr&aacute;ctica). Fuera de la ruta cr&iacute;tica t&eacute;cnica.</td>
+        </tr>
+        <tr style="background:rgba(239,68,68,.06)">
+            <td style="border-left:3px solid #ef4444"><b style="color:#ef4444">Incidente PROD: audio unidireccional en llamadas entrantes (Sev-5 179157017000258)</b></td>
+            <td><b>T&eacute;cnico / operativo (NO cliente)</b></td>
+            <td><b>Abierto desde 09-Oct, IDR activo</b></td>
+            <td><b>S9</b></td>
+            <td><span class="badge b-crit">Alto</span></td>
+            <td><b>Caso AWS Support Sev-5 con IDR; causa probable telecom/carrier. Primer bloqueo mayor que NO viene de dependencias del cliente &mdash; romper el supuesto de "solo faltan definiciones de GBM" e incluir validaci&oacute;n de telefon&iacute;a/carrier en el checklist de pre-pase a PROD.</b></td>
+        </tr>
+    </table>
+    <div class="dep-note" style="background:linear-gradient(135deg,rgba(68,138,255,.07),rgba(68,138,255,.02));border-color:rgba(68,138,255,.28);border-left-color:#448AFF">
+        <h3 style="color:#448AFF">Conclusi&oacute;n del an&aacute;lisis</h3>
+        <p>Cerca del <b>70% del tiempo perdido</b> por bloqueos a lo largo de los 9 sprints viene de dependencias externas al equipo de desarrollo: accesos y definiciones de GBM, no problemas t&eacute;cnicos. Los bloqueos t&eacute;cnicos (doble registro, latencia, PutMetricData) se resolvieron dentro del propio sprint. La columna "Sprint(s) afectados" lo deja ver: accesos pegaron en S0&ndash;S1, los datos de STG y la UAT pendiente cruzaron de S6 a S9, y las definiciones de negocio concentradas en pocas personas aparecen en casi todos los sprints. <b>Mejora transversal para la pr&oacute;xima ejecuci&oacute;n (Fase III):</b> tratar accesos y definiciones de negocio como <b>gates de entrada al sprint</b>; una historia no entra sin sus accesos provisionados y su definici&oacute;n por escrito.</p>
+        <p style="margin-top:10px">El 9 de octubre apareci&oacute; la excepci&oacute;n al patr&oacute;n: un incidente de producci&oacute;n de audio unidireccional en llamadas entrantes (caso Sev-5 179157017000258, con IDR y causa probable de carrier). Es el primer bloqueo mayor que no nace de una dependencia del cliente sino de la capa t&eacute;cnica/operativa. No cambia la conclusi&oacute;n hist&oacute;rica, pero s&iacute; agrega una lecci&oacute;n nueva: el checklist de pre-pase a PROD tiene que incluir una validaci&oacute;n de telefon&iacute;a y carrier, no solo de accesos y definiciones.</p>
+    </div>
+
+    <!-- ================= PARTE C: PLANNING S10 + S11 ================= -->
+    <div class="phase-title">Parte C &mdash; Sprint 10 + Sprint 11 Planning</div>
+    <div class="phase-sub">Sprint 10 "Workspace II" &middot; 13&ndash;28 Oct &middot; Sprint 11 "Integration" &middot; 27 Oct&ndash;18 Nov</div>
+
+    <div class="goal-card">
+        <h3>Sprint 10 Goal &mdash; "Workspace II"</h3>
+        <p>Sprint 10 "Workspace II" (13&ndash;28 Oct, Jira Sprint 20832) tiene dos objetivos. Primero, pasar a Stage todo lo que qued&oacute; pendiente del Sprint 9: por eso se cre&oacute; un mecanismo expl&iacute;cito de pase, una Story de cierre y una sub-task por cada historia pendiente. Segundo, avanzar el alcance nuevo del sprint: llamadas Outbound y WhatsApp a prospectos, dashboards operativos y manejo de errores. El tope duro del pase a Stage es el <b>28 de octubre</b>.</p>
+    </div>
+
+    <div class="carry-note">
+        <h3>Arrastre de Sprint 9 &rarr; Sprint 10</h3>
+        <p>Las <b>23 historias y tareas</b> que quedaron In Progress en Sprint 9 se arrastran a Sprint 10. En lugar de dejarlas sueltas, cada una lleva ahora su propia sub-task de "Pase a Stage" para forzar el cierre ordenado antes del 28 de octubre. El alcance nuevo del Sprint 10 (10 Stories) se suma encima de ese arrastre, as&iacute; que la prioridad es cerrar el pase primero.</p>
+    </div>
+
+    <div class="section-title"><span class="num">05</span> Backlog Comprometido &mdash; Sprint 10</div>
+    <table>
+        <tr><th style="width:14%">Ticket</th><th>Historia / Scope</th><th style="width:18%">Responsable</th><th style="width:12%">Estado</th></tr>
+        <tr><td><b>AC-1128</b></td><td>Pase a Stage &mdash; Sprint 10 (cierre antes del 28-Oct). Story cabeza del cierre de Stage del sprint.</td><td>Sabrina N Tejada</td><td><span class="badge b-prog">In Prog</span></td></tr>
+        <tr><td colspan="4" style="color:#999;font-style:italic">10 Stories de alcance nuevo &mdash; scope agregado: llamadas Outbound / WhatsApp a prospectos, dashboards operativos, manejo y recuperaci&oacute;n de errores. (Detalle historia-por-historia disponible en Jira board 4440.)</td></tr>
+    </table>
+    <div class="card" style="font-size:.83rem;color:#aaa">
+        <b style="color:#fff">Nota de capacity:</b> Sprint 10 arranca con las 10 Stories nuevas m&aacute;s el arrastre completo de las 23 historias/tareas In Progress de Sprint 9. La prioridad declarada es cerrar el pase a Stage antes de avanzar el alcance nuevo a fondo.
+    </div>
+
+    <div class="section-title"><span class="num">06</span> Mecanismo de Pase a Stage &mdash; Acci&oacute;n de Planning de Hoy</div>
+    <div class="carry-note" style="border-color:rgba(179,136,255,.4)">
+        <h3>15 nuevas sub-tasks: AC-1129 a AC-1143</h3>
+        <p>Para que el pase a Stage deje de ser una tarea flotante, hoy se baj&oacute; a nivel de historia. Se crearon <b>15 sub-tasks nuevas, AC-1129 a AC-1143</b>, una por cada Story pendiente de Sprint 10 y Sprint 11. Cada una se llama "Pase a Stage - [historia]", cuelga de su Story padre y est&aacute; asignada a <b>Silvana Garc&iacute;a</b>. Encima va la Story <b>AC-1128</b>, "Pase a Stage - Sprint 10", a cargo de <b>Sabrina N Tejada</b>, con cierre antes del 28 de octubre. As&iacute; cada historia pendiente tiene due&ntilde;o y traza para su pase, no una promesa suelta.</p>
+    </div>
+    <table>
+        <tr><th style="width:16%">Ticket(s)</th><th>Mecanismo</th><th style="width:20%">Asignado a</th></tr>
+        <tr><td><b>AC-1128</b></td><td>Story cabeza: "Pase a Stage - Sprint 10". Cierre antes del 28-Oct.</td><td>Sabrina N Tejada</td></tr>
+        <tr><td><b>AC-1129&ndash;AC-1143</b><br>(15 sub-tasks)</td><td>Una sub-task "Pase a Stage - [historia]" por cada Story pendiente de Sprint 10 y Sprint 11; cuelga de su Story padre.</td><td>Silvana Garc&iacute;a</td></tr>
+    </table>
+
+    <div class="section-title"><span class="num">07</span> Sprint 11 Planning &mdash; "Integration"</div>
+    <div class="phase-sub" style="margin:-8px 0 12px">27 Oct &ndash; 18 Nov &middot; Jira Sprint 20833 &middot; extendido de 2 a 3 semanas</div>
+    <table>
+        <tr><th style="width:14%">Ticket</th><th>Historia</th><th style="width:20%">Alcance</th></tr>
+        <tr><td><b>AC-937</b></td><td>UAT completo</td><td>Validaci&oacute;n integral antes del cierre</td></tr>
+        <tr><td><b>AC-942</b></td><td>Hardening de seguridad</td><td>Revisi&oacute;n y endurecimiento previo a Go-Live</td></tr>
+        <tr><td><b>AC-947</b></td><td>Documentaci&oacute;n t&eacute;cnica final</td><td>Entregables documentales de cierre</td></tr>
+        <tr><td><b>AC-952</b></td><td>Go-Live</td><td>Paso a producci&oacute;n</td></tr>
+        <tr><td><b>AC-957</b></td><td>Handoff operativo</td><td>Transici&oacute;n a operaci&oacute;n</td></tr>
+    </table>
+    <div class="card" style="font-size:.83rem;color:#aaa">
+        Sprint 11 es el sprint de cierre del proyecto: UAT &rarr; hardening &rarr; docs &rarr; go-live &rarr; handoff. La extensi&oacute;n a <b>3 semanas</b> (de 2 a 3) es para que el UAT completo quepa sin empujar la fecha de go-live.
+    </div>
+
+    <div class="section-title"><span class="num">08</span> Plan Completo del Proyecto</div>
+    <table>
+        <tr><th>Sprint</th><th>Fechas</th><th>Foco</th><th style="width:12%">Estado</th></tr>
+        <tr><td><b>S0</b></td><td>14 May</td><td>Discovery &amp; Governance</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S1</b></td><td>28 May &ndash; 19 Jun</td><td>Accesos + Nivelaci&oacute;n</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S2</b></td><td>22 Jun &ndash; 3 Jul</td><td>Refactor + connect-sync</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S3</b></td><td>8 &ndash; 22 Jul</td><td>Entity + API Queen PRD</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S4</b></td><td>22 Jul &ndash; 5 Ago</td><td>Workspace + WhatsApp</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S5</b></td><td>7 &ndash; 18 Ago</td><td>Routing + Identificaci&oacute;n</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S6</b></td><td>25 Ago &ndash; 2 Sep</td><td>WhatsApp + Mixpanel</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S7</b></td><td>1 &ndash; 13 Sep</td><td>Campaigns + Modelo Comercial</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S8</b></td><td>15 &ndash; 29 Sep</td><td>CSAT + ACW + Workspace / Salesforce</td><td><span class="badge b-done">Cerrado</span></td></tr>
+        <tr><td><b>S9</b></td><td>29 Sep &ndash; 14 Oct</td><td>Routing II (Workspace por rol, callback, Inbound)</td><td><span class="badge b-prog">Arrastra</span></td></tr>
+        <tr><td><b>S10</b></td><td>13 &ndash; 28 Oct</td><td>Workspace II (Outbound/WhatsApp a prospectos, dashboards, Pase a Stage)</td><td><span class="badge b-prog">Activo</span></td></tr>
+        <tr><td><b>S11</b></td><td>27 Oct &ndash; 18 Nov</td><td>Integration (UAT completo, Hardening, Docs, Go-Live, Handoff) &mdash; 3 semanas</td><td><span class="badge b-todo">Futuro</span></td></tr>
+    </table>
+    <div style="font-size:.78rem;color:#888;margin:-12px 0 24px 2px">Fechas tomadas de Jira en vivo (board 4440). S12/S13/S14 se eliminaron hoy por estar vac&iacute;os; su alcance (UAT/Go-Live) se absorbi&oacute; en el Sprint 11 extendido a 3 semanas.</div>
+
+    <div class="card" style="font-size:.82rem;color:#999">
+        <b style="color:#fff">Budget:</b> el detalle de horas y consumo vive en el dashboard de budget del proyecto; este reporte es de ceremonia (retro + planning), no de presupuesto.
+    </div>
+
+    <div class="footer">
+        GBM CC Fase II &mdash; Sprint 9 Retrospectiva + Sprint 10/11 Planning &middot; Datos en vivo de Jira Board 4440 (Sprint 20831 / 20832 / 20833) &middot; 09 Oct 2026 &middot; AWS Professional Services
+    </div>
+</div>
+</body>
+</html>
