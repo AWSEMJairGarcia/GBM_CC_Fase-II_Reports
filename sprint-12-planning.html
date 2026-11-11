@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>GBM CC Fase II — Sprint Planning 12 — Guía GDF de cierre (actualizada 11-Nov)</title>
+<link rel="icon" type="image/png" href="gbm-logo.png">
+<style>
+  body{margin:0;padding:24px 0;background:#f4f5f7;font-family:'Segoe UI',Arial,Helvetica,sans-serif;color:#222;}
+  .wrap{max-width:980px;margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);}
+  .banner{display:block;width:100%;}
+  .sec{padding:18px 30px 6px;}
+  h2{font-size:17px;color:#1a1a2e;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e6e8ee;}
+  h3{font-size:14px;color:#1a1a2e;margin:14px 0 6px;}
+  p{font-size:13.5px;line-height:1.6;margin:0 0 10px;}
+  table{width:100%;border-collapse:collapse;font-size:12.8px;margin:4px 0 12px;}
+  th{background:#1a1a2e;color:#fff;text-align:left;padding:7px 9px;font-weight:600;}
+  td{padding:7px 9px;border-bottom:1px solid #eceef2;vertical-align:top;line-height:1.45;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:9px;white-space:nowrap;}
+  .ok{background:#00A63E;color:#fff;} .prog{background:#FFB020;color:#1a1a2e;} .risk{background:#EF4444;color:#fff;} .info{background:#448AFF;color:#fff;} .pend{background:#c9ced6;color:#1a1a2e;}
+  .kpis{display:flex;gap:10px;margin:4px 0 12px;}
+  .kpi{flex:1;border:1px solid #e6e8ee;border-radius:8px;padding:10px 12px;background:#fafbfc;}
+  .kpi .l{font-size:10.5px;color:#777;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+  .kpi .v{font-size:22px;font-weight:800;color:#1a1a2e;margin-top:3px;}
+  .kpi .f{font-size:11.5px;color:#666;margin-top:2px;}
+  .note{border-left:4px solid #FFB020;background:#fff8ec;padding:10px 14px;border-radius:0 6px 6px 0;font-size:13px;line-height:1.55;margin:6px 0 12px;}
+  .note.red{border-left-color:#EF4444;background:#fdf3f3;}
+  .note.blue{border-left-color:#448AFF;background:#f4f7fd;}
+  ol,ul{font-size:13.3px;line-height:1.6;margin:0 0 10px;padding-left:22px;}
+  .footer{text-align:center;padding:18px 0 22px;border-top:1px solid #eceef2;margin-top:10px;}
+  .footer img{height:30px;}
+  .footer div{font-size:11px;color:#9aa3af;margin-top:6px;}
+  @media print{body{background:#fff;padding:0}.wrap{box-shadow:none}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}}
+</style>
+</head>
+<body>
+<div id="gate" style="position:fixed;inset:0;background:#0a0a0a;z-index:999;display:flex;align-items:center;justify-content:center;"><div style="background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:32px;width:320px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;">
+<img src="gbm-logo.png" alt="GBM" style="height:52px;border-radius:50%;background:#fff;"><div style="color:#fff;font-weight:700;margin-top:12px;">Sprint Planning 12 · Guía GDF de cierre</div>
+<input id="gp" type="password" placeholder="Clave de acceso" aria-label="Clave de acceso" onkeydown="if(event.key==='Enter')gate()" style="width:100%;padding:12px 14px;border-radius:8px;border:1px solid #333;background:#1a1a1a;color:#eee;font-size:14px;text-align:center;margin:14px 0 10px;box-sizing:border-box;">
+<button onclick="gate()" style="width:100%;padding:11px;border:none;border-radius:8px;background:#FF9900;color:#000;font-weight:700;cursor:pointer;">Entrar</button><p id="ge" style="color:#ef4444;font-size:12px;display:none;margin:10px 0 0;">Clave incorrecta</p></div></div>
+<script>function gate(){if(document.getElementById('gp').value==='gbm2026'){sessionStorage.setItem('sp12-auth','1');document.getElementById('gate').style.display='none';}else document.getElementById('ge').style.display='block';}
+if(sessionStorage.getItem('sp12-auth')==='1')document.getElementById('gate').style.display='none';</script>
+<div class="wrap">
+<img class="banner" src="banner-sprint-planning-12.png" alt="Sprint Planning Sprint 12 — GBM CC Fase II — Guía GDF de cierre — avance 79%">
+
+<!-- 1. RESUMEN -->
+<div class="sec">
+  <h2>1. Resumen</h2>
+  <div class="note blue" style="font-size:13.3px;"><b>Actualizado con lo acordado en el Sprint Planning del 11-Nov.</b> Producción se parte en dos pases:<br>
+  · <b>Pase 1</b> (Entidad Cliente, Salesforce y registro de actividades): producción el <b>jueves 19-Nov por la tarde</b>, con el viernes 20 de respaldo.<br>
+  · <b>Pase 2</b> (callback, outbound y app custom): Stage a más tardar el <b>miércoles 25-Nov</b>, UAT del 25 al 27 y producción el <b>jueves 3-Dic por la tarde</b>.<br>
+  · <b>Cierre del proyecto: jueves 10-Dic</b> (por confirmar), antes del freeze de GBM del 11-Dic.</div>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Avance global</div><div class="v">79%</div><div class="f">56 de 71 ítems (8 epics, sin AC-973)</div></div>
+    <div class="kpi"><div class="l">Sprint 11 (Jira)</div><div class="v">42 / 112</div><div class="f">Ítems cerrados · 26 en curso · 44 por hacer</div></div>
+    <div class="kpi"><div class="l">Producción</div><div class="v">19-Nov · 3-Dic</div><div class="f">Pase 1 y pase 2 · jueves por la tarde</div></div>
+    <div class="kpi"><div class="l">Cierre del proyecto</div><div class="v">10-Dic</div><div class="f">Handoff y close-out · por confirmar</div></div>
+  </div>
+  <p>El Sprint 12 es el último. Lleva el pase 2 a Stage y su UAT, los dos pases a producción y todo lo que el GDF pide para cerrar bien: hardening de seguridad, documentación, handoff operativo a GBM, aceptación por escrito y el close-out.</p>
+  <p>El dato más importante para la sesión es este: en el Sprint 11 hay <b>15 historias y ninguna está cerrada</b>. Los 42 ítems hechos son subtareas. Lo que no cierre el 18-Nov se lleva al Sprint 12 y viaja en el pase 2. En la sesión se confirmó que al pase 1 no entra nada extra: solo lo que ya está en Stage.</p>
+</div>
+
+<!-- 2. SPRINT 11 -->
+<div class="sec">
+  <h2>2. Dónde estamos: Sprint 11 "Integration" (4 al 18 de noviembre)</h2>
+  <table>
+    <tr><th style="width:12%">Ítem</th><th>Historia</th><th style="width:13%">Subtareas</th><th style="width:13%">Estado</th><th style="width:28%">Qué decidir en el planning</th></tr>
+    <tr><td>AC-682</td><td>HU-07 Configuración sin código por supervisores (callback)</td><td>11 de 14</td><td><span class="tag prog">Casi lista</span></td><td>Faltan tests, documentación y pase a Stage. Cierra en S11.</td></tr>
+    <tr><td>AC-502</td><td>Registro de llamadas outbound sin respuesta</td><td>7 de 8</td><td><span class="tag prog">Casi lista</span></td><td>Solo falta tests y documentación. Cierra en S11.</td></tr>
+    <tr><td>AC-681</td><td>HU-05 Callback en cola</td><td>8 de 10</td><td><span class="tag prog">Casi lista</span></td><td>Faltan pase a Stage y UAT, <b>sin responsable</b>. Asignar.</td></tr>
+    <tr><td>AC-793</td><td>Iterar revisión de seguridad del repositorio</td><td>9 de 10</td><td><span class="tag prog">Casi lista</span></td><td>AC-796 (resource policy del API Gateway) sigue en To Do. El DSR dice que ya está. Confirmar con Rene Ramos y cerrar.</td></tr>
+    <tr><td>AC-1153</td><td>Registro de callback</td><td>0 de 6</td><td><span class="tag prog">En curso</span></td><td>5 subtareas en curso. Validar si llega al 18-Nov.</td></tr>
+    <tr><td>AC-498</td><td>WhatsApp outbound: respuesta directa al asesor</td><td>0 de 5</td><td><span class="tag prog">En curso</span></td><td>4 en curso. Depende de la definición de Abigail sobre tiempo de espera y ruta.</td></tr>
+    <tr><td>AC-459</td><td>HU-23 Workspace custom por rol</td><td>6 de 22</td><td><span class="tag risk">En riesgo</span></td><td>La historia más grande: 14 subtareas sin iniciar, incluida seguridad (WAF, OAC, authorizer). Decidir alcance mínimo para producción.</td></tr>
+    <tr><td>AC-456</td><td>HU-06 Outbound y callback WhatsApp</td><td>0 de 8</td><td><span class="tag risk">En riesgo</span></td><td>8 subtareas sin iniciar y 7 <b>sin responsable</b>. Asignar o mover a cambio de alcance.</td></tr>
+    <tr><td>AC-673 · AC-676 · AC-678</td><td>Outbound de voz (Customer Service y asesor interno) y WhatsApp outbound asesor interno</td><td>—</td><td><span class="tag prog">En curso</span></td><td>Entran en el segundo pase a Stage. Confirmar fecha.</td></tr>
+    <tr><td>AC-918</td><td>Callback anti-duplicados</td><td>0 de 2</td><td><span class="tag prog">En curso</span></td><td>La prueba de duplicados está asignada a Brenda Merani Martin. Confirmar.</td></tr>
+    <tr><td>AC-684</td><td>HU-32 Dashboards operativos</td><td>0 de 1</td><td><span class="tag risk">Bloqueado</span></td><td>Bloqueado por accesos de Nubity. Si no se libera esta semana, sale de producción.</td></tr>
+    <tr><td>AC-683</td><td>HU-08 Manejo de errores y observabilidad</td><td>0 de 1</td><td><span class="tag pend">Sin iniciar</span></td><td>Abigail pidió decidirlo por correo: entra en S11/S12 o sale del alcance.</td></tr>
+    <tr><td>AC-1145</td><td>UAT integral (identificación, routing, workspace, mejoras)</td><td>1 de 8</td><td><span class="tag prog">En curso</span></td><td>Dos subtareas de chat asignadas a Brenda Gabriela Gil Hernández, que está de vacaciones. Reasignar a Carlos Ramos Flores.</td></tr>
+  </table>
+</div>
+
+<!-- 3. DAILIES -->
+<div class="sec">
+  <h2>3. Lo que salió de los dailies y del Sprint Planning (3 al 11 de noviembre)</h2>
+  <table>
+    <tr><th style="width:14%">Daily</th><th>Decisión o dato</th><th style="width:16%">Estado</th></tr>
+    <tr><td>3-Nov</td><td>Pase a Stage hecho. Sabrina Tejada mandó el set completo de UAT. Mixpanel desbloqueado.</td><td><span class="tag ok">Hecho</span></td></tr>
+    <tr><td>3-Nov</td><td>GBM Plus como área default de Salesforce para callback, outbound y colas sin mapeo.</td><td><span class="tag ok">Acordado</span></td></tr>
+    <tr><td>4-Nov</td><td>Producción ya no es el 6-Nov. GBM pide capacitar a sus equipos y cerrar permisos antes de liberar.</td><td><span class="tag prog">Cambio</span></td></tr>
+    <tr><td>4-Nov</td><td>Walter Hiram Amores Macías pide el checklist de producción para preparar import, export y permisos.</td><td><span class="tag prog">Pendiente</span></td></tr>
+    <tr><td>9-Nov</td><td>Fecha objetivo de producción: <b>viernes 20-Nov</b>. Puede ir a la última semana de noviembre para incluir el segundo pase a Stage.</td><td><span class="tag prog">Por confirmar</span></td></tr>
+    <tr><td>9-Nov</td><td>Cierre del proyecto / handover: 27-Nov (se movió al 10-Dic el 11-Nov). Demo reprogramada.</td><td><span class="tag info">Reemplazado</span></td></tr>
+    <tr><td>9-Nov</td><td>Permisos para el miércoles 11 y videos de capacitación esta semana. Abigail ya arma la capacitación.</td><td><span class="tag prog">En curso</span></td></tr>
+    <tr><td>9-Nov</td><td>Definiciones del bot (tiempo antes del cierre, textos de agradecimiento) entre el 9 y el 10. José Luis Reyes implementa.</td><td><span class="tag prog">Pendiente</span></td></tr>
+    <tr><td>9-Nov</td><td>Accesos de Silvana García y Sabrina Tejada siguen sin confirmar.</td><td><span class="tag ok">Silvana OK</span></td></tr>
+    <tr><td><b>11-Nov</b></td><td><b>Producción en dos pases:</b> pase 1 el jueves 19-Nov por la tarde y pase 2 el jueves 3-Dic por la tarde. Cada uno con el viernes de respaldo.</td><td><span class="tag ok">Acordado</span></td></tr>
+    <tr><td><b>11-Nov</b></td><td>Pase 2 a Stage a más tardar el 25-Nov. UAT de GBM del 25 al 27-Nov en máximo 2 días.</td><td><span class="tag ok">Acordado</span></td></tr>
+    <tr><td><b>11-Nov</b></td><td>Capacitación a los asesores el martes 17 y miércoles 18-Nov.</td><td><span class="tag info">Agendado</span></td></tr>
+    <tr><td><b>11-Nov</b></td><td>Cierre del proyecto se mueve al 10-Dic. Freeze de GBM desde el 11-Dic.</td><td><span class="tag prog">Por confirmar</span></td></tr>
+    <tr><td><b>11-Nov</b></td><td>Silvana García ya tiene acceso. Sabrina Tejada entró desde una VM sin VPN; se revisa con GBM.</td><td><span class="tag risk">Revisar</span></td></tr>
+  </table>
+</div>
+
+<!-- 4. AGENDA -->
+<div class="sec">
+  <h2>4. Agenda del Sprint Planning (11-Nov)</h2>
+  <table>
+    <tr><th style="width:12%">Min</th><th style="width:30%">Bloque</th><th>Qué sale de aquí</th></tr>
+    <tr><td>0–10</td><td>Revisión del Sprint 11</td><td>Qué historias cierran el 18-Nov y cuáles no. Usar la tabla de la sección 2.</td></tr>
+    <tr><td>10–20</td><td>Corte de alcance para producción</td><td>Lista final de lo que entra a producción. Lo que no entra se registra como cambio de alcance (SCM) en el decision log, con la razón y el visto bueno de Abigail.</td></tr>
+    <tr><td>20–35</td><td>Plan del Sprint 12 (cierre)</td><td>Las 6 historias de cierre con responsable y fecha. Hoy 26 de 31 ítems no tienen responsable.</td></tr>
+    <tr><td>35–45</td><td>Fecha de producción y Go-Live</td><td>Acordado: 19-Nov y 3-Dic, jueves por la tarde. Checklist, ventana, rollback y monitoreo de 24 h.</td></tr>
+    <tr><td>45–55</td><td>Mecanismos GDF de cierre</td><td>Repasar la sección 6 y asignar dueño a cada mecanismo.</td></tr>
+    <tr><td>55–60</td><td>Riesgos y acuerdos</td><td>Confirmar riesgos, decisiones pendientes de GBM y siguiente revisión.</td></tr>
+  </table>
+</div>
+
+<!-- 5. SPRINT 12 -->
+<div class="sec">
+  <h2>5. Propuesta de alcance del Sprint 12 "Go-Live &amp; Close"</h2>
+  <div class="note red"><b>Corregir en Jira:</b> el Sprint 12 tiene fechas de 2025 (11 al 25 de noviembre de 2025). Con el plan acordado, propuesta: <b>19-Nov al 4-Dic de 2026</b>, que cierra con el pase 2 y su día de respaldo. El handoff y el close-out quedan para la semana del 7-Dic. También el "Sprint TBD" tiene fechas de 2025.</div>
+  <table>
+    <tr><th style="width:11%">Ítem</th><th>Historia</th><th style="width:26%">Responsable propuesto</th><th style="width:16%">Fecha propuesta</th></tr>
+    <tr><td>AC-1170</td><td>Pasaje a STG de outbound y callback (segundo pase)</td><td>Silvana García (TL Nubity)</td><td>A más tardar Mié 25-Nov</td></tr>
+    <tr><td>AC-937</td><td>UAT completo end-to-end con GBM</td><td>Abigail + Carlos Ramos Flores · Sabrina Tejada coordina</td><td>Pase 1: en curso · Pase 2: 25 al 27-Nov</td></tr>
+    <tr><td>AC-942</td><td>Hardening de seguridad: cierre de hallazgos, rotación de secretos, WAF y resource policies en PRD, auditoría IAM</td><td>Rene Ramos (TL AWS)</td><td>Antes de cada pase (18-Nov y 2-Dic)</td></tr>
+    <tr><td>AC-952</td><td>Go-Live: checklist, deploy final, monitoreo de 24 h, comunicación</td><td>Silvana García + Walter Hiram Amores Macías · Jair García comunica</td><td>Jue 19-Nov y Jue 3-Dic (tarde)</td></tr>
+    <tr><td>AC-947</td><td>Documentación técnica final: arquitectura, runbooks, troubleshooting, inventario</td><td>Silvana García + Rene Ramos</td><td>Antes del 9-Dic</td></tr>
+    <tr><td>AC-957</td><td>Handoff operativo a GBM: sesión, accesos documentados, capacitación de admin, plan de soporte</td><td>Sabrina Tejada + Jair García</td><td>Jue 10-Dic</td></tr>
+  </table>
+  <p>Los responsables son una propuesta para validar en la sesión. Lo que se lleve del Sprint 11 (por ejemplo, parte de AC-459 o AC-456) tiene que caber en el pase 2 sin mover el 3-Dic. Si no cabe, es cambio de alcance.</p>
+  <h3>Higiene de Jira antes de la sesión</h3>
+  <ul>
+    <li><b>Fechas del Sprint 12 y del Sprint TBD</b> en 2026.</li>
+    <li><b>Duplicado:</b> AC-1155 (en AC-1153) y AC-1181 (en AC-456) tienen el mismo título, "Sub-flujo de callback de WhatsApp outbound dirigido al asesor iniciador". Dejar uno.</li>
+    <li><b>Sin responsable:</b> 7 subtareas de AC-456, el pase a Stage y el UAT de AC-681, y 26 ítems del Sprint 12.</li>
+    <li><b>Reasignar</b> las 2 subtareas de UAT de chat de Brenda Gabriela Gil Hernández mientras está de vacaciones.</li>
+    <li><b>Sprint TBD</b> (AC-963 a AC-966: gestión de colas, reportería por franja, videollamadas, datos de vista): no son de Fase II. Pasarlos al backlog de Fase III y entregarlos en el D2S.</li>
+  </ul>
+</div>
+
+<!-- 6. GDF -->
+<div class="sec">
+  <h2>6. Guía GDF: cómo cerrar el proyecto siguiendo el framework</h2>
+  <p>Según el GDF200, el proyecto entra a la fase <b>Close</b>. El close-out lleva entre 4 y 6 horas, es obligatorio en todos los engagements y es facturable. Abajo va cada mecanismo con lo que pide el framework, cómo aplica a GBM y quién lo lleva.</p>
+  <table>
+    <tr><th style="width:17%">Mecanismo GDF</th><th>Qué pide el framework</th><th style="width:29%">Cómo aplica a GBM</th><th style="width:13%">Dueño</th><th style="width:11%">Estado</th></tr>
+    <tr><td><b>DRR / Change Management</b></td><td>Revisión de preparación antes de entregar, control de cambios y plan de rollback.</td><td>Aplicarlo al segundo pase a Stage y al Go-Live: qué cambia, cómo se revierte, quién aprueba.</td><td>Rene Ramos + Silvana García</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>DSR</b></td><td>Revisión de seguridad de todo entregable con código. Nada se entrega sin DSR.</td><td>V2189474576 revisado por Bruno Costa: Compliant. El código nuevo se escanea antes de cada pase (acordado con Rene Ramos el 11-Nov).</td><td>Jair García</td><td><span class="tag ok">Revisado</span></td></tr>
+    <tr><td><b>Scope Change Management</b></td><td>Todo cambio de alcance se evalúa por costo y tiempo y queda documentado.</td><td>Lo que no entre a producción (por ejemplo dashboards o manejo de errores) se registra en el decision log con el OK de Abigail.</td><td>Jair García</td><td><span class="tag prog">En la sesión</span></td></tr>
+    <tr><td><b>Riesgos abiertos</b></td><td>Si el cliente decide no aplicar un control, se documenta por escrito y va a su registro de riesgos.</td><td>Hoy el DSR no deja riesgos abiertos. Confirmar AC-796 (resource policy) antes de cerrar.</td><td>Rene Ramos</td><td><span class="tag prog">Confirmar</span></td></tr>
+    <tr><td><b>Deliverable Acceptance</b></td><td>Aceptación <b>por escrito</b> de cada entregable, guardada en Salesforce.</td><td>Una aceptación por pase: después del 19-Nov y después del 3-Dic. M1 ya está en producción.</td><td>Jair García · Abigail firma</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>D2O (Delivery to Operations)</b></td><td>Transferencia formal a quien opera la solución.</td><td>AC-957: sesión de handoff, runbooks (AC-949), troubleshooting (AC-950), inventario (AC-951), capacitación de admin (AC-960) y plan de soporte (AC-961).</td><td>Sabrina Tejada + Jair García</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>D2S (Delivery to Sales)</b></td><td>Regresar al equipo de cuenta las oportunidades detectadas.</td><td>PRD de Fase III y los ítems del Sprint TBD. Entregar a Luis Gómez y al account team.</td><td>Jair García</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>Close-out meeting</b></td><td>Reunión de cierre con plantilla Word o PPT. Primero la reunión y después el PDF, nunca solo por correo.</td><td>Se mueve al 10-Dic (por confirmar). Usar el CBO Canvas para mostrar el valor logrado por milestone.</td><td>Jair García</td><td><span class="tag info">Agendado</span></td></tr>
+    <tr><td><b>Financieros</b></td><td>Timecards y gastos aprobados, partner liquidado, factura final.</td><td>Aprobar timecards de Nubity, cerrar el planner con End Date correcto y emitir la última factura.</td><td>Jair García</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>Accesos y activos</b></td><td>Revocar accesos y devolver equipo.</td><td>Quitar accesos de Nubity y AWS en el ambiente de GBM (VPN, Zscaler, Connect) después del handoff.</td><td>Abigail + Walter Hiram Amores Macías</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>Propiedad intelectual</b></td><td>Recuperar y archivar la IP sin datos del cliente, con acuerdo escrito del mecanismo.</td><td>Ticket V2188981412 cerrado desde junio. Confirmar con Valdomiro Junior si se reabre. Archivo en GitLab con PR-059806.</td><td>Jair García + Rene Ramos</td><td><span class="tag risk">Revisar</span></td></tr>
+    <tr><td><b>VOC / CSAT</b></td><td>CSAT obligatorio a 2 o más contactos desde Salesforce. Pedir referencias.</td><td>Mandar CSAT al cierre. Si GBM tiene alguna restricción para contestar encuestas, documentar la excepción.</td><td>Jair García</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>Lecciones aprendidas</b></td><td>Registrarlas en APG, Knowledge Mine o PMT, ya redactadas.</td><td>Accesos del partner, definiciones tardías, UAT con dueño por prueba, defaults para no bloquear.</td><td>Jair García</td><td><span class="tag pend">Por hacer</span></td></tr>
+    <tr><td><b>Status reporting</b></td><td>Reporte semanal hasta el cierre.</td><td>Seguir con el reporte ejecutivo y el status de Salesforce cada viernes.</td><td>Jair García</td><td><span class="tag ok">En marcha</span></td></tr>
+  </table>
+</div>
+
+<!-- 7. CALENDARIO -->
+<div class="sec">
+  <h2>7. Calendario a cierre (acordado el 11-Nov)</h2>
+  <table>
+    <tr><th style="width:20%">Fecha</th><th>Hito</th><th style="width:18%">Mecanismo GDF</th></tr>
+    <tr><td>11 y 12-Nov</td><td>Ajustes del UAT de Dev a Stage. Abigail cierra el UAT de llamadas.</td><td>DRR</td></tr>
+    <tr><td>Lun 16-Nov</td><td>Festivo en México. GBM no labora.</td><td>—</td></tr>
+    <tr><td>Mar 17 y Mié 18-Nov</td><td>Capacitación a los asesores. OK de seguridad del pase 1. Cierre del Sprint 11 (18-Nov).</td><td>D2O · DSR</td></tr>
+    <tr><td><b>Jue 19-Nov (tarde)</b></td><td><b>Pase 1 a producción</b>: Entidad Cliente, Salesforce y registro de actividades.</td><td>Go-Live · DRR</td></tr>
+    <tr><td>Vie 20-Nov</td><td>Respaldo para ajustes del pase 1. Pedir aceptación escrita del pase 1.</td><td>Acceptance</td></tr>
+    <tr><td>Lun 23-Nov</td><td>Festivo en Argentina (equipo de Nubity).</td><td>—</td></tr>
+    <tr><td><b>A más tardar Mié 25-Nov</b></td><td><b>Pase 2 a Stage</b>: callback, outbound y app custom.</td><td>DRR</td></tr>
+    <tr><td>25 al 27-Nov</td><td>UAT de GBM del pase 2 (máximo 2 días).</td><td>Acceptance</td></tr>
+    <tr><td>Lun 30-Nov y Mar 1-Dic</td><td>Ajustes del UAT y últimos cambios en Stage. OK de seguridad del pase 2.</td><td>DSR</td></tr>
+    <tr><td><b>Jue 3-Dic (tarde)</b></td><td><b>Pase 2 a producción</b>: callback y outbound.</td><td>Go-Live · DRR</td></tr>
+    <tr><td>Vie 4-Dic</td><td>Respaldo para ajustes del pase 2.</td><td>—</td></tr>
+    <tr><td>Lun 7 y Mié 9-Dic</td><td>Soporte posterior (Mar 8-Dic festivo en Argentina). Aceptación escrita del pase 2. D2O, D2S y documentación final.</td><td>D2O · D2S · Acceptance</td></tr>
+    <tr><td><b>Jue 10-Dic</b></td><td><b>Handoff operativo y close-out</b> (por confirmar).</td><td>Close · VOC</td></tr>
+    <tr><td>Vie 11-Dic</td><td>Inicia el freeze de GBM. CSAT, lecciones aprendidas, financieros, IP y retiro de accesos.</td><td>Close · VOC</td></tr>
+  </table>
+  <div class="note"><b>Por confirmar:</b> la ventana del jueves por la tarde para los dos pases. Abigail lo valida con sus equipos porque hay que cerrar ventanas por si algo afecta la operación. El proyecto ahora llega al 10-Dic: hay que revisar presupuesto y planner.</div>
+</div>
+<!-- 8. RIESGOS -->
+<div class="sec">
+  <h2>8. Riesgos y decisiones</h2>
+  <table>
+    <tr><th style="width:11%">Nivel</th><th>Riesgo o decisión</th><th style="width:30%">Propuesta</th></tr>
+    <tr><td><span class="tag risk">Alto</span></td><td>15 historias del Sprint 11 abiertas a 7 días hábiles del cierre. AC-459 y AC-456 son las más atrasadas.</td><td>Cortar alcance hoy. Definir el mínimo para producción y registrar el resto como cambio de alcance.</td></tr>
+    <tr><td><span class="tag risk">Alto</span></td><td>Accesos de Nubity sin confirmar. Frenan dashboards, videos y parte del UAT.</td><td>Fecha límite: miércoles 11. Si no se liberan, dashboards salen de producción.</td></tr>
+    <tr><td><span class="tag prog">Medio</span></td><td>Proyecto extendido al 10-Dic: más semanas de horas de Nubity y del Investment de AWS.</td><td>Revisar planner y presupuesto esta semana y ajustar el End Date en Salesforce.</td></tr>
+    <tr><td><span class="tag prog">Medio</span></td><td>Definiciones pendientes de GBM: bot, WhatsApp outbound y manejo de errores.</td><td>Respuesta antes del 12-Nov. Si no llega, se aplica el default acordado o sale del alcance.</td></tr>
+    <tr><td><span class="tag prog">Medio</span></td><td>Ticket de propiedad intelectual cerrado antes de tiempo.</td><td>Confirmar con Valdomiro Junior y planear el archivo para la semana del 7-Dic.</td></tr>
+  </table>
+</div>
+
+<!-- 9. SIGUIENTES PASOS -->
+<div class="sec">
+  <h2>9. Siguientes pasos</h2>
+  <ol>
+    <li><b>Esta semana:</b> compartir el calendario actualizado, mover el close-out al 10-Dic, corregir fechas del Sprint 12 en Jira y revisar presupuesto.</li>
+    <li><b>Esta semana:</b> validar el acceso de Sabrina Tejada desde la VM con el equipo de GBM y cerrar las definiciones pendientes (áreas de callback y manejo de errores).</li>
+    <li><b>17 y 18-Nov:</b> capacitación, OK de seguridad y cierre del Sprint 11.</li>
+    <li><b>19 y 20-Nov:</b> pase 1 a producción y aceptación escrita.</li>
+    <li><b>25-Nov al 4-Dic:</b> pase 2 a Stage, UAT, ajustes y pase 2 a producción.</li>
+    <li><b>7 al 11-Dic:</b> soporte, D2O, D2S, close-out, CSAT, IP, financieros y lecciones aprendidas.</li>
+  </ol>
+</div>
+<div class="footer">
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px;font-weight:700;color:#1a1a2e;font-size:13px;"><img src="gbm-logo.png" alt="GBM" style="height:30px;width:30px;border-radius:50%;border:1px solid #e0e0e0;"><span>GBM · AWS Professional Services</span><img src="AWS_logo_RGB_yellow.png" alt="AWS" style="height:22px;"></div>
+  <div>GBM CC Fase II · Sprint Planning 12 · Guía GDF de cierre · actualizada 11-Nov-2026<br>Fuentes: Jira board 4440, dailies del 3 al 9 de noviembre, Sprint Planning del 11-Nov (14 asistentes), GDF200.</div>
+  <div style="font-size:10.5px;line-height:1.55;">© 2026 GBM Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa. Información confidencial, para uso exclusivo de GBM y de su equipo de proyecto.<br>© 2026, Amazon Web Services, Inc. o sus filiales. Todos los derechos reservados. Preparado por AWS Professional Services.</div>
+</div>
+</div>
+</body>
+</html>
